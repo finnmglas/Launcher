@@ -125,7 +125,7 @@ class MainActivity : AppCompatActivity() {
 
         }
         else if (keyCode == KeyEvent.KEYCODE_VOLUME_DOWN) {
-            listApps()
+            //listApps() // crashes
         }
         return true
     }
