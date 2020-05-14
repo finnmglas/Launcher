@@ -15,6 +15,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.MotionEventCompat
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlin.math.abs
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.concurrent.fixedRateTimer
@@ -58,6 +59,11 @@ class MainActivity : AppCompatActivity() {
     fun launchClock(v: View){ launchApp("com.sec.android.app.clockpackage") }
     fun launchBrowser(v: View){ launchApp("org.mozilla.firefox") }
 
+    fun launchUpApp() { launchBrowser(container) }
+    fun launchDownApp() { launchFinder(container) }
+    fun lauchLeftApp() { launchCalendar(container) }
+    fun lauchRightApp() { launchMail(container) }
+
     // Overrides
 
     var touchX : Float = 0F
@@ -77,18 +83,32 @@ class MainActivity : AppCompatActivity() {
             MotionEvent.ACTION_UP -> {
                 windowManager.defaultDisplay.getMetrics(displayMetrics)
 
-                var width = displayMetrics.widthPixels
-                var height = displayMetrics.heightPixels
+                val width = displayMetrics.widthPixels
+                val height = displayMetrics.heightPixels
 
-                //swipe up
-                if (touchY - event.y > height/3) launchBrowser(container);
-                //swipe down
-                if (touchY - event.y < -height/3) launchFinder(container);
+                val diffX = touchX - event.x;
+                val diffY = touchY - event.y;
 
-                //swipe left
-                if (touchX - event.x > width/3) launchCalendar(container);
-                //swipe right
-                if (touchX - event.x < -width/3) launchMail(container);
+                val strictness = 4 // of direction
+
+                // Decide which one to open
+
+                if (diffY > height/8
+                    && abs(diffY) > strictness * abs(diffX))
+                    launchUpApp()
+
+                else if (diffY < -height/8
+                    && abs(diffY) > strictness * abs(diffX)
+                    && touchY > 100)
+                    launchDownApp()
+
+                else if (diffX > width/4
+                    && abs(diffX) > strictness * abs(diffY))
+                    lauchLeftApp()
+
+                else if (diffX < -width/4
+                    && abs(diffX) > strictness * abs(diffY))
+                    lauchRightApp()
 
                 true
             }
