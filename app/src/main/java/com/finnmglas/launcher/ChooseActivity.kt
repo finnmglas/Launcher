@@ -27,7 +27,7 @@ class ChooseActivity : AppCompatActivity() {
 
             if (app.flags and ApplicationInfo.FLAG_UPDATED_SYSTEM_APP != 0) {
                 //checks for flags; if flagged, check if updated system app
-                installedApps.add(app);
+                installedApps.add(app)
             } else if (app.flags and ApplicationInfo.FLAG_SYSTEM != 0) {
                 //it's a system app, not interested
             } else {
@@ -45,7 +45,7 @@ class ChooseActivity : AppCompatActivity() {
             val tvdynamic = TextView(this)
             tvdynamic.textSize = 20f
             tvdynamic.text = app.loadLabel(pm).toString()
-            tvdynamic.setTextColor(Color.parseColor("#cccccc"));
+            tvdynamic.setTextColor(Color.parseColor("#cccccc"))
 
             tvdynamic.setOnClickListener { startActivity(pm.getLaunchIntentForPackage(app.packageName)) }
 
@@ -57,7 +57,7 @@ class ChooseActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
 
         setContentView(R.layout.activity_choose)

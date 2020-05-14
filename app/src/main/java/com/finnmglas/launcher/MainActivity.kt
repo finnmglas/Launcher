@@ -33,17 +33,17 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun launchApp(packageName: String, fallback: String = "") {
-        val intent1 = getIntent(packageName);
+        val intent1 = getIntent(packageName)
 
         if(intent1!=null){
             applicationContext.startActivity(intent1)
-            overridePendingTransition(0,0);
+            overridePendingTransition(0,0)
         } else {
-            val intent2 = getIntent(fallback);
+            val intent2 = getIntent(fallback)
 
             if(intent2!=null){
                 applicationContext.startActivity(intent2)
-                overridePendingTransition(0,0);
+                overridePendingTransition(0,0)
             } else {
                 Toast.makeText(this, "Package '$packageName' not found.", Toast.LENGTH_SHORT).show()
             }
@@ -63,10 +63,10 @@ class MainActivity : AppCompatActivity() {
     fun launchDownApp() { launchFinder(container) }
     fun lauchLeftApp() { launchCalendar(container) }
     fun lauchRightApp() { launchMail(container) }
-    
+
     fun lauchVolumeUpApp() { }
     fun lauchVolumeDownApp() {
-        val intent = Intent(this, ChooseActivity::class.java);
+        val intent = Intent(this, ChooseActivity::class.java)
         startActivity(intent)
     }
 
@@ -92,8 +92,8 @@ class MainActivity : AppCompatActivity() {
                 val width = displayMetrics.widthPixels
                 val height = displayMetrics.heightPixels
 
-                val diffX = touchX - event.x;
-                val diffY = touchY - event.y;
+                val diffX = touchX - event.x
+                val diffY = touchY - event.y
 
                 val strictness = 4 // of direction
 
@@ -139,9 +139,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
-
 
         val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
         val timeFormat = SimpleDateFormat("HH:mm:ss", Locale.getDefault())
