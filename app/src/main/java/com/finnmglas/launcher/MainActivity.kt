@@ -54,15 +54,21 @@ class MainActivity : AppCompatActivity() {
     fun launchWhatsapp(v: View){ launchApp("com.whatsapp") }
 
     fun launchFinder(v: View){ launchApp("com.samsung.android.app.galaxyfinder") }
-    fun launchMail(v: View){ launchApp("com.samsung.android.email.provider") }
-    fun launchCalendar(v: View){ launchApp("com.google.android.calendar") }
+    fun launchMail(v: View){ launchApp("com.samsung.android.email.provider", "com.google.android.gm") }
+    fun launchCalendar(v: View){ launchApp("com.google.android.calendar", "com.samsung.android.calendar") }
     fun launchClock(v: View){ launchApp("com.sec.android.app.clockpackage") }
-    fun launchBrowser(v: View){ launchApp("org.mozilla.firefox") }
+    fun launchBrowser(v: View){ launchApp("org.mozilla.firefox", "com.sec.android.app.sbrowser") }
 
     fun launchUpApp() { launchBrowser(container) }
     fun launchDownApp() { launchFinder(container) }
     fun lauchLeftApp() { launchCalendar(container) }
     fun lauchRightApp() { launchMail(container) }
+    
+    fun lauchVolumeUpApp() { }
+    fun lauchVolumeDownApp() {
+        val intent = Intent(this, ChooseActivity::class.java);
+        startActivity(intent)
+    }
 
     // Overrides
 
@@ -123,16 +129,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
-        if (keyCode == KeyEvent.KEYCODE_BACK) {
-
-        }
-        else if (keyCode == KeyEvent.KEYCODE_VOLUME_UP) {
-
-        }
-        else if (keyCode == KeyEvent.KEYCODE_VOLUME_DOWN) {
-            val intent = Intent(this, ChooseActivity::class.java);
-            startActivity(intent)
-        }
+        if (keyCode == KeyEvent.KEYCODE_BACK) { return true }
+        else if (keyCode == KeyEvent.KEYCODE_VOLUME_UP) lauchVolumeUpApp()
+        else if (keyCode == KeyEvent.KEYCODE_VOLUME_DOWN) lauchVolumeDownApp()
         return true
     }
 
