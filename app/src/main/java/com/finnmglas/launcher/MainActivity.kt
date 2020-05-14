@@ -10,6 +10,7 @@ import android.view.KeyEvent
 import android.view.MotionEvent
 import android.view.View
 import android.view.WindowManager
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.MotionEventCompat
@@ -45,22 +46,6 @@ class MainActivity : AppCompatActivity() {
             } else {
                 Toast.makeText(this, "Package '$packageName' not found.", Toast.LENGTH_SHORT).show()
             }
-        }
-    }
-
-    private fun listApps() {
-        val mainIntent = Intent(Intent.ACTION_MAIN, null)
-        mainIntent.addCategory(Intent.CATEGORY_LAUNCHER)
-
-        val pm = packageManager
-        val packages =
-            pm.getInstalledApplications(PackageManager.GET_META_DATA)
-
-        for (packageInfo in packages) {
-            //packageInfo.packageName
-            //packageInfo.sourceDir
-            pm.getLaunchIntentForPackage(packageInfo.packageName)
-            startActivity(pm.getLaunchIntentForPackage(packageInfo.packageName))
         }
     }
 
@@ -125,7 +110,8 @@ class MainActivity : AppCompatActivity() {
 
         }
         else if (keyCode == KeyEvent.KEYCODE_VOLUME_DOWN) {
-            //listApps() // crashes
+            val intent = Intent(this, ChooseActivity::class.java);
+            startActivity(intent)
         }
         return true
     }
