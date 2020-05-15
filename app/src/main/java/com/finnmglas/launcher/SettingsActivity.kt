@@ -40,10 +40,17 @@ class SettingsActivity : AppCompatActivity() {
         }
     }
 
-    fun chooseApp() {
+    fun chooseDownApp(view: View) {chooseApp("downApp")}
+    fun chooseUpApp(view: View) {chooseApp("upApp")}
+    fun chooseLeftApp(view: View) {chooseApp("leftApp")}
+    fun chooseRightApp(view: View) {chooseApp("rightApp")}
+    fun chooseVolumeDownApp(view: View) {chooseApp("volumeDownApp")}
+    fun chooseVolumeUpApp(view: View) {chooseApp("volumeUpApp")}
+
+    fun chooseApp(forAction :String) {
         val intent = Intent(this, ChooseActivity::class.java)
         intent.putExtra("action", "pick") // why choose an app
-        intent.putExtra("forApp", "downApp") // which app we choose
+        intent.putExtra("forApp", forAction) // which app we choose
         startActivityForResult(intent, 5000)
     }
 

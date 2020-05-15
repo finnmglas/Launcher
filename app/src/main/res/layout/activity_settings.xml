@@ -7,4 +7,185 @@
     android:background="?attr/colorPrimaryDark"
     tools:context=".SettingsActivity">
 
+    <TextView
+        android:id="@+id/heading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Settings"
+        android:textColor="#cccccc"
+        android:textSize="36sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.100000024" />
+
+    <TextView
+        android:id="@+id/sub_head_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Actions"
+        android:textColor="#999"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias=".1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.189" />
+
+    <TableLayout
+        android:id="@+id/actionschooser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal|center_vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/sub_head_1"
+        app:layout_constraintVertical_bias="0.120000005">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/text_up"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Swipe Up"
+                android:textColor="#ccc"
+                android:textSize="24sp" />
+
+            <Button
+                android:id="@+id/btn_choose_up"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="chooseUpApp"
+                android:text="Choose App" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/text_down"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Swipe Down"
+                android:textColor="#ccc"
+                android:textSize="24sp" />
+
+            <Button
+                android:id="@+id/btn_choose_down"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="chooseDownApp"
+                android:text="Choose App" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/text_left"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Swipe Left"
+                android:textColor="#ccc"
+                android:textSize="24sp" />
+
+            <Button
+                android:id="@+id/btn_choose_left"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="chooseLeftApp"
+                android:text="Choose App" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/text_right"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Swipe Right"
+                android:textColor="#ccc"
+                android:textSize="24sp" />
+
+            <Button
+                android:id="@+id/btn_choose_right"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="chooseRightApp"
+                android:text="Choose App" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/text_vol_up"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Volume Up"
+                android:textColor="#ccc"
+                android:textSize="24sp" />
+
+            <Button
+                android:id="@+id/btn_choose_volume_up"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="chooseVolumeUpApp"
+                android:text="Choose App" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/text_vol_down"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Volume Down   "
+                android:textColor="#ccc"
+                android:textSize="24sp" />
+
+            <Button
+                android:id="@+id/btn_choose_volume_down"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="chooseVolumeDownApp"
+                android:text="Choose App" />
+
+        </TableRow>
+
+    </TableLayout>
+
+
+    enter image description here
+
+    <TextView
+        android:id="@+id/sub_head_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="About"
+        android:textColor="#999"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/actionschooser"
+        app:layout_constraintVertical_bias="0.65" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

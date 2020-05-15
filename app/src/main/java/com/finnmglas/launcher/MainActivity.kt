@@ -3,11 +3,12 @@ package com.finnmglas.launcher
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
-import android.os.CountDownTimer
 import android.util.DisplayMetrics
 import android.view.KeyEvent
 import android.view.MotionEvent
 import android.view.View
+import android.view.View.OnLongClickListener
+import android.view.View.OnTouchListener
 import android.view.WindowManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -17,6 +18,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.concurrent.fixedRateTimer
 import kotlin.math.abs
+
 
 var upApp = "org.mozilla.firefox"
 var downApp = "com.samsung.android.app.galaxyfinder"
@@ -49,7 +51,7 @@ class MainActivity : AppCompatActivity() {
                 applicationContext.startActivity(intent2)
                 overridePendingTransition(0,0)
             } else {
-                Toast.makeText(this, "Package '$packageName' not found.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Package '$packageName' not found. Change your Settings.", Toast.LENGTH_SHORT).show()
             }
         }
     }
