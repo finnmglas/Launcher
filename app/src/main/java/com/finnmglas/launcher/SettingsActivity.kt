@@ -6,7 +6,9 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import android.content.pm.ResolveInfo
+import android.net.Uri
 import android.os.Bundle
+import android.text.Html
 import android.util.DisplayMetrics
 import android.view.KeyEvent
 import android.view.MotionEvent
@@ -17,6 +19,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.MotionEventCompat
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_settings.*
 import kotlin.math.abs
 import java.text.SimpleDateFormat
 import java.util.*
@@ -64,6 +67,23 @@ class SettingsActivity : AppCompatActivity() {
         intent.putExtra("action", "pick") // why choose an app
         intent.putExtra("forApp", forAction) // which app we choose
         startActivityForResult(intent, 5000)
+    }
+
+    fun openNewTabWindow(urls: String, context : Context) {
+        val uris = Uri.parse(urls)
+        val intents = Intent(Intent.ACTION_VIEW, uris)
+        val b = Bundle()
+        b.putBoolean("new_window", true)
+        intents.putExtras(b)
+        context.startActivity(intents)
+    }
+
+    fun openFinnWebsite(view: View) {
+        openNewTabWindow("https://www.finnmglas.com/", this)
+    }
+
+    fun openGithubRepo(view: View) {
+        openNewTabWindow("https://github.com/finnmglas/Launcher", this)
     }
 
     @SuppressLint("SetTextI18n") // I do not care
