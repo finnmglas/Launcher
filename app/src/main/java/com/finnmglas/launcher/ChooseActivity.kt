@@ -2,9 +2,9 @@ package com.finnmglas.launcher
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import android.content.pm.ApplicationInfo
 import android.graphics.Color
 import android.os.Bundle
+import android.view.View
 import android.view.WindowManager
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -12,6 +12,10 @@ import kotlinx.android.synthetic.main.activity_choose.*
 
 
 class ChooseActivity : AppCompatActivity() {
+
+    fun backHome(view: View) {
+        finish()
+    }
 
     @SuppressLint("SetTextI18n") // I do not care
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,38 +30,27 @@ class ChooseActivity : AppCompatActivity() {
         val action = bundle!!.getString("action") // why choose an app
         val forApp = bundle.getString("forApp") // which app we choose
 
-        // Build Layout
+        /* Build Layout */
+
+        // TODO: Make this more efficient, faster, generate the list before
 
         val mainIntent = Intent(Intent.ACTION_MAIN, null)
         mainIntent.addCategory(Intent.CATEGORY_LAUNCHER)
 
         val pm = packageManager
-        val apps = pm.getInstalledApplications(0)
+        val i = Intent(Intent.ACTION_MAIN)
+        i.addCategory(Intent.CATEGORY_LAUNCHER)
+        val apps = pm.queryIntentActivities(i, 0)
 
-        val installedApps: MutableList<ApplicationInfo> = ArrayList()
+        apps.sortBy { it.activityInfo.loadLabel(pm).toString() }
 
-        // list
-        for (app in apps) {
-
-            if (app.flags and ApplicationInfo.FLAG_UPDATED_SYSTEM_APP != 0) {
-                //checks for flags; if flagged, check if updated system app
-                installedApps.add(app)
-            } else if (app.flags and ApplicationInfo.FLAG_SYSTEM != 0) {
-                //it's a system app, not interested
-            } else {
-                //in this case, it should be a user-installed app
-                installedApps.add(app)
-            }
-        }
-
-        // ui
-        for (app in installedApps) {
-            //packageInfo.sourceDir
+        for (resolveInfo in apps) {
+            val app = resolveInfo.activityInfo
             pm.getLaunchIntentForPackage(app.packageName)
 
             // creating TextView programmatically
             val tvdynamic = TextView(this)
-            tvdynamic.textSize = 20f
+            tvdynamic.textSize = 24f
             tvdynamic.text = app.loadLabel(pm).toString()
             tvdynamic.setTextColor(Color.parseColor("#cccccc"))
 
@@ -66,7 +59,6 @@ class ChooseActivity : AppCompatActivity() {
             }
             else if (action == "pick"){
                 tvdynamic.setOnClickListener {
-
                     val returnIntent = Intent()
                     returnIntent.putExtra("value", app.packageName)
                     returnIntent.putExtra("forApp", forApp)
@@ -74,11 +66,9 @@ class ChooseActivity : AppCompatActivity() {
                         5000,
                         returnIntent
                     )
-
                     finish()
                 }
             }
-
             apps_list.addView(tvdynamic)
         }
     }
