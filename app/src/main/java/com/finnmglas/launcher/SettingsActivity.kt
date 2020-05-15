@@ -1,7 +1,9 @@
 package com.finnmglas.launcher
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import android.content.pm.ResolveInfo
 import android.os.Bundle
@@ -28,12 +30,22 @@ class SettingsActivity : AppCompatActivity() {
             val value = data?.getStringExtra("value")
             val forApp = data?.getStringExtra("forApp") ?: return
 
+            // Save the new App to Preferences
+            val sharedPref = this.getSharedPreferences(
+                getString(R.string.preference_file_key), Context.MODE_PRIVATE)
+
+            val editor :SharedPreferences.Editor = sharedPref.edit()
+            editor.putString("action_$forApp", value.toString())
+            editor.apply()
+
+            // Update running App
             if (forApp == "downApp") downApp = value.toString()
             else if (forApp == "upApp") upApp = value.toString()
             else if (forApp == "leftApp") leftApp = value.toString()
             else if (forApp == "rightApp") rightApp = value.toString()
             else if (forApp == "volumeDownApp") volumeDownApp = value.toString()
             else if (forApp == "volumeUpApp") volumeUpApp = value.toString()
+
         }
         else {
             super.onActivityResult(requestCode, resultCode, data)

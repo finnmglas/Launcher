@@ -16,13 +16,13 @@ import java.util.*
 import kotlin.concurrent.fixedRateTimer
 import kotlin.math.abs
 
-
-var upApp = "org.mozilla.firefox"
-var downApp = "com.samsung.android.app.galaxyfinder"
-var rightApp = "com.samsung.android.email.provider"
-var leftApp = "com.google.android.calendar"
-var volumeUpApp = "com.whatsapp"
-var volumeDownApp = "com.sec.android.app.popupcalculator"
+// App Launch Actions
+var upApp = ""
+var downApp = ""
+var rightApp = ""
+var leftApp = ""
+var volumeUpApp = ""
+var volumeDownApp = ""
 
 class MainActivity : AppCompatActivity(),
 GestureDetector.OnGestureListener,
@@ -38,7 +38,7 @@ GestureDetector.OnDoubleTapListener {
         val pm = applicationContext.packageManager
         val intent: Intent? = pm.getLaunchIntentForPackage(packageName)
         intent?.addCategory(Intent.CATEGORY_LAUNCHER)
-        return intent;
+        return intent
     }
 
     private fun launchApp(packageName: String, fallback: String = "") {
@@ -107,6 +107,36 @@ GestureDetector.OnDoubleTapListener {
     @SuppressLint("SetTextI18n") // I do not care
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        // Preferences
+        val sharedPref = this.getSharedPreferences(
+            getString(R.string.preference_file_key), Context.MODE_PRIVATE)
+
+        // First Startup
+        if (!sharedPref.getBoolean("startedBefore", false)){
+            val editor: Editor = sharedPref.edit()
+
+            // Set Defaults
+            editor.putString("action_upApp", "org.mozilla.firefox")
+            editor.putString("action_downApp", "com.samsung.android.app.galaxyfinder")
+            editor.putString("action_rightApp", "com.samsung.android.email.provider")
+            editor.putString("action_leftApp", "com.google.android.calendar")
+            editor.putString("action_volumeUpApp", "com.whatsapp")
+            editor.putString("action_volumeDownApp", "com.sec.android.app.popupcalculator")
+
+            editor.putBoolean("startedBefore", true) // never run this again
+            editor.apply()
+        }
+
+        // Load settings
+        upApp = sharedPref.getString("action_upApp", "").toString()
+        downApp = sharedPref.getString("action_downApp", "").toString()
+        rightApp = sharedPref.getString("action_rightApp", "").toString()
+        leftApp = sharedPref.getString("action_leftApp", "").toString()
+        volumeUpApp = sharedPref.getString("action_volumeUpApp", "").toString()
+        volumeDownApp = sharedPref.getString("action_volumeDownApp", "").toString()
+
+        // Flags
 
         window.setFlags(
             WindowManager.LayoutParams.FLAG_FULLSCREEN,
