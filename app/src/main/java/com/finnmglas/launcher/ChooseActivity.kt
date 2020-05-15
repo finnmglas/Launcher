@@ -13,7 +13,21 @@ import kotlinx.android.synthetic.main.activity_choose.*
 
 class ChooseActivity : AppCompatActivity() {
 
-    private fun listApps() {
+    @SuppressLint("SetTextI18n") // I do not care
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
+        window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
+
+        setContentView(R.layout.activity_choose)
+
+        val bundle = intent.extras
+        val action = bundle!!.getString("action") // why choose an app
+        val forApp = bundle.getString("forApp") // which app we choose
+
+        // Build Layout
+
         val mainIntent = Intent(Intent.ACTION_MAIN, null)
         mainIntent.addCategory(Intent.CATEGORY_LAUNCHER)
 
@@ -47,20 +61,25 @@ class ChooseActivity : AppCompatActivity() {
             tvdynamic.text = app.loadLabel(pm).toString()
             tvdynamic.setTextColor(Color.parseColor("#cccccc"))
 
-            tvdynamic.setOnClickListener { startActivity(pm.getLaunchIntentForPackage(app.packageName)) }
+            if (action == "run"){
+                tvdynamic.setOnClickListener { startActivity(pm.getLaunchIntentForPackage(app.packageName)) }
+            }
+            else if (action == "pick"){
+                tvdynamic.setOnClickListener {
+
+                    val returnIntent = Intent()
+                    returnIntent.putExtra("value", app.packageName)
+                    returnIntent.putExtra("forApp", forApp)
+                    setResult(
+                        5000,
+                        returnIntent
+                    )
+
+                    finish()
+                }
+            }
 
             apps_list.addView(tvdynamic)
         }
-    }
-
-    @SuppressLint("SetTextI18n") // I do not care
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
-        window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
-
-        setContentView(R.layout.activity_choose)
-        listApps()
     }
 }

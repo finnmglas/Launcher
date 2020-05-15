@@ -2,24 +2,28 @@ package com.finnmglas.launcher
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import android.content.pm.PackageManager
-import android.content.pm.ResolveInfo
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.util.DisplayMetrics
 import android.view.KeyEvent
 import android.view.MotionEvent
 import android.view.View
 import android.view.WindowManager
-import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.MotionEventCompat
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlin.math.abs
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.concurrent.fixedRateTimer
+import kotlin.math.abs
 
+var upApp = "org.mozilla.firefox"
+var downApp = "com.samsung.android.app.galaxyfinder"
+var rightApp = "com.samsung.android.email.provider"
+var leftApp = "com.google.android.calendar"
+var volumeUpApp = "com.whatsapp"
+var volumeDownApp = "com.sec.android.app.popupcalculator"
 
 class MainActivity : AppCompatActivity() {
     // get device dimensions
@@ -50,30 +54,22 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun launchInstagram(v: View){ launchApp("com.instagram.android") }
-    fun launchWhatsapp(v: View){ launchApp("com.whatsapp") }
-
-    fun launchFinder(v: View){ launchApp("com.samsung.android.app.galaxyfinder") }
-    fun launchMail(v: View){ launchApp("com.samsung.android.email.provider", "com.google.android.gm") }
     fun launchCalendar(v: View){ launchApp("com.google.android.calendar", "com.samsung.android.calendar") }
     fun launchClock(v: View){ launchApp("com.sec.android.app.clockpackage") }
-    fun launchBrowser(v: View){ launchApp("org.mozilla.firefox", "com.sec.android.app.sbrowser") }
 
-    fun launchUpApp() { launchBrowser(container) }
-    fun launchDownApp() { launchFinder(container) }
-    fun lauchLeftApp() { launchCalendar(container) }
-    fun lauchRightApp() { launchMail(container) }
+    fun launchUpApp() { launchApp(upApp) }
+    fun launchDownApp() { launchApp(downApp) }
+    fun lauchLeftApp() { launchApp(leftApp) }
+    fun lauchRightApp() { launchApp(rightApp) }
 
-    fun lauchVolumeUpApp() { }
-    fun lauchVolumeDownApp() {
-        val intent = Intent(this, ChooseActivity::class.java)
-        startActivity(intent)
-    }
+    fun lauchVolumeUpApp() { launchApp(volumeUpApp) }
+    fun lauchVolumeDownApp() { launchApp(volumeDownApp) }
 
-    // Overrides
+    /* Overrides */
 
     var touchX : Float = 0F
     var touchY : Float = 0F
+    var touchT : Long = 0L
 
     override fun onTouchEvent(event: MotionEvent): Boolean {
 
@@ -81,6 +77,8 @@ class MainActivity : AppCompatActivity() {
             MotionEvent.ACTION_DOWN -> {
                 touchX = event.x
                 touchY = event.y
+                touchT = System.currentTimeMillis()
+
                 true
             }
             MotionEvent.ACTION_MOVE -> {
@@ -94,15 +92,17 @@ class MainActivity : AppCompatActivity() {
 
                 val diffX = touchX - event.x
                 val diffY = touchY - event.y
+                val diffT = System.currentTimeMillis() - touchT
 
                 val strictness = 4 // of direction
 
-                // Decide which one to open
+                /* Decide for an action */
 
                 if (diffY > height/8
                     && abs(diffY) > strictness * abs(diffX))
                     launchUpApp()
 
+                // Only open if the swipe was not from the phone edge
                 else if (diffY < -height/8
                     && abs(diffY) > strictness * abs(diffX)
                     && touchY > 100)
@@ -115,6 +115,12 @@ class MainActivity : AppCompatActivity() {
                 else if (diffX < -width/4
                     && abs(diffX) > strictness * abs(diffY))
                     lauchRightApp()
+
+                // Open Settings on LongPress
+                else if (abs(diffX) < 10
+                    && abs(diffX) < 10 && diffT > 750){
+                    startActivity(Intent(this, SettingsActivity::class.java))
+                }
 
                 true
             }
@@ -129,7 +135,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
-        if (keyCode == KeyEvent.KEYCODE_BACK) { return true }
+        if (keyCode == KeyEvent.KEYCODE_BACK) return true
         else if (keyCode == KeyEvent.KEYCODE_VOLUME_UP) lauchVolumeUpApp()
         else if (keyCode == KeyEvent.KEYCODE_VOLUME_DOWN) lauchVolumeDownApp()
         return true
@@ -145,9 +151,6 @@ class MainActivity : AppCompatActivity() {
         val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
         val timeFormat = SimpleDateFormat("HH:mm:ss", Locale.getDefault())
 
-        //dateFormat.timeZone = TimeZone.getTimeZone("GMT")
-        //timeFormat.timeZone = TimeZone.getTimeZone("GMT")
-
         fixedRateTimer("timer", false, 0L, 1000) {
             this@MainActivity.runOnUiThread {
                 dateView.text = dateFormat.format(Date())
@@ -156,6 +159,5 @@ class MainActivity : AppCompatActivity() {
         }
 
         setContentView(R.layout.activity_main)
-
     }
 }
