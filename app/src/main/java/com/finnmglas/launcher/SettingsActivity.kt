@@ -1,29 +1,16 @@
 package com.finnmglas.launcher
 
 import android.annotation.SuppressLint
+import android.app.AlertDialog
 import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
 import android.content.SharedPreferences
-import android.content.pm.PackageManager
-import android.content.pm.ResolveInfo
 import android.net.Uri
 import android.os.Bundle
-import android.text.Html
-import android.util.DisplayMetrics
-import android.view.KeyEvent
-import android.view.MotionEvent
 import android.view.View
 import android.view.WindowManager
-import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.MotionEventCompat
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.activity_settings.*
-import kotlin.math.abs
-import java.text.SimpleDateFormat
-import java.util.*
-import kotlin.concurrent.fixedRateTimer
 
 
 class SettingsActivity : AppCompatActivity() {
@@ -84,6 +71,25 @@ class SettingsActivity : AppCompatActivity() {
 
     fun openGithubRepo(view: View) {
         openNewTabWindow("https://github.com/finnmglas/Launcher", this)
+    }
+
+    fun backHome(view: View) {
+        finish()
+    }
+
+    // Show a dialog prompting for confirmation
+    fun resetSettingsClick(view: View) {
+        AlertDialog.Builder(this)
+            .setTitle("Reset Settings")
+            .setMessage("This will discard all your App Choices. Sure you want to continue?")
+            .setPositiveButton(android.R.string.yes,
+                DialogInterface.OnClickListener { dialog, which ->
+                    resetSettings(this.getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE))
+                    finish()
+                })
+            .setNegativeButton(android.R.string.no, null)
+            .setIcon(android.R.drawable.ic_dialog_alert)
+            .show()
     }
 
     @SuppressLint("SetTextI18n") // I do not care
