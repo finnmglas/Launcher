@@ -28,14 +28,7 @@ class SettingsActivity : AppCompatActivity() {
             editor.putString("action_$forApp", value.toString())
             editor.apply()
 
-            // Update running App
-            if (forApp == "downApp") downApp = value.toString()
-            else if (forApp == "upApp") upApp = value.toString()
-            else if (forApp == "leftApp") leftApp = value.toString()
-            else if (forApp == "rightApp") rightApp = value.toString()
-            else if (forApp == "volumeDownApp") volumeDownApp = value.toString()
-            else if (forApp == "volumeUpApp") volumeUpApp = value.toString()
-
+            loadSettings(sharedPref)
         }
         else {
             super.onActivityResult(requestCode, resultCode, data)
@@ -70,7 +63,7 @@ class SettingsActivity : AppCompatActivity() {
     }
 
     fun openGithubRepo(view: View) {
-        openNewTabWindow("https://github.com/finnmglas/Launcher", this)
+        openNewTabWindow("https://github.com/finnmglas/Launcher#en", this)
     }
 
     fun backHome(view: View) {
@@ -84,7 +77,7 @@ class SettingsActivity : AppCompatActivity() {
             .setMessage("This will discard all your App Choices. Sure you want to continue?")
             .setPositiveButton(android.R.string.yes,
                 DialogInterface.OnClickListener { dialog, which ->
-                    resetSettings(this.getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE))
+                    resetSettings(this.getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE), this)
                     finish()
                 })
             .setNegativeButton(android.R.string.no, null)

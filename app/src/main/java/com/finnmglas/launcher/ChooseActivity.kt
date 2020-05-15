@@ -54,6 +54,7 @@ class ChooseActivity : AppCompatActivity() {
             tvdynamic.text = app.loadLabel(pm).toString()
             tvdynamic.setTextColor(Color.parseColor("#cccccc"))
 
+            //TODO Add delete app option
             if (action == "run"){
                 tvdynamic.setOnClickListener { startActivity(pm.getLaunchIntentForPackage(app.packageName)) }
             }

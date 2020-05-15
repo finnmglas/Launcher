@@ -3,8 +3,6 @@ package com.finnmglas.launcher
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
-import android.content.SharedPreferences.Editor
 import android.os.Bundle
 import android.util.DisplayMetrics
 import android.view.*
@@ -25,10 +23,12 @@ var leftApp = ""
 var volumeUpApp = ""
 var volumeDownApp = ""
 
+var calendarApp = ""
+var clockApp = ""
+
 class MainActivity : AppCompatActivity(),
 GestureDetector.OnGestureListener,
 GestureDetector.OnDoubleTapListener {
-
 
     private lateinit var mDetector: GestureDetectorCompat
 
@@ -42,34 +42,27 @@ GestureDetector.OnDoubleTapListener {
         return intent
     }
 
-    private fun launchApp(packageName: String, fallback: String = "") {
+    private fun launchApp(packageName: String) {
         val intent1 = getIntent(packageName)
 
         if (intent1 != null) {
             applicationContext.startActivity(intent1)
             overridePendingTransition(0, 0)
         } else {
-            val intent2 = getIntent(fallback)
-
-            if (intent2 != null) {
-                applicationContext.startActivity(intent2)
-                overridePendingTransition(0, 0)
-            } else {
-                Toast.makeText(
-                    this,
-                    "Package '$packageName' not found. Change your Settings.",
-                    Toast.LENGTH_SHORT
-                ).show()
+            Toast.makeText(
+                this,
+                "Open settings to choose an app for this action",
+                Toast.LENGTH_SHORT
+            ).show()
             }
         }
-    }
 
     fun launchCalendar(v: View) {
-        launchApp("com.google.android.calendar", "com.samsung.android.calendar")
+        launchApp(calendarApp)
     }
 
     fun launchClock(v: View) {
-        launchApp("com.sec.android.app.clockpackage")
+        launchApp(clockApp)
     }
 
     fun launchUpApp() {
@@ -115,12 +108,11 @@ GestureDetector.OnDoubleTapListener {
 
         // First Startup
         if (!sharedPref.getBoolean("startedBefore", false))
-            resetSettings(sharedPref)
+            initSettings(sharedPref, this)
 
         loadSettings(sharedPref)
 
         // Flags
-
         window.setFlags(
             WindowManager.LayoutParams.FLAG_FULLSCREEN,
             WindowManager.LayoutParams.FLAG_FULLSCREEN
