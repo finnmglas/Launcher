@@ -98,9 +98,7 @@ class SettingsActivity : AppCompatActivity() {
                 .setPositiveButton(android.R.string.yes,
                     DialogInterface.OnClickListener { dialog, which ->
                         try {
-                            val intent = Intent(android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
-                            intent.data = Uri.parse("package:$packageName")
-                            startActivity(intent)
+                            openAppSettings(packageName, this)
                         } catch ( e : ActivityNotFoundException) {
                             val intent = Intent(android.provider.Settings.ACTION_MANAGE_APPLICATIONS_SETTINGS)
                             startActivity(intent)
