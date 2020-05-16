@@ -1,3 +1,7 @@
+<img src="https://github.com/finnmglas/Launcher/blob/master/docs/img/Play-function-graphic.jpg" width="96%" height="~" />
+
+<div style="float:center;"><img src="https://github.com/finnmglas/Launcher/blob/master/docs/img/Play-1.jpg" width="32%" height="~" /> <img src="https://github.com/finnmglas/Launcher/blob/master/docs/img/Play-2.jpg" width="32%" height="~" /> <img src="https://github.com/finnmglas/Launcher/blob/master/docs/img/Play-3.jpg" width="32%" height="~" /></div>
+
 # <a name="en"></a> Launcher
 
 [-> Read this in German (Deutsch)](#de)
@@ -31,6 +35,7 @@ To actually contribute you just [_fork_ this repository][fork] and create a new 
 You commit your changes / improvements to that _branch_ and open a new _pull request_. That simple.
 
 If you feel like **this app delivers incredible value to you**, you can also [support me on PayPal][financial]. I will make every cent work for the good of human kind. I consider this the purpose of my existence.
+
 
 -----
 
