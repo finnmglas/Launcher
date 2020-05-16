@@ -20,6 +20,18 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.100000024" />
 
+    <TextView
+        android:id="@+id/subheading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#999999"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.17000002" />
+
     <ScrollView
         android:id="@+id/scrollView3"
         android:layout_width="0dp"

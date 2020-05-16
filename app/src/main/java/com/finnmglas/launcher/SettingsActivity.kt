@@ -17,6 +17,8 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 
 
+//TODO Make Settings scrollable as soon as more are added
+
 class SettingsActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if(requestCode == 5000)
@@ -48,9 +50,21 @@ class SettingsActivity : AppCompatActivity() {
 
     fun chooseApp(forAction :String) {
         val intent = Intent(this, ChooseActivity::class.java)
-        intent.putExtra("action", "pick") // why choose an app
-        intent.putExtra("forApp", forAction) // which app we choose
+        intent.putExtra("action", "pick")
+        intent.putExtra("forApp", forAction) // for which action we choose the app
         startActivityForResult(intent, 5000)
+    }
+
+    fun chooseUninstallApp(view: View) {
+        val intent = Intent(this, ChooseActivity::class.java)
+        intent.putExtra("action", "uninstall")
+        startActivity(intent)
+    }
+
+    fun chooseLaunchApp(view: View) {
+        val intent = Intent(this, ChooseActivity::class.java)
+        intent.putExtra("action", "launch")
+        startActivity(intent)
     }
 
     fun openNewTabWindow(urls: String, context : Context) {

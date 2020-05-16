@@ -24,7 +24,7 @@
         android:id="@+id/sub_head_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Actions"
+        android:text="Applications"
         android:textColor="#999"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -177,15 +177,29 @@
 
     </TableLayout>
 
+    <TextView
+        android:id="@+id/sub_head_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Actions"
+        android:textColor="#999"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@id/buttons"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/actionschooser"
+        app:layout_constraintVertical_bias="0.65999997" />
+
     <TableLayout
-        android:id="@+id/buttonsdanger"
+        android:id="@+id/buttons"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/actionschooser"
-        app:layout_constraintVertical_bias="0.48000002">
+        app:layout_constraintVertical_bias="0.19999999">
 
         <TableRow
             android:layout_width="match_parent"
@@ -196,23 +210,49 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:alpha=".3"
-                android:onClick="resetSettingsClick"
-                android:text="Reset" />
+                android:onClick="setLauncher"
+                android:text="Select Launcher" />
 
             <Button
-                android:id="@+id/button2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:alpha=".3"
-                android:onClick="setLauncher"
-                android:text="Choose Launcher" />
+                android:onClick="resetSettingsClick"
+                android:text="Reset Settings" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:alpha=".3"
+                android:onClick="chooseLaunchApp"
+                android:text="Launch Apps" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:alpha=".3"
+                android:onClick="chooseUninstallApp"
+                android:text="Uninstall Apps" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center">
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:onClick="backHome"
                 android:text="Back Home" />
-
         </TableRow>
 
     </TableLayout>
