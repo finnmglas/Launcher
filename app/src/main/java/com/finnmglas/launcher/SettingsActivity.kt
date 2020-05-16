@@ -2,10 +2,7 @@ package com.finnmglas.launcher
 
 import android.annotation.SuppressLint
 import android.app.AlertDialog
-import android.content.Context
-import android.content.DialogInterface
-import android.content.Intent
-import android.content.SharedPreferences
+import android.content.*
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -13,7 +10,6 @@ import android.provider.Settings
 import android.view.View
 import android.view.WindowManager
 import android.widget.Toast
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 
 
@@ -94,20 +90,25 @@ class SettingsActivity : AppCompatActivity() {
             val callHomeSettingIntent = Intent(Settings.ACTION_HOME_SETTINGS)
             startActivity(callHomeSettingIntent)
         }
-        // on older sdk: open launcher
+        // on older sdk: manage app details
         else {
-            val pm = applicationContext.packageManager
-            val intent: Intent? = pm.getLaunchIntentForPackage("com.sec.android.app.launcher")
-
-            if (intent!=null){
-                applicationContext.startActivity(intent)
-            } else {
-            Toast.makeText(
-                this,
-                "Open settings to choose an app for this action",
-                Toast.LENGTH_SHORT
-            ).show()
-        }
+            AlertDialog.Builder(this)
+                .setTitle("App Info")
+                .setMessage("Your device does not support this feature. Manage application details instead?")
+                .setPositiveButton(android.R.string.yes,
+                    DialogInterface.OnClickListener { dialog, which ->
+                        try {
+                            val intent = Intent(android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
+                            intent.data = Uri.parse("package:$packageName")
+                            startActivity(intent)
+                        } catch ( e : ActivityNotFoundException) {
+                            val intent = Intent(android.provider.Settings.ACTION_MANAGE_APPLICATIONS_SETTINGS)
+                            startActivity(intent)
+                        }
+                    })
+                .setNegativeButton(android.R.string.no, null)
+                .setIcon(android.R.drawable.ic_dialog_info)
+                .show()
         }
     }
 
