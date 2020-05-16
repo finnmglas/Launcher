@@ -7,9 +7,13 @@ import android.content.DialogInterface
 import android.content.Intent
 import android.content.SharedPreferences
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
+import android.provider.Settings
 import android.view.View
 import android.view.WindowManager
+import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 
 
@@ -68,6 +72,29 @@ class SettingsActivity : AppCompatActivity() {
 
     fun backHome(view: View) {
         finish()
+    }
+
+    fun setLauncher(view: View) {
+        // on newer sdk: choose launcher
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            val callHomeSettingIntent = Intent(Settings.ACTION_HOME_SETTINGS)
+            startActivity(callHomeSettingIntent)
+        }
+        // on older sdk: open launcher
+        else {
+            val pm = applicationContext.packageManager
+            val intent: Intent? = pm.getLaunchIntentForPackage("com.sec.android.app.launcher")
+
+            if (intent!=null){
+                applicationContext.startActivity(intent)
+            } else {
+            Toast.makeText(
+                this,
+                "Open settings to choose an app for this action",
+                Toast.LENGTH_SHORT
+            ).show()
+        }
+        }
     }
 
     // Show a dialog prompting for confirmation
