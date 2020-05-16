@@ -1,19 +1,28 @@
 package com.finnmglas.launcher
 
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
 import android.content.pm.PackageManager
+import android.net.Uri
+import android.provider.Settings
+import androidx.core.content.ContextCompat.startActivity
 
 val none_msg = "None found"
 
 fun isInstalled(uri: String, context: Context): Boolean {
-    val pm: PackageManager = context.packageManager
     try {
-        pm.getPackageInfo(uri, PackageManager.GET_ACTIVITIES)
+        context.packageManager.getPackageInfo(uri, PackageManager.GET_ACTIVITIES)
         return true
     } catch (e: PackageManager.NameNotFoundException) {
     }
     return false
+}
+
+fun openAppSettings(pkg :String, context:Context){
+    val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
+    intent.data = Uri.parse("package:$pkg")
+    context.startActivity(intent)
 }
 
 fun loadSettings(sharedPref : SharedPreferences){

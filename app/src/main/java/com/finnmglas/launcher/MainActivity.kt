@@ -1,7 +1,10 @@
 package com.finnmglas.launcher
 
 import android.annotation.SuppressLint
+import android.app.AlertDialog
+import android.content.ActivityNotFoundException
 import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.util.DisplayMetrics
@@ -36,8 +39,7 @@ GestureDetector.OnDoubleTapListener {
     private val displayMetrics = DisplayMetrics()
 
     private fun getIntent(packageName: String): Intent? {
-        val pm = applicationContext.packageManager
-        val intent: Intent? = pm.getLaunchIntentForPackage(packageName)
+        val intent: Intent? = packageManager.getLaunchIntentForPackage(packageName)
         intent?.addCategory(Intent.CATEGORY_LAUNCHER)
         return intent
     }
@@ -49,11 +51,25 @@ GestureDetector.OnDoubleTapListener {
             applicationContext.startActivity(intent1)
             overridePendingTransition(0, 0)
         } else {
-            Toast.makeText(
-                this,
-                "Open settings to choose an app for this action",
-                Toast.LENGTH_SHORT
-            ).show()
+            if (isInstalled(packageName, this)){
+
+                AlertDialog.Builder(this)
+                    .setTitle("Can't open app")
+                    .setMessage("Want to change its settings ('add it to the apps screen')?")
+                    .setPositiveButton(android.R.string.yes,
+                        DialogInterface.OnClickListener { dialog, which ->
+                            openAppSettings(packageName, this)
+                        })
+                    .setNegativeButton(android.R.string.no, null)
+                    .setIcon(android.R.drawable.ic_dialog_info)
+                    .show()
+            } else {
+                Toast.makeText(
+                    this,
+                     "Open settings to choose an app for this action",
+                      Toast.LENGTH_SHORT
+                    ).show()
+                }
             }
         }
 
