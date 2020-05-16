@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.content.pm.PackageManager
 
+val none_msg = "None found"
 
 fun isInstalled(uri: String, context: Context): Boolean {
     val pm: PackageManager = context.packageManager
@@ -13,146 +14,6 @@ fun isInstalled(uri: String, context: Context): Boolean {
     } catch (e: PackageManager.NameNotFoundException) {
     }
     return false
-}
-
-fun initSettings(sharedPref : SharedPreferences, context: Context){
-    val editor: SharedPreferences.Editor = sharedPref.edit()
-    editor.putBoolean("startedBefore", true) // never run this again
-    editor.apply()
-
-    resetSettings(sharedPref, context)
-}
-
-// Some magical default settings are set here ^^
-fun resetSettings(sharedPref : SharedPreferences, context: Context){
-    val editor: SharedPreferences.Editor = sharedPref.edit()
-
-
-        /* upApp -> Browser */
-
-    //  #1 -> Firefox
-    if(isInstalled("org.mozilla.firefox", context))
-        editor.putString("action_upApp", "org.mozilla.firefox")
-
-    //  #2 -> Chrome
-    else if(isInstalled("com.android.chrome", context))
-        editor.putString("action_upApp", "com.android.chrome")
-
-    //  #3 -> Samsung Internet
-    else if(isInstalled("com.sec.android.app.sbrowser", context))
-        editor.putString("action_upApp", "com.sec.android.app.sbrowser")
-
-    else
-        editor.putString("action_upApp", "")
-
-
-        /* downApp -> Search Apps */
-
-    //  #1 -> Galaxyfinder -> newer Devices
-    if(isInstalled("com.samsung.android.app.galaxyfinder", context))
-        editor.putString("action_downApp", "com.samsung.android.app.galaxyfinder")
-
-    //  #2 -> Speechsearch -> older Devices
-    else if(isInstalled("com.prometheusinteractive.voice_launcher", context))
-        editor.putString("action_downApp", "com.prometheusinteractive.voice_launcher")
-
-    else
-        editor.putString("action_downApp", "")
-
-
-        /* rightApp -> Mail */
-
-    //  #1 -> Web DE Mail -> people having it installed likely want it first
-    if(isInstalled("de.web.mobile.android.mail", context))
-        editor.putString("action_rightApp", "de.web.mobile.android.mail")
-
-    //  #2 -> Samsung Mail
-    else if(isInstalled("com.samsung.android.email.provider", context))
-        editor.putString("action_rightApp", "com.samsung.android.email.provider")
-
-    //  #3 -> Google Mail
-    else if(isInstalled("com.google.android.gm", context))
-        editor.putString("action_rightApp", "com.google.android.gm")
-
-    else
-        editor.putString("action_rightApp", "")
-
-
-        /* leftApp, calendarApp -> Calendar */
-
-    //  #1 -> Google Calendar
-    if(isInstalled("com.google.android.calendar", context)){
-        editor.putString("action_leftApp", "com.google.android.calendar")
-        editor.putString("action_calendarApp", "com.google.android.calendar")
-    }
-
-    //  #2 -> Samsung Calendar
-    else if(isInstalled("com.samsung.android.calendar", context)){
-        editor.putString("action_leftApp", "com.samsung.android.calendar")
-        editor.putString("action_calendarApp", "com.samsung.android.calendar")
-    }
-
-    else
-        editor.putString("action_leftApp", "")
-
-
-        /* volumeUpApp -> Messenger */
-
-    //  #1 -> Whatsapp
-    if(isInstalled("com.whatsapp", context))
-        editor.putString("action_volumeUpApp", "com.whatsapp")
-
-    //  #2 -> FB Messenger
-    else if(isInstalled("com.facebook.orca", context))
-        editor.putString("action_volumeUpApp", "com.facebook.orca")
-
-    //  #3 -> Viber
-    else if(isInstalled("com.viber.voip", context))
-        editor.putString("action_volumeUpApp", "com.viber.voip")
-
-    //  #4 -> Skype
-    else if(isInstalled("com.skype.raider", context))
-        editor.putString("action_volumeUpApp", "com.skype.raider")
-
-    //  #5 -> Snapchat
-    else if(isInstalled("com.snapchat.android", context))
-        editor.putString("action_volumeUpApp", "com.snapchat.android")
-
-    //  #6 -> Instagram
-    else if(isInstalled("com.instagram.android", context))
-        editor.putString("action_volumeUpApp", "com.instagram.android")
-
-    //  #7 -> SMS
-    else if(isInstalled("com.samsung.android.messaging", context))
-        editor.putString("action_volumeUpApp", "com.samsung.android.messaging")
-
-    else
-        editor.putString("action_volumeUpApp", "")
-
-
-        /* volumeDownApp -> Util */
-
-    //  #1 -> Github App
-    if(isInstalled("com.github.android", context))
-        editor.putString("action_volumeDownApp", "com.github.android")
-
-    //  #2 -> Soundbrenner App
-    else if(isInstalled("com.soundbrenner.pulse", context))
-        editor.putString("action_volumeDownApp", "com.soundbrenner.pulse")
-
-    //  #3 -> Calculator
-    else if(isInstalled("com.sec.android.app.popupcalculator", context))
-        editor.putString("action_volumeDownApp", "com.sec.android.app.popupcalculator")
-
-    else
-        editor.putString("action_volumeDownApp", "")
-
-        /* clockApp default */
-    editor.putString("action_clockApp", "com.sec.android.app.clockpackage")
-
-    editor.apply()
-
-    // TODO showInfo()
 }
 
 fun loadSettings(sharedPref : SharedPreferences){
@@ -165,4 +26,120 @@ fun loadSettings(sharedPref : SharedPreferences){
 
     calendarApp = sharedPref.getString("action_calendarApp", "").toString()
     clockApp = sharedPref.getString("action_clockApp", "").toString()
+}
+
+// Default settings are set here.
+fun resetSettings(sharedPref : SharedPreferences, context: Context) : MutableList<String>{
+
+    val defaultList :MutableList<String> = mutableListOf<String>()
+
+    val editor: SharedPreferences.Editor = sharedPref.edit()
+
+    val (chosenUpName, chosenUpPackage) = pickDefaultUpApp(context)
+    editor.putString("action_upApp", chosenUpPackage)
+    defaultList.add(chosenUpName)
+
+    val (chosenDownName, chosenDownPackage) = pickDefaultDownApp(context)
+    editor.putString("action_downApp", chosenDownPackage)
+    defaultList.add(chosenDownName)
+
+    val (chosenRightName, chosenRightPackage) = pickDefaultRightApp(context)
+    editor.putString("action_rightApp", chosenRightPackage)
+    defaultList.add(chosenRightName)
+
+    val (chosenLeftName, chosenLeftPackage) = pickDefaultLeftApp(context)
+    editor.putString("action_leftApp", chosenLeftPackage)
+    editor.putString("action_calendarApp", chosenLeftPackage)
+    defaultList.add(chosenLeftName)
+
+    val (chosenVolumeUpName, chosenVolumeUpPackage) = pickDefaultVolumeUpApp(context)
+    editor.putString("action_volumeUpApp", chosenVolumeUpPackage)
+    defaultList.add(chosenVolumeUpName)
+
+    val (chosenVolumeDownName, chosenVolumeDownPackage) = pickDefaultVolumeDownApp(context)
+    editor.putString("action_volumeDownApp", chosenVolumeDownPackage)
+    defaultList.add(chosenVolumeDownName)
+
+    // clockApp default
+    editor.putString("action_clockApp", "com.sec.android.app.clockpackage")
+
+    editor.apply()
+
+    return defaultList // UP, DOWN, RIGHT, LEFT, VOLUME_UP, VOLUME_DOWN
+}
+
+// Default upApps are Browsers
+fun pickDefaultUpApp(context :Context) : Pair<String, String>{
+    if(isInstalled("org.mozilla.firefox", context))
+        return Pair("Firefox", "org.mozilla.firefox")
+    else if(isInstalled("com.android.chrome", context))
+        return Pair("Chrome", "com.android.chrome")
+    else if(isInstalled("com.sec.android.app.sbrowser", context))
+        return Pair("Samsung Internet", "com.sec.android.app.sbrowser")
+    else
+        return Pair("None, as we were unable to find one.", "")
+}
+
+// Default downApps are Internal Search Apps
+fun pickDefaultDownApp(context :Context) : Pair<String, String>{
+    if(isInstalled("com.samsung.android.app.galaxyfinder", context))
+        return Pair("GalaxyFinder", "com.samsung.android.app.galaxyfinder")
+    else if(isInstalled("com.prometheusinteractive.voice_launcher", context))
+        return Pair("VoiceSearch", "com.prometheusinteractive.voice_launcher")
+    else
+        return Pair(none_msg, "")
+}
+
+// Default rightApps are Mailing Applications
+fun pickDefaultRightApp(context :Context) : Pair<String, String>{
+    if(isInstalled("de.web.mobile.android.mail", context))
+        return Pair("WebMail", "de.web.mobile.android.mail")
+    else if(isInstalled("com.samsung.android.email.provider", context))
+        return Pair("Samsung Mail", "com.samsung.android.email.provider")
+    else if(isInstalled("com.google.android.gm", context))
+        return Pair("Google Mail", "com.google.android.gm")
+    else
+        return Pair(none_msg, "")
+}
+
+// Default leftApps are Calendar Applications
+fun pickDefaultLeftApp(context :Context) : Pair<String, String>{
+    if(isInstalled("com.google.android.calendar", context))
+        return Pair("Google Calendar", "com.google.android.calendar")
+    else if(isInstalled("com.samsung.android.calendar", context))
+        return Pair("Samsung Calendar", "com.samsung.android.calendar")
+    else
+        return Pair(none_msg, "")
+}
+
+// Default volumeUpApps are Messengers
+fun pickDefaultVolumeUpApp(context: Context) : Pair<String, String>{
+    if(isInstalled("com.whatsapp", context))
+        return Pair("WhatsApp", "com.whatsapp")
+    else if(isInstalled("com.facebook.orca", context))
+        return Pair("Facebook Messenger", "com.facebook.orca")
+    else if(isInstalled("com.viber.voip", context))
+        return Pair("Viber", "com.viber.voip")
+    else if(isInstalled("com.skype.raider", context))
+        return Pair("Skype", "com.skype.raider")
+    else if(isInstalled("com.snapchat.android", context))
+        return Pair("Snapchat", "com.snapchat.android")
+    else if(isInstalled("com.instagram.android", context))
+        return Pair("Instagram", "com.instagram.android")
+    else if(isInstalled("com.samsung.android.messaging", context))
+        return Pair("Samsung SMS", "com.samsung.android.messaging")
+    else
+        return Pair(none_msg, "")
+}
+
+// Default volumeDownApps are Utilities
+fun pickDefaultVolumeDownApp(context: Context) : Pair<String, String>{
+    if(isInstalled("com.github.android", context))
+        return Pair("GitHub", "com.github.android")
+    else if(isInstalled("com.soundbrenner.pulse", context))
+        return Pair("Soundbrenner Metronome", "com.soundbrenner.pulse")
+    else if(isInstalled("com.sec.android.app.popupcalculator", context))
+        return Pair("Calculator", "com.sec.android.app.popupcalculator")
+    else
+        return Pair(none_msg, "")
 }
