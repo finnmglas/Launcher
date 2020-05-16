@@ -33,7 +33,7 @@ GestureDetector.OnDoubleTapListener {
     private lateinit var mDetector: GestureDetectorCompat
 
     // get device dimensions
-    val displayMetrics = DisplayMetrics()
+    private val displayMetrics = DisplayMetrics()
 
     private fun getIntent(packageName: String): Intent? {
         val pm = applicationContext.packageManager
@@ -108,7 +108,7 @@ GestureDetector.OnDoubleTapListener {
 
         // First Startup
         if (!sharedPref.getBoolean("startedBefore", false))
-            initSettings(sharedPref, this)
+            startActivity(Intent(this, FirstStartupActivity::class.java))
 
         loadSettings(sharedPref)
 
