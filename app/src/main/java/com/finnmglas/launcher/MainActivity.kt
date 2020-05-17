@@ -114,7 +114,6 @@ GestureDetector.OnDoubleTapListener {
         return true
     }
 
-    @SuppressLint("SetTextI18n") // I do not care
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -126,8 +125,6 @@ GestureDetector.OnDoubleTapListener {
         if (!sharedPref.getBoolean("startedBefore", false))
             startActivity(Intent(this, FirstStartupActivity::class.java))
 
-        loadSettings(sharedPref)
-
         // Flags
         window.setFlags(
             WindowManager.LayoutParams.FLAG_FULLSCREEN,
@@ -135,17 +132,28 @@ GestureDetector.OnDoubleTapListener {
         )
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
 
+        setContentView(R.layout.activity_main)
+    }
+
+    // After the app is created or when it restarts (inactivity) - Fixes Issue #9
+    override fun onStart(){
+        super.onStart()
+
+        // Preferences
+        val sharedPref = this.getSharedPreferences(
+            getString(R.string.preference_file_key), Context.MODE_PRIVATE)
+
+        loadSettings(sharedPref)
+
         val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
         val timeFormat = SimpleDateFormat("HH:mm:ss", Locale.getDefault())
 
         fixedRateTimer("timer", false, 0L, 1000) {
             this@MainActivity.runOnUiThread {
                 dateView.text = dateFormat.format(Date())
-                timeView.text = timeFormat.format(Date()) // not " GMT"
+                timeView.text = timeFormat.format(Date())
             }
         }
-
-        setContentView(R.layout.activity_main)
 
         mDetector = GestureDetectorCompat(this, this)
         mDetector.setOnDoubleTapListener(this)
