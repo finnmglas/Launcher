@@ -82,4 +82,4 @@ Wenn findest, dass diese App **sehr wertvoll für dich** ist, kannst du [mich au
 [financial]: https://www.paypal.me/finnmglas
 [fork]: https://github.com/finnmglas/Launcher/fork
 [joingh]: https://github.com/join
-[newissue]: https://github.com/finnmglas/Launcher/issues/new
+[newissue]: https://github.com/finnmglas/Launcher/issues/new/choose
