@@ -3,6 +3,13 @@
     <string name="app_name">Launcher</string>
     <string name="preference_file_key">V3RYR4ND0MK3YCR4P</string>
 
+    <!-- Errors, Exceptions (Alerts, Toasts ...) -->
+    <string name="none_found">None found</string>
+
+    <string name="alert_cant_open_title">Can\'t open app</string>
+    <string name="alert_cant_open_message">Want to change its settings (\'add it to the apps screen\')?</string>
+    <string name="toast_cant_open_message">Open settings to choose an app for this action</string>
+
     <!-- Settings -->
     <string name="settings_title">Settings</string>
     <string name="settings_sub_title1">Applications</string>
@@ -34,12 +41,22 @@
     <string name="choose_removed_toast">Removed the selected application</string>
     <string name="choose_not_removed_toast">Unable to remove application</string>
 
-    <!-- Errors, Exceptions (Alerts, Toasts ...) -->
-    <string name="none_found">None found</string>
-
-    <string name="alert_cant_open_title">Can\'t open app</string>
-    <string name="alert_cant_open_message">Want to change its settings (\'add it to the apps screen\')?</string>
-    <string name="toast_cant_open_message">Open settings to choose an app for this action</string>
+    <!-- FirstStartup Activity -->
+    <string-array name="intro">
+        <!--item> heading | infoText | hintText | size | format </item-->
+        <item>|Take a few seconds to learn how to use this Launcher!\n\n|— Tap anywhere to continue —|36F|0</item>
+        <item>Concept|It is designed to be minimal, efficient and free of distraction.|— Tap anywhere to continue —|36F|0</item>
+        <item>Concept|It is free of payments, ads and tracking services.|— Tap anywhere to continue —|36F|0</item>
+        <item>Usage|Your home screen contains the local date and time. No distraction.|— Tap anywhere to continue —|36F|0</item>
+        <item>Usage|You can open your apps with a single swipe or button press.|— Tap anywhere to continue —|36F|0</item>
+        <item>Setup|We have set up some default actions for you…|— Use volume keys to navigate —|36F|0</item>
+        <item>Setup|Swipe Up: Open a Browser (%1$s)\n\nSwipe Down: Open internal Search App (%2$s)\n\n
+            Swipe Right: Open Mail (%3$s)\n\nSwipe Left: Open Calendar (%4$s)\n\n
+            Volume Up: Open a messenger (%5$s)\n\nVolume Down: Open Utilities (%6$s)|— Use volume keys to navigate —|18F|1
+        </item>
+        <item>Setup|You can choose your own apps:\n\nOpen settings by tapping and holding the home screen.|— Use volume keys to navigate —|36F|0</item>
+        <item>|You are ready to get started!\n\n I hope this provides great value to you!\n\n- Finn M Glas\n\n|— Launcher by Finn M Glas —|36F|0</item>
+    </string-array>
 
     <!-- Default Apps for different actions (button-press, swipes ...) -->
     <string-array name="default_up">

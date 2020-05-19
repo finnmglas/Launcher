@@ -24,7 +24,7 @@
         app:layout_constraintVertical_bias="0.100000024" />
 
     <TextView
-        android:id="@+id/description"
+        android:id="@+id/infoText"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="32dp"
@@ -43,7 +43,7 @@
         app:layout_constraintTop_toBottomOf="@id/heading" />
 
     <TextView
-        android:id="@+id/continue_text"
+        android:id="@+id/hintText"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="32dp"
@@ -60,6 +60,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.6"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/description" />
+        app:layout_constraintTop_toBottomOf="@id/infoText" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
