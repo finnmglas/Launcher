@@ -1,14 +1,16 @@
 package com.finnmglas.launcher
 
+import android.app.AlertDialog
 import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
 import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.provider.Settings
-import androidx.core.content.ContextCompat.startActivity
+import android.widget.Toast
 
-val none_msg = "None found"
+/** Activity related */
 
 fun isInstalled(uri: String, context: Context): Boolean {
     try {
@@ -18,6 +20,39 @@ fun isInstalled(uri: String, context: Context): Boolean {
     }
     return false
 }
+
+private fun getIntent(packageName: String, context: Context): Intent? {
+    val intent: Intent? = context.packageManager.getLaunchIntentForPackage(packageName)
+    intent?.addCategory(Intent.CATEGORY_LAUNCHER)
+    return intent
+}
+
+fun launchApp(packageName: String, context: Context) {
+    val intent1 = getIntent(packageName, context)
+
+    if (intent1 != null) {
+        context.startActivity(intent1)
+        //overridePendingTransition(0, 0)
+    } else {
+        if (isInstalled(packageName, context)){
+
+            AlertDialog.Builder(context)
+                .setTitle("Can't open app")
+                .setMessage("Want to change its settings ('add it to the apps screen')?")
+                .setPositiveButton(android.R.string.yes,
+                    DialogInterface.OnClickListener { dialog, which ->
+                        openAppSettings(packageName, context)
+                    })
+                .setNegativeButton(android.R.string.no, null)
+                .setIcon(android.R.drawable.ic_dialog_info)
+                .show()
+        } else {
+            Toast.makeText( context, "Open settings to choose an app for this action", Toast.LENGTH_SHORT).show()
+        }
+    }
+}
+
+/** Settings related */
 
 fun openAppSettings(pkg :String, context:Context){
     val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
@@ -37,7 +72,6 @@ fun loadSettings(sharedPref : SharedPreferences){
     clockApp = sharedPref.getString("action_clockApp", "").toString()
 }
 
-// Default settings are set here.
 fun resetSettings(sharedPref : SharedPreferences, context: Context) : MutableList<String>{
 
     val defaultList :MutableList<String> = mutableListOf<String>()
@@ -86,7 +120,7 @@ fun pickDefaultUpApp(context :Context) : Pair<String, String>{
     else if(isInstalled("com.sec.android.app.sbrowser", context))
         return Pair("Samsung Internet", "com.sec.android.app.sbrowser")
     else
-        return Pair("None, as we were unable to find one.", "")
+        return Pair(context.getString(R.string.none_found), "")
 }
 
 // Default downApps are Internal Search Apps
@@ -96,7 +130,7 @@ fun pickDefaultDownApp(context :Context) : Pair<String, String>{
     else if(isInstalled("com.prometheusinteractive.voice_launcher", context))
         return Pair("VoiceSearch", "com.prometheusinteractive.voice_launcher")
     else
-        return Pair(none_msg, "")
+        return Pair(context.getString(R.string.none_found), "")
 }
 
 // Default rightApps are Mailing Applications
@@ -108,7 +142,7 @@ fun pickDefaultRightApp(context :Context) : Pair<String, String>{
     else if(isInstalled("com.google.android.gm", context))
         return Pair("Google Mail", "com.google.android.gm")
     else
-        return Pair(none_msg, "")
+        return Pair(context.getString(R.string.none_found), "")
 }
 
 // Default leftApps are Calendar Applications
@@ -118,7 +152,7 @@ fun pickDefaultLeftApp(context :Context) : Pair<String, String>{
     else if(isInstalled("com.samsung.android.calendar", context))
         return Pair("Samsung Calendar", "com.samsung.android.calendar")
     else
-        return Pair(none_msg, "")
+        return Pair(context.getString(R.string.none_found), "")
 }
 
 // Default volumeUpApps are Messengers
@@ -138,7 +172,7 @@ fun pickDefaultVolumeUpApp(context: Context) : Pair<String, String>{
     else if(isInstalled("com.samsung.android.messaging", context))
         return Pair("Samsung SMS", "com.samsung.android.messaging")
     else
-        return Pair(none_msg, "")
+        return Pair(context.getString(R.string.none_found), "")
 }
 
 // Default volumeDownApps are Utilities
@@ -150,5 +184,5 @@ fun pickDefaultVolumeDownApp(context: Context) : Pair<String, String>{
     else if(isInstalled("com.sec.android.app.popupcalculator", context))
         return Pair("Calculator", "com.sec.android.app.popupcalculator")
     else
-        return Pair(none_msg, "")
+        return Pair(context.getString(R.string.none_found), "")
 }

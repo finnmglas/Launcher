@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">Launcher</string>
-    <string name ="preference_file_key">V3RYR4ND0MK3YCR4P</string>
+    <string name="preference_file_key">V3RYR4ND0MK3YCR4P</string>
+
+    <string name="none_found">None found</string>
 </resources>
