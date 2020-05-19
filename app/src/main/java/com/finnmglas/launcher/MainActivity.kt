@@ -5,7 +5,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.DisplayMetrics
 import android.view.*
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GestureDetectorCompat
 import kotlinx.android.synthetic.main.activity_main.*
@@ -33,7 +32,7 @@ class MainActivity : AppCompatActivity(),
 
     // get device dimensions
     private val displayMetrics = DisplayMetrics()
-    private var clockTimer = Timer();
+    private var clockTimer = Timer()
 
     /** Activity Lifecycle functions */
     override fun onCreate(savedInstanceState: Bundle?) {

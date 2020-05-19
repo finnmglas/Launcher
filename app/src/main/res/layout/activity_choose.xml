@@ -11,7 +11,7 @@
         android:id="@+id/heading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Choose App"
+        android:text="@string/choose_title"
         android:textColor="#cccccc"
         android:textSize="36sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -55,11 +55,10 @@
     </ScrollView>
 
     <Button
-        android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="backHome"
-        android:text="Back to Settings"
+        android:text="@string/choose_back_settings"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

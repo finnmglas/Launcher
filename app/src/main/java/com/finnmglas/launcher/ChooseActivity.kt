@@ -1,6 +1,5 @@
 package com.finnmglas.launcher
 
-import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
 import android.graphics.Color
@@ -18,11 +17,8 @@ class ChooseActivity : AppCompatActivity() {
 
     val UNINSTALL_REQUEST_CODE = 1
 
-    fun backHome(view: View) {
-        finish()
-    }
+    /** Activity Lifecycle functions */
 
-    @SuppressLint("SetTextI18n") // I do not care
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -36,13 +32,13 @@ class ChooseActivity : AppCompatActivity() {
         val forApp = bundle.getString("forApp") // which app we choose
 
         if (action == "launch")
-            heading.text = "Launch Apps"
+            heading.text = getString(R.string.choose_title_launch)
         else if (action == "pick") {
-            heading.text = "Choose App"
-            subheading.text = forApp
+            heading.text = getString(R.string.choose_title)
+            subheading.text = forApp // TODO: make translatable
         }
         else if (action == "uninstall")
-            heading.text = "Uninstall Apps"
+            heading.text = getString(R.string.choose_title_remove)
 
         /* Build Layout */
 
@@ -95,28 +91,21 @@ class ChooseActivity : AppCompatActivity() {
         }
     }
 
-    override fun onActivityResult(
-        requestCode: Int,
-        resultCode: Int,
-        data: Intent?
-    ) {
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == UNINSTALL_REQUEST_CODE) {
             if (resultCode == Activity.RESULT_OK) {
-                Toast.makeText(
-                    this,
-                    "Removed the selected application",
-                    Toast.LENGTH_LONG
-                ).show()
+                Toast.makeText(this, getString(R.string.choose_removed_toast), Toast.LENGTH_LONG).show()
                 finish()
             } else if (resultCode == Activity.RESULT_FIRST_USER) {
-                Toast.makeText(
-                    this,
-                    "Can't remove this app",
-                    Toast.LENGTH_LONG
-                ).show()
+                Toast.makeText(this, getString(R.string.choose_not_removed_toast), Toast.LENGTH_LONG).show()
                 finish()
             }
         }
     }
+
+    /** onClick functions */
+
+    fun backHome(view: View) { finish() }
+
 }

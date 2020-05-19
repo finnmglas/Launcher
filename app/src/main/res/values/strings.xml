@@ -24,6 +24,16 @@
 
     <string name="settings_footer_by">By</string>
 
+    <!-- Choose Activity -->
+    <string name="choose_title">Choose App</string>
+    <string name="choose_title_launch">Launch Apps</string>
+    <string name="choose_title_remove">Uninstall Apps</string>
+
+    <string name="choose_back_settings">Back to Settings</string>
+
+    <string name="choose_removed_toast">Removed the selected application</string>
+    <string name="choose_not_removed_toast">Unable to remove application</string>
+
     <!-- Errors, Exceptions (Alerts, Toasts ...) -->
     <string name="none_found">None found</string>
 
