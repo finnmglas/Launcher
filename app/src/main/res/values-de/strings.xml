@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Errors, Exceptions (Alerts, Toasts ...) -->
+    <string name="none_found">Nicht gefunden</string>
+    <string name="alert_cant_open_title">App kann nicht geöffnet werden</string>
+    <string name="alert_cant_open_message">Willst du ihre Einstellungen anpassen (\'app zum Startbildschirm hinzufügen\')?</string>
+    <string name="toast_cant_open_message">Öffne die Einstellungen um für diese Aktion eine App zu wählen</string>
+
+    <string name="alert_cant_choose_launcher">App Info</string>
+    <string name="alert_cant_choose_launcher_message">Dein Gerät unterstützt diese Funktion nicht. Stattdessen die App Details bearbeiten?</string>
+
+    <!-- Settings -->
+    <string name="settings_title">Einstellungen</string>
+    <string name="settings_sub_title1">Anwendungen</string>
+    <string name="settings_sub_title2">Aktionen</string>
+
+    <string name="settings_choose_up">Hochwischen</string>
+    <string name="settings_choose_down">Runterwischen</string>
+    <string name="settings_choose_left">Linkswischen</string>
+    <string name="settings_choose_right">Rechtswischen</string>
+    <string name="settings_choose_vol_up">Lautstärke +</string>
+    <string name="settings_choose_vol_down">Lautstärke -</string>
+
+    <string name="settings_choose_btn">App wählen</string>
+    <string name="settings_select_launcher">Launcher wählen</string>
+    <string name="settings_reset">Zurücksetzen</string>
+    <string name="settings_reset_message">All deine Einstellungen gehen verloren. Weitermachen?</string>
+    <string name="settings_launch">Apps öffnen</string>
+    <string name="settings_uninstall">Apps entfernen</string>
+    <string name="settings_home">Zurück</string>
+
+    <string name="settings_footer_by">Von</string>
+    <string name="settings_footer_repo">https://github.com/finnmglas/Launcher#de</string>
+    <string name="settings_footer_web">https://www.finnmglas.com/de/</string>
+
+    <!-- Choose Activity -->
+    <string name="choose_title">App wählen</string>
+    <string name="choose_title_launch">Apps öffnen</string>
+    <string name="choose_title_remove">Apps entfernen</string>
+
+    <string name="choose_back_settings">Zurück</string>
+
+    <string name="choose_removed_toast">Die App wurde entfernt</string>
+    <string name="choose_not_removed_toast">Die App konnte nicht entfernt werden</string>
+
+    <!-- FirstStartup Activity -->
+    <string-array name="intro">
+        <!--item> heading | infoText | hintText | size | format </item-->
+        <item>|Nimm dir kurz Zeit und lerne, wie du diesen Launcher verwendest!\n\n|— Tippe um weiterzukommen —|36F|0</item>
+        <item>Konzept|Er bietet dir eine minimalistische, effiziente und ablenkungsfreie digitale Umgebung.|— Tippe um weiterzukommen —|36F|0</item>
+        <item>Konzept|Er kostet dich nichts, enthält keine Werbung, sammelt keine persönlichen Daten.|— Tippe um weiterzukommen —|36F|0</item>
+        <item>Benutzung|Auf deinem Homescreen siehst du nur das Datum und die Uhrzeit. Keine Ablenkung.|— Tippe um weiterzukommen —|36F|0</item>
+        <item>Benutzung|Du öffnest Apps indem du über den Bildschirm wischt oder die Lautstärketasten drückst.|— Tippe um weiterzukommen —|36F|0</item>
+        <item>Einrichtung|Wir haben dir ein paar Standardaktionen eingerichtet…|— Zurück = Lautstärke Runter —|36F|0</item>
+        <item>Einrichtung|Hochwischen: Browser öffnen (%1$s)\n\nRunterwischen: Interne Such-app öffnen (%2$s)\n\n
+            Rechtswischen: Mails öffnen (%3$s)\n\nLinkswischen: Kalendar öffnen (%4$s)\n\n
+            Lautstärke Hoch: Messenger öffnen (%5$s)\n\nLautstärke Runter: Tools öffnen (%6$s)|— Zurück = Lautstärke Runter —|18F|1
+        </item>
+        <item>Einrichtung|Du kannst auch eigene Apps auswählen:\n\nÖffne die Einstellungen durch langes tippen auf den Startbildschirm.|— Zurück = Lautstärke Runter —|36F|0</item>
+        <item>|Du bist bereit loszulegen!\n\nIch hoffe diese App ist sehr wertvoll für dich!\n\n- Finn M Glas\n\n|— Launcher von Finn M Glas —|36F|0</item>
+    </string-array>
+</resources>
