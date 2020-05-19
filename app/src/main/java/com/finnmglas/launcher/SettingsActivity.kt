@@ -1,9 +1,7 @@
 package com.finnmglas.launcher
 
-import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.*
-import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
@@ -16,6 +14,17 @@ import androidx.appcompat.app.AppCompatActivity
 //TODO Make Settings scrollable as soon as more are added
 
 class SettingsActivity : AppCompatActivity() {
+
+    /** Activity Lifecycle functions */
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
+        window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
+
+        setContentView(R.layout.activity_settings)
+    }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if(requestCode == 5000)
         {
@@ -37,6 +46,7 @@ class SettingsActivity : AppCompatActivity() {
         }
     }
 
+    /** onClick functions for Settings */
     fun chooseDownApp(view: View) {chooseApp("downApp")}
     fun chooseUpApp(view: View) {chooseApp("upApp")}
     fun chooseLeftApp(view: View) {chooseApp("leftApp")}
@@ -63,26 +73,9 @@ class SettingsActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-    fun openNewTabWindow(urls: String, context : Context) {
-        val uris = Uri.parse(urls)
-        val intents = Intent(Intent.ACTION_VIEW, uris)
-        val b = Bundle()
-        b.putBoolean("new_window", true)
-        intents.putExtras(b)
-        context.startActivity(intents)
-    }
-
-    fun openFinnWebsite(view: View) {
-        openNewTabWindow("https://www.finnmglas.com/", this)
-    }
-
-    fun openGithubRepo(view: View) {
-        openNewTabWindow("https://github.com/finnmglas/Launcher#en", this)
-    }
-
-    fun backHome(view: View) {
-        finish()
-    }
+    fun openFinnWebsite(view: View) { openNewTabWindow("https://www.finnmglas.com/", this) }
+    fun openGithubRepo(view: View) { openNewTabWindow("https://github.com/finnmglas/Launcher#en", this) }
+    fun backHome(view: View) { finish() }
 
     fun setLauncher(view: View) {
         // on newer sdk: choose launcher
@@ -123,15 +116,5 @@ class SettingsActivity : AppCompatActivity() {
             .setNegativeButton(android.R.string.no, null)
             .setIcon(android.R.drawable.ic_dialog_alert)
             .show()
-    }
-
-    @SuppressLint("SetTextI18n") // I do not care
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
-        window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
-
-        setContentView(R.layout.activity_settings)
     }
 }

@@ -3,6 +3,27 @@
     <string name="app_name">Launcher</string>
     <string name="preference_file_key">V3RYR4ND0MK3YCR4P</string>
 
+    <!-- Settings -->
+    <string name="settings_title">Settings</string>
+    <string name="settings_sub_title1">Applications</string>
+    <string name="settings_sub_title2">Actions</string>
+
+    <string name="settings_choose_up">Swipe Up</string>
+    <string name="settings_choose_down">Swipe Down</string>
+    <string name="settings_choose_left">Swipe Left</string>
+    <string name="settings_choose_right">Swipe Right</string>
+    <string name="settings_choose_vol_up">Volume Up</string>
+    <string name="settings_choose_vol_down">Volume Down</string>
+    <string name="settings_choose_btn">Choose App</string>
+
+    <string name="settings_select_launcher">Select Launcher</string>
+    <string name="settings_reset">Reset Settings</string>
+    <string name="settings_launch">Launch Apps</string>
+    <string name="settings_uninstall">Uninstall Apps</string>
+    <string name="settings_home">Back Home</string>
+
+    <string name="settings_footer_by">By</string>
+
     <!-- Errors, Exceptions (Alerts, Toasts ...) -->
     <string name="none_found">None found</string>
 
