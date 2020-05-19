@@ -1,5 +1,6 @@
 package com.finnmglas.launcher
 
+import android.app.Activity
 import android.app.AlertDialog
 import android.content.Context
 import android.content.DialogInterface
@@ -9,6 +10,20 @@ import android.content.pm.PackageManager
 import android.net.Uri
 import android.provider.Settings
 import android.widget.Toast
+
+/** Parsing functions */
+
+// Related question: https://stackoverflow.com/q/3013655/12787264
+fun parseStringMap(stringArrayResourceId: Int, context: Context): HashMap<String, String>? {
+    val stringArray: Array<String> =
+        context.resources.getStringArray(stringArrayResourceId)
+    val outputArray = HashMap<String, String>(stringArray.size)
+    for (entry in stringArray) {
+        val splitResult = entry.split("|").toTypedArray()
+        outputArray.put(splitResult[0], splitResult[1])
+    }
+    return outputArray
+}
 
 /** Activity related */
 
@@ -32,13 +47,16 @@ fun launchApp(packageName: String, context: Context) {
 
     if (intent1 != null) {
         context.startActivity(intent1)
-        //overridePendingTransition(0, 0)
+
+        if (context is Activity) {
+            context.overridePendingTransition(0, 0)
+        }
     } else {
         if (isInstalled(packageName, context)){
 
             AlertDialog.Builder(context)
-                .setTitle("Can't open app")
-                .setMessage("Want to change its settings ('add it to the apps screen')?")
+                .setTitle(context.getString(R.string.alert_cant_open_title))
+                .setMessage(context.getString(R.string.alert_cant_open_message))
                 .setPositiveButton(android.R.string.yes,
                     DialogInterface.OnClickListener { dialog, which ->
                         openAppSettings(packageName, context)
@@ -47,12 +65,12 @@ fun launchApp(packageName: String, context: Context) {
                 .setIcon(android.R.drawable.ic_dialog_info)
                 .show()
         } else {
-            Toast.makeText( context, "Open settings to choose an app for this action", Toast.LENGTH_SHORT).show()
+            Toast.makeText( context, context.getString(R.string.toast_cant_open_message), Toast.LENGTH_SHORT).show()
         }
     }
 }
 
-/** Settings related */
+/** Settings related functions */
 
 fun openAppSettings(pkg :String, context:Context){
     val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
@@ -73,116 +91,56 @@ fun loadSettings(sharedPref : SharedPreferences){
 }
 
 fun resetSettings(sharedPref : SharedPreferences, context: Context) : MutableList<String>{
-
     val defaultList :MutableList<String> = mutableListOf<String>()
 
     val editor: SharedPreferences.Editor = sharedPref.edit()
 
-    val (chosenUpName, chosenUpPackage) = pickDefaultUpApp(context)
+    val (chosenUpName, chosenUpPackage) = pickDefaultApp("action_upApp", context)
     editor.putString("action_upApp", chosenUpPackage)
     defaultList.add(chosenUpName)
 
-    val (chosenDownName, chosenDownPackage) = pickDefaultDownApp(context)
+    val (chosenDownName, chosenDownPackage) = pickDefaultApp("action_downApp", context)
     editor.putString("action_downApp", chosenDownPackage)
     defaultList.add(chosenDownName)
 
-    val (chosenRightName, chosenRightPackage) = pickDefaultRightApp(context)
+    val (chosenRightName, chosenRightPackage) = pickDefaultApp("action_rightApp", context)
     editor.putString("action_rightApp", chosenRightPackage)
     defaultList.add(chosenRightName)
 
-    val (chosenLeftName, chosenLeftPackage) = pickDefaultLeftApp(context)
+    val (chosenLeftName, chosenLeftPackage) = pickDefaultApp("action_leftApp", context)
     editor.putString("action_leftApp", chosenLeftPackage)
     editor.putString("action_calendarApp", chosenLeftPackage)
     defaultList.add(chosenLeftName)
 
-    val (chosenVolumeUpName, chosenVolumeUpPackage) = pickDefaultVolumeUpApp(context)
+    val (chosenVolumeUpName, chosenVolumeUpPackage) = pickDefaultApp("action_volumeUpApp", context)
     editor.putString("action_volumeUpApp", chosenVolumeUpPackage)
     defaultList.add(chosenVolumeUpName)
 
-    val (chosenVolumeDownName, chosenVolumeDownPackage) = pickDefaultVolumeDownApp(context)
+    val (chosenVolumeDownName, chosenVolumeDownPackage) = pickDefaultApp("action_volumeDownApp", context)
     editor.putString("action_volumeDownApp", chosenVolumeDownPackage)
     defaultList.add(chosenVolumeDownName)
 
-    // clockApp default
-    editor.putString("action_clockApp", "com.sec.android.app.clockpackage")
+    val (_, chosenClockPackage) = pickDefaultApp("action_clockApp", context)
+    editor.putString("action_clockApp", chosenClockPackage)
 
     editor.apply()
 
     return defaultList // UP, DOWN, RIGHT, LEFT, VOLUME_UP, VOLUME_DOWN
 }
 
-// Default upApps are Browsers
-fun pickDefaultUpApp(context :Context) : Pair<String, String>{
-    if(isInstalled("org.mozilla.firefox", context))
-        return Pair("Firefox", "org.mozilla.firefox")
-    else if(isInstalled("com.android.chrome", context))
-        return Pair("Chrome", "com.android.chrome")
-    else if(isInstalled("com.sec.android.app.sbrowser", context))
-        return Pair("Samsung Internet", "com.sec.android.app.sbrowser")
-    else
-        return Pair(context.getString(R.string.none_found), "")
-}
+fun pickDefaultApp(action: String, context: Context) : Pair<String, String>{
+    val arrayResource = when (action) {
+        "action_upApp" -> R.array.default_up
+        "action_downApp" -> R.array.default_down
+        "action_rightApp" -> R.array.default_right
+        "action_leftApp" -> R.array.default_left
+        "action_volumeUpApp" -> R.array.default_volume_up
+        "action_volumeDownApp" -> R.array.default_volume_down
+        "action_clockApp" -> R.array.default_clock
+        else -> return Pair(context.getString(R.string.none_found), "") // just prevent crashing on unknown input
+    }
 
-// Default downApps are Internal Search Apps
-fun pickDefaultDownApp(context :Context) : Pair<String, String>{
-    if(isInstalled("com.samsung.android.app.galaxyfinder", context))
-        return Pair("GalaxyFinder", "com.samsung.android.app.galaxyfinder")
-    else if(isInstalled("com.prometheusinteractive.voice_launcher", context))
-        return Pair("VoiceSearch", "com.prometheusinteractive.voice_launcher")
-    else
-        return Pair(context.getString(R.string.none_found), "")
-}
-
-// Default rightApps are Mailing Applications
-fun pickDefaultRightApp(context :Context) : Pair<String, String>{
-    if(isInstalled("de.web.mobile.android.mail", context))
-        return Pair("WebMail", "de.web.mobile.android.mail")
-    else if(isInstalled("com.samsung.android.email.provider", context))
-        return Pair("Samsung Mail", "com.samsung.android.email.provider")
-    else if(isInstalled("com.google.android.gm", context))
-        return Pair("Google Mail", "com.google.android.gm")
-    else
-        return Pair(context.getString(R.string.none_found), "")
-}
-
-// Default leftApps are Calendar Applications
-fun pickDefaultLeftApp(context :Context) : Pair<String, String>{
-    if(isInstalled("com.google.android.calendar", context))
-        return Pair("Google Calendar", "com.google.android.calendar")
-    else if(isInstalled("com.samsung.android.calendar", context))
-        return Pair("Samsung Calendar", "com.samsung.android.calendar")
-    else
-        return Pair(context.getString(R.string.none_found), "")
-}
-
-// Default volumeUpApps are Messengers
-fun pickDefaultVolumeUpApp(context: Context) : Pair<String, String>{
-    if(isInstalled("com.whatsapp", context))
-        return Pair("WhatsApp", "com.whatsapp")
-    else if(isInstalled("com.facebook.orca", context))
-        return Pair("Facebook Messenger", "com.facebook.orca")
-    else if(isInstalled("com.viber.voip", context))
-        return Pair("Viber", "com.viber.voip")
-    else if(isInstalled("com.skype.raider", context))
-        return Pair("Skype", "com.skype.raider")
-    else if(isInstalled("com.snapchat.android", context))
-        return Pair("Snapchat", "com.snapchat.android")
-    else if(isInstalled("com.instagram.android", context))
-        return Pair("Instagram", "com.instagram.android")
-    else if(isInstalled("com.samsung.android.messaging", context))
-        return Pair("Samsung SMS", "com.samsung.android.messaging")
-    else
-        return Pair(context.getString(R.string.none_found), "")
-}
-
-// Default volumeDownApps are Utilities
-fun pickDefaultVolumeDownApp(context: Context) : Pair<String, String>{
-    if(isInstalled("com.github.android", context))
-        return Pair("GitHub", "com.github.android")
-    else if(isInstalled("com.soundbrenner.pulse", context))
-        return Pair("Soundbrenner Metronome", "com.soundbrenner.pulse")
-    else if(isInstalled("com.sec.android.app.popupcalculator", context))
-        return Pair("Calculator", "com.sec.android.app.popupcalculator")
-    else
-        return Pair(context.getString(R.string.none_found), "")
+    val defaultAppsMap = parseStringMap(arrayResource, context)
+    for (item in defaultAppsMap!!) if (isInstalled(item.key, context)) return Pair(item.value, item.key)
+    return Pair(context.getString(R.string.none_found), "")
 }
