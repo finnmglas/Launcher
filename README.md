@@ -1,6 +1,6 @@
-<img src="https://github.com/finnmglas/Launcher/blob/master/docs/img/Play-function-graphic.jpg" width="96%" height="~" />
+[<img src="https://github.com/finnmglas/Launcher/blob/master/docs/img/Play-function-graphic.jpg" width="98%" height="~" />][googleplay]
 
-<div style="float:center;"><img src="https://github.com/finnmglas/Launcher/blob/master/docs/img/Play-1.jpg" width="32%" height="~" /> <img src="https://github.com/finnmglas/Launcher/blob/master/docs/img/Play-2.jpg" width="32%" height="~" /> <img src="https://github.com/finnmglas/Launcher/blob/master/docs/img/Play-3.jpg" width="32%" height="~" /></div>
+[<img src="https://github.com/finnmglas/Launcher/blob/master/docs/img/Play-1.jpg" width="32%" height="~" /> <img src="https://github.com/finnmglas/Launcher/blob/master/docs/img/Play-2.jpg" width="32%" height="~" /> <img src="https://github.com/finnmglas/Launcher/blob/master/docs/img/Play-3.jpg" width="32%" height="~" />][googleplay]
 
 # <a name="en"></a> Launcher
 
@@ -17,7 +17,7 @@ After you selected your most important Apps, you will spend way less time on you
 One Swipe, one buttonpress - your App opens immediately.
 
 This app **costs you nothing** and is **ad-free**!
-So make the best of your time on the phone by using this Launcher!
+So make the best of your time on the phone by using this Launcher ([download now][googleplay])!
 
 > **If this app manages to permanently make 1000 people just a little more efficient, it has achieved its goal! Its purpose is to do good for everyone!**
 
@@ -28,7 +28,7 @@ This app does not collect, receive or share any personal data. It helps you, no 
 This is seriously the most benevolent Privacy Statement the world has ever seen ^^
 
 ## How can I contribute?
-The easiest way to help improving this app is downloading it and testing. As the app is quite new and no experts (but [me][website] ^^) were hired to build it, we need lots of feedback from you! You can either go to Google Play and give us feedback there or [open an issue on Github][newissue].
+The easiest way to help improving this app is [downloading it][googleplay] and testing. As the app is quite new and no experts (but [me][website] ^^) were hired to build it, we need lots of feedback from you! You can either go to Google Play and give us feedback there or [open an issue on Github][newissue].
 
 If you want to contribute code, you will need a Github Account ([create one here][joingh]) (or just [contact me][contact]).
 To actually contribute you just [_fork_ this repository][fork] and create a new _branch_ (called `feature/...` or `fix/...`).
@@ -54,7 +54,7 @@ Sobald du deine sinnvollsten Apps ausgewählt hast, wirst du keine Zeit mehr dam
 Einmal Wischen, ein Knopfdruck - deine App öffnet sich sofort.
 
 Diese App **kostet dich nichts** und enthält **keine Werbung**!
-Mache das Beste aus deiner Zeit am Handy indem du diesen Launcher verwendest!
+Mache das Beste aus deiner Zeit am Handy indem du diesen Launcher verwendest ([jetzt herunterladen][googleplay])!
 
 > **Wenn diese App es schafft, über 1000 Menschen dauerhaft nur ein wenig effizienter zu machen, so hat sie ihr Ziel erreicht! Sie ist da, um Gutes zu tun.**
 
@@ -65,7 +65,7 @@ Diese App sammelt, empfängt und teilt keine persönlichen Daten. Sie hilft dir,
 Im Ernst: Das hier ist das beste Datenschutz Statement dass die Welt je gesehen hat ^^
 
 ## Wie kann ich helfen?
-Die einfachste Möglichkeit beim Optimieren dieser App zu helfen: Du lädst sie herunter und testest sie. Da die App noch sehr neu ist, und ich keine Experten (außer [mir selbst][website-de] ^^) angestellt habe, benötigen wir viel Feedback von dir! Du kannst entweder auf Google Play Feedback geben, oder [auf Github Verbesserungsvorschläge einreichen][newissue].
+Die einfachste Möglichkeit beim Optimieren dieser App zu helfen: Du [lädst sie herunter][googleplay] und testest sie. Da die App noch sehr neu ist, und ich keine Experten (außer [mir selbst][website-de] ^^) angestellt habe, benötigen wir viel Feedback von dir! Du kannst entweder auf Google Play Feedback geben, oder [auf Github Verbesserungsvorschläge einreichen][newissue].
 
 Wenn du mit deinen Programmierfähigkeiten helfen willst, benötigst du einen Github Account ([erstelle dir einen][joingh]) (oder [kontaktiere mich][contact-de]).
 Um dann Code einzureichen [_forke_ dieses repository][fork] und erstelle einen neuen _Branch_ (nenne ihn `feature/...` oder `fix/...`).
@@ -75,6 +75,7 @@ Wenn findest, dass diese App **sehr wertvoll für dich** ist, kannst du [mich au
 
 [launcherdef]: https://www.androidcentral.com/android-z-what-launcher
 [launcherdef-de]: https://praxistipps.chip.de/android-was-ist-ein-launcher_13071
+[googleplay]: https://play.google.com/store/apps/details?id=com.finnmglas.launcher
 [contact]: https://www.finnmglas.com/contact/
 [contact-de]: https://www.finnmglas.com/de/kontakt/
 [website]: https://www.finnmglas.com
