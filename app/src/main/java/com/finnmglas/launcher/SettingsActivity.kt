@@ -7,7 +7,6 @@ import android.os.Bundle
 import android.provider.Settings
 import android.view.View
 import android.view.WindowManager
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
 
@@ -73,8 +72,8 @@ class SettingsActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-    fun openFinnWebsite(view: View) { openNewTabWindow("https://www.finnmglas.com/", this) }
-    fun openGithubRepo(view: View) { openNewTabWindow("https://github.com/finnmglas/Launcher#en", this) }
+    fun openFinnWebsite(view: View) { openNewTabWindow(getString(R.string.settings_footer_web), this) }
+    fun openGithubRepo(view: View) { openNewTabWindow(getString(R.string.settings_footer_repo), this) }
     fun backHome(view: View) { finish() }
 
     fun setLauncher(view: View) {
@@ -86,8 +85,8 @@ class SettingsActivity : AppCompatActivity() {
         // on older sdk: manage app details
         else {
             AlertDialog.Builder(this)
-                .setTitle("App Info")
-                .setMessage("Your device does not support this feature. Manage application details instead?")
+                .setTitle(getString(R.string.alert_cant_choose_launcher))
+                .setMessage(getString(R.string.alert_cant_choose_launcher_message))
                 .setPositiveButton(android.R.string.yes,
                     DialogInterface.OnClickListener { dialog, which ->
                         try {
@@ -106,8 +105,8 @@ class SettingsActivity : AppCompatActivity() {
     // Show a dialog prompting for confirmation
     fun resetSettingsClick(view: View) {
         AlertDialog.Builder(this)
-            .setTitle("Reset Settings")
-            .setMessage("This will discard all your App Choices. Sure you want to continue?")
+            .setTitle(getString(R.string.settings_reset))
+            .setMessage(getString(R.string.settings_reset_message))
             .setPositiveButton(android.R.string.yes,
                 DialogInterface.OnClickListener { dialog, which ->
                     resetSettings(this.getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE), this)

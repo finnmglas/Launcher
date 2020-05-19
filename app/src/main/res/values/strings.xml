@@ -1,7 +1,7 @@
 <resources>
     <!-- General -->
-    <string name="app_name">Launcher</string>
-    <string name="preference_file_key">V3RYR4ND0MK3YCR4P</string>
+    <string name="app_name" translatable="false">Launcher</string>
+    <string name="preference_file_key" translatable="false">V3RYR4ND0MK3YCR4P</string>
 
     <!-- Errors, Exceptions (Alerts, Toasts ...) -->
     <string name="none_found">None found</string>
@@ -9,6 +9,9 @@
     <string name="alert_cant_open_title">Can\'t open app</string>
     <string name="alert_cant_open_message">Want to change its settings (\'add it to the apps screen\')?</string>
     <string name="toast_cant_open_message">Open settings to choose an app for this action</string>
+
+    <string name="alert_cant_choose_launcher">App Info</string>
+    <string name="alert_cant_choose_launcher_message">Your device does not support this feature. Manage application details instead?</string>
 
     <!-- Settings -->
     <string name="settings_title">Settings</string>
@@ -25,11 +28,14 @@
 
     <string name="settings_select_launcher">Select Launcher</string>
     <string name="settings_reset">Reset Settings</string>
+    <string name="settings_reset_message">You are going to discard all your preferences. Continue?</string>
     <string name="settings_launch">Launch Apps</string>
     <string name="settings_uninstall">Uninstall Apps</string>
     <string name="settings_home">Back Home</string>
 
     <string name="settings_footer_by">By</string>
+    <string name="settings_footer_repo">https://github.com/finnmglas/Launcher#en</string>
+    <string name="settings_footer_web">https://www.finnmglas.com</string>
 
     <!-- Choose Activity -->
     <string name="choose_title">Choose App</string>
