@@ -66,6 +66,13 @@ class MainActivity : AppCompatActivity(),
 
         loadSettings(sharedPref)
 
+        mDetector = GestureDetectorCompat(this, this)
+        mDetector.setOnDoubleTapListener(this)
+    }
+
+    override fun onResume() {
+        super.onResume()
+
         val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
         val timeFormat = SimpleDateFormat("HH:mm:ss", Locale.getDefault())
 
@@ -75,9 +82,11 @@ class MainActivity : AppCompatActivity(),
                 timeView.text = timeFormat.format(Date())
             }
         }
+    }
 
-        mDetector = GestureDetectorCompat(this, this)
-        mDetector.setOnDoubleTapListener(this)
+    override fun onPause() {
+        super.onPause()
+        clockTimer.cancel()
     }
 
     /** Touch- and Key-related functions to start activities */
