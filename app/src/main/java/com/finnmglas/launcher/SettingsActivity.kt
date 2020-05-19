@@ -1,21 +1,29 @@
 package com.finnmglas.launcher
 
-import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.*
-import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
 import android.view.View
 import android.view.WindowManager
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
 
 //TODO Make Settings scrollable as soon as more are added
 
 class SettingsActivity : AppCompatActivity() {
+
+    /** Activity Lifecycle functions */
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
+        window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
+
+        setContentView(R.layout.activity_settings)
+    }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if(requestCode == 5000)
         {
@@ -37,6 +45,7 @@ class SettingsActivity : AppCompatActivity() {
         }
     }
 
+    /** onClick functions for Settings */
     fun chooseDownApp(view: View) {chooseApp("downApp")}
     fun chooseUpApp(view: View) {chooseApp("upApp")}
     fun chooseLeftApp(view: View) {chooseApp("leftApp")}
@@ -63,26 +72,9 @@ class SettingsActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-    fun openNewTabWindow(urls: String, context : Context) {
-        val uris = Uri.parse(urls)
-        val intents = Intent(Intent.ACTION_VIEW, uris)
-        val b = Bundle()
-        b.putBoolean("new_window", true)
-        intents.putExtras(b)
-        context.startActivity(intents)
-    }
-
-    fun openFinnWebsite(view: View) {
-        openNewTabWindow("https://www.finnmglas.com/", this)
-    }
-
-    fun openGithubRepo(view: View) {
-        openNewTabWindow("https://github.com/finnmglas/Launcher#en", this)
-    }
-
-    fun backHome(view: View) {
-        finish()
-    }
+    fun openFinnWebsite(view: View) { openNewTabWindow(getString(R.string.settings_footer_web), this) }
+    fun openGithubRepo(view: View) { openNewTabWindow(getString(R.string.settings_footer_repo), this) }
+    fun backHome(view: View) { finish() }
 
     fun setLauncher(view: View) {
         // on newer sdk: choose launcher
@@ -93,8 +85,8 @@ class SettingsActivity : AppCompatActivity() {
         // on older sdk: manage app details
         else {
             AlertDialog.Builder(this)
-                .setTitle("App Info")
-                .setMessage("Your device does not support this feature. Manage application details instead?")
+                .setTitle(getString(R.string.alert_cant_choose_launcher))
+                .setMessage(getString(R.string.alert_cant_choose_launcher_message))
                 .setPositiveButton(android.R.string.yes,
                     DialogInterface.OnClickListener { dialog, which ->
                         try {
@@ -113,8 +105,8 @@ class SettingsActivity : AppCompatActivity() {
     // Show a dialog prompting for confirmation
     fun resetSettingsClick(view: View) {
         AlertDialog.Builder(this)
-            .setTitle("Reset Settings")
-            .setMessage("This will discard all your App Choices. Sure you want to continue?")
+            .setTitle(getString(R.string.settings_reset))
+            .setMessage(getString(R.string.settings_reset_message))
             .setPositiveButton(android.R.string.yes,
                 DialogInterface.OnClickListener { dialog, which ->
                     resetSettings(this.getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE), this)
@@ -123,15 +115,5 @@ class SettingsActivity : AppCompatActivity() {
             .setNegativeButton(android.R.string.no, null)
             .setIcon(android.R.drawable.ic_dialog_alert)
             .show()
-    }
-
-    @SuppressLint("SetTextI18n") // I do not care
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
-        window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
-
-        setContentView(R.layout.activity_settings)
     }
 }

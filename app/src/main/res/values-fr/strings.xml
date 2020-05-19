@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Errors, Exceptions (Alerts, Toasts ...) -->
+    <string name="none_found">Rien trouvé</string>
+    <string name="alert_cant_open_title">Impossible d\'ouvrir l\'application</string>
+    <string name="alert_cant_open_message">Vous souhaitez modifier ses paramètres («l\'ajouter à l\'écran des applications»)?</string>
+    <string name="toast_cant_open_message">Ouvrez les paramètres pour choisir une application pour cette action</string>
+
+    <string name="alert_cant_choose_launcher">Informations sur l\'application</string>
+    <string name="alert_cant_choose_launcher_message">Votre appareil ne prend pas en charge cette fonctionnalité. Gérez plutôt les détails de l\'application?</string>
+
+    <!-- Settings -->
+    <string name="settings_title">Réglages</string>
+    <string name="settings_sub_title1">Applications</string>
+    <string name="settings_sub_title2">Actions</string>
+
+    <string name="settings_choose_up">Balayez haut</string>
+    <string name="settings_choose_down">Balayez bas</string>
+    <string name="settings_choose_left">Balayez gauche</string>
+    <string name="settings_choose_right">Balayez droit</string>
+    <string name="settings_choose_vol_up">Monter volume</string>
+    <string name="settings_choose_vol_down">Baisser volume</string>
+
+    <string name="settings_choose_btn">Choisir App</string>
+    <string name="settings_select_launcher">Choisir Launcher</string>
+    <string name="settings_reset">Réinitialiser</string>
+    <string name="settings_reset_message">Vous allez supprimer toutes vos préférences. Continuer?</string>
+    <string name="settings_launch">Lancer applications</string>
+    <string name="settings_uninstall">Désinstaller applications</string>
+    <string name="settings_home">Retourner</string>
+
+    <string name="settings_footer_by">Par</string>
+    <string name="settings_footer_web">https://www.finnmglas.com/fr/</string>
+    <string name="settings_footer_repo">https://github.com/finnmglas/Launcher</string>
+
+    <!-- Choose Activity -->
+    <string name="choose_title">Choisir App</string>
+    <string name="choose_title_launch">Lancer Apps</string>
+    <string name="choose_title_remove">Désinstaller Apps</string>
+
+    <string name="choose_back_settings">Retourner</string>
+
+    <string name="choose_removed_toast">Application supprimée</string>
+    <string name="choose_not_removed_toast">Impossible de supprimer l\'application</string>
+
+    <!-- FirstStartup Activity -->
+    <string-array name="intro">
+        <!--item> heading | infoText | hintText | size | format </item-->
+        <item>|Prenez un moment et apprenez à utiliser ce lanceur!\n\n|— Appuyez pour continuer —|36F|0</item>
+        <item>Concept|Il vous offre un environnement minimaliste, efficace et sans distraction.|— Appuyez pour continuer —|36F|0</item>
+        <item>Concept|Il ne vous coûte rien, ne contient aucune publicité, ne recueille pas de données personnelles.|— Appuyez pour continuer —|36F|0</item>
+        <item>Utilisation|Vous ne voyez que la date et l\'heure sur votre écran d\'accueil. Aucune distraction.|— Appuyez pour continuer —|36F|0</item>
+        <item>Utilisation|Vous ouvrez des applications en faisant glisser l\'écran ou en appuyant sur les touches de volume.|— Appuyez pour continuer —|36F|0</item>
+        <item>Installer|Nous avons mis en place quelques promotions standards pour vous…|— Retour = volume en baisse —|36F|0</item>
+        <item>Installer|Balayez haut: Ouvrir le navigateur (%1$s)\n\nBalayez bas: Ouvrir l\'application de recherche interne (%2$s)\n\n
+            Balayez droit: Ouvrir Mail (%3$s)\n\nBalayez gauche: Ouvrir le Calendrier (%4$s)\n\n
+            Monter volume: Ouvrir Messenger (%5$s)\n\nBaisser volume: Ouvrir utilitaires (%6$s)|— Retour = volume en baisse —|18F|1
+        </item>
+        <item>Installer|Vous pouvez choisir vos applications:\n\nOuvrez les paramètres en appuyant longuement sur l\'écran d\'accueil.|— Retour = volume en baisse —|36F|0</item>
+        <item>|Vous êtes prêt à commencer!\n\nJ\'espère que cette application vous sera très précieuse!\n\n- Finn M Glas\n\n|— Launcher par Finn M Glas —|36F|0</item>
+    </string-array>
+</resources>

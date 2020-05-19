@@ -1,6 +1,5 @@
 package com.finnmglas.launcher
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
@@ -30,12 +29,13 @@ fun View.blink(
 
 class FirstStartupActivity : AppCompatActivity(){
 
-    var menuNumber = 0
-    var defaultApps = mutableListOf<String>()
+    /** Variables for this activity */
 
-    /* Overrides */
+    private var menuNumber = 0
+    private var defaultApps = mutableListOf<String>()
 
-    @SuppressLint("SetTextI18n") // I do not care
+    /** Activity Lifecycle functions */
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -48,14 +48,14 @@ class FirstStartupActivity : AppCompatActivity(){
 
         setContentView(R.layout.activity_firststartup)
 
-        continue_text.blink() // animate
+        hintText.blink() // animate
         loadMenu(this)
+
+        val sharedPref = this.getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE)
+        defaultApps = resetSettings(sharedPref, this) // UP, DOWN, RIGHT, LEFT, VOLUME_UP, VOLUME_DOWN
     }
 
-    fun clickAnywhere(view: View){
-        menuNumber++
-        loadMenu(this)
-    }
+    /** Touch- and Key-related functions to navigate */
 
     override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
         if (keyCode == KeyEvent.KEYCODE_VOLUME_UP){
@@ -73,68 +73,30 @@ class FirstStartupActivity : AppCompatActivity(){
         return true
     }
 
-    @SuppressLint("SetTextI18n") // I don't care! (Yet)
-    fun loadMenu(context :Context) { // Context needed for packageManager
+    fun clickAnywhere(view: View){
+        menuNumber++
+        loadMenu(this)
+    }
 
-        val sharedPref = this.getSharedPreferences(
-            getString(R.string.preference_file_key), Context.MODE_PRIVATE)
+    /** Touch- and Key-related functions to navigate */
 
-        // Intro
-        if (menuNumber == 0){
-            heading.text = ""
-            description.text = "Take a few seconds to learn how to use this Launcher!\n\n"
-            continue_text.text = "-- Tap anywhere to continue --"
+    private fun loadMenu(context :Context) { // Context needed for packageManager
 
-            defaultApps = resetSettings(sharedPref, context) // UP, DOWN, RIGHT, LEFT, VOLUME_UP, VOLUME_DOWN
-        }
-        // Concept
-        else if (menuNumber == 1){
-            heading.text = "Concept"
-            description.text = "It is designed to be minimal, efficient and free of distraction."
-        }
-        else if (menuNumber == 2){
-            heading.text = "Concept"
-            description.text = "It is free of payments, ads and tracking services."
-            continue_text.text = "-- Tap anywhere to continue --"
-        }
-        // Usage
-        else if (menuNumber == 3){
-            heading.text = "Usage"
-            description.text = "Your home screen contains the local date and time. No distraction."
-            continue_text.text = "-- Use volume keys to navigate --"
-        }
-        else if (menuNumber == 4){
-            heading.text = "Usage"
-            description.text = "You can open your apps with a single swipe or button press."
-        }
-        // Setup
-        else if (menuNumber == 5){
-            heading.text = "Setup"
-            description.setTextSize(TypedValue.COMPLEX_UNIT_SP,36F)
-            description.text = "We have set up some default actions for you..."
-        }
-        else if (menuNumber == 6){
-            description.setTextSize(TypedValue.COMPLEX_UNIT_SP,18F)
-            description.text = "Swipe Up: Open a Browser (" + defaultApps[0] + ")\n\n" +
-                    "Swipe Down: Open internal Search App (" + defaultApps[1] + ")\n\n" +
-                    "Swipe Right: Open Mail (" + defaultApps[2] + ")\n\n" +
-                    "Swipe Left: Open Calendar (" + defaultApps[3] + ")\n\n" +
-                    "Volume Up: Open a messenger (" + defaultApps[4] + ")\n\n" +
-                    "Volume Down: Open Utilities (" + defaultApps[5] + ")"
-        }
-        else if (menuNumber == 7){
-            heading.text = "Setup"
-            description.setTextSize(TypedValue.COMPLEX_UNIT_SP,36F)
-            description.text = "You can choose your own apps:\n\nOpen settings by tapping and holding the home screen."
-            continue_text.text = "-- Use volume keys to navigate --"
-        }
-        else if (menuNumber == 8){
-            heading.text = ""
-            description.text = "You are ready to get started!\n\n I hope this provides great value to you!\n\n- Finn M Glas\n\n"
-            continue_text.text = "-- Launcher by Finn M Glas --"
-        }
-        // End Intro
-        else {
+        val intro = resources.getStringArray(R.array.intro)
+
+        if (menuNumber < intro.size){
+            val entry = intro[menuNumber].split("|").toTypedArray() //heading|infoText|hintText|size
+
+            heading.text = entry[0]
+            if (entry[4] == "1")infoText.text = String.format(entry[1],
+                defaultApps[0], defaultApps[1], defaultApps[2], defaultApps[3], defaultApps[4], defaultApps[5])
+            else infoText.text = entry[1]
+            hintText.text = entry[2]
+            infoText.setTextSize(TypedValue.COMPLEX_UNIT_SP, entry[3].toFloat())
+
+        } else { // End intro
+            val sharedPref = this.getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE)
+
             val editor: SharedPreferences.Editor = sharedPref.edit()
             editor.putBoolean("startedBefore", true) // never run this again
             editor.putLong("firstStartup", System.currentTimeMillis() / 1000L) // record first startup timestamp
@@ -142,6 +104,5 @@ class FirstStartupActivity : AppCompatActivity(){
 
             finish()
         }
-
     }
 }
