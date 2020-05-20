@@ -12,20 +12,6 @@ import android.os.Bundle
 import android.provider.Settings
 import android.widget.Toast
 
-/** Parsing functions */
-
-// Related question: https://stackoverflow.com/q/3013655/12787264
-fun parseStringMap(stringArrayResourceId: Int, context: Context): HashMap<String, String>? {
-    val stringArray: Array<String> =
-        context.resources.getStringArray(stringArrayResourceId)
-    val outputArray = HashMap<String, String>(stringArray.size)
-    for (entry in stringArray) {
-        val splitResult = entry.split("|").toTypedArray()
-        outputArray.put(splitResult[0], splitResult[1])
-    }
-    return outputArray
-}
-
 /** Activity related */
 
 fun isInstalled(uri: String, context: Context): Boolean {
@@ -150,7 +136,14 @@ fun pickDefaultApp(action: String, context: Context) : Pair<String, String>{
         else -> return Pair(context.getString(R.string.none_found), "") // just prevent crashing on unknown input
     }
 
-    val defaultAppsMap = parseStringMap(arrayResource, context)
-    for (item in defaultAppsMap!!) if (isInstalled(item.key, context)) return Pair(item.value, item.key)
+    // Related question: https://stackoverflow.com/q/3013655/12787264 (Adjusted)
+    val list = context.resources.getStringArray(arrayResource)
+    for (entry in list!!){
+        val splitResult = entry.split("|").toTypedArray()
+        val pkgname = splitResult[0]
+        val name = splitResult[1]
+
+        if (isInstalled(pkgname, context)) return Pair(name, pkgname)
+    }
     return Pair(context.getString(R.string.none_found), "")
 }
