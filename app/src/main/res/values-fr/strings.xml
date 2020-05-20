@@ -25,8 +25,8 @@
     <string name="settings_select_launcher">Choisir Launcher</string>
     <string name="settings_reset">Réinitialiser</string>
     <string name="settings_reset_message">Vous allez supprimer toutes vos préférences. Continuer?</string>
-    <string name="settings_launch">Lancer applications</string>
-    <string name="settings_uninstall">Désinstaller applications</string>
+    <string name="settings_launch">Lancer apps</string>
+    <string name="settings_uninstall">Désinstaller apps</string>
     <string name="settings_home">Retourner</string>
 
     <string name="settings_footer_by">Par</string>
