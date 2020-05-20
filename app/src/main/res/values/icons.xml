@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="fas_bars" translatable="false">&#xf0c9;</string>
+  <string name="fas_home" translatable="false">&#xf015;</string>
+  <string name="fas_globe" translatable="false">&#xf0ac;</string>
+  <string name="fas_star" translatable="false">&#xf005;</string>
+
+  <string name="far_star" translatable="false">&#xf005;</string>
+</resources>
