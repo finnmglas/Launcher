@@ -1,11 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+  <!-- icons that can be used with type="solid" -->
   <string name="fas_bars" translatable="false">&#xf0c9;</string>
   <string name="fas_home" translatable="false">&#xf015;</string>
-  <string name="fas_globe" translatable="false">&#xf0ac;</string>
   <string name="fas_settings" translatable="false">&#xf013;</string>
-  <string name="fas_close_window" translatable="false">&#xf410;</string>
-  <string name="fas_star" translatable="false">&#xf005;</string>
+  <string name="fas_globe" translatable="false">&#xf0ac;</string>
+  <string name="fas_ad" translatable="false">&#xf641;</string>
+  <string name="fas_backspace" translatable="false">&#xf55a;</string>
+  <string name="fas_calendar" translatable="false">&#xf133;</string>
 
-  <string name="far_star" translatable="false">&#xf005;</string>
+  <!-- icons that can be used with type="brands" -->
+  <string name="fab_apple" translatable="false">&#xf179;</string>
+  <string name="fab_instagram" translatable="false">&#xf16d;</string>
+
+  <!-- icons that can be used with type="solid" and type="regular" -->
+  <string name="fa_close_window" translatable="false">&#xf410;</string>
+  <string name="fa_square" translatable="false">&#xf0c8;</string>
+  <string name="fa_star" translatable="false">&#xf005;</string>
+  <string name="fa_clipboard" translatable="false">&#xf328;</string>
 </resources>

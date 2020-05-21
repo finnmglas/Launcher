@@ -62,6 +62,13 @@ class MainActivity : AppCompatActivity(),
 
         // Start by showing the settings icon
         showSettingsIcon()
+
+        // As older APIs somehow do not recognize the xml defined onClick
+        findViewById<View>(R.id.settingstooltip).setOnClickListener() {
+            openSettings()
+            true
+        }
+
     }
 
     override fun onStart(){
@@ -75,6 +82,8 @@ class MainActivity : AppCompatActivity(),
 
         mDetector = GestureDetectorCompat(this, this)
         mDetector.setOnDoubleTapListener(this)
+
+        windowManager.defaultDisplay.getMetrics(displayMetrics)
     }
 
     override fun onResume() {
@@ -116,7 +125,6 @@ class MainActivity : AppCompatActivity(),
 
     override fun onFling(e1: MotionEvent, e2: MotionEvent, dX: Float, dY: Float): Boolean {
 
-        windowManager.defaultDisplay.getMetrics(displayMetrics)
         val width = displayMetrics.widthPixels
         val height = displayMetrics.heightPixels
 
@@ -139,10 +147,12 @@ class MainActivity : AppCompatActivity(),
     // Tooltip
     override fun onSingleTapConfirmed(event: MotionEvent): Boolean {
         when(settingsIconShown) {
-            true -> hideSettingsIcon()
+            true -> {
+                hideSettingsIcon()
+            }
             false -> showSettingsIcon()
         }
-        return true
+        return false
     }
 
     private fun showSettingsIcon(){
@@ -165,15 +175,15 @@ class MainActivity : AppCompatActivity(),
     fun settingsIconOnTouch(view: View){ openSettings() }
 
     override fun onTouchEvent(event: MotionEvent): Boolean {
-        return if (mDetector.onTouchEvent(event)) { true } else { super.onTouchEvent(event) }
+        return if (mDetector.onTouchEvent(event)) { false } else { super.onTouchEvent(event) }
     }
 
     /* TODO: Remove those. For now they are necessary
      *  because this inherits from GestureDetector.OnGestureListener */
-    override fun onDoubleTap(event: MotionEvent): Boolean { return true }
-    override fun onDoubleTapEvent(event: MotionEvent): Boolean { return true }
-    override fun onDown(event: MotionEvent): Boolean { return true }
-    override fun onScroll(e1: MotionEvent, e2: MotionEvent, dX: Float, dY: Float): Boolean { return true }
+    override fun onDoubleTap(event: MotionEvent): Boolean { return false }
+    override fun onDoubleTapEvent(event: MotionEvent): Boolean { return false }
+    override fun onDown(event: MotionEvent): Boolean { return false }
+    override fun onScroll(e1: MotionEvent, e2: MotionEvent, dX: Float, dY: Float): Boolean { return false }
     override fun onShowPress(event: MotionEvent) {}
-    override fun onSingleTapUp(event: MotionEvent): Boolean { return true }
+    override fun onSingleTapUp(event: MotionEvent): Boolean { return false }
 }

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- This declares attributes for the FontAwesome TextView -->
+<resources>
+    <declare-styleable name="FontAwesome">
+        <attr name="type" format="string" />
+    </declare-styleable>
+</resources>
