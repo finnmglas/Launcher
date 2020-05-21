@@ -2,6 +2,7 @@ package com.finnmglas.launcher
 
 import android.app.AlertDialog
 import android.content.*
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
@@ -81,6 +82,34 @@ class SettingsActivity : AppCompatActivity() {
 
     fun openFinnWebsite(view: View) { openNewTabWindow(getString(R.string.settings_footer_web), this) }
     fun openGithubRepo(view: View) { openNewTabWindow(getString(R.string.settings_footer_repo), this) }
+
+    // Just copied code from https://stackoverflow.com/q/10816757/12787264
+    //  that is how we write good software ^
+    fun rateApp(view: View) {
+        try {
+            val rateIntent = rateIntentForUrl("market://details")
+            startActivity(rateIntent)
+        } catch (e: ActivityNotFoundException) {
+            val rateIntent = rateIntentForUrl("https://play.google.com/store/apps/details")
+            startActivity(rateIntent)
+        }
+    }
+
+    private fun rateIntentForUrl(url: String): Intent {
+        val intent = Intent(
+            Intent.ACTION_VIEW,
+            Uri.parse(String.format("%s?id=%s", url, packageName))
+        )
+        var flags = Intent.FLAG_ACTIVITY_NO_HISTORY or Intent.FLAG_ACTIVITY_MULTIPLE_TASK
+        flags = if (Build.VERSION.SDK_INT >= 21) {
+            flags or Intent.FLAG_ACTIVITY_NEW_DOCUMENT
+        } else {
+            flags or Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET
+        }
+        intent.addFlags(flags)
+        return intent
+    }
+
     fun backHome(view: View) { finish() }
 
     fun setLauncher(view: View) {

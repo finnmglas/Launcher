@@ -22,6 +22,8 @@
     <string name="settings_tab_theme" translatable="false">Theme</string>
     <string name="settings_tab_launcher" translatable="false">Launcher</string>
 
+    <string name="settings_feedback" translatable="false">Give some feedback</string>
+
     <string name="settings_choose_up">Swipe Up</string>
     <string name="settings_choose_down">Swipe Down</string>
     <string name="settings_choose_left">Swipe Left</string>
