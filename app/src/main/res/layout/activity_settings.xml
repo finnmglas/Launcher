@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/container"
     android:layout_width="match_parent"
@@ -29,17 +30,19 @@
                 android:textAppearance="@style/TextAppearance.Widget.AppCompat.Toolbar.Title"
                 android:textSize="30sp" />
 
-            <com.finnmglas.launcher.FontAwesomeSolid
+            <com.finnmglas.launcher.FontAwesome
                 android:layout_width="match_parent"
+                android:id="@+id/fa"
                 android:layout_height="match_parent"
                 android:gravity="center|right"
                 android:includeFontPadding="true"
                 android:onClick="backHome"
                 android:paddingLeft="16sp"
                 android:paddingRight="16sp"
-                android:text="@string/fas_close_window"
+                android:text="@string/fa_close_window"
                 android:textColor="#ffffff"
-                android:textSize="22sp" />
+                android:textSize="22sp"
+                custom:type="solid"/>
         </LinearLayout>
 
         <com.google.android.material.tabs.TabLayout
