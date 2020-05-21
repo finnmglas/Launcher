@@ -32,7 +32,12 @@ class MainActivity : AppCompatActivity(),
 
     // get device dimensions
     private val displayMetrics = DisplayMetrics()
+
+    // timers
     private var clockTimer = Timer()
+    private var tooltipTimer = Timer()
+
+    private var settingsIconShown = false
 
     /** Activity Lifecycle functions */
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -54,6 +59,9 @@ class MainActivity : AppCompatActivity(),
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
 
         setContentView(R.layout.activity_main)
+
+        // Start by showing the settings icon
+        showSettingsIcon()
     }
 
     override fun onStart(){
@@ -75,17 +83,23 @@ class MainActivity : AppCompatActivity(),
         val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
         val timeFormat = SimpleDateFormat("HH:mm:ss", Locale.getDefault())
 
-        clockTimer = fixedRateTimer("timer", true, 0L, 1000) {
+        clockTimer = fixedRateTimer("clockTimer", true, 0L, 1000) {
             this@MainActivity.runOnUiThread {
                 dateView.text = dateFormat.format(Date())
                 timeView.text = timeFormat.format(Date())
             }
         }
+
     }
 
     override fun onPause() {
         super.onPause()
         clockTimer.cancel()
+    }
+
+
+    private fun openSettings(){
+        startActivity(Intent(this, SettingsActivity::class.java))
     }
 
     /** Touch- and Key-related functions to start activities */
@@ -120,10 +134,35 @@ class MainActivity : AppCompatActivity(),
         return true
     }
 
-    // Open Settings Activity
-    override fun onLongPress(event: MotionEvent) {
-        startActivity(Intent(this, SettingsActivity::class.java))
+    override fun onLongPress(event: MotionEvent) { openSettings() }
+
+    // Tooltip
+    override fun onSingleTapUp(event: MotionEvent): Boolean {
+        when(settingsIconShown) {
+            true -> hideSettingsIcon()
+            false -> showSettingsIcon()
+        }
+        return true
     }
+
+    private fun showSettingsIcon(){
+        settingstooltip.fadeIn()
+        settingstooltip.visibility = View.VISIBLE
+        settingsIconShown = true
+
+        tooltipTimer = fixedRateTimer("tooltipTimer", true, 10000, 1000) {
+            this@MainActivity.runOnUiThread { hideSettingsIcon() }
+        }
+    }
+
+    private fun hideSettingsIcon(){
+        tooltipTimer.cancel()
+        settingstooltip.fadeOut()
+        settingstooltip.visibility = View.INVISIBLE
+        settingsIconShown = false
+    }
+
+    fun settingsIconOnTouch(view: View){ openSettings() }
 
     override fun onTouchEvent(event: MotionEvent): Boolean {
         return if (mDetector.onTouchEvent(event)) { true } else { super.onTouchEvent(event) }
@@ -136,6 +175,5 @@ class MainActivity : AppCompatActivity(),
     override fun onDown(event: MotionEvent): Boolean { return true }
     override fun onScroll(e1: MotionEvent, e2: MotionEvent, dX: Float, dY: Float): Boolean { return true }
     override fun onShowPress(event: MotionEvent) {}
-    override fun onSingleTapUp(event: MotionEvent): Boolean { return true }
     override fun onSingleTapConfirmed(event: MotionEvent): Boolean { return true }
 }
