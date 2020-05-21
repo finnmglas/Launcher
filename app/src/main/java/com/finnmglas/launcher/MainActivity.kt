@@ -137,7 +137,7 @@ class MainActivity : AppCompatActivity(),
     override fun onLongPress(event: MotionEvent) { openSettings() }
 
     // Tooltip
-    override fun onSingleTapUp(event: MotionEvent): Boolean {
+    override fun onSingleTapConfirmed(event: MotionEvent): Boolean {
         when(settingsIconShown) {
             true -> hideSettingsIcon()
             false -> showSettingsIcon()
@@ -175,5 +175,5 @@ class MainActivity : AppCompatActivity(),
     override fun onDown(event: MotionEvent): Boolean { return true }
     override fun onScroll(e1: MotionEvent, e2: MotionEvent, dX: Float, dY: Float): Boolean { return true }
     override fun onShowPress(event: MotionEvent) {}
-    override fun onSingleTapConfirmed(event: MotionEvent): Boolean { return true }
+    override fun onSingleTapUp(event: MotionEvent): Boolean { return true }
 }
