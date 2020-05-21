@@ -10,7 +10,42 @@ import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
+import android.view.View
+import android.view.animation.AlphaAnimation
+import android.view.animation.Animation
+import android.view.animation.DecelerateInterpolator
 import android.widget.Toast
+
+// Taken from https://stackoverflow.com/questions/47293269
+fun View.blink(
+    times: Int = Animation.INFINITE,
+    duration: Long = 1000L,
+    offset: Long = 20L,
+    minAlpha: Float = 0.2f,
+    maxAlpha: Float = 1.0f,
+    repeatMode: Int = Animation.REVERSE
+) {
+    startAnimation(AlphaAnimation(minAlpha, maxAlpha).also {
+        it.duration = duration
+        it.startOffset = offset
+        it.repeatMode = repeatMode
+        it.repeatCount = times
+    })
+}
+
+fun View.fadeIn(duration: Long = 1000L) {
+    startAnimation(AlphaAnimation(0f, 1f).also {
+        it.interpolator = DecelerateInterpolator()
+        it.duration = duration
+    })
+}
+
+fun View.fadeOut(duration: Long = 1000L) {
+    startAnimation(AlphaAnimation(1f, 0f).also {
+        it.interpolator = DecelerateInterpolator()
+        it.duration = duration
+    })
+}
 
 /** Activity related */
 
