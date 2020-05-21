@@ -18,6 +18,13 @@
     <string name="settings_sub_title1">Applications</string>
     <string name="settings_sub_title2">Actions</string>
 
+    <string name="settings_tab_app" translatable="false">Apps</string>
+    <string name="settings_tab_theme" translatable="false">Theme</string>
+    <string name="settings_tab_launcher" translatable="false">Launcher</string>
+
+    <string name="settings_feedback" translatable="false">Give some feedback</string>
+    <string name="settings_show_tutorial" translatable="false">View Launcher Tutorial</string>
+
     <string name="settings_choose_up">Swipe Up</string>
     <string name="settings_choose_down">Swipe Down</string>
     <string name="settings_choose_left">Swipe Left</string>

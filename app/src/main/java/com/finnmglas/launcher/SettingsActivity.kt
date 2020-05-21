@@ -2,26 +2,34 @@ package com.finnmglas.launcher
 
 import android.app.AlertDialog
 import android.content.*
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
 import android.view.View
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
+import androidx.viewpager.widget.ViewPager
+import com.finnmglas.launcher.ui.main.SectionsPagerAdapter
+import com.google.android.material.tabs.TabLayout
 
-
-//TODO Make Settings scrollable as soon as more are added
 
 class SettingsActivity : AppCompatActivity() {
 
     /** Activity Lifecycle functions */
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_settings)
 
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
 
-        setContentView(R.layout.activity_settings)
+        val sectionsPagerAdapter = SectionsPagerAdapter(this, supportFragmentManager)
+        val viewPager: ViewPager = findViewById(R.id.view_pager)
+        viewPager.adapter = sectionsPagerAdapter
+        val tabs: TabLayout = findViewById(R.id.tabs)
+        tabs.setupWithViewPager(viewPager)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -74,6 +82,35 @@ class SettingsActivity : AppCompatActivity() {
 
     fun openFinnWebsite(view: View) { openNewTabWindow(getString(R.string.settings_footer_web), this) }
     fun openGithubRepo(view: View) { openNewTabWindow(getString(R.string.settings_footer_repo), this) }
+
+    // Rate App
+    //  Just copied code from https://stackoverflow.com/q/10816757/12787264
+    //   that is how we write good software ^
+    fun rateApp(view: View) {
+        try {
+            val rateIntent = rateIntentForUrl("market://details")
+            startActivity(rateIntent)
+        } catch (e: ActivityNotFoundException) {
+            val rateIntent = rateIntentForUrl("https://play.google.com/store/apps/details")
+            startActivity(rateIntent)
+        }
+    }
+
+    private fun rateIntentForUrl(url: String): Intent {
+        val intent = Intent(
+            Intent.ACTION_VIEW,
+            Uri.parse(String.format("%s?id=%s", url, packageName))
+        )
+        var flags = Intent.FLAG_ACTIVITY_NO_HISTORY or Intent.FLAG_ACTIVITY_MULTIPLE_TASK
+        flags = if (Build.VERSION.SDK_INT >= 21) {
+            flags or Intent.FLAG_ACTIVITY_NEW_DOCUMENT
+        } else {
+            flags or Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET
+        }
+        intent.addFlags(flags)
+        return intent
+    }
+
     fun backHome(view: View) { finish() }
 
     fun setLauncher(view: View) {
@@ -100,6 +137,10 @@ class SettingsActivity : AppCompatActivity() {
                 .setIcon(android.R.drawable.ic_dialog_info)
                 .show()
         }
+    }
+
+    fun viewTutorial (view: View){
+        startActivity(Intent(this, FirstStartupActivity::class.java))
     }
 
     // Show a dialog prompting for confirmation

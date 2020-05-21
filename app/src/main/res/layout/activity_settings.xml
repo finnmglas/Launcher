@@ -1,320 +1,57 @@
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?attr/colorPrimaryDark"
     tools:context=".SettingsActivity">
 
-    <TextView
-        android:id="@+id/heading"
-        android:layout_width="wrap_content"
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/settings_title"
-        android:textColor="#cccccc"
-        android:textSize="36sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.100000024" />
+        android:background="@color/colorPrimaryDark"
+        android:theme="@style/AppTheme.AppBarOverlay">
 
-    <TextView
-        android:id="@+id/sub_head_1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/settings_sub_title1"
-        android:textColor="#999"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias=".1"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.189" />
-
-    <TableLayout
-        android:id="@+id/actionschooser"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal|center_vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/sub_head_1"
-        app:layout_constraintVertical_bias="0.120000005">
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:id="@+id/text_up"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingLeft="10sp"
-                android:paddingRight="10sp"
-                android:text="@string/settings_choose_up"
-                android:textColor="#ccc"
-                android:textSize="24sp" />
-
-            <Button
-                android:id="@+id/btn_choose_up"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:alpha=".8"
-                android:onClick="chooseUpApp"
-                android:text="@string/settings_choose_btn" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:id="@+id/text_down"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingLeft="10sp"
-                android:paddingRight="10sp"
-                android:text="@string/settings_choose_down"
-                android:textColor="#ccc"
-                android:textSize="24sp" />
-
-            <Button
-                android:id="@+id/btn_choose_down"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:alpha=".8"
-                android:onClick="chooseDownApp"
-                android:text="@string/settings_choose_btn" />
-
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:id="@+id/text_left"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingLeft="10sp"
-                android:paddingRight="10sp"
-                android:text="@string/settings_choose_left"
-                android:textColor="#ccc"
-                android:textSize="24sp" />
-
-            <Button
-                android:id="@+id/btn_choose_left"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:alpha=".8"
-                android:onClick="chooseLeftApp"
-                android:text="@string/settings_choose_btn" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:id="@+id/text_right"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingLeft="10sp"
-                android:paddingRight="10sp"
-                android:text="@string/settings_choose_right"
-                android:textColor="#ccc"
-                android:textSize="24sp" />
-
-            <Button
-                android:id="@+id/btn_choose_right"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:alpha=".8"
-                android:onClick="chooseRightApp"
-                android:text="@string/settings_choose_btn" />
-
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:id="@+id/text_vol_up"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingLeft="10sp"
-                android:paddingRight="10sp"
-                android:text="@string/settings_choose_vol_up"
-                android:textColor="#ccc"
-                android:textSize="24sp" />
-
-            <Button
-                android:id="@+id/btn_choose_volume_up"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:alpha=".8"
-                android:onClick="chooseVolumeUpApp"
-                android:text="@string/settings_choose_btn" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:id="@+id/text_vol_down"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingLeft="10sp"
-                android:paddingRight="10sp"
-                android:text="@string/settings_choose_vol_down"
-                android:textColor="#ccc"
-                android:textSize="24sp" />
-
-            <Button
-                android:id="@+id/btn_choose_volume_down"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:alpha=".8"
-                android:onClick="chooseVolumeDownApp"
-                android:text="@string/settings_choose_btn" />
-
-        </TableRow>
-
-    </TableLayout>
-
-    <TextView
-        android:id="@+id/sub_head_2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/settings_sub_title2"
-        android:textColor="#999"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@id/buttons"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.1"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/actionschooser"
-        app:layout_constraintVertical_bias="0.65999997" />
-
-    <TableLayout
-        android:id="@+id/buttons"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/actionschooser"
-        app:layout_constraintVertical_bias="0.19999999">
-
-        <TableRow
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center">
+            android:orientation="horizontal">
 
-            <Button
-                style="@style/Widget.AppCompat.Button"
+            <TextView
+                android:id="@+id/title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:alpha=".3"
-                android:onClick="setLauncher"
-                android:text="@string/settings_select_launcher" />
+                android:gravity="center"
+                android:minHeight="?actionBarSize"
+                android:padding="@dimen/appbar_padding"
+                android:text="@string/settings_title"
+                android:textAppearance="@style/TextAppearance.Widget.AppCompat.Toolbar.Title"
+                android:textSize="30sp" />
 
-            <Button
-                style="@style/Widget.AppCompat.Button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:alpha=".3"
-                android:onClick="resetSettingsClick"
-                android:text="@string/settings_reset" />
-
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center">
-
-            <Button
-                style="@style/Widget.AppCompat.Button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:alpha=".3"
-                android:onClick="chooseLaunchApp"
-                android:text="@string/settings_launch" />
-
-            <Button
-                style="@style/Widget.AppCompat.Button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:alpha=".3"
-                android:onClick="chooseUninstallApp"
-                android:text="@string/settings_uninstall" />
-
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center">
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <com.finnmglas.launcher.FontAwesomeSolid
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center|right"
+                android:includeFontPadding="true"
                 android:onClick="backHome"
-                android:text="@string/settings_home" />
-        </TableRow>
+                android:paddingLeft="16sp"
+                android:paddingRight="16sp"
+                android:text="@string/fas_close_window"
+                android:textColor="#ffffff"
+                android:textSize="22sp" />
+        </LinearLayout>
 
-    </TableLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.98">
-
-        <TextView
-            android:layout_width="wrap_content"
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabs"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/settings_footer_by"
-            android:textColor="#999"
-            android:textSize="18sp" />
+            android:background="?attr/colorPrimaryDark" />
+    </com.google.android.material.appbar.AppBarLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="openFinnWebsite"
-            android:text=" Finn M Glas"
-            android:textColor="?attr/colorAccent"
-            android:textSize="18sp"
-            tools:ignore="HardcodedText" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text=" | "
-            android:textColor="#999"
-            android:textSize="18sp"
-            tools:ignore="HardcodedText" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="openGithubRepo"
-            android:text="Open Source"
-            android:textColor="?attr/colorAccent"
-            android:textSize="18sp"
-            tools:ignore="HardcodedText" />
-    </LinearLayout>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

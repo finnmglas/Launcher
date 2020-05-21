@@ -4,6 +4,7 @@
   <string name="fas_home" translatable="false">&#xf015;</string>
   <string name="fas_globe" translatable="false">&#xf0ac;</string>
   <string name="fas_settings" translatable="false">&#xf013;</string>
+  <string name="fas_close_window" translatable="false">&#xf410;</string>
   <string name="fas_star" translatable="false">&#xf005;</string>
 
   <string name="far_star" translatable="false">&#xf005;</string>
