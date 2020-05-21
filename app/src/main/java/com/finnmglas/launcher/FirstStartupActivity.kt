@@ -17,6 +17,7 @@ class FirstStartupActivity : AppCompatActivity(){
 
     private var menuNumber = 0
     private var defaultApps = mutableListOf<String>()
+    private var isFirstTime = false
 
     /** Activity Lifecycle functions */
 
@@ -36,7 +37,11 @@ class FirstStartupActivity : AppCompatActivity(){
         loadMenu(this)
 
         val sharedPref = this.getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE)
-        defaultApps = resetSettings(sharedPref, this) // UP, DOWN, RIGHT, LEFT, VOLUME_UP, VOLUME_DOWN
+
+        isFirstTime = !sharedPref.getBoolean("startedBefore", false)
+
+        if (isFirstTime)
+            defaultApps = resetSettings(sharedPref, this) // UP, DOWN, RIGHT, LEFT, VOLUME_UP, VOLUME_DOWN
     }
 
     /** Touch- and Key-related functions to navigate */
@@ -72,19 +77,23 @@ class FirstStartupActivity : AppCompatActivity(){
             val entry = intro[menuNumber].split("|").toTypedArray() //heading|infoText|hintText|size
 
             heading.text = entry[0]
-            if (entry[4] == "1")infoText.text = String.format(entry[1],
+            if (entry[4] == "1" && isFirstTime)infoText.text = String.format(entry[1],
                 defaultApps[0], defaultApps[1], defaultApps[2], defaultApps[3], defaultApps[4], defaultApps[5])
+            else if (entry[4] == "1" && !isFirstTime)infoText.text = String.format(entry[1],
+                "-", "-", "-", "-", "-", "-")
             else infoText.text = entry[1]
             hintText.text = entry[2]
             infoText.setTextSize(TypedValue.COMPLEX_UNIT_SP, entry[3].toFloat())
 
         } else { // End intro
-            val sharedPref = this.getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE)
+            if (isFirstTime){
+                val sharedPref = this.getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE)
 
-            val editor: SharedPreferences.Editor = sharedPref.edit()
-            editor.putBoolean("startedBefore", true) // never run this again
-            editor.putLong("firstStartup", System.currentTimeMillis() / 1000L) // record first startup timestamp
-            editor.apply()
+                val editor: SharedPreferences.Editor = sharedPref.edit()
+                editor.putBoolean("startedBefore", true) // never auto run this again
+                editor.putLong("firstStartup", System.currentTimeMillis() / 1000L) // record first startup timestamp
+                editor.apply()
+            }
 
             finish()
         }

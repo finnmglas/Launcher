@@ -83,8 +83,9 @@ class SettingsActivity : AppCompatActivity() {
     fun openFinnWebsite(view: View) { openNewTabWindow(getString(R.string.settings_footer_web), this) }
     fun openGithubRepo(view: View) { openNewTabWindow(getString(R.string.settings_footer_repo), this) }
 
-    // Just copied code from https://stackoverflow.com/q/10816757/12787264
-    //  that is how we write good software ^
+    // Rate App
+    //  Just copied code from https://stackoverflow.com/q/10816757/12787264
+    //   that is how we write good software ^
     fun rateApp(view: View) {
         try {
             val rateIntent = rateIntentForUrl("market://details")
@@ -136,6 +137,10 @@ class SettingsActivity : AppCompatActivity() {
                 .setIcon(android.R.drawable.ic_dialog_info)
                 .show()
         }
+    }
+
+    fun viewTutorial (view: View){
+        startActivity(Intent(this, FirstStartupActivity::class.java))
     }
 
     // Show a dialog prompting for confirmation

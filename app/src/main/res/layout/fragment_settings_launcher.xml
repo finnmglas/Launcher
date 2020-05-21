@@ -23,6 +23,14 @@
         style="@style/Widget.AppCompat.Button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:onClick="viewTutorial"
+        android:text="@string/settings_show_tutorial"
+        android:textAllCaps="false" />
+
+    <Button
+        style="@style/Widget.AppCompat.Button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="32sp"
         android:onClick="resetSettingsClick"
         android:text="@string/settings_reset"
