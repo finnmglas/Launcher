@@ -82,6 +82,7 @@ class ChooseActivity : AppCompatActivity() {
         if (requestCode == UNINSTALL_REQUEST_CODE) {
             if (resultCode == Activity.RESULT_OK) {
                 Toast.makeText(this, getString(R.string.choose_removed_toast), Toast.LENGTH_LONG).show()
+                updateAppList(packageManager)
                 finish()
             } else if (resultCode == Activity.RESULT_FIRST_USER) {
                 Toast.makeText(this, getString(R.string.choose_not_removed_toast), Toast.LENGTH_LONG).show()

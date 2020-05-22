@@ -58,6 +58,13 @@ fun isInstalled(uri: String, context: Context): Boolean {
     return false
 }
 
+fun updateAppList(pm : PackageManager) {
+    val intent = Intent(Intent.ACTION_MAIN)
+        .addCategory(Intent.CATEGORY_LAUNCHER)
+    appsList = pm.queryIntentActivities(intent, 0)
+    appsList.sortBy { it.activityInfo.loadLabel(pm).toString() }
+}
+
 private fun getIntent(packageName: String, context: Context): Intent? {
     val intent: Intent? = context.packageManager.getLaunchIntentForPackage(packageName)
     intent?.addCategory(Intent.CATEGORY_LAUNCHER)

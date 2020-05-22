@@ -3,6 +3,7 @@ package com.finnmglas.launcher
 import android.content.Context
 import android.content.Intent
 import android.content.pm.ResolveInfo
+import android.os.AsyncTask
 import android.os.Bundle
 import android.util.DisplayMetrics
 import android.view.*
@@ -39,6 +40,7 @@ class MainActivity : AppCompatActivity(),
     // timers
     private var clockTimer = Timer()
     private var tooltipTimer = Timer()
+    private var loadAppsTimer = Timer()
 
     private var settingsIconShown = false
 
@@ -72,11 +74,6 @@ class MainActivity : AppCompatActivity(),
             true
         }
 
-        val intent = Intent(Intent.ACTION_MAIN)
-        intent.addCategory(Intent.CATEGORY_LAUNCHER)
-        appsList = packageManager.queryIntentActivities(intent, 0)
-
-        appsList.sortBy { it.activityInfo.loadLabel(packageManager).toString() }
     }
 
     override fun onStart(){
@@ -107,11 +104,17 @@ class MainActivity : AppCompatActivity(),
             }
         }
 
+        val pm = packageManager
+
+        loadAppsTimer = fixedRateTimer("loadAppsTimer", true, 0L, 30000) {
+            AsyncTask.execute { updateAppList(pm) }
+        }
     }
 
     override fun onPause() {
         super.onPause()
         clockTimer.cancel()
+        loadAppsTimer.cancel()
     }
 
 
