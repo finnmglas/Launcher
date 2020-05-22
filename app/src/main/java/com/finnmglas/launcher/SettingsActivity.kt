@@ -171,4 +171,18 @@ class SettingsActivity : AppCompatActivity() {
             .setIcon(android.R.drawable.ic_dialog_alert)
             .show()
     }
+
+    /** Theme - related */
+
+    fun chooseDarkTheme(view: View) {
+
+    }
+
+    fun chooseFinnTheme(view: View) {
+
+    }
+
+    fun chooseCustomTheme(view: View) {
+
+    }
 }
