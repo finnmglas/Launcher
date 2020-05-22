@@ -42,6 +42,8 @@ class FirstStartupActivity : AppCompatActivity(){
 
         if (isFirstTime)
             defaultApps = resetSettings(sharedPref, this) // UP, DOWN, RIGHT, LEFT, VOLUME_UP, VOLUME_DOWN
+        else
+            app_bar.visibility = View.VISIBLE
     }
 
     /** Touch- and Key-related functions to navigate */
@@ -65,6 +67,10 @@ class FirstStartupActivity : AppCompatActivity(){
     fun clickAnywhere(view: View){
         menuNumber++
         loadMenu(this)
+    }
+
+    fun backToSettings(view: View){
+        finish()
     }
 
     /** Touch- and Key-related functions to navigate */
@@ -94,7 +100,6 @@ class FirstStartupActivity : AppCompatActivity(){
                 editor.putLong("firstStartup", System.currentTimeMillis() / 1000L) // record first startup timestamp
                 editor.apply()
             }
-
             finish()
         }
     }

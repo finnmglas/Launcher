@@ -50,6 +50,7 @@
     <string name="choose_not_removed_toast">Die App konnte nicht entfernt werden</string>
 
     <!-- FirstStartup Activity -->
+    <string name="tutorial_title">Tutorial</string>
     <string-array name="intro">
         <!--item> heading | infoText | hintText | size | format </item-->
         <item>|Nimm dir kurz Zeit und lerne, wie du diesen Launcher verwendest!\n\n|— Tippe um weiterzukommen —|36F|0</item>

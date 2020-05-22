@@ -135,7 +135,7 @@ class SettingsActivity : AppCompatActivity() {
         }
         // on older sdk: manage app details
         else {
-            AlertDialog.Builder(this)
+            AlertDialog.Builder(this, R.style.AlertDialogCustom)
                 .setTitle(getString(R.string.alert_cant_choose_launcher))
                 .setMessage(getString(R.string.alert_cant_choose_launcher_message))
                 .setPositiveButton(android.R.string.yes,
@@ -159,7 +159,7 @@ class SettingsActivity : AppCompatActivity() {
 
     // Show a dialog prompting for confirmation
     fun resetSettingsClick(view: View) {
-        AlertDialog.Builder(this)
+        AlertDialog.Builder(this, R.style.AlertDialogCustom)
             .setTitle(getString(R.string.settings_reset))
             .setMessage(getString(R.string.settings_reset_message))
             .setPositiveButton(android.R.string.yes,

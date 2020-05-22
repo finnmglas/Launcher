@@ -38,10 +38,6 @@ class MainActivity : AppCompatActivity(),
         val sharedPref = this.getSharedPreferences(
             getString(R.string.preference_file_key), Context.MODE_PRIVATE)
 
-        // First Startup
-        if (!sharedPref.getBoolean("startedBefore", false))
-            startActivity(Intent(this, FirstStartupActivity::class.java))
-
         // Flags
         window.setFlags(
             WindowManager.LayoutParams.FLAG_FULLSCREEN,
@@ -60,6 +56,11 @@ class MainActivity : AppCompatActivity(),
             true
         }
 
+        // First Startup
+        if (!sharedPref.getBoolean("startedBefore", false)){
+            startActivity(Intent(this, FirstStartupActivity::class.java))
+            tooltipTimer.cancel()
+        }
     }
 
     override fun onStart(){

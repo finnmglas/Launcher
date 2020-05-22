@@ -50,6 +50,7 @@
     <string name="choose_not_removed_toast">Impossible de supprimer l\'application</string>
 
     <!-- FirstStartup Activity -->
+    <string name="tutorial_title">Le Tutoriel</string>
     <string-array name="intro">
         <!--item> heading | infoText | hintText | size | format </item-->
         <item>|Prenez un moment et apprenez à utiliser ce lanceur!\n\n|— Appuyez pour continuer —|36F|0</item>

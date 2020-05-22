@@ -58,6 +58,7 @@
     <string name="choose_not_removed_toast">Unable to remove application</string>
 
     <!-- FirstStartup Activity -->
+    <string name="tutorial_title">Tutorial</string>
     <string-array name="intro">
         <!--item> heading | infoText | hintText | size | format </item-->
         <item>|Take a few seconds to learn how to use this Launcher!\n\n|— Tap anywhere to continue —|36F|0</item>
