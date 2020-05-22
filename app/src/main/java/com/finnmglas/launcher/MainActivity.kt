@@ -2,6 +2,7 @@ package com.finnmglas.launcher
 
 import android.content.Context
 import android.content.Intent
+import android.os.AsyncTask
 import android.os.Bundle
 import android.util.DisplayMetrics
 import android.view.*
@@ -12,17 +13,6 @@ import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.concurrent.fixedRateTimer
 import kotlin.math.abs
-
-/** Variables for all of the app */
-var upApp = ""
-var downApp = ""
-var rightApp = ""
-var leftApp = ""
-var volumeUpApp = ""
-var volumeDownApp = ""
-
-var calendarApp = ""
-var clockApp = ""
 
 class MainActivity : AppCompatActivity(),
     GestureDetector.OnGestureListener, GestureDetector.OnDoubleTapListener {
@@ -36,6 +26,7 @@ class MainActivity : AppCompatActivity(),
     // timers
     private var clockTimer = Timer()
     private var tooltipTimer = Timer()
+    private var loadAppsTimer = Timer()
 
     private var settingsIconShown = false
 
@@ -99,11 +90,17 @@ class MainActivity : AppCompatActivity(),
             }
         }
 
+        val pm = packageManager
+
+        loadAppsTimer = fixedRateTimer("loadAppsTimer", true, 0L, 30000) {
+            AsyncTask.execute { updateAppList(pm) }
+        }
     }
 
     override fun onPause() {
         super.onPause()
         clockTimer.cancel()
+        loadAppsTimer.cancel()
     }
 
 

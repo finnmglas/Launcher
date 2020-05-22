@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.provider.Settings
 import android.view.View
 import android.view.WindowManager
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager.widget.ViewPager
 import com.finnmglas.launcher.ui.main.SectionsPagerAdapter
@@ -79,6 +80,18 @@ class SettingsActivity : AppCompatActivity() {
         val intent = Intent(this, ChooseActivity::class.java)
         intent.putExtra("action", "launch")
         startActivity(intent)
+    }
+
+    fun chooseInstallApp(view : View) {
+        try {
+            val rateIntent = Intent(
+                Intent.ACTION_VIEW,
+                Uri.parse("https://play.google.com/store/apps/"))
+            startActivity(rateIntent)
+        } catch (e: ActivityNotFoundException) {
+            Toast.makeText(this,getString(R.string.settings_toast_store_not_found), Toast.LENGTH_SHORT)
+                .show()
+        }
     }
 
     fun openFinnWebsite(view: View) { openNewTabWindow(getString(R.string.settings_footer_web), this) }

@@ -11,8 +11,9 @@
 
     <!-- Settings -->
     <string name="settings_title">Réglages</string>
-    <string name="settings_sub_title1">Applications</string>
-    <string name="settings_sub_title2">Actions</string>
+
+    <string name="settings_feedback">Donner une rétroaction</string>
+    <string name="settings_show_tutorial">Regardez le tutoriel</string>
 
     <string name="settings_choose_up">Balayez haut</string>
     <string name="settings_choose_down">Balayez bas</string>
@@ -27,7 +28,10 @@
     <string name="settings_reset_message">Vous allez supprimer toutes vos préférences. Continuer?</string>
     <string name="settings_launch">Lancer apps</string>
     <string name="settings_uninstall">Désinstaller apps</string>
+    <string name="settings_install">Installer apps</string>
     <string name="settings_home">Retourner</string>
+
+    <string name="settings_toast_store_not_found">Pas trouvé le PlayStore</string>
 
     <string name="settings_footer_by">Par</string>
     <string name="settings_footer_web">https://www.finnmglas.com/fr/</string>
