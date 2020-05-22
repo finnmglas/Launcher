@@ -2,6 +2,7 @@ package com.finnmglas.launcher
 
 import android.content.Context
 import android.content.Intent
+import android.content.pm.ResolveInfo
 import android.os.Bundle
 import android.util.DisplayMetrics
 import android.view.*
@@ -23,6 +24,8 @@ var volumeDownApp = ""
 
 var calendarApp = ""
 var clockApp = ""
+
+var appsList : MutableList<ResolveInfo> = mutableListOf()
 
 class MainActivity : AppCompatActivity(),
     GestureDetector.OnGestureListener, GestureDetector.OnDoubleTapListener {
@@ -69,6 +72,11 @@ class MainActivity : AppCompatActivity(),
             true
         }
 
+        val intent = Intent(Intent.ACTION_MAIN)
+        intent.addCategory(Intent.CATEGORY_LAUNCHER)
+        appsList = packageManager.queryIntentActivities(intent, 0)
+
+        appsList.sortBy { it.activityInfo.loadLabel(packageManager).toString() }
     }
 
     override fun onStart(){

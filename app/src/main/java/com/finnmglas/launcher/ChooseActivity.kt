@@ -42,30 +42,18 @@ class ChooseActivity : AppCompatActivity() {
 
         /* Build Layout */
 
-        // TODO: Make this more efficient, faster, generate the list before
-
-        val mainIntent = Intent(Intent.ACTION_MAIN, null)
-        mainIntent.addCategory(Intent.CATEGORY_LAUNCHER)
-
-        val pm = packageManager
-        val i = Intent(Intent.ACTION_MAIN)
-        i.addCategory(Intent.CATEGORY_LAUNCHER)
-        val apps = pm.queryIntentActivities(i, 0)
-
-        apps.sortBy { it.activityInfo.loadLabel(pm).toString() }
-
-        for (resolveInfo in apps) {
+        for (resolveInfo in appsList) {
             val app = resolveInfo.activityInfo
-            pm.getLaunchIntentForPackage(app.packageName)
+            packageManager.getLaunchIntentForPackage(app.packageName)
 
             // creating TextView programmatically
             val tvdynamic = TextView(this)
             tvdynamic.textSize = 24f
-            tvdynamic.text = app.loadLabel(pm).toString()
+            tvdynamic.text = app.loadLabel(packageManager).toString()
             tvdynamic.setTextColor(Color.parseColor("#cccccc"))
 
             if (action == "launch"){
-                tvdynamic.setOnClickListener { startActivity(pm.getLaunchIntentForPackage(app.packageName)) }
+                tvdynamic.setOnClickListener { startActivity(packageManager.getLaunchIntentForPackage(app.packageName)) }
             }
             else if (action == "pick"){
                 tvdynamic.setOnClickListener {
