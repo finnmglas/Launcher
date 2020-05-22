@@ -9,7 +9,7 @@
     android:gravity="center"
     android:orientation="vertical"
     android:paddingLeft="32sp"
-    android:paddingTop="32sp"
+    android:paddingTop="16sp"
     android:paddingRight="32sp"
     tools:context=".SettingsActivity">
 

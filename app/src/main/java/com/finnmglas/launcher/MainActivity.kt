@@ -51,10 +51,7 @@ class MainActivity : AppCompatActivity(),
         showSettingsIcon()
 
         // As older APIs somehow do not recognize the xml defined onClick
-        findViewById<View>(R.id.settingstooltip).setOnClickListener() {
-            openSettings()
-            true
-        }
+        settingstooltip.setOnClickListener() { openSettings() }
 
         // First Startup
         if (!sharedPref.getBoolean("startedBefore", false)){

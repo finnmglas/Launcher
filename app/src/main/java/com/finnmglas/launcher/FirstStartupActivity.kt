@@ -44,6 +44,9 @@ class FirstStartupActivity : AppCompatActivity(){
             defaultApps = resetSettings(sharedPref, this) // UP, DOWN, RIGHT, LEFT, VOLUME_UP, VOLUME_DOWN
         else
             app_bar.visibility = View.VISIBLE
+
+        // As older APIs somehow do not recognize the xml defined onClick
+        close_tutorial.setOnClickListener() { finish() }
     }
 
     /** Touch- and Key-related functions to navigate */

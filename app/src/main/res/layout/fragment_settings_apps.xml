@@ -8,7 +8,9 @@
     android:background="?attr/colorPrimary"
     android:gravity="center|top"
     android:orientation="vertical"
-    android:padding="32sp"
+    android:paddingTop="16sp"
+    android:paddingLeft="32sp"
+    android:paddingRight="32sp"
     tools:context=".SettingsActivity">
 
     <TableLayout

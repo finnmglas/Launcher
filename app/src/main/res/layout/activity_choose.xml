@@ -36,7 +36,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <com.finnmglas.launcher.FontAwesome
-                android:id="@+id/close_settings"
+                android:id="@+id/close_chooser"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"

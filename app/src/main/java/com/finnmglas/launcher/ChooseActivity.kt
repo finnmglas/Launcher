@@ -27,6 +27,9 @@ class ChooseActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_choose)
 
+        // As older APIs somehow do not recognize the xml defined onClick
+        close_chooser.setOnClickListener() { finish() }
+
         val bundle = intent.extras
         val action = bundle!!.getString("action") // why choose an app
         val forApp = bundle.getString("forApp") // which app we choose

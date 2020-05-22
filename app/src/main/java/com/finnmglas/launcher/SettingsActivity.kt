@@ -32,6 +32,9 @@ class SettingsActivity : AppCompatActivity() {
         viewPager.adapter = sectionsPagerAdapter
         val tabs: TabLayout = findViewById(R.id.tabs)
         tabs.setupWithViewPager(viewPager)
+
+        // As older APIs somehow do not recognize the xml defined onClick
+        close_settings.setOnClickListener() { finish() }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
