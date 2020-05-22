@@ -22,6 +22,15 @@ class SettingsActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        setTheme(
+            when (getSavedTheme(this)) {
+                "dark" -> R.style.darkTheme
+                "finn" -> R.style.finnmglasTheme
+                else -> R.style.finnmglasTheme
+            }
+        )
+
         setContentView(R.layout.activity_settings)
 
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
@@ -178,14 +187,18 @@ class SettingsActivity : AppCompatActivity() {
     /** Theme - related */
 
     fun chooseDarkTheme(view: View) {
-
+        saveTheme(this, "dark")
+        recreate()
     }
 
     fun chooseFinnTheme(view: View) {
-
+        saveTheme(this, "finn")
+        recreate()
     }
 
     fun chooseCustomTheme(view: View) {
-
+        Toast.makeText(this, "[not implemented yet]", Toast.LENGTH_SHORT)
+            .show()
     }
+
 }

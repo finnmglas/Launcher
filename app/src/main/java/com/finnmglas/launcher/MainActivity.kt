@@ -17,6 +17,8 @@ import kotlin.math.abs
 class MainActivity : AppCompatActivity(),
     GestureDetector.OnGestureListener, GestureDetector.OnDoubleTapListener {
 
+    private var currentTheme = "" // keep track of theme changes
+
     /** Variables for this activity */
     private lateinit var mDetector: GestureDetectorCompat
 
@@ -45,6 +47,14 @@ class MainActivity : AppCompatActivity(),
         )
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
 
+        currentTheme = getSavedTheme(this)
+        setTheme(
+            when (currentTheme) {
+                "dark" -> R.style.darkTheme
+                "finn" -> R.style.finnmglasTheme
+                else -> R.style.finnmglasTheme
+            }
+        )
         setContentView(R.layout.activity_main)
 
         // Start by showing the settings icon
@@ -77,6 +87,8 @@ class MainActivity : AppCompatActivity(),
 
     override fun onResume() {
         super.onResume()
+
+        if (currentTheme != getSavedTheme(this)) recreate()
 
         val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
         val timeFormat = SimpleDateFormat("HH:mm:ss", Locale.getDefault())

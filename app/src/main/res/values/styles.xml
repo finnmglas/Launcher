@@ -13,6 +13,7 @@
         <item name="colorButtonNormal">@color/finnmglasTheme_accent_color</item>
 
         <item name="android:windowDisablePreview">true</item>
+        <item name="android:windowAnimationStyle">@style/WindowFadeTransition</item>
     </style>
 
     <!-- A dark efficiency theme -->
@@ -27,10 +28,16 @@
         <item name="colorButtonNormal">@color/darkTheme_accent_color</item>
 
         <item name="android:windowDisablePreview">true</item>
+        <item name="android:windowAnimationStyle">@style/WindowFadeTransition</item>
     </style>
 
     <style name="AlertDialogCustom" parent="Theme.AppCompat.Light.Dialog.Alert">
         <item name="android:textColor">#000000</item>
     </style>
 
+    <!-- Set the fade in animation on all activities by default -->
+    <style name="WindowFadeTransition">
+        <item name="android:windowEnterAnimation">@android:anim/fade_in</item>
+        <item name="android:windowExitAnimation">@android:anim/fade_out</item>
+    </style>
 </resources>

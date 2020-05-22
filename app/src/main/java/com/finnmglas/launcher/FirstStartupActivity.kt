@@ -31,6 +31,13 @@ class FirstStartupActivity : AppCompatActivity(){
         )
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
 
+        setTheme(
+            when (getSavedTheme(this)) {
+                "dark" -> R.style.darkTheme
+                "finn" -> R.style.finnmglasTheme
+                else -> R.style.finnmglasTheme
+            }
+        )
         setContentView(R.layout.activity_firststartup)
 
         hintText.blink() // animate

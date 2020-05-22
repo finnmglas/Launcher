@@ -124,6 +124,22 @@ fun openNewTabWindow(urls: String, context : Context) {
 
 /** Settings related functions */
 
+fun getSavedTheme(context : Context) : String {
+    val sharedPref = context.getSharedPreferences(
+        context.getString(R.string.preference_file_key), Context.MODE_PRIVATE)
+
+    return sharedPref.getString("theme", "finnmglas").toString()
+}
+
+fun saveTheme(context : Context, themeName : String) {
+    val sharedPref = context.getSharedPreferences(
+        context.getString(R.string.preference_file_key), Context.MODE_PRIVATE)
+
+    val editor: SharedPreferences.Editor = sharedPref.edit()
+    editor.putString("theme", themeName)
+    editor.apply()
+}
+
 fun openAppSettings(pkg :String, context:Context){
     val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
     intent.data = Uri.parse("package:$pkg")

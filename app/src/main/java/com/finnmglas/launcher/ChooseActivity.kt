@@ -25,6 +25,13 @@ class ChooseActivity : AppCompatActivity() {
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
 
+        setTheme(
+            when (getSavedTheme(this)) {
+                "dark" -> R.style.darkTheme
+                "finn" -> R.style.finnmglasTheme
+                else -> R.style.finnmglasTheme
+            }
+        )
         setContentView(R.layout.activity_choose)
 
         // As older APIs somehow do not recognize the xml defined onClick
