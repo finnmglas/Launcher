@@ -7,6 +7,7 @@ import android.content.DialogInterface
 import android.content.Intent
 import android.content.SharedPreferences
 import android.content.pm.PackageManager
+import android.content.pm.ResolveInfo
 import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
@@ -15,6 +16,19 @@ import android.view.animation.AlphaAnimation
 import android.view.animation.Animation
 import android.view.animation.DecelerateInterpolator
 import android.widget.Toast
+
+/** Variables for all of the app */
+var upApp = ""
+var downApp = ""
+var rightApp = ""
+var leftApp = ""
+var volumeUpApp = ""
+var volumeDownApp = ""
+
+var calendarApp = ""
+var clockApp = ""
+
+var appsList : MutableList<ResolveInfo> = mutableListOf()
 
 // Taken from https://stackoverflow.com/questions/47293269
 fun View.blink(

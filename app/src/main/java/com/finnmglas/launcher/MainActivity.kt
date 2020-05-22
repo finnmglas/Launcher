@@ -2,7 +2,6 @@ package com.finnmglas.launcher
 
 import android.content.Context
 import android.content.Intent
-import android.content.pm.ResolveInfo
 import android.os.AsyncTask
 import android.os.Bundle
 import android.util.DisplayMetrics
@@ -14,19 +13,6 @@ import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.concurrent.fixedRateTimer
 import kotlin.math.abs
-
-/** Variables for all of the app */
-var upApp = ""
-var downApp = ""
-var rightApp = ""
-var leftApp = ""
-var volumeUpApp = ""
-var volumeDownApp = ""
-
-var calendarApp = ""
-var clockApp = ""
-
-var appsList : MutableList<ResolveInfo> = mutableListOf()
 
 class MainActivity : AppCompatActivity(),
     GestureDetector.OnGestureListener, GestureDetector.OnDoubleTapListener {
