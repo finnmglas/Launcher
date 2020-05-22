@@ -2,13 +2,13 @@
 
     <!-- Personal Theme of Finn M Glas -->
     <style name="finnmglasTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">#252827</item>
-        <item name="colorPrimaryDark">#252827</item>
-        <item name="android:colorBackground">#252827</item>
+        <item name="colorPrimary">@color/finnmglasTheme_background_color</item>
+        <item name="colorPrimaryDark">@color/finnmglasTheme_background_color</item>
+        <item name="android:colorBackground">@color/finnmglasTheme_background_color</item>
 
-        <item name="colorAccent">#5555ff</item>
+        <item name="colorAccent">@color/finnmglasTheme_accent_color</item>
 
-        <item name="android:textColor">#ffffff</item>
+        <item name="android:textColor">@color/finnmglasTheme_text_color</item>
         <item name="android:buttonStyle">@style/Widget.AppCompat.Button.Colored</item>
 
         <item name="android:windowDisablePreview">true</item>
@@ -16,13 +16,13 @@
 
     <!-- A dark efficiency theme -->
     <style name="darkTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">#000</item>
-        <item name="colorPrimaryDark">#000</item>
-        <item name="android:colorBackground">#000</item>
+        <item name="colorPrimary">@color/darkTheme_background_color</item>
+        <item name="colorPrimaryDark">@color/darkTheme_background_color</item>
+        <item name="android:colorBackground">@color/darkTheme_background_color</item>
 
-        <item name="colorAccent">#333</item>
+        <item name="colorAccent">@color/darkTheme_accent_color</item>
 
-        <item name="android:textColor">#ccc</item>
+        <item name="android:textColor">@color/darkTheme_text_color</item>
         <item name="android:buttonStyle">@style/Widget.AppCompat.Button.Colored</item>
 
         <item name="android:windowDisablePreview">true</item>
