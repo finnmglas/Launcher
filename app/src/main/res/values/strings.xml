@@ -38,6 +38,7 @@
     <string name="settings_reset_message">You are going to discard all your preferences. Continue?</string>
     <string name="settings_launch">Launch Apps</string>
     <string name="settings_uninstall">Uninstall Apps</string>
+    <string name="settings_install" translatable="false">Install Apps</string>
     <string name="settings_home">Back Home</string>
 
     <string name="settings_footer_by">By</string>

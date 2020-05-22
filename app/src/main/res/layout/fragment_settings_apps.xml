@@ -182,6 +182,14 @@
         style="@style/Widget.AppCompat.Button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:onClick="chooseInstallApp"
+        android:text="@string/settings_install"
+        android:textAllCaps="false" />
+
+    <Button
+        style="@style/Widget.AppCompat.Button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:onClick="chooseUninstallApp"
         android:text="@string/settings_uninstall"
         android:textAllCaps="false" />
