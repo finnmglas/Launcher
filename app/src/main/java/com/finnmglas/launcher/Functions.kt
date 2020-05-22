@@ -47,14 +47,14 @@ fun View.blink(
     })
 }
 
-fun View.fadeIn(duration: Long = 1000L) {
+fun View.fadeIn(duration: Long = 300L) {
     startAnimation(AlphaAnimation(0f, 1f).also {
         it.interpolator = DecelerateInterpolator()
         it.duration = duration
     })
 }
 
-fun View.fadeOut(duration: Long = 1000L) {
+fun View.fadeOut(duration: Long = 300L) {
     startAnimation(AlphaAnimation(1f, 0f).also {
         it.interpolator = DecelerateInterpolator()
         it.duration = duration

@@ -10,6 +10,7 @@
 
         <item name="android:textColor">@color/finnmglasTheme_text_color</item>
         <item name="android:buttonStyle">@style/Widget.AppCompat.Button.Colored</item>
+        <item name="colorButtonNormal">@color/finnmglasTheme_accent_color</item>
 
         <item name="android:windowDisablePreview">true</item>
     </style>
@@ -24,6 +25,7 @@
 
         <item name="android:textColor">@color/darkTheme_text_color</item>
         <item name="android:buttonStyle">@style/Widget.AppCompat.Button.Colored</item>
+        <item name="colorButtonNormal">@color/darkTheme_accent_color</item>
 
         <item name="android:windowDisablePreview">true</item>
     </style>
