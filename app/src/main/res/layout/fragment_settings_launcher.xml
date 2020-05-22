@@ -5,14 +5,12 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?attr/colorPrimaryDark"
     android:gravity="center|top"
     android:orientation="vertical"
     android:padding="32sp"
     tools:context=".SettingsActivity">
 
     <Button
-        style="@style/Widget.AppCompat.Button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="setLauncher"
@@ -20,7 +18,6 @@
         android:textAllCaps="false" />
 
     <Button
-        style="@style/Widget.AppCompat.Button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="viewTutorial"
@@ -28,7 +25,6 @@
         android:textAllCaps="false" />
 
     <Button
-        style="@style/Widget.AppCompat.Button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="32sp"
@@ -37,7 +33,6 @@
         android:textAllCaps="false" />
 
     <Button
-        style="@style/Widget.AppCompat.Button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="rateApp"
@@ -54,7 +49,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/settings_footer_by"
-            android:textColor="#999"
             android:textSize="18sp" />
 
         <TextView
@@ -70,7 +64,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text=" | "
-            android:textColor="#999"
             android:textSize="18sp"
             tools:ignore="HardcodedText" />
 

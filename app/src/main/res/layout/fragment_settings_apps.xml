@@ -5,7 +5,6 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?attr/colorPrimaryDark"
     android:gravity="center|top"
     android:orientation="vertical"
     android:padding="32sp"
@@ -33,7 +32,6 @@
                 android:paddingLeft="10sp"
                 android:paddingRight="10sp"
                 android:text="@string/settings_choose_up"
-                android:textColor="#ccc"
                 android:textSize="20sp" />
 
             <Button
@@ -57,7 +55,6 @@
                 android:paddingLeft="10sp"
                 android:paddingRight="10sp"
                 android:text="@string/settings_choose_down"
-                android:textColor="#ccc"
                 android:textSize="20sp" />
 
             <Button
@@ -82,7 +79,6 @@
                 android:paddingLeft="10sp"
                 android:paddingRight="10sp"
                 android:text="@string/settings_choose_left"
-                android:textColor="#ccc"
                 android:textSize="20sp" />
 
             <Button
@@ -106,7 +102,6 @@
                 android:paddingLeft="10sp"
                 android:paddingRight="10sp"
                 android:text="@string/settings_choose_right"
-                android:textColor="#ccc"
                 android:textSize="20sp" />
 
             <Button
@@ -131,7 +126,6 @@
                 android:paddingLeft="10sp"
                 android:paddingRight="10sp"
                 android:text="@string/settings_choose_vol_up"
-                android:textColor="#ccc"
                 android:textSize="20sp" />
 
             <Button
@@ -155,7 +149,6 @@
                 android:paddingLeft="10sp"
                 android:paddingRight="10sp"
                 android:text="@string/settings_choose_vol_down"
-                android:textColor="#ccc"
                 android:textSize="20sp" />
 
             <Button
@@ -171,7 +164,6 @@
     </TableLayout>
 
     <Button
-        style="@style/Widget.AppCompat.Button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="chooseLaunchApp"
@@ -179,7 +171,6 @@
         android:textAllCaps="false" />
 
     <Button
-        style="@style/Widget.AppCompat.Button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="chooseInstallApp"
@@ -187,7 +178,6 @@
         android:textAllCaps="false" />
 
     <Button
-        style="@style/Widget.AppCompat.Button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="chooseUninstallApp"
