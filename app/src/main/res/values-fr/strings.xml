@@ -33,6 +33,8 @@
 
     <string name="settings_toast_store_not_found">Pas trouvé le PlayStore</string>
 
+    <string name="settings_select_theme">Choisir</string>
+
     <string name="settings_footer_by">Par</string>
     <string name="settings_footer_web">https://www.finnmglas.com/fr/</string>
     <string name="settings_footer_repo">https://github.com/finnmglas/Launcher</string>

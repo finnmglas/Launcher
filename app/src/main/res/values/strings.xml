@@ -41,6 +41,8 @@
 
     <string name="settings_toast_store_not_found">PlayStore not found</string>
 
+    <string name="settings_select_theme">Select</string>
+
     <string name="settings_footer_by">By</string>
     <string name="settings_footer_repo">https://github.com/finnmglas/Launcher#en</string>
     <string name="settings_footer_web">https://www.finnmglas.com</string>
