@@ -89,7 +89,7 @@ class SettingsActivity : AppCompatActivity() {
                 Uri.parse("https://play.google.com/store/apps/"))
             startActivity(rateIntent)
         } catch (e: ActivityNotFoundException) {
-            Toast.makeText(this,"PlayStore not found", Toast.LENGTH_SHORT)
+            Toast.makeText(this,getString(R.string.settings_toast_store_not_found), Toast.LENGTH_SHORT)
                 .show()
         }
     }

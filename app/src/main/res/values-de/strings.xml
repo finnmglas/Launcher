@@ -11,8 +11,9 @@
 
     <!-- Settings -->
     <string name="settings_title">Einstellungen</string>
-    <string name="settings_sub_title1">Anwendungen</string>
-    <string name="settings_sub_title2">Aktionen</string>
+
+    <string name="settings_show_tutorial">Zum Launcher Tutorial</string>
+    <string name="settings_feedback">Feedback geben</string>
 
     <string name="settings_choose_up">Hochwischen</string>
     <string name="settings_choose_down">Runterwischen</string>
@@ -27,7 +28,10 @@
     <string name="settings_reset_message">All deine Einstellungen gehen verloren. Weitermachen?</string>
     <string name="settings_launch">Apps öffnen</string>
     <string name="settings_uninstall">Apps entfernen</string>
+    <string name="settings_install">Apps installieren</string>
     <string name="settings_home">Zurück</string>
+
+    <string name="settings_toast_store_not_found">PlayStore nicht gefunden</string>
 
     <string name="settings_footer_by">Von</string>
     <string name="settings_footer_repo">https://github.com/finnmglas/Launcher#de</string>
@@ -59,4 +63,5 @@
         <item>Einrichtung|Du kannst auch eigene Apps auswählen:\n\nÖffne die Einstellungen durch langes tippen auf den Startbildschirm.|— Zurück = Lautstärke Runter —|36F|0</item>
         <item>|Du bist bereit loszulegen!\n\nIch hoffe diese App ist sehr wertvoll für dich!\n\n- Finn M Glas\n\n|— Launcher von Finn M Glas —|36F|0</item>
     </string-array>
+
 </resources>
