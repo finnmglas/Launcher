@@ -35,7 +35,6 @@ class ChooseActivity : AppCompatActivity() {
             heading.text = getString(R.string.choose_title_launch)
         else if (action == "pick") {
             heading.text = getString(R.string.choose_title)
-            subheading.text = forApp // TODO: make translatable
         }
         else if (action == "uninstall")
             heading.text = getString(R.string.choose_title_remove)
@@ -44,7 +43,6 @@ class ChooseActivity : AppCompatActivity() {
 
         for (resolveInfo in appsList) {
             val app = resolveInfo.activityInfo
-            packageManager.getLaunchIntentForPackage(app.packageName)
 
             // creating TextView programmatically
             val tvdynamic = TextView(this)
