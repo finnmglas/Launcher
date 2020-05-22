@@ -17,8 +17,8 @@
     <string name="settings_title">Settings</string>
 
     <string name="settings_tab_app" translatable="false">Apps</string>
-    <string name="settings_tab_theme" translatable="false">Theme</string>
-    <string name="settings_tab_launcher" translatable="false">Launcher</string>
+    <string name="settings_tab_theme" translatable="false">Themes</string>
+    <string name="settings_tab_launcher" translatable="false">Meta</string>
 
     <string name="settings_feedback">Give some feedback</string>
     <string name="settings_show_tutorial">View Launcher Tutorial</string>

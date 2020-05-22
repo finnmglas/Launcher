@@ -6,57 +6,106 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="?attr/colorPrimary"
-    android:gravity="center|top"
+    android:gravity="center"
     android:orientation="vertical"
-    android:padding="32sp"
+    android:paddingLeft="32sp"
+    android:paddingTop="32sp"
+    android:paddingRight="32sp"
     tools:context=".SettingsActivity">
 
-    <!--Button
-        style="@style/Widget.AppCompat.Button"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="setLauncher"
-        android:text="@string/settings_select_launcher"
-        android:textAllCaps="false" /-->
+        android:layout_height="match_parent">
 
-
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10sp"
-        android:theme="@style/finnmglasTheme">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="?attr/colorAccent">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-            <Button
-                android:layout_width="wrap_content"
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Activate"
-                app:layout_constraintEnd_toEndOf="parent" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                android:layout_marginBottom="10sp"
+                app:cardCornerRadius="8dp">
 
-    </androidx.cardview.widget.CardView>
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10sp"
-        android:theme="@style/darkTheme">
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:adjustViewBounds="true"
+                        android:scaleType="fitXY"
+                        app:srcCompat="@drawable/dark_theme" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="?attr/colorAccent">
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="select"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <Button
-                android:layout_width="wrap_content"
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Activate"
-                app:layout_constraintEnd_toEndOf="parent" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                android:layout_marginBottom="10sp"
+                app:cardCornerRadius="8dp">
 
-    </androidx.cardview.widget.CardView>
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="?attr/colorAccent">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:adjustViewBounds="true"
+                        android:scaleType="fitXY"
+                        app:srcCompat="@drawable/finnmglas_theme" />
+
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="select"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10sp"
+                app:cardCornerRadius="8dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:adjustViewBounds="true"
+                        android:scaleType="fitXY"
+                        app:srcCompat="@drawable/custom_theme" />
+
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="select"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+    </ScrollView>
+
 </LinearLayout>
