@@ -12,9 +12,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
 import android.view.View
-import android.view.animation.AlphaAnimation
-import android.view.animation.Animation
-import android.view.animation.DecelerateInterpolator
+import android.view.animation.*
 import android.widget.Toast
 
 /** Variables for all of the app */
@@ -65,6 +63,44 @@ fun View.fadeOut(duration: Long = 300L) {
         it.interpolator = DecelerateInterpolator()
         it.duration = duration
     })
+}
+
+fun View.fadeRotateIn(duration: Long = 500L) {
+    val combined = AnimationSet(false)
+    combined.addAnimation(
+        AlphaAnimation(0f, 1F).also {
+            it.interpolator = DecelerateInterpolator()
+            it.duration = duration
+        }
+    )
+    combined.addAnimation(
+        RotateAnimation(0F, 180F, Animation.RELATIVE_TO_SELF,
+            0.5f, Animation.RELATIVE_TO_SELF,0.5f).also {
+            it.duration = duration * 2
+            it.interpolator = DecelerateInterpolator()
+        }
+    )
+
+    startAnimation(combined)
+}
+
+fun View.fadeRotateOut(duration: Long = 500L) {
+    val combined = AnimationSet(false)
+    combined.addAnimation(
+        AlphaAnimation(1F, 0F).also {
+            it.interpolator = AccelerateInterpolator()
+            it.duration = duration
+        }
+    )
+    combined.addAnimation(
+        RotateAnimation(0F, 180F, Animation.RELATIVE_TO_SELF,
+            0.5f, Animation.RELATIVE_TO_SELF,0.5f).also {
+            it.duration = duration
+            it.interpolator = AccelerateInterpolator()
+        }
+    )
+
+    startAnimation(combined)
 }
 
 /** Activity related */
@@ -134,7 +170,7 @@ fun getSavedTheme(context : Context) : String {
     val sharedPref = context.getSharedPreferences(
         context.getString(R.string.preference_file_key), Context.MODE_PRIVATE)
 
-    return sharedPref.getString("theme", "finnmglas").toString()
+    return sharedPref.getString("theme", "finn").toString()
 }
 
 fun saveTheme(context : Context, themeName : String) {

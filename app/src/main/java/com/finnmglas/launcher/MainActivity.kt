@@ -6,6 +6,9 @@ import android.os.AsyncTask
 import android.os.Bundle
 import android.util.DisplayMetrics
 import android.view.*
+import android.view.animation.Animation
+import android.view.animation.LinearInterpolator
+import android.view.animation.RotateAnimation
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GestureDetectorCompat
 import kotlinx.android.synthetic.main.activity_main.*
@@ -13,6 +16,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.concurrent.fixedRateTimer
 import kotlin.math.abs
+
 
 class MainActivity : AppCompatActivity(),
     GestureDetector.OnGestureListener, GestureDetector.OnDoubleTapListener {
@@ -116,7 +120,6 @@ class MainActivity : AppCompatActivity(),
         loadAppsTimer.cancel()
     }
 
-
     private fun openSettings(){
         startActivity(Intent(this, SettingsActivity::class.java))
     }
@@ -124,7 +127,7 @@ class MainActivity : AppCompatActivity(),
     /** Touch- and Key-related functions to start activities */
 
     override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
-        if (keyCode == KeyEvent.KEYCODE_BACK) return true
+        if (keyCode == KeyEvent.KEYCODE_BACK) if (settingsIconShown) hideSettingsIcon()
         else if (keyCode == KeyEvent.KEYCODE_VOLUME_UP) launchApp(volumeUpApp, this)
         else if (keyCode == KeyEvent.KEYCODE_VOLUME_DOWN) launchApp(volumeDownApp, this)
         return true
@@ -166,7 +169,7 @@ class MainActivity : AppCompatActivity(),
     }
 
     private fun showSettingsIcon(){
-        settingstooltip.fadeIn()
+        settingstooltip.fadeRotateIn()
         settingstooltip.visibility = View.VISIBLE
         settingsIconShown = true
 
@@ -177,7 +180,7 @@ class MainActivity : AppCompatActivity(),
 
     private fun hideSettingsIcon(){
         tooltipTimer.cancel()
-        settingstooltip.fadeOut()
+        settingstooltip.fadeRotateOut()
         settingstooltip.visibility = View.INVISIBLE
         settingsIconShown = false
     }
