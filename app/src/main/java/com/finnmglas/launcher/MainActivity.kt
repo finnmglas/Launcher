@@ -50,6 +50,9 @@ class MainActivity : AppCompatActivity(),
 
         currentTheme = getSavedTheme(this)
 
+        if (currentTheme == "custom" && background == null)
+            currentTheme = saveTheme(this, "finn")
+
         setTheme(
             when (currentTheme) {
                 "dark" -> R.style.darkTheme
@@ -92,9 +95,8 @@ class MainActivity : AppCompatActivity(),
 
         // TODO: do this immediately after changing preferences
         if (currentTheme != getSavedTheme(this)) recreate()
-        if (background != null) {
+        if (background_image != null && getSavedTheme(this) == "custom")
             background_image.setImageBitmap(background)
-        }
 
         val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
         val timeFormat = SimpleDateFormat("HH:mm:ss", Locale.getDefault())

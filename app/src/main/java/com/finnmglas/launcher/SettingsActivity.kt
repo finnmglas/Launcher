@@ -55,7 +55,9 @@ class SettingsActivity : AppCompatActivity() {
                     when (getSavedTheme(container!!.context)) {
                         "dark" -> select_theme_dark.visibility = View.INVISIBLE
                         "finn" -> select_theme_finn.visibility = View.INVISIBLE
-                        "custom" -> select_theme_custom.visibility = View.INVISIBLE
+                        "custom" -> {
+                            select_theme_custom.text = getString(R.string.settings_select_image)
+                        }
                     }
                 }
             }

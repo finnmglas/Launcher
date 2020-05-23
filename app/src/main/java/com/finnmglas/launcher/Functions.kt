@@ -179,13 +179,15 @@ fun getSavedTheme(context : Context) : String {
     return sharedPref.getString("theme", "finn").toString()
 }
 
-fun saveTheme(context : Context, themeName : String) {
+fun saveTheme(context : Context, themeName : String) : String {
     val sharedPref = context.getSharedPreferences(
         context.getString(R.string.preference_file_key), Context.MODE_PRIVATE)
 
     val editor: SharedPreferences.Editor = sharedPref.edit()
     editor.putString("theme", themeName)
     editor.apply()
+
+    return themeName
 }
 
 fun openAppSettings(pkg :String, context:Context){
