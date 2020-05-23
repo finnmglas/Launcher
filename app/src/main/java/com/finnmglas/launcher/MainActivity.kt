@@ -88,15 +88,18 @@ class MainActivity : AppCompatActivity(),
     override fun onResume() {
         super.onResume()
 
+        // TODO: do this immediately after changing preferences
         if (currentTheme != getSavedTheme(this)) recreate()
 
         val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
         val timeFormat = SimpleDateFormat("HH:mm:ss", Locale.getDefault())
 
-        clockTimer = fixedRateTimer("clockTimer", true, 0L, 1000) {
+        clockTimer = fixedRateTimer("clockTimer", true, 0L, 100) {
             this@MainActivity.runOnUiThread {
-                dateView.text = dateFormat.format(Date())
-                timeView.text = timeFormat.format(Date())
+                val t = timeFormat.format(Date())
+                if (timeView.text != t) timeView.text = t
+                val d = dateFormat.format(Date())
+                if (dateView.text != d) dateView.text = d
             }
         }
 

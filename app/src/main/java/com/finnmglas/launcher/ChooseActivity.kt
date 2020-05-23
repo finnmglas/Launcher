@@ -15,8 +15,6 @@ import kotlinx.android.synthetic.main.activity_choose.*
 
 class ChooseActivity : AppCompatActivity() {
 
-    val UNINSTALL_REQUEST_CODE = 1
-
     /** Activity Lifecycle functions */
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -69,7 +67,7 @@ class ChooseActivity : AppCompatActivity() {
                     returnIntent.putExtra("value", app.packageName)
                     returnIntent.putExtra("forApp", forApp)
                     setResult(
-                        5000,
+                        REQUEST_CHOOSE_APP,
                         returnIntent
                     )
                     finish()
@@ -80,7 +78,7 @@ class ChooseActivity : AppCompatActivity() {
                     val intent = Intent(Intent.ACTION_UNINSTALL_PACKAGE)
                     intent.data = Uri.parse("package:" + app.packageName)
                     intent.putExtra(Intent.EXTRA_RETURN_RESULT, true)
-                    startActivityForResult(intent, UNINSTALL_REQUEST_CODE)
+                    startActivityForResult(intent, REQUEST_UNINSTALL)
                 }
             }
             apps_list.addView(tvdynamic)
@@ -89,7 +87,7 @@ class ChooseActivity : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == UNINSTALL_REQUEST_CODE) {
+        if (requestCode == REQUEST_UNINSTALL) {
             if (resultCode == Activity.RESULT_OK) {
                 Toast.makeText(this, getString(R.string.choose_removed_toast), Toast.LENGTH_LONG).show()
                 updateAppList(packageManager)

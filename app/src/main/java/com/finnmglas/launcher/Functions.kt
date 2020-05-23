@@ -30,6 +30,12 @@ var clockApp = ""
 
 var appsList : MutableList<ResolveInfo> = mutableListOf()
 
+/** REQUEST CODES */
+
+val REQUEST_PICK_IMAGE = 1
+val REQUEST_CHOOSE_APP = 2
+val REQUEST_UNINSTALL = 3
+
 // Taken from https://stackoverflow.com/questions/47293269
 fun View.blink(
     times: Int = Animation.INFINITE,
@@ -159,6 +165,10 @@ fun loadSettings(sharedPref : SharedPreferences){
 }
 
 fun resetSettings(sharedPref : SharedPreferences, context: Context) : MutableList<String>{
+
+    // set default theme
+    saveTheme(context, "finn")
+
     val defaultList :MutableList<String> = mutableListOf<String>()
 
     val editor: SharedPreferences.Editor = sharedPref.edit()
