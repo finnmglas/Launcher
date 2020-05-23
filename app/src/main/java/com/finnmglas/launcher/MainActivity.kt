@@ -122,6 +122,7 @@ class MainActivity : AppCompatActivity(),
 
     private fun openSettings(){
         startActivity(Intent(this, SettingsActivity::class.java))
+        overridePendingTransition(R.anim.bottom_up, android.R.anim.fade_out)
     }
 
     /** Touch- and Key-related functions to start activities */

@@ -128,10 +128,10 @@ private fun getIntent(packageName: String, context: Context): Intent? {
 }
 
 fun launchApp(packageName: String, context: Context) {
-    val intent1 = getIntent(packageName, context)
+    val intent = getIntent(packageName, context)
 
-    if (intent1 != null) {
-        context.startActivity(intent1)
+    if (intent != null) {
+        context.startActivity(intent)
 
         if (context is Activity) {
             context.overridePendingTransition(0, 0)
@@ -139,7 +139,7 @@ fun launchApp(packageName: String, context: Context) {
     } else {
         if (isInstalled(packageName, context)){
 
-            AlertDialog.Builder(context)
+            AlertDialog.Builder(context, R.style.AlertDialogCustom)
                 .setTitle(context.getString(R.string.alert_cant_open_title))
                 .setMessage(context.getString(R.string.alert_cant_open_message))
                 .setPositiveButton(android.R.string.yes,
