@@ -22,6 +22,8 @@ import androidx.viewpager.widget.ViewPager
 import com.finnmglas.launcher.ui.main.SectionsPagerAdapter
 import com.google.android.material.tabs.TabLayout
 import kotlinx.android.synthetic.main.activity_settings.*
+import kotlinx.android.synthetic.main.activity_settings.container
+import kotlinx.android.synthetic.main.fragment_settings_theme.*
 import java.io.FileNotFoundException
 import java.io.IOException
 
@@ -51,6 +53,21 @@ class SettingsActivity : AppCompatActivity() {
         viewPager.adapter = sectionsPagerAdapter
         val tabs: TabLayout = findViewById(R.id.tabs)
         tabs.setupWithViewPager(viewPager)
+
+        // Hide 'select' button for the selected theme
+        tabs.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+            override fun onTabSelected(tab: TabLayout.Tab) {
+                if (tab == tabs.getTabAt(1 )) {
+                    when (getSavedTheme(container!!.context)) {
+                        "dark" -> select_theme_dark.visibility = View.INVISIBLE
+                        "finn" -> select_theme_finn.visibility = View.INVISIBLE
+                        "custom" -> select_theme_custom.visibility = View.INVISIBLE
+                    }
+                }
+            }
+            override fun onTabUnselected(tab: TabLayout.Tab) {}
+            override fun onTabReselected(tab: TabLayout.Tab) {}
+        })
 
         // As older APIs somehow do not recognize the xml defined onClick
         close_settings.setOnClickListener() { finish() }

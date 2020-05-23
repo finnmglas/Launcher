@@ -30,35 +30,6 @@
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:adjustViewBounds="true"
-                        android:scaleType="fitXY"
-                        app:srcCompat="@drawable/dark_theme" />
-
-                    <Button
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:onClick="chooseDarkTheme"
-                        android:text="@string/settings_select_theme"
-                        android:textAllCaps="false"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10sp"
-                app:cardCornerRadius="8dp">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="?attr/colorAccent">
 
@@ -70,6 +41,7 @@
                         app:srcCompat="@drawable/finnmglas_theme" />
 
                     <Button
+                        android:id="@+id/select_theme_finn"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:onClick="chooseFinnTheme"
@@ -97,9 +69,40 @@
                         android:layout_height="match_parent"
                         android:adjustViewBounds="true"
                         android:scaleType="fitXY"
+                        app:srcCompat="@drawable/dark_theme" />
+
+                    <Button
+                        android:id="@+id/select_theme_dark"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:onClick="chooseDarkTheme"
+                        android:text="@string/settings_select_theme"
+                        android:textAllCaps="false"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10sp"
+                app:cardCornerRadius="8dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:adjustViewBounds="true"
+                        android:scaleType="fitXY"
                         app:srcCompat="@drawable/custom_theme" />
 
                     <Button
+                        android:id="@+id/select_theme_custom"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:onClick="chooseCustomTheme"
