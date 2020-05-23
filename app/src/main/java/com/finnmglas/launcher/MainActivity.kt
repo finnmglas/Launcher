@@ -6,9 +6,6 @@ import android.os.AsyncTask
 import android.os.Bundle
 import android.util.DisplayMetrics
 import android.view.*
-import android.view.animation.Animation
-import android.view.animation.LinearInterpolator
-import android.view.animation.RotateAnimation
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GestureDetectorCompat
 import kotlinx.android.synthetic.main.activity_main.*
@@ -52,6 +49,7 @@ class MainActivity : AppCompatActivity(),
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
 
         currentTheme = getSavedTheme(this)
+
         setTheme(
             when (currentTheme) {
                 "dark" -> R.style.darkTheme
@@ -94,6 +92,9 @@ class MainActivity : AppCompatActivity(),
 
         // TODO: do this immediately after changing preferences
         if (currentTheme != getSavedTheme(this)) recreate()
+        if (background != null) {
+            background_image.setImageBitmap(background)
+        }
 
         val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
         val timeFormat = SimpleDateFormat("HH:mm:ss", Locale.getDefault())

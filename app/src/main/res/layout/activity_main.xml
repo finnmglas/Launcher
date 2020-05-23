@@ -9,6 +9,14 @@
     android:longClickable="false"
     tools:context=".MainActivity">
 
+    <ImageView
+        android:id="@+id/background_image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:adjustViewBounds="true"
+        android:orientation="vertical"
+        android:scaleType="centerCrop" />
+
     <TextView
         android:id="@+id/dateView"
         android:layout_width="wrap_content"

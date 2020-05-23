@@ -3,16 +3,12 @@ package com.finnmglas.launcher
 import android.Manifest
 import android.app.AlertDialog
 import android.content.*
-import android.database.Cursor
-import android.graphics.Bitmap
-import android.graphics.ImageDecoder
-import android.graphics.drawable.BitmapDrawable
+import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
 import android.provider.Settings
-import android.view.Gravity
 import android.view.View
 import android.view.WindowManager
 import android.widget.Toast
@@ -24,8 +20,6 @@ import com.google.android.material.tabs.TabLayout
 import kotlinx.android.synthetic.main.activity_settings.*
 import kotlinx.android.synthetic.main.activity_settings.container
 import kotlinx.android.synthetic.main.fragment_settings_theme.*
-import java.io.FileNotFoundException
-import java.io.IOException
 
 
 class SettingsActivity : AppCompatActivity() {
@@ -92,44 +86,8 @@ class SettingsActivity : AppCompatActivity() {
                 loadSettings(sharedPref)
             }
 
-            REQUEST_PICK_IMAGE -> {
-
-                if (resultCode == RESULT_OK) {
-                    if (data != null) {
-
-                        val selectedImage: Uri? = data.data
-                        var bitmap: Bitmap? = null
-
-                        try {
-                            // different SDKs, different image choosing
-                            if (Build.VERSION.SDK_INT >= 28) {
-                                container.background = ImageDecoder.decodeDrawable(
-                                    ImageDecoder.createSource(
-                                        this.contentResolver, selectedImage!!))
-                            } else {
-                                val b = BitmapDrawable(
-                                    MediaStore.Images.Media.getBitmap(this.contentResolver, selectedImage)
-                                )
-                                b.gravity = Gravity.CENTER
-                                container.background = b
-                            }
-
-                            Toast.makeText(this, "Chose", Toast.LENGTH_SHORT).show()
-
-                            //val _image : ImageView = background_img
-                            //_image.setImageBitmap(bitmap)
-
-                        } catch (e: FileNotFoundException) {
-                            Toast.makeText(this, "File not found", Toast.LENGTH_SHORT).show()
-                            e.printStackTrace()
-                        } catch (e: IOException) {
-                            Toast.makeText(this, "IO Except", Toast.LENGTH_SHORT).show()
-                            e.printStackTrace()
-                        }
-                    }
-                }
-            }
-
+            REQUEST_PERMISSION_STORAGE -> letUserPickImage()
+            REQUEST_PICK_IMAGE -> handlePickedImage(resultCode, data)
             else -> super.onActivityResult(requestCode, resultCode, data)
         }
     }
@@ -264,23 +222,43 @@ class SettingsActivity : AppCompatActivity() {
     }
 
     fun chooseCustomTheme(view: View) {
-        /*val intent = Intent()
+
+        // Request permission (on newer APIs)
+        if (Build.VERSION.SDK_INT >= 23) {
+            when {
+                ContextCompat.checkSelfPermission(this,
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED
+                  -> letUserPickImage()
+                shouldShowRequestPermissionRationale(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                  -> {}
+                else
+                  -> requestPermissions(arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE), REQUEST_PERMISSION_STORAGE)
+            }
+        }
+        else letUserPickImage()
+    }
+
+    private fun letUserPickImage() {
+        val intent = Intent()
         intent.type = "image/*"
-        intent.action = Intent.ACTION_GET_CONTENT
-        startActivityForResult(Intent.createChooser(intent, "Select Picture"), REQUEST_PICK_IMAGE)*/
-
-         */
-
-        // TODO: Runtime request permisson on newer APIs
-
-
-        val intent : Intent = Intent()
-        intent.type = "image/*"
-        intent.action = Intent.ACTION_PICK
-        intent.putExtra("crop", "true")
+        intent.action = Intent.ACTION_PICK // other option: Intent.ACTION_GET_CONTENT
+        //intent.putExtra("crop", "true")
         //intent.putExtra("outputFormat", Bitmap.CompressFormat.JPEG.toString())
         startActivityForResult(intent, REQUEST_PICK_IMAGE)
+    }
 
+    private fun handlePickedImage(resultCode: Int, data: Intent?) {
+
+        if (resultCode == RESULT_OK) {
+            if (data == null) return
+
+            //BitmapFactory.(data.data)
+            val imageUri = data.data
+            background = MediaStore.Images.Media.getBitmap(this.contentResolver, imageUri)
+
+            saveTheme(this, "custom")
+            recreate()
+        }
     }
 
 }

@@ -8,6 +8,7 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import android.content.pm.ResolveInfo
+import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
@@ -28,11 +29,16 @@ var clockApp = ""
 
 var appsList : MutableList<ResolveInfo> = mutableListOf()
 
+var background : Bitmap? = null
+
 /** REQUEST CODES */
 
 val REQUEST_PICK_IMAGE = 1
 val REQUEST_CHOOSE_APP = 2
 val REQUEST_UNINSTALL = 3
+val REQUEST_PERMISSION_STORAGE = 4
+
+/** Animate */
 
 // Taken from https://stackoverflow.com/questions/47293269
 fun View.blink(
