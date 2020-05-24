@@ -56,6 +56,19 @@ class SettingsActivity : AppCompatActivity() {
         }
     }
 
+    override fun onStart() {
+        super.onStart()
+
+        if (getSavedTheme(this) == "custom") {
+            activity_settings_container.setBackgroundColor(dominantColor)
+            activity_settings_app_bar.setBackgroundColor(dominantColor)
+
+            activity_settings_device_settings.setTextColor(vibrantColor)
+            activity_settings_close.setTextColor(vibrantColor)
+            activity_settings_tabs.setSelectedTabIndicatorColor(vibrantColor)
+        }
+    }
+
     fun backHome(view: View) { finish() }
 
     /** Theme - related */

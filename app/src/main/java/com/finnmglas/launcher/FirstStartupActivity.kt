@@ -6,9 +6,7 @@ import android.os.Bundle
 import android.util.TypedValue
 import android.view.*
 import androidx.appcompat.app.AppCompatActivity
-import com.finnmglas.launcher.extern.blink
-import com.finnmglas.launcher.extern.getSavedTheme
-import com.finnmglas.launcher.extern.resetSettings
+import com.finnmglas.launcher.extern.*
 import kotlinx.android.synthetic.main.activity_firststartup.*
 
 
@@ -40,6 +38,12 @@ class FirstStartupActivity : AppCompatActivity(){
             }
         )
         setContentView(R.layout.activity_firststartup)
+
+        if (getSavedTheme(this) == "custom") {
+            activity_firststartup_app_bar.setBackgroundColor(dominantColor)
+            activity_firststartup_container.setBackgroundColor(dominantColor)
+            activity_firststartup_close.setTextColor(vibrantColor)
+        }
 
         activity_firststartup_hint_text.blink() // animate
         loadMenu(this)

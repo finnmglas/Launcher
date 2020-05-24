@@ -13,8 +13,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import com.finnmglas.launcher.ChooseActivity
 import com.finnmglas.launcher.R
-import com.finnmglas.launcher.extern.REQUEST_CHOOSE_APP
-import com.finnmglas.launcher.extern.loadSettings
+import com.finnmglas.launcher.extern.*
 import kotlinx.android.synthetic.main.fragment_settings_apps.*
 
 /** The 'Apps' Tab associated Fragment in Settings */
@@ -32,6 +31,22 @@ class SettingsFragmentApps : Fragment() {
     }
 
     override fun onStart() {
+
+        if (getSavedTheme(context!!) == "custom") {
+            fragment_settings_apps_container.setBackgroundColor(dominantColor)
+
+            setButtonColor(fragment_settings_apps_choose_up_btn, vibrantColor)
+            setButtonColor(fragment_settings_apps_choose_down_btn, vibrantColor)
+            setButtonColor(fragment_settings_apps_choose_left_btn, vibrantColor)
+            setButtonColor(fragment_settings_apps_choose_right_btn, vibrantColor)
+            setButtonColor(fragment_settings_apps_choose_vol_up_btn, vibrantColor)
+            setButtonColor(fragment_settings_apps_choose_vol_down_btn, vibrantColor)
+
+            setButtonColor(fragment_settings_apps_launch_btn, vibrantColor)
+            setButtonColor(fragment_settings_apps_install_btn, vibrantColor)
+            setButtonColor(fragment_settings_apps_remove_btn, vibrantColor)
+        }
+
         // Action - selecting buttons
         fragment_settings_apps_choose_up_btn.setOnClickListener{ chooseApp("upApp") }
         fragment_settings_apps_choose_down_btn.setOnClickListener{ chooseApp("downApp") }

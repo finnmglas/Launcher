@@ -93,6 +93,10 @@ class MainActivity : AppCompatActivity(),
 
         loadSettings(sharedPref)
 
+        if (currentTheme == "custom") {
+            activity_main_settings_icon.setTextColor(vibrantColor)
+        }
+
         mDetector = GestureDetectorCompat(this, this)
         mDetector.setOnDoubleTapListener(this)
 

@@ -33,6 +33,12 @@ class ChooseActivity : AppCompatActivity() {
         )
         setContentView(R.layout.activity_choose)
 
+        if (getSavedTheme(this) == "custom") {
+            activity_choose_container.setBackgroundColor(dominantColor)
+            activity_choose_app_bar.setBackgroundColor(dominantColor)
+            activity_choose_close.setTextColor(vibrantColor)
+        }
+
         // As older APIs somehow do not recognize the xml defined onClick
         activity_choose_close.setOnClickListener() { finish() }
 

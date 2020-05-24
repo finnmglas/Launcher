@@ -37,6 +37,9 @@ var appsList : MutableList<ResolveInfo> = mutableListOf()
 
 var background : Bitmap? = null
 
+var dominantColor = 0
+var vibrantColor = 0
+
 /** REQUEST CODES */
 
 val REQUEST_PICK_IMAGE = 1
@@ -218,6 +221,9 @@ fun loadSettings(sharedPref : SharedPreferences){
 
     calendarApp = sharedPref.getString("action_calendarApp", "").toString()
     clockApp = sharedPref.getString("action_clockApp", "").toString()
+
+    dominantColor = sharedPref.getInt("custom_dominant", 0)
+    vibrantColor = sharedPref.getInt("custom_vibrant", 0)
 }
 
 fun resetSettings(sharedPref : SharedPreferences, context: Context) : MutableList<String>{
@@ -318,7 +324,7 @@ fun getDominantColor(bitmap: Bitmap?): Int {
 
 fun setButtonColor(btn: Button, color: Int) {
     if (Build.VERSION.SDK_INT >= 29)
-        btn.background.colorFilter = BlendModeColorFilter(color, BlendMode.DST_OVER)
+        btn.background.colorFilter = BlendModeColorFilter(color, BlendMode.MULTIPLY)
     else
         btn.background.setColorFilter(color, PorterDuff.Mode.MULTIPLY)
 }

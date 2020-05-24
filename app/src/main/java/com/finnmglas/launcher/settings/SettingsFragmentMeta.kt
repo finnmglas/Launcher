@@ -15,9 +15,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.finnmglas.launcher.FirstStartupActivity
 import com.finnmglas.launcher.R
-import com.finnmglas.launcher.extern.openAppSettings
-import com.finnmglas.launcher.extern.openNewTabWindow
-import com.finnmglas.launcher.extern.resetSettings
+import com.finnmglas.launcher.extern.*
 import kotlinx.android.synthetic.main.fragment_settings_meta.*
 
 /** The 'Meta' Tab associated Fragment in Settings */
@@ -34,6 +32,19 @@ class SettingsFragmentMeta : Fragment() {
     }
 
     override fun onStart() {
+
+        if (getSavedTheme(context!!) == "custom") {
+            fragment_settings_meta_container.setBackgroundColor(dominantColor)
+
+            setButtonColor(fragment_settings_meta_select_launcher_btn, vibrantColor)
+            setButtonColor(fragment_settings_meta_view_tutorial_btn, vibrantColor)
+            setButtonColor(fragment_settings_meta_reset_settings_btn, vibrantColor)
+
+            fragment_settings_meta_footer_play_icon.setTextColor(vibrantColor)
+            fragment_settings_meta_footer_github_icon.setTextColor(vibrantColor)
+            fragment_settings_meta_footer_globe_icon.setTextColor(vibrantColor)
+        }
+
         // Button onClicks
 
         fragment_settings_meta_select_launcher_btn.setOnClickListener {
