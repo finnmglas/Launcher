@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/fragment_settings_apps_container"
@@ -9,8 +8,8 @@
     android:background="?attr/colorPrimary"
     android:gravity="center|top"
     android:orientation="vertical"
-    android:paddingTop="16sp"
     android:paddingLeft="32sp"
+    android:paddingTop="16sp"
     android:paddingRight="32sp"
     tools:context=".settings.SettingsFragmentApps">
 

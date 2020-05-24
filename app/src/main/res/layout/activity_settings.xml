@@ -37,7 +37,7 @@
                 android:id="@+id/activity_settings_close"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
+                android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
                 android:gravity="center"
                 android:includeFontPadding="true"
@@ -50,6 +50,23 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
+                custom:type="solid" />
+
+            <com.finnmglas.launcher.extern.FontAwesome
+                android:id="@+id/activity_settings_device_settings"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:gravity="center"
+                android:includeFontPadding="true"
+                android:paddingLeft="16sp"
+                android:paddingRight="16sp"
+                android:text="@string/fas_settings"
+                android:textColor="?attr/colorAccent"
+                android:textSize="22sp"
+                custom:layout_constraintBottom_toBottomOf="parent"
+                custom:layout_constraintStart_toStartOf="parent"
+                custom:layout_constraintTop_toTopOf="parent"
                 custom:type="solid" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 

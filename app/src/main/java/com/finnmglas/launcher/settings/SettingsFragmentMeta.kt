@@ -82,8 +82,12 @@ class SettingsFragmentMeta : Fragment() {
                 .show()
         }
 
+        // Footer onClicks
+        fragment_settings_meta_footer_github_icon.setOnClickListener {
+            openNewTabWindow(getString(R.string.settings_footer_repo), this.context!!)
+        }
         // rate app
-        fragment_settings_meta_rate_app_btn.setOnClickListener {
+        fragment_settings_meta_footer_play_icon.setOnClickListener {
             try {
                 val rateIntent = rateIntentForUrl("market://details")
                 startActivity(rateIntent)
@@ -93,11 +97,10 @@ class SettingsFragmentMeta : Fragment() {
             }
         }
 
-        // Footer onClicks
-        fragment_settings_meta_footer_github_link.setOnClickListener {
-            openNewTabWindow(getString(R.string.settings_footer_repo), this.context!!)
-        }
-        fragment_settings_meta_footer_website_link.setOnClickListener {
+        /*fragment_settings_meta_footer_website_icon.setOnClickListener {
+            openNewTabWindow(getString(R.string.settings_footer_web), this.context!!)
+        }*/
+        fragment_settings_meta_footer_globe_icon.setOnClickListener {
             openNewTabWindow(getString(R.string.settings_footer_web), this.context!!)
         }
 

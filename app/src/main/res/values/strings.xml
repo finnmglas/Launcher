@@ -20,7 +20,7 @@
     <string name="settings_tab_theme" translatable="false">Themes</string>
     <string name="settings_tab_launcher" translatable="false">Meta</string>
 
-    <string name="settings_feedback">Give some feedback</string>
+    <string name="settings_rate_google_play">Rate us on Google Play</string>
     <string name="settings_show_tutorial">View Launcher Tutorial</string>
 
     <string name="settings_choose_up">Swipe Up</string>

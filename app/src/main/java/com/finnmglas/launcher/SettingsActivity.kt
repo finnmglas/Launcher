@@ -51,6 +51,9 @@ class SettingsActivity : AppCompatActivity() {
 
         // As older APIs somehow do not recognize the xml defined onClick
         activity_settings_close.setOnClickListener() { finish() }
+        activity_settings_device_settings.setOnClickListener {
+            startActivityForResult(Intent(android.provider.Settings.ACTION_SETTINGS), 0)
+        }
     }
 
     fun backHome(view: View) { finish() }

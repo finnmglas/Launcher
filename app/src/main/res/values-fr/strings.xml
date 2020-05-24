@@ -12,7 +12,7 @@
     <!-- Settings -->
     <string name="settings_title">Réglages</string>
 
-    <string name="settings_feedback">Donner une rétroaction</string>
+    <string name="settings_rate_google_play">Donner une rétroaction</string>
     <string name="settings_show_tutorial">Regardez le tutoriel</string>
 
     <string name="settings_choose_up">Balayez haut</string>
@@ -43,7 +43,7 @@
     <!-- Choose Activity -->
     <string name="choose_title">Choisir App</string>
     <string name="choose_title_launch">Lancer Apps</string>
-    <string name="choose_title_remove">Désinstaller Apps</string>
+    <string name="choose_title_remove">Désinstaller</string>
 
     <string name="choose_back_settings">Retourner</string>
 
