@@ -8,10 +8,14 @@
   <string name="fas_ad" translatable="false">&#xf641;</string>
   <string name="fas_backspace" translatable="false">&#xf55a;</string>
   <string name="fas_calendar" translatable="false">&#xf133;</string>
+  <string name="fas_donate" translatable="false">&#xf4b9;</string>
+  <string name="fas_share" translatable="false">&#xf064;</string>
 
   <!-- icons that can be used with type="brands" -->
   <string name="fab_apple" translatable="false">&#xf179;</string>
   <string name="fab_instagram" translatable="false">&#xf16d;</string>
+  <string name="fab_github" translatable="false">&#xf09b;</string>
+  <string name="fab_google_play" translatable="false">&#xf3ab;</string>
 
   <!-- icons that can be used with type="solid" and type="regular" -->
   <string name="fa_close_window" translatable="false">&#xf410;</string>

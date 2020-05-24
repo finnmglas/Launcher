@@ -2,20 +2,26 @@ package com.finnmglas.launcher
 
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.os.AsyncTask
 import android.os.Bundle
+import android.provider.MediaStore
 import android.util.DisplayMetrics
 import android.view.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GestureDetectorCompat
+import com.finnmglas.launcher.extern.*
 import kotlinx.android.synthetic.main.activity_main.*
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.concurrent.fixedRateTimer
 import kotlin.math.abs
 
+
 class MainActivity : AppCompatActivity(),
     GestureDetector.OnGestureListener, GestureDetector.OnDoubleTapListener {
+
+    private var currentTheme = "" // keep track of theme changes
 
     /** Variables for this activity */
     private lateinit var mDetector: GestureDetectorCompat
@@ -38,10 +44,6 @@ class MainActivity : AppCompatActivity(),
         val sharedPref = this.getSharedPreferences(
             getString(R.string.preference_file_key), Context.MODE_PRIVATE)
 
-        // First Startup
-        if (!sharedPref.getBoolean("startedBefore", false))
-            startActivity(Intent(this, FirstStartupActivity::class.java))
-
         // Flags
         window.setFlags(
             WindowManager.LayoutParams.FLAG_FULLSCREEN,
@@ -49,17 +51,37 @@ class MainActivity : AppCompatActivity(),
         )
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
 
+        currentTheme = getSavedTheme(this)
+
+        if (currentTheme == "custom") {
+            try {
+                background = MediaStore.Images.Media.getBitmap(this.contentResolver, Uri.parse(sharedPref.getString("background_uri", "")))
+            } catch (e: Exception) {  }
+
+            if (background == null)
+                currentTheme = saveTheme(this, "finn")
+        }
+
+        setTheme(
+            when (currentTheme) {
+                "dark" -> R.style.darkTheme
+                "finn" -> R.style.finnmglasTheme
+                else -> R.style.finnmglasTheme
+            }
+        )
         setContentView(R.layout.activity_main)
 
         // Start by showing the settings icon
         showSettingsIcon()
 
         // As older APIs somehow do not recognize the xml defined onClick
-        findViewById<View>(R.id.settingstooltip).setOnClickListener() {
-            openSettings()
-            true
-        }
+        activity_main_settings_icon.setOnClickListener() { openSettings() }
 
+        // First Startup
+        if (!sharedPref.getBoolean("startedBefore", false)){
+            startActivity(Intent(this, FirstStartupActivity::class.java))
+            tooltipTimer.cancel()
+        }
     }
 
     override fun onStart(){
@@ -71,6 +93,10 @@ class MainActivity : AppCompatActivity(),
 
         loadSettings(sharedPref)
 
+        if (currentTheme == "custom") {
+            activity_main_settings_icon.setTextColor(vibrantColor)
+        }
+
         mDetector = GestureDetectorCompat(this, this)
         mDetector.setOnDoubleTapListener(this)
 
@@ -80,13 +106,23 @@ class MainActivity : AppCompatActivity(),
     override fun onResume() {
         super.onResume()
 
+        // TODO: do this immediately after changing preferences
+        if (currentTheme != getSavedTheme(this)) recreate()
+        if (activity_main_background_image != null && getSavedTheme(this) == "custom")
+            activity_main_background_image.setImageBitmap(background)
+
         val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
         val timeFormat = SimpleDateFormat("HH:mm:ss", Locale.getDefault())
 
-        clockTimer = fixedRateTimer("clockTimer", true, 0L, 1000) {
+        clockTimer = fixedRateTimer("clockTimer", true, 0L, 100) {
             this@MainActivity.runOnUiThread {
-                dateView.text = dateFormat.format(Date())
-                timeView.text = timeFormat.format(Date())
+                val t = timeFormat.format(Date())
+                if (activity_main_time_view.text != t)
+                    activity_main_time_view.text = t
+
+                val d = dateFormat.format(Date())
+                if (activity_main_date_view.text != d)
+                    activity_main_date_view.text = d
             }
         }
 
@@ -103,15 +139,15 @@ class MainActivity : AppCompatActivity(),
         loadAppsTimer.cancel()
     }
 
-
     private fun openSettings(){
         startActivity(Intent(this, SettingsActivity::class.java))
+        overridePendingTransition(R.anim.bottom_up, android.R.anim.fade_out)
     }
 
     /** Touch- and Key-related functions to start activities */
 
     override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
-        if (keyCode == KeyEvent.KEYCODE_BACK) return true
+        if (keyCode == KeyEvent.KEYCODE_BACK) { if (settingsIconShown) hideSettingsIcon() }
         else if (keyCode == KeyEvent.KEYCODE_VOLUME_UP) launchApp(volumeUpApp, this)
         else if (keyCode == KeyEvent.KEYCODE_VOLUME_DOWN) launchApp(volumeDownApp, this)
         return true
@@ -153,8 +189,8 @@ class MainActivity : AppCompatActivity(),
     }
 
     private fun showSettingsIcon(){
-        settingstooltip.fadeIn()
-        settingstooltip.visibility = View.VISIBLE
+        activity_main_settings_icon.fadeRotateIn()
+        activity_main_settings_icon.visibility = View.VISIBLE
         settingsIconShown = true
 
         tooltipTimer = fixedRateTimer("tooltipTimer", true, 10000, 1000) {
@@ -164,8 +200,8 @@ class MainActivity : AppCompatActivity(),
 
     private fun hideSettingsIcon(){
         tooltipTimer.cancel()
-        settingstooltip.fadeOut()
-        settingstooltip.visibility = View.INVISIBLE
+        activity_main_settings_icon.fadeRotateOut()
+        activity_main_settings_icon.visibility = View.INVISIBLE
         settingsIconShown = false
     }
 

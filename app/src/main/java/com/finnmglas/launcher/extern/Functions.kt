@@ -1,4 +1,4 @@
-package com.finnmglas.launcher
+package com.finnmglas.launcher.extern
 
 import android.app.Activity
 import android.app.AlertDialog
@@ -8,14 +8,19 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import android.content.pm.ResolveInfo
+import android.graphics.Bitmap
+import android.graphics.BlendMode
+import android.graphics.BlendModeColorFilter
+import android.graphics.PorterDuff
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
 import android.view.View
-import android.view.animation.AlphaAnimation
-import android.view.animation.Animation
-import android.view.animation.DecelerateInterpolator
+import android.view.animation.*
+import android.widget.Button
 import android.widget.Toast
+import com.finnmglas.launcher.R
 
 /** Variables for all of the app */
 var upApp = ""
@@ -29,6 +34,20 @@ var calendarApp = ""
 var clockApp = ""
 
 var appsList : MutableList<ResolveInfo> = mutableListOf()
+
+var background : Bitmap? = null
+
+var dominantColor = 0
+var vibrantColor = 0
+
+/** REQUEST CODES */
+
+val REQUEST_PICK_IMAGE = 1
+val REQUEST_CHOOSE_APP = 2
+val REQUEST_UNINSTALL = 3
+val REQUEST_PERMISSION_STORAGE = 4
+
+/** Animate */
 
 // Taken from https://stackoverflow.com/questions/47293269
 fun View.blink(
@@ -47,18 +66,56 @@ fun View.blink(
     })
 }
 
-fun View.fadeIn(duration: Long = 1000L) {
+fun View.fadeIn(duration: Long = 300L) {
     startAnimation(AlphaAnimation(0f, 1f).also {
         it.interpolator = DecelerateInterpolator()
         it.duration = duration
     })
 }
 
-fun View.fadeOut(duration: Long = 1000L) {
+fun View.fadeOut(duration: Long = 300L) {
     startAnimation(AlphaAnimation(1f, 0f).also {
         it.interpolator = DecelerateInterpolator()
         it.duration = duration
     })
+}
+
+fun View.fadeRotateIn(duration: Long = 500L) {
+    val combined = AnimationSet(false)
+    combined.addAnimation(
+        AlphaAnimation(0f, 1F).also {
+            it.interpolator = DecelerateInterpolator()
+            it.duration = duration
+        }
+    )
+    combined.addAnimation(
+        RotateAnimation(0F, 180F, Animation.RELATIVE_TO_SELF,
+            0.5f, Animation.RELATIVE_TO_SELF,0.5f).also {
+            it.duration = duration * 2
+            it.interpolator = DecelerateInterpolator()
+        }
+    )
+
+    startAnimation(combined)
+}
+
+fun View.fadeRotateOut(duration: Long = 500L) {
+    val combined = AnimationSet(false)
+    combined.addAnimation(
+        AlphaAnimation(1F, 0F).also {
+            it.interpolator = AccelerateInterpolator()
+            it.duration = duration
+        }
+    )
+    combined.addAnimation(
+        RotateAnimation(0F, 180F, Animation.RELATIVE_TO_SELF,
+            0.5f, Animation.RELATIVE_TO_SELF,0.5f).also {
+            it.duration = duration
+            it.interpolator = AccelerateInterpolator()
+        }
+    )
+
+    startAnimation(combined)
 }
 
 /** Activity related */
@@ -86,10 +143,11 @@ private fun getIntent(packageName: String, context: Context): Intent? {
 }
 
 fun launchApp(packageName: String, context: Context) {
-    val intent1 = getIntent(packageName, context)
+    val intent =
+        getIntent(packageName, context)
 
-    if (intent1 != null) {
-        context.startActivity(intent1)
+    if (intent != null) {
+        context.startActivity(intent)
 
         if (context is Activity) {
             context.overridePendingTransition(0, 0)
@@ -97,12 +155,17 @@ fun launchApp(packageName: String, context: Context) {
     } else {
         if (isInstalled(packageName, context)){
 
-            AlertDialog.Builder(context)
+            AlertDialog.Builder(context,
+                R.style.AlertDialogCustom
+            )
                 .setTitle(context.getString(R.string.alert_cant_open_title))
                 .setMessage(context.getString(R.string.alert_cant_open_message))
                 .setPositiveButton(android.R.string.yes,
                     DialogInterface.OnClickListener { dialog, which ->
-                        openAppSettings(packageName, context)
+                        openAppSettings(
+                            packageName,
+                            context
+                        )
                     })
                 .setNegativeButton(android.R.string.no, null)
                 .setIcon(android.R.drawable.ic_dialog_info)
@@ -124,6 +187,24 @@ fun openNewTabWindow(urls: String, context : Context) {
 
 /** Settings related functions */
 
+fun getSavedTheme(context : Context) : String {
+    val sharedPref = context.getSharedPreferences(
+        context.getString(R.string.preference_file_key), Context.MODE_PRIVATE)
+
+    return sharedPref.getString("theme", "finn").toString()
+}
+
+fun saveTheme(context : Context, themeName : String) : String {
+    val sharedPref = context.getSharedPreferences(
+        context.getString(R.string.preference_file_key), Context.MODE_PRIVATE)
+
+    val editor: SharedPreferences.Editor = sharedPref.edit()
+    editor.putString("theme", themeName)
+    editor.apply()
+
+    return themeName
+}
+
 fun openAppSettings(pkg :String, context:Context){
     val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
     intent.data = Uri.parse("package:$pkg")
@@ -140,39 +221,67 @@ fun loadSettings(sharedPref : SharedPreferences){
 
     calendarApp = sharedPref.getString("action_calendarApp", "").toString()
     clockApp = sharedPref.getString("action_clockApp", "").toString()
+
+    dominantColor = sharedPref.getInt("custom_dominant", 0)
+    vibrantColor = sharedPref.getInt("custom_vibrant", 0)
 }
 
 fun resetSettings(sharedPref : SharedPreferences, context: Context) : MutableList<String>{
+
+    // set default theme
+    saveTheme(context, "finn")
+
     val defaultList :MutableList<String> = mutableListOf<String>()
 
     val editor: SharedPreferences.Editor = sharedPref.edit()
 
-    val (chosenUpName, chosenUpPackage) = pickDefaultApp("action_upApp", context)
+    val (chosenUpName, chosenUpPackage) = pickDefaultApp(
+        "action_upApp",
+        context
+    )
     editor.putString("action_upApp", chosenUpPackage)
     defaultList.add(chosenUpName)
 
-    val (chosenDownName, chosenDownPackage) = pickDefaultApp("action_downApp", context)
+    val (chosenDownName, chosenDownPackage) = pickDefaultApp(
+        "action_downApp",
+        context
+    )
     editor.putString("action_downApp", chosenDownPackage)
     defaultList.add(chosenDownName)
 
-    val (chosenRightName, chosenRightPackage) = pickDefaultApp("action_rightApp", context)
+    val (chosenRightName, chosenRightPackage) = pickDefaultApp(
+        "action_rightApp",
+        context
+    )
     editor.putString("action_rightApp", chosenRightPackage)
     defaultList.add(chosenRightName)
 
-    val (chosenLeftName, chosenLeftPackage) = pickDefaultApp("action_leftApp", context)
+    val (chosenLeftName, chosenLeftPackage) = pickDefaultApp(
+        "action_leftApp",
+        context
+    )
     editor.putString("action_leftApp", chosenLeftPackage)
     editor.putString("action_calendarApp", chosenLeftPackage)
     defaultList.add(chosenLeftName)
 
-    val (chosenVolumeUpName, chosenVolumeUpPackage) = pickDefaultApp("action_volumeUpApp", context)
+    val (chosenVolumeUpName, chosenVolumeUpPackage) = pickDefaultApp(
+        "action_volumeUpApp",
+        context
+    )
     editor.putString("action_volumeUpApp", chosenVolumeUpPackage)
     defaultList.add(chosenVolumeUpName)
 
-    val (chosenVolumeDownName, chosenVolumeDownPackage) = pickDefaultApp("action_volumeDownApp", context)
+    val (chosenVolumeDownName, chosenVolumeDownPackage) = pickDefaultApp(
+        "action_volumeDownApp",
+        context
+    )
     editor.putString("action_volumeDownApp", chosenVolumeDownPackage)
     defaultList.add(chosenVolumeDownName)
 
-    val (_, chosenClockPackage) = pickDefaultApp("action_clockApp", context)
+    val (_, chosenClockPackage) = pickDefaultApp(
+        "action_clockApp",
+        context
+    )
     editor.putString("action_clockApp", chosenClockPackage)
 
     editor.apply()
@@ -194,7 +303,7 @@ fun pickDefaultApp(action: String, context: Context) : Pair<String, String>{
 
     // Related question: https://stackoverflow.com/q/3013655/12787264 (Adjusted)
     val list = context.resources.getStringArray(arrayResource)
-    for (entry in list!!){
+    for (entry in list){
         val splitResult = entry.split("|").toTypedArray()
         val pkgname = splitResult[0]
         val name = splitResult[1]
@@ -202,4 +311,20 @@ fun pickDefaultApp(action: String, context: Context) : Pair<String, String>{
         if (isInstalled(pkgname, context)) return Pair(name, pkgname)
     }
     return Pair(context.getString(R.string.none_found), "")
+}
+
+/** Bitmaps */
+
+fun getDominantColor(bitmap: Bitmap?): Int {
+    val newBitmap = Bitmap.createScaledBitmap(bitmap!!, 1, 1, true)
+    val color = newBitmap.getPixel(0, 0)
+    newBitmap.recycle()
+    return color
+}
+
+fun setButtonColor(btn: Button, color: Int) {
+    if (Build.VERSION.SDK_INT >= 29)
+        btn.background.colorFilter = BlendModeColorFilter(color, BlendMode.MULTIPLY)
+    else
+        btn.background.setColorFilter(color, PorterDuff.Mode.MULTIPLY)
 }

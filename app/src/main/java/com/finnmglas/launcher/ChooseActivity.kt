@@ -10,12 +10,11 @@ import android.view.WindowManager
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.finnmglas.launcher.extern.*
 import kotlinx.android.synthetic.main.activity_choose.*
 
 
 class ChooseActivity : AppCompatActivity() {
-
-    val UNINSTALL_REQUEST_CODE = 1
 
     /** Activity Lifecycle functions */
 
@@ -25,19 +24,34 @@ class ChooseActivity : AppCompatActivity() {
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
 
+        setTheme(
+            when (getSavedTheme(this)) {
+                "dark" -> R.style.darkTheme
+                "finn" -> R.style.finnmglasTheme
+                else -> R.style.finnmglasTheme
+            }
+        )
         setContentView(R.layout.activity_choose)
+
+        if (getSavedTheme(this) == "custom") {
+            activity_choose_container.setBackgroundColor(dominantColor)
+            activity_choose_app_bar.setBackgroundColor(dominantColor)
+            activity_choose_close.setTextColor(vibrantColor)
+        }
+
+        // As older APIs somehow do not recognize the xml defined onClick
+        activity_choose_close.setOnClickListener() { finish() }
 
         val bundle = intent.extras
         val action = bundle!!.getString("action") // why choose an app
         val forApp = bundle.getString("forApp") // which app we choose
 
         if (action == "launch")
-            heading.text = getString(R.string.choose_title_launch)
-        else if (action == "pick") {
-            heading.text = getString(R.string.choose_title)
-        }
+            activity_choose_heading.text = getString(R.string.choose_title_launch)
+        else if (action == "pick")
+            activity_choose_heading.text = getString(R.string.choose_title)
         else if (action == "uninstall")
-            heading.text = getString(R.string.choose_title_remove)
+            activity_choose_heading.text = getString(R.string.choose_title_remove)
 
         /* Build Layout */
 
@@ -59,7 +73,7 @@ class ChooseActivity : AppCompatActivity() {
                     returnIntent.putExtra("value", app.packageName)
                     returnIntent.putExtra("forApp", forApp)
                     setResult(
-                        5000,
+                        REQUEST_CHOOSE_APP,
                         returnIntent
                     )
                     finish()
@@ -70,16 +84,18 @@ class ChooseActivity : AppCompatActivity() {
                     val intent = Intent(Intent.ACTION_UNINSTALL_PACKAGE)
                     intent.data = Uri.parse("package:" + app.packageName)
                     intent.putExtra(Intent.EXTRA_RETURN_RESULT, true)
-                    startActivityForResult(intent, UNINSTALL_REQUEST_CODE)
+                    startActivityForResult(intent,
+                        REQUEST_UNINSTALL
+                    )
                 }
             }
-            apps_list.addView(tvdynamic)
+            activity_choose_apps_list.addView(tvdynamic)
         }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == UNINSTALL_REQUEST_CODE) {
+        if (requestCode == REQUEST_UNINSTALL) {
             if (resultCode == Activity.RESULT_OK) {
                 Toast.makeText(this, getString(R.string.choose_removed_toast), Toast.LENGTH_LONG).show()
                 updateAppList(packageManager)

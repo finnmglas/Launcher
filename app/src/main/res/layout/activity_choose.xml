@@ -1,20 +1,19 @@
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:custom="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/container"
+    android:id="@+id/activity_choose_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?attr/colorPrimaryDark"
+    android:background="?attr/colorPrimary"
     tools:context=".ChooseActivity">
 
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/app_bar"
+        android:id="@+id/activity_choose_app_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimaryDark"
         android:gravity="center"
-        android:theme="@style/AppTheme.AppBarOverlay"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -24,7 +23,7 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/heading"
+                android:id="@+id/activity_choose_heading"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -37,8 +36,8 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <com.finnmglas.launcher.FontAwesome
-                android:id="@+id/close_settings"
+            <com.finnmglas.launcher.extern.FontAwesome
+                android:id="@+id/activity_choose_close"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
@@ -49,7 +48,7 @@
                 android:paddingLeft="16sp"
                 android:paddingRight="16sp"
                 android:text="@string/fa_close_window"
-                android:textColor="#ffffff"
+                android:textColor="?attr/colorAccent"
                 android:textSize="22sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -71,10 +70,10 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/app_bar">
+        app:layout_constraintTop_toBottomOf="@id/activity_choose_app_bar">
 
         <LinearLayout
-            android:id="@+id/apps_list"
+            android:id="@+id/activity_choose_apps_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical" />

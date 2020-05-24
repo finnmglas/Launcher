@@ -12,7 +12,7 @@
     <!-- Settings -->
     <string name="settings_title">Réglages</string>
 
-    <string name="settings_feedback">Donner une rétroaction</string>
+    <string name="settings_rate_google_play">Donner une rétroaction</string>
     <string name="settings_show_tutorial">Regardez le tutoriel</string>
 
     <string name="settings_choose_up">Balayez haut</string>
@@ -33,6 +33,9 @@
 
     <string name="settings_toast_store_not_found">Pas trouvé le PlayStore</string>
 
+    <string name="settings_select_theme">Choisir</string>
+    <string name="settings_select_image">Changer Image</string>
+
     <string name="settings_footer_by">Par</string>
     <string name="settings_footer_web">https://www.finnmglas.com/fr/</string>
     <string name="settings_footer_repo">https://github.com/finnmglas/Launcher</string>
@@ -40,7 +43,7 @@
     <!-- Choose Activity -->
     <string name="choose_title">Choisir App</string>
     <string name="choose_title_launch">Lancer Apps</string>
-    <string name="choose_title_remove">Désinstaller Apps</string>
+    <string name="choose_title_remove">Désinstaller</string>
 
     <string name="choose_back_settings">Retourner</string>
 
@@ -48,6 +51,7 @@
     <string name="choose_not_removed_toast">Impossible de supprimer l\'application</string>
 
     <!-- FirstStartup Activity -->
+    <string name="tutorial_title">Le Tutoriel</string>
     <string-array name="intro">
         <!--item> heading | infoText | hintText | size | format </item-->
         <item>|Prenez un moment et apprenez à utiliser ce lanceur!\n\n|— Appuyez pour continuer —|36F|0</item>

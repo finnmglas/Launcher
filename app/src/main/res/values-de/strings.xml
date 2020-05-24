@@ -13,7 +13,7 @@
     <string name="settings_title">Einstellungen</string>
 
     <string name="settings_show_tutorial">Zum Launcher Tutorial</string>
-    <string name="settings_feedback">Feedback geben</string>
+    <string name="settings_rate_google_play">Jetzt im Playstore bewerten</string>
 
     <string name="settings_choose_up">Hochwischen</string>
     <string name="settings_choose_down">Runterwischen</string>
@@ -33,6 +33,9 @@
 
     <string name="settings_toast_store_not_found">PlayStore nicht gefunden</string>
 
+    <string name="settings_select_theme">Wählen</string>
+    <string name="settings_select_image">Bild ändern</string>
+
     <string name="settings_footer_by">Von</string>
     <string name="settings_footer_repo">https://github.com/finnmglas/Launcher#de</string>
     <string name="settings_footer_web">https://www.finnmglas.com/de/</string>
@@ -48,6 +51,7 @@
     <string name="choose_not_removed_toast">Die App konnte nicht entfernt werden</string>
 
     <!-- FirstStartup Activity -->
+    <string name="tutorial_title">Tutorial</string>
     <string-array name="intro">
         <!--item> heading | infoText | hintText | size | format </item-->
         <item>|Nimm dir kurz Zeit und lerne, wie du diesen Launcher verwendest!\n\n|— Tippe um weiterzukommen —|36F|0</item>

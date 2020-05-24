@@ -2,17 +2,18 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/container"
+    android:id="@+id/fragment_settings_apps_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?attr/colorPrimaryDark"
+    android:background="?attr/colorPrimary"
     android:gravity="center|top"
     android:orientation="vertical"
-    android:padding="32sp"
-    tools:context=".SettingsActivity">
+    android:paddingLeft="32sp"
+    android:paddingTop="16sp"
+    android:paddingRight="32sp"
+    tools:context=".settings.SettingsFragmentApps">
 
     <TableLayout
-        android:id="@+id/actionschooser"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingBottom="32sp"
@@ -27,20 +28,18 @@
             android:gravity="center">
 
             <TextView
-                android:id="@+id/text_up"
+                android:id="@+id/fragment_settings_apps_text_up"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingLeft="10sp"
                 android:paddingRight="10sp"
                 android:text="@string/settings_choose_up"
-                android:textColor="#ccc"
                 android:textSize="20sp" />
 
             <Button
-                android:id="@+id/btn_choose_up"
+                android:id="@+id/fragment_settings_apps_choose_up_btn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:onClick="chooseUpApp"
                 android:text="@string/settings_choose_btn"
                 android:textAllCaps="false" />
         </TableRow>
@@ -51,20 +50,18 @@
             android:gravity="center">
 
             <TextView
-                android:id="@+id/text_down"
+                android:id="@+id/fragment_settings_apps_choose_down_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingLeft="10sp"
                 android:paddingRight="10sp"
                 android:text="@string/settings_choose_down"
-                android:textColor="#ccc"
                 android:textSize="20sp" />
 
             <Button
-                android:id="@+id/btn_choose_down"
+                android:id="@+id/fragment_settings_apps_choose_down_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:onClick="chooseDownApp"
                 android:text="@string/settings_choose_btn"
                 android:textAllCaps="false" />
 
@@ -76,20 +73,18 @@
             android:gravity="center">
 
             <TextView
-                android:id="@+id/text_left"
+                android:id="@+id/fragment_settings_apps_choose_left_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingLeft="10sp"
                 android:paddingRight="10sp"
                 android:text="@string/settings_choose_left"
-                android:textColor="#ccc"
                 android:textSize="20sp" />
 
             <Button
-                android:id="@+id/btn_choose_left"
+                android:id="@+id/fragment_settings_apps_choose_left_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:onClick="chooseLeftApp"
                 android:text="@string/settings_choose_btn"
                 android:textAllCaps="false" />
         </TableRow>
@@ -100,20 +95,18 @@
             android:gravity="center">
 
             <TextView
-                android:id="@+id/text_right"
+                android:id="@+id/fragment_settings_apps_choose_right_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingLeft="10sp"
                 android:paddingRight="10sp"
                 android:text="@string/settings_choose_right"
-                android:textColor="#ccc"
                 android:textSize="20sp" />
 
             <Button
-                android:id="@+id/btn_choose_right"
+                android:id="@+id/fragment_settings_apps_choose_right_btn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:onClick="chooseRightApp"
                 android:text="@string/settings_choose_btn"
                 android:textAllCaps="false" />
 
@@ -125,20 +118,18 @@
             android:gravity="center">
 
             <TextView
-                android:id="@+id/text_vol_up"
+                android:id="@+id/fragment_settings_apps_choose_vol_up_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingLeft="10sp"
                 android:paddingRight="10sp"
                 android:text="@string/settings_choose_vol_up"
-                android:textColor="#ccc"
                 android:textSize="20sp" />
 
             <Button
-                android:id="@+id/btn_choose_volume_up"
+                android:id="@+id/fragment_settings_apps_choose_vol_up_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:onClick="chooseVolumeUpApp"
                 android:text="@string/settings_choose_btn"
                 android:textAllCaps="false" />
         </TableRow>
@@ -149,20 +140,18 @@
             android:gravity="center">
 
             <TextView
-                android:id="@+id/text_vol_down"
+                android:id="@+id/fragment_settings_apps_choose_vol_down_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingLeft="10sp"
                 android:paddingRight="10sp"
                 android:text="@string/settings_choose_vol_down"
-                android:textColor="#ccc"
                 android:textSize="20sp" />
 
             <Button
-                android:id="@+id/btn_choose_volume_down"
+                android:id="@+id/fragment_settings_apps_choose_vol_down_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:onClick="chooseVolumeDownApp"
                 android:text="@string/settings_choose_btn"
                 android:textAllCaps="false" />
 
@@ -171,26 +160,23 @@
     </TableLayout>
 
     <Button
-        style="@style/Widget.AppCompat.Button"
+        android:id="@+id/fragment_settings_apps_launch_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="chooseLaunchApp"
         android:text="@string/settings_launch"
         android:textAllCaps="false" />
 
     <Button
-        style="@style/Widget.AppCompat.Button"
+        android:id="@+id/fragment_settings_apps_install_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="chooseInstallApp"
         android:text="@string/settings_install"
         android:textAllCaps="false" />
 
     <Button
-        style="@style/Widget.AppCompat.Button"
+        android:id="@+id/fragment_settings_apps_remove_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="chooseUninstallApp"
         android:text="@string/settings_uninstall"
         android:textAllCaps="false" />
 </LinearLayout>
