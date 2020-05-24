@@ -10,6 +10,7 @@ import android.view.WindowManager
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.finnmglas.launcher.extern.*
 import kotlinx.android.synthetic.main.activity_choose.*
 
 
@@ -33,19 +34,18 @@ class ChooseActivity : AppCompatActivity() {
         setContentView(R.layout.activity_choose)
 
         // As older APIs somehow do not recognize the xml defined onClick
-        close_chooser.setOnClickListener() { finish() }
+        activity_choose_close.setOnClickListener() { finish() }
 
         val bundle = intent.extras
         val action = bundle!!.getString("action") // why choose an app
         val forApp = bundle.getString("forApp") // which app we choose
 
         if (action == "launch")
-            heading.text = getString(R.string.choose_title_launch)
-        else if (action == "pick") {
-            heading.text = getString(R.string.choose_title)
-        }
+            activity_choose_heading.text = getString(R.string.choose_title_launch)
+        else if (action == "pick")
+            activity_choose_heading.text = getString(R.string.choose_title)
         else if (action == "uninstall")
-            heading.text = getString(R.string.choose_title_remove)
+            activity_choose_heading.text = getString(R.string.choose_title_remove)
 
         /* Build Layout */
 
@@ -78,10 +78,12 @@ class ChooseActivity : AppCompatActivity() {
                     val intent = Intent(Intent.ACTION_UNINSTALL_PACKAGE)
                     intent.data = Uri.parse("package:" + app.packageName)
                     intent.putExtra(Intent.EXTRA_RETURN_RESULT, true)
-                    startActivityForResult(intent, REQUEST_UNINSTALL)
+                    startActivityForResult(intent,
+                        REQUEST_UNINSTALL
+                    )
                 }
             }
-            apps_list.addView(tvdynamic)
+            activity_choose_apps_list.addView(tvdynamic)
         }
     }
 

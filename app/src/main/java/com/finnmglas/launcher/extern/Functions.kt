@@ -1,4 +1,4 @@
-package com.finnmglas.launcher
+package com.finnmglas.launcher.extern
 
 import android.app.Activity
 import android.app.AlertDialog
@@ -9,12 +9,18 @@ import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import android.content.pm.ResolveInfo
 import android.graphics.Bitmap
+import android.graphics.BlendMode
+import android.graphics.BlendModeColorFilter
+import android.graphics.PorterDuff
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
 import android.view.View
 import android.view.animation.*
+import android.widget.Button
 import android.widget.Toast
+import com.finnmglas.launcher.R
 
 /** Variables for all of the app */
 var upApp = ""
@@ -134,7 +140,8 @@ private fun getIntent(packageName: String, context: Context): Intent? {
 }
 
 fun launchApp(packageName: String, context: Context) {
-    val intent = getIntent(packageName, context)
+    val intent =
+        getIntent(packageName, context)
 
     if (intent != null) {
         context.startActivity(intent)
@@ -145,12 +152,17 @@ fun launchApp(packageName: String, context: Context) {
     } else {
         if (isInstalled(packageName, context)){
 
-            AlertDialog.Builder(context, R.style.AlertDialogCustom)
+            AlertDialog.Builder(context,
+                R.style.AlertDialogCustom
+            )
                 .setTitle(context.getString(R.string.alert_cant_open_title))
                 .setMessage(context.getString(R.string.alert_cant_open_message))
                 .setPositiveButton(android.R.string.yes,
                     DialogInterface.OnClickListener { dialog, which ->
-                        openAppSettings(packageName, context)
+                        openAppSettings(
+                            packageName,
+                            context
+                        )
                     })
                 .setNegativeButton(android.R.string.no, null)
                 .setIcon(android.R.drawable.ic_dialog_info)
@@ -217,32 +229,53 @@ fun resetSettings(sharedPref : SharedPreferences, context: Context) : MutableLis
 
     val editor: SharedPreferences.Editor = sharedPref.edit()
 
-    val (chosenUpName, chosenUpPackage) = pickDefaultApp("action_upApp", context)
+    val (chosenUpName, chosenUpPackage) = pickDefaultApp(
+        "action_upApp",
+        context
+    )
     editor.putString("action_upApp", chosenUpPackage)
     defaultList.add(chosenUpName)
 
-    val (chosenDownName, chosenDownPackage) = pickDefaultApp("action_downApp", context)
+    val (chosenDownName, chosenDownPackage) = pickDefaultApp(
+        "action_downApp",
+        context
+    )
     editor.putString("action_downApp", chosenDownPackage)
     defaultList.add(chosenDownName)
 
-    val (chosenRightName, chosenRightPackage) = pickDefaultApp("action_rightApp", context)
+    val (chosenRightName, chosenRightPackage) = pickDefaultApp(
+        "action_rightApp",
+        context
+    )
     editor.putString("action_rightApp", chosenRightPackage)
     defaultList.add(chosenRightName)
 
-    val (chosenLeftName, chosenLeftPackage) = pickDefaultApp("action_leftApp", context)
+    val (chosenLeftName, chosenLeftPackage) = pickDefaultApp(
+        "action_leftApp",
+        context
+    )
     editor.putString("action_leftApp", chosenLeftPackage)
     editor.putString("action_calendarApp", chosenLeftPackage)
     defaultList.add(chosenLeftName)
 
-    val (chosenVolumeUpName, chosenVolumeUpPackage) = pickDefaultApp("action_volumeUpApp", context)
+    val (chosenVolumeUpName, chosenVolumeUpPackage) = pickDefaultApp(
+        "action_volumeUpApp",
+        context
+    )
     editor.putString("action_volumeUpApp", chosenVolumeUpPackage)
     defaultList.add(chosenVolumeUpName)
 
-    val (chosenVolumeDownName, chosenVolumeDownPackage) = pickDefaultApp("action_volumeDownApp", context)
+    val (chosenVolumeDownName, chosenVolumeDownPackage) = pickDefaultApp(
+        "action_volumeDownApp",
+        context
+    )
     editor.putString("action_volumeDownApp", chosenVolumeDownPackage)
     defaultList.add(chosenVolumeDownName)
 
-    val (_, chosenClockPackage) = pickDefaultApp("action_clockApp", context)
+    val (_, chosenClockPackage) = pickDefaultApp(
+        "action_clockApp",
+        context
+    )
     editor.putString("action_clockApp", chosenClockPackage)
 
     editor.apply()
@@ -264,7 +297,7 @@ fun pickDefaultApp(action: String, context: Context) : Pair<String, String>{
 
     // Related question: https://stackoverflow.com/q/3013655/12787264 (Adjusted)
     val list = context.resources.getStringArray(arrayResource)
-    for (entry in list!!){
+    for (entry in list){
         val splitResult = entry.split("|").toTypedArray()
         val pkgname = splitResult[0]
         val name = splitResult[1]
@@ -272,4 +305,20 @@ fun pickDefaultApp(action: String, context: Context) : Pair<String, String>{
         if (isInstalled(pkgname, context)) return Pair(name, pkgname)
     }
     return Pair(context.getString(R.string.none_found), "")
+}
+
+/** Bitmaps */
+
+fun getDominantColor(bitmap: Bitmap?): Int {
+    val newBitmap = Bitmap.createScaledBitmap(bitmap!!, 1, 1, true)
+    val color = newBitmap.getPixel(0, 0)
+    newBitmap.recycle()
+    return color
+}
+
+fun setButtonColor(btn: Button, color: Int) {
+    if (Build.VERSION.SDK_INT >= 29)
+        btn.background.colorFilter = BlendModeColorFilter(color, BlendMode.DST_OVER)
+    else
+        btn.background.setColorFilter(color, PorterDuff.Mode.MULTIPLY)
 }

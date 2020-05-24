@@ -1,4 +1,4 @@
-package com.finnmglas.launcher // replace with your package
+package com.finnmglas.launcher.extern // replace with your package
 
 // On GitHub: https://github.com/finnmglas/fontawesome-android
 
@@ -6,6 +6,7 @@ import android.content.Context
 import android.graphics.Typeface
 import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatTextView
+import com.finnmglas.launcher.R
 
 /** [FontAwesome] is just a type of TextView with special functions:
  *
@@ -28,7 +29,9 @@ class FontAwesome : AppCompatTextView {
 
     private fun init(attrs: AttributeSet?) {
         if (attrs != null) {
-            val a = context!!.obtainStyledAttributes(attrs, R.styleable.FontAwesome)
+            val a = context!!.obtainStyledAttributes(attrs,
+                R.styleable.FontAwesome
+            )
             if (a.hasValue(R.styleable.FontAwesome_type))
                 type = a.getString(R.styleable.FontAwesome_type)!!
             a.recycle()

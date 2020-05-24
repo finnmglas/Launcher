@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/container"
+    android:id="@+id/fragment_settings_theme_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="?attr/colorPrimary"
@@ -11,7 +12,7 @@
     android:paddingLeft="32sp"
     android:paddingTop="16sp"
     android:paddingRight="32sp"
-    tools:context=".SettingsActivity">
+    tools:context=".settings.SettingsFragmentMeta">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -30,21 +31,20 @@
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="?attr/colorAccent">
+                    android:layout_height="match_parent">
 
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:adjustViewBounds="true"
                         android:scaleType="fitXY"
-                        app:srcCompat="@drawable/finnmglas_theme" />
+                        app:srcCompat="@drawable/finnmglas_theme"
+                        tools:ignore="ContentDescription" />
 
                     <Button
-                        android:id="@+id/select_theme_finn"
+                        android:id="@+id/fragment_settings_theme_select_finn_btn"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:onClick="chooseFinnTheme"
                         android:text="@string/settings_select_theme"
                         android:textAllCaps="false"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -69,13 +69,13 @@
                         android:layout_height="match_parent"
                         android:adjustViewBounds="true"
                         android:scaleType="fitXY"
-                        app:srcCompat="@drawable/dark_theme" />
+                        app:srcCompat="@drawable/dark_theme"
+                        tools:ignore="ContentDescription" />
 
                     <Button
-                        android:id="@+id/select_theme_dark"
+                        android:id="@+id/fragment_settings_theme_select_dark_btn"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:onClick="chooseDarkTheme"
                         android:text="@string/settings_select_theme"
                         android:textAllCaps="false"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -99,13 +99,13 @@
                         android:layout_height="match_parent"
                         android:adjustViewBounds="true"
                         android:scaleType="fitXY"
-                        app:srcCompat="@drawable/custom_theme" />
+                        app:srcCompat="@drawable/custom_theme"
+                        tools:ignore="ContentDescription" />
 
                     <Button
-                        android:id="@+id/select_theme_custom"
+                        android:id="@+id/fragment_settings_theme_select_custom_btn"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:onClick="chooseCustomTheme"
                         android:text="@string/settings_select_theme"
                         android:textAllCaps="false"
                         app:layout_constraintBottom_toBottomOf="parent"

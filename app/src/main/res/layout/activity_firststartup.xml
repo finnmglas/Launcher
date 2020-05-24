@@ -1,17 +1,17 @@
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:custom="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/container"
+    android:id="@+id/activity_firststartup_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="?attr/colorPrimary"
-    android:longClickable="false"
     android:onClick="clickAnywhere"
     tools:context=".FirstStartupActivity">
 
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/app_bar"
+        android:id="@+id/activity_firststartup_app_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -25,6 +25,7 @@
             android:layout_height="match_parent">
 
             <TextView
+                android:id="@+id/activity_firststartup_heading"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -36,8 +37,8 @@
                 custom:layout_constraintStart_toStartOf="parent"
                 custom:layout_constraintTop_toTopOf="parent" />
 
-            <com.finnmglas.launcher.FontAwesome
-                android:id="@+id/close_tutorial"
+            <com.finnmglas.launcher.extern.FontAwesome
+                android:id="@+id/activity_firststartup_close"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
@@ -59,7 +60,7 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <TextView
-        android:id="@+id/heading"
+        android:id="@+id/activity_firststartup_section_heading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -73,7 +74,7 @@
         app:layout_constraintVertical_bias="0.100000024" />
 
     <TextView
-        android:id="@+id/infoText"
+        android:id="@+id/activity_firststartup_descriptive_text"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="32dp"
@@ -89,10 +90,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.6"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/heading" />
+        app:layout_constraintTop_toBottomOf="@id/activity_firststartup_section_heading" />
 
     <TextView
-        android:id="@+id/hintText"
+        android:id="@+id/activity_firststartup_hint_text"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="32dp"
@@ -109,6 +110,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.6"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/infoText" />
+        app:layout_constraintTop_toBottomOf="@id/activity_firststartup_descriptive_text" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

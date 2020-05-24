@@ -5,9 +5,10 @@ import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.TypedValue
 import android.view.*
-import android.view.animation.AlphaAnimation
-import android.view.animation.Animation
 import androidx.appcompat.app.AppCompatActivity
+import com.finnmglas.launcher.extern.blink
+import com.finnmglas.launcher.extern.getSavedTheme
+import com.finnmglas.launcher.extern.resetSettings
 import kotlinx.android.synthetic.main.activity_firststartup.*
 
 
@@ -40,7 +41,7 @@ class FirstStartupActivity : AppCompatActivity(){
         )
         setContentView(R.layout.activity_firststartup)
 
-        hintText.blink() // animate
+        activity_firststartup_hint_text.blink() // animate
         loadMenu(this)
 
         val sharedPref = this.getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE)
@@ -50,10 +51,10 @@ class FirstStartupActivity : AppCompatActivity(){
         if (isFirstTime)
             defaultApps = resetSettings(sharedPref, this) // UP, DOWN, RIGHT, LEFT, VOLUME_UP, VOLUME_DOWN
         else
-            app_bar.visibility = View.VISIBLE
+            activity_firststartup_app_bar.visibility = View.VISIBLE
 
         // As older APIs somehow do not recognize the xml defined onClick
-        close_tutorial.setOnClickListener() { finish() }
+        activity_firststartup_close.setOnClickListener() { finish() }
     }
 
     /** Touch- and Key-related functions to navigate */
@@ -92,14 +93,16 @@ class FirstStartupActivity : AppCompatActivity(){
         if (menuNumber < intro.size){
             val entry = intro[menuNumber].split("|").toTypedArray() //heading|infoText|hintText|size
 
-            heading.text = entry[0]
-            if (entry[4] == "1" && isFirstTime)infoText.text = String.format(entry[1],
+            activity_firststartup_section_heading.text = entry[0]
+            if (entry[4] == "1" && isFirstTime)
+                activity_firststartup_descriptive_text.text = String.format(entry[1],
                 defaultApps[0], defaultApps[1], defaultApps[2], defaultApps[3], defaultApps[4], defaultApps[5])
-            else if (entry[4] == "1" && !isFirstTime)infoText.text = String.format(entry[1],
+            else if (entry[4] == "1" && !isFirstTime)
+                activity_firststartup_descriptive_text.text = String.format(entry[1],
                 "-", "-", "-", "-", "-", "-")
-            else infoText.text = entry[1]
-            hintText.text = entry[2]
-            infoText.setTextSize(TypedValue.COMPLEX_UNIT_SP, entry[3].toFloat())
+            else activity_firststartup_descriptive_text.text = entry[1]
+            activity_firststartup_hint_text.text = entry[2]
+            activity_firststartup_descriptive_text.setTextSize(TypedValue.COMPLEX_UNIT_SP, entry[3].toFloat())
 
         } else { // End intro
             if (isFirstTime){

@@ -1,4 +1,4 @@
-package com.finnmglas.launcher.ui.main
+package com.finnmglas.launcher.settings
 
 import android.content.Context
 import androidx.fragment.app.Fragment
@@ -14,13 +14,13 @@ private val TAB_TITLES = arrayOf(
 
 /** Returns the fragment corresponding to the selected tab.*/
 class SectionsPagerAdapter(private val context: Context, fm: FragmentManager)
-    : FragmentPagerAdapter(fm) {
+    : FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
     override fun getItem(position: Int): Fragment {
         return when (position){
             0 -> SettingsFragmentApps()
             1 -> SettingsFragmentTheme()
-            2 -> SettingsFragmentLauncher()
+            2 -> SettingsFragmentMeta()
             else -> Fragment()
         }
     }
@@ -29,7 +29,5 @@ class SectionsPagerAdapter(private val context: Context, fm: FragmentManager)
         return context.resources.getString(TAB_TITLES[position])
     }
 
-    override fun getCount(): Int {
-        return 3
-    }
+    override fun getCount(): Int { return 3 }
 }

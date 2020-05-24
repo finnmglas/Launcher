@@ -8,6 +8,7 @@ import android.util.DisplayMetrics
 import android.view.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GestureDetectorCompat
+import com.finnmglas.launcher.extern.*
 import kotlinx.android.synthetic.main.activity_main.*
 import java.text.SimpleDateFormat
 import java.util.*
@@ -66,7 +67,7 @@ class MainActivity : AppCompatActivity(),
         showSettingsIcon()
 
         // As older APIs somehow do not recognize the xml defined onClick
-        settingstooltip.setOnClickListener() { openSettings() }
+        activity_main_settings_icon.setOnClickListener() { openSettings() }
 
         // First Startup
         if (!sharedPref.getBoolean("startedBefore", false)){
@@ -95,8 +96,8 @@ class MainActivity : AppCompatActivity(),
 
         // TODO: do this immediately after changing preferences
         if (currentTheme != getSavedTheme(this)) recreate()
-        if (background_image != null && getSavedTheme(this) == "custom")
-            background_image.setImageBitmap(background)
+        if (activity_main_background_image != null && getSavedTheme(this) == "custom")
+            activity_main_background_image.setImageBitmap(background)
 
         val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
         val timeFormat = SimpleDateFormat("HH:mm:ss", Locale.getDefault())
@@ -104,9 +105,12 @@ class MainActivity : AppCompatActivity(),
         clockTimer = fixedRateTimer("clockTimer", true, 0L, 100) {
             this@MainActivity.runOnUiThread {
                 val t = timeFormat.format(Date())
-                if (timeView.text != t) timeView.text = t
+                if (activity_main_time_view.text != t)
+                    activity_main_time_view.text = t
+
                 val d = dateFormat.format(Date())
-                if (dateView.text != d) dateView.text = d
+                if (activity_main_date_view.text != d)
+                    activity_main_date_view.text = d
             }
         }
 
@@ -173,8 +177,8 @@ class MainActivity : AppCompatActivity(),
     }
 
     private fun showSettingsIcon(){
-        settingstooltip.fadeRotateIn()
-        settingstooltip.visibility = View.VISIBLE
+        activity_main_settings_icon.fadeRotateIn()
+        activity_main_settings_icon.visibility = View.VISIBLE
         settingsIconShown = true
 
         tooltipTimer = fixedRateTimer("tooltipTimer", true, 10000, 1000) {
@@ -184,8 +188,8 @@ class MainActivity : AppCompatActivity(),
 
     private fun hideSettingsIcon(){
         tooltipTimer.cancel()
-        settingstooltip.fadeRotateOut()
-        settingstooltip.visibility = View.INVISIBLE
+        activity_main_settings_icon.fadeRotateOut()
+        activity_main_settings_icon.visibility = View.INVISIBLE
         settingsIconShown = false
     }
 

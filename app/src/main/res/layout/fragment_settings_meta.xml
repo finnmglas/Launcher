@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/container"
+    android:id="@+id/fragment_settings_meta_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="?attr/colorPrimary"
@@ -11,34 +12,34 @@
     android:paddingTop="16sp"
     android:paddingLeft="32sp"
     android:paddingRight="32sp"
-    tools:context=".SettingsActivity">
+    tools:context=".settings.SettingsFragmentMeta">
 
     <Button
+        android:id="@+id/fragment_settings_meta_select_launcher_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="setLauncher"
         android:text="@string/settings_select_launcher"
         android:textAllCaps="false" />
 
     <Button
+        android:id="@+id/fragment_settings_meta_view_tutorial_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="viewTutorial"
         android:text="@string/settings_show_tutorial"
         android:textAllCaps="false" />
 
     <Button
+        android:id="@+id/fragment_settings_meta_reset_settings_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="32sp"
-        android:onClick="resetSettingsClick"
         android:text="@string/settings_reset"
         android:textAllCaps="false" />
 
     <Button
+        android:id="@+id/fragment_settings_meta_rate_app_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="rateApp"
         android:text="@string/settings_feedback"
         android:textAllCaps="false" />
 
@@ -49,21 +50,23 @@
         android:orientation="horizontal">
 
         <TextView
+            android:id="@+id/fragment_settings_meta_footer_by_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/settings_footer_by"
             android:textSize="18sp" />
 
         <TextView
+            android:id="@+id/fragment_settings_meta_footer_website_link"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="openFinnWebsite"
             android:text=" Finn M Glas"
             android:textColor="?attr/colorAccent"
             android:textSize="18sp"
             tools:ignore="HardcodedText" />
 
         <TextView
+            android:id="@+id/fragment_settings_meta_footer_pipe_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text=" | "
@@ -71,9 +74,9 @@
             tools:ignore="HardcodedText" />
 
         <TextView
+            android:id="@+id/fragment_settings_meta_footer_github_link"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="openGithubRepo"
             android:text="Open Source"
             android:textColor="?attr/colorAccent"
             android:textSize="18sp"
