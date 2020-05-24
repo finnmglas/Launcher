@@ -2,8 +2,10 @@ package com.finnmglas.launcher
 
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.os.AsyncTask
 import android.os.Bundle
+import android.provider.MediaStore
 import android.util.DisplayMetrics
 import android.view.*
 import androidx.appcompat.app.AppCompatActivity
@@ -51,8 +53,14 @@ class MainActivity : AppCompatActivity(),
 
         currentTheme = getSavedTheme(this)
 
-        if (currentTheme == "custom" && background == null)
-            currentTheme = saveTheme(this, "finn")
+        if (currentTheme == "custom") {
+            try {
+                background = MediaStore.Images.Media.getBitmap(this.contentResolver, Uri.parse(sharedPref.getString("background_uri", "")))
+            } catch (e: Exception) {  }
+
+            if (background == null)
+                currentTheme = saveTheme(this, "finn")
+        }
 
         setTheme(
             when (currentTheme) {

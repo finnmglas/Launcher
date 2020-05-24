@@ -1,7 +1,9 @@
 package com.finnmglas.launcher.settings
 
 import android.Manifest
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
@@ -92,6 +94,13 @@ class SettingsFragmentTheme : Fragment() {
             if (data == null) return
 
             val imageUri = data.data
+
+            /* Save image Uri as string */
+            val editor: SharedPreferences.Editor = context!!.getSharedPreferences(
+                context!!.getString(R.string.preference_file_key), Context.MODE_PRIVATE).edit()
+            editor.putString("background_uri", imageUri.toString())
+            editor.apply()
+
             background = MediaStore.Images.Media.getBitmap(this.context!!.contentResolver, imageUri)
 
             saveTheme(this.context!!, "custom")
