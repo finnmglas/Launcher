@@ -39,6 +39,8 @@ class SettingsFragmentMeta : Fragment() {
             setButtonColor(fragment_settings_meta_select_launcher_btn, vibrantColor)
             setButtonColor(fragment_settings_meta_view_tutorial_btn, vibrantColor)
             setButtonColor(fragment_settings_meta_reset_settings_btn, vibrantColor)
+            setButtonColor(fragment_settings_meta_contact_btn, vibrantColor)
+            setButtonColor(fragment_settings_meta_donate_btn, vibrantColor)
 
             fragment_settings_meta_footer_play_icon.setTextColor(vibrantColor)
             fragment_settings_meta_footer_github_icon.setTextColor(vibrantColor)
@@ -113,6 +115,16 @@ class SettingsFragmentMeta : Fragment() {
         }*/
         fragment_settings_meta_footer_globe_icon.setOnClickListener {
             openNewTabWindow(getString(R.string.settings_footer_web), this.context!!)
+        }
+
+        // contact developer
+        fragment_settings_meta_contact_btn.setOnClickListener {
+            openNewTabWindow(getString(R.string.settings_meta_contact_url), context!!)
+        }
+
+        // donate
+        fragment_settings_meta_donate_btn.setOnClickListener {
+            openNewTabWindow(getString(R.string.settings_meta_donate_url), context!!)
         }
 
         super.onStart()

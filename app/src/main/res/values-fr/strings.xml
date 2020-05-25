@@ -37,9 +37,12 @@
     <string name="settings_select_image">Changer Image</string>
     <string name="settings_theme_examples">Examples</string>
 
-    <string name="settings_footer_by">Par</string>
     <string name="settings_footer_web">https://www.finnmglas.com/fr/</string>
     <string name="settings_footer_repo">https://github.com/finnmglas/Launcher</string>
+
+    <string name="settings_meta_contact">Contacter le développeur</string>
+    <string name="settings_meta_contact_url">https://www.finnmglas.com/fr/contact/</string>
+    <string name="settings_meta_donate">Faire un don</string>
 
     <!-- Choose Activity -->
     <string name="choose_title">Choisir App</string>
