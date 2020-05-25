@@ -38,9 +38,16 @@ Below you can also find some gorgeose [examples of custom themes](#custom).
 
 **-> [DOWNLOAD][wallpaper-3] (created by [Finn M Glas][creator-3])**
 
+## Your Custom Theme
+
+Once you downloaded the app ([here][download]), you can select your own
+image. The application then generates a user interface from that chosen image.
+
 ---
 
-I hope you enjoy using this app (or [download it now](https://play.google.com/store/apps/details?id=com.finnmglas.launcher)) - the themes make it even better ^^
+I hope you enjoy using this app (or [download it now][download]) - the themes make it even better ^^
+
+[download]: https://play.google.com/store/apps/details?id=com.finnmglas.launcher
 
 [wallpaper-1]: https://images.pexels.com/photos/1906658/pexels-photo-1906658.jpeg?cs=srgb&dl=silhouette-photography-of-person-under-starry-sky-1906658.jpg&fm=jpg
 [creator-1]: https://www.instagram.com/egilsjoholt_photo/
