@@ -43,6 +43,7 @@ class SettingsFragmentTheme : Fragment() {
                 setButtonColor(fragment_settings_theme_select_finn_btn, vibrantColor)
                 setButtonColor(fragment_settings_theme_select_dark_btn, vibrantColor)
                 setButtonColor(fragment_settings_theme_select_custom_btn, vibrantColor)
+                setButtonColor(fragment_settings_theme_custom_examples_btn, vibrantColor)
             }
         }
 
@@ -69,6 +70,10 @@ class SettingsFragmentTheme : Fragment() {
                 }
             }
             else letUserPickImage()
+        }
+        fragment_settings_theme_custom_examples_btn.setOnClickListener {
+            // Show example usage
+            openNewTabWindow("https://github.com/finnmglas/Launcher/blob/master/docs/README.md", context!!)
         }
 
         super.onStart()
