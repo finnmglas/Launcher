@@ -43,6 +43,7 @@
 
     <string name="settings_select_theme">Select</string>
     <string name="settings_select_image">Change Image</string>
+    <string name="settings_theme_examples">Examples</string>
 
     <string name="settings_footer_by">By</string>
     <string name="settings_footer_repo">https://github.com/finnmglas/Launcher#en</string>

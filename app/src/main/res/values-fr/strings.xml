@@ -35,6 +35,7 @@
 
     <string name="settings_select_theme">Choisir</string>
     <string name="settings_select_image">Changer Image</string>
+    <string name="settings_theme_examples">Examples</string>
 
     <string name="settings_footer_by">Par</string>
     <string name="settings_footer_web">https://www.finnmglas.com/fr/</string>
