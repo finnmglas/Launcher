@@ -34,7 +34,7 @@ class SettingsActivity : AppCompatActivity() {
             when (getSavedTheme(this)) {
                 "dark" -> R.style.darkTheme
                 "finn" -> R.style.finnmglasTheme
-                else -> R.style.finnmglasTheme
+                else -> R.style.customTheme
             }
         )
 
