@@ -40,6 +40,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32sp"
+        android:layout_marginBottom="32sp"
         android:gravity="center"
         android:orientation="horizontal">
 
@@ -92,5 +93,20 @@
             custom:type="solid" />
 
     </LinearLayout>
+
+    <Button
+        android:id="@+id/fragment_settings_meta_contact_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32sp"
+        android:text="@string/settings_meta_contact"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/fragment_settings_meta_donate_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/settings_meta_donate"
+        android:textAllCaps="false" />
 
 </LinearLayout>

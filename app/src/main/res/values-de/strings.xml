@@ -37,9 +37,12 @@
     <string name="settings_theme_examples">Beispiele</string>
     <string name="settings_select_image">Bild ändern</string>
 
-    <string name="settings_footer_by">Von</string>
     <string name="settings_footer_repo">https://github.com/finnmglas/Launcher#de</string>
     <string name="settings_footer_web">https://www.finnmglas.com/de/</string>
+
+    <string name="settings_meta_contact">Entwickler kontaktieren</string>
+    <string name="settings_meta_contact_url">https://www.finnmglas.com/de/kontakt/</string>
+    <string name="settings_meta_donate">Finanziell unterstützen</string>
 
     <!-- Choose Activity -->
     <string name="choose_title">App wählen</string>

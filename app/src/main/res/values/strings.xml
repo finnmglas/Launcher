@@ -45,9 +45,13 @@
     <string name="settings_select_image">Change Image</string>
     <string name="settings_theme_examples">Examples</string>
 
-    <string name="settings_footer_by">By</string>
     <string name="settings_footer_repo">https://github.com/finnmglas/Launcher#en</string>
     <string name="settings_footer_web">https://www.finnmglas.com</string>
+
+    <string name="settings_meta_contact">Contact the developer</string>
+    <string name="settings_meta_contact_url">https://www.finnmglas.com/contact/</string>
+    <string name="settings_meta_donate">Make a donation</string>
+    <string name="settings_meta_donate_url" translatable="false">https://www.paypal.me/finnmglas</string>
 
     <!-- Choose Activity -->
     <string name="choose_title">Choose App</string>
