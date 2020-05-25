@@ -66,7 +66,7 @@ class MainActivity : AppCompatActivity(),
             when (currentTheme) {
                 "dark" -> R.style.darkTheme
                 "finn" -> R.style.finnmglasTheme
-                else -> R.style.finnmglasTheme
+                else -> R.style.customTheme
             }
         )
         setContentView(R.layout.activity_main)

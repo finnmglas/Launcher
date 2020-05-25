@@ -8,10 +8,7 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import android.content.pm.ResolveInfo
-import android.graphics.Bitmap
-import android.graphics.BlendMode
-import android.graphics.BlendModeColorFilter
-import android.graphics.PorterDuff
+import android.graphics.*
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -325,6 +322,9 @@ fun getDominantColor(bitmap: Bitmap?): Int {
 fun setButtonColor(btn: Button, color: Int) {
     if (Build.VERSION.SDK_INT >= 29)
         btn.background.colorFilter = BlendModeColorFilter(color, BlendMode.MULTIPLY)
-    else
-        btn.background.setColorFilter(color, PorterDuff.Mode.MULTIPLY)
+    else {
+        // not setting it here, unable to find a good alternative
+        // I tried:
+        // btn.background.colorFilter = PorterDuffColorFilter(color, PorterDuff.Mode.SRC_ATOP)
+    }
 }
