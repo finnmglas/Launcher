@@ -40,8 +40,15 @@ You commit your changes / improvements to that _branch_ and open a new _pull req
 
 If you feel like **this app delivers incredible value to you**, you can also [support me on PayPal][financial]. I will make every cent work for the good of human kind. I consider this the purpose of my existence.
 
+---
 
------
+**Used wallpaper images:**
+
++ [Silhouette in front of starry sky][wallpaper-1] (by [Egil Sjøholt][creator-1])
++ [Multicolored Hallway][wallpaper-2] (by [Efe Can Kurnaz][creator-2])
++ [Red Sunset][wallpaper-3] (by [Finn M Glas][creator-3])
+
+---
 
 # <a name="de"></a> Launcher
 
@@ -93,3 +100,11 @@ Wenn findest, dass diese App **sehr wertvoll für dich** ist, kannst du [mich au
 [joingh]: https://github.com/join
 [newissue]: https://github.com/finnmglas/Launcher/issues/new/choose
 [theme-examples]: https://github.com/finnmglas/Launcher/blob/master/docs/README.md
+
+
+[wallpaper-1]: https://images.pexels.com/photos/1906658/pexels-photo-1906658.jpeg?cs=srgb&dl=silhouette-photography-of-person-under-starry-sky-1906658.jpg&fm=jpg
+[creator-1]: https://www.instagram.com/egilsjoholt_photo/
+[wallpaper-2]: https://unsplash.com/photos/RnCPiXixooY/download?force=true
+[creator-2]: http://efeck.com/
+[wallpaper-3]: https://raw.githubusercontent.com/finnmglas/Launcher/master/docs/themes/wallpaper-by-finnmglas.jpg
+[creator-3]: https://www.finnmglas.com
