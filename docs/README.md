@@ -24,19 +24,19 @@ Below you can also find some gorgeose [examples of custom themes](#custom).
 
 <img src="https://raw.githubusercontent.com/finnmglas/Launcher/master/docs/themes/wallpaper1-home.jpg" width="45%" height="~"><img src="https://raw.githubusercontent.com/finnmglas/Launcher/master/docs/themes/wallpaper1-settings.jpg" width="45%" height="~">
 
-**-> [DOWNLOAD][wallpaper-1] (created by [Egil Sjøholt][creator-1])**
+**-> [DOWNLOAD][wallpaper-1] (picture by [Egil Sjøholt][creator-1])**
 
 ## Custom Theme Example 2
 
 <img src="https://raw.githubusercontent.com/finnmglas/Launcher/master/docs/themes/wallpaper2-home.jpg" width="45%" height="~"><img src="https://raw.githubusercontent.com/finnmglas/Launcher/master/docs/themes/wallpaper2-settings.jpg" width="45%" height="~">
 
-**-> [DOWNLOAD][wallpaper-2] (created by [Efe Can Kurnaz][creator-2])**
+**-> [DOWNLOAD][wallpaper-2] (picture by [Efe Can Kurnaz][creator-2])**
 
 ## Custom Theme Example 3
 
 <img src="https://raw.githubusercontent.com/finnmglas/Launcher/master/docs/themes/wallpaper3-home.jpg" width="45%" height="~"><img src="https://raw.githubusercontent.com/finnmglas/Launcher/master/docs/themes/wallpaper3-settings.jpg" width="45%" height="~">
 
-**-> [DOWNLOAD][wallpaper-3] (created by [Finn M Glas][creator-3])**
+**-> [DOWNLOAD][wallpaper-3] (picture by [Finn M Glas][creator-3])**
 
 ## Your Custom Theme
 
