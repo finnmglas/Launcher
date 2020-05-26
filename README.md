@@ -16,6 +16,10 @@ Your homescreen only shows the date and a clock. No distraction. All it takes to
 After you selected your most important Apps, you will spend way less time on your homescreen, trying to find them.
 One Swipe, one buttonpress - your App opens immediately.
 
+You can even customize it ([view theme examples][theme-examples]). You simply **choose a wallpaper and the app adjusts to it**.
+As this feature is quite new (since v1.2.0), please make sure to give some feedback on how it works ...
+you can also just use the builtin minimal themes.
+
 This app **costs you nothing** and is **ad-free**!
 So make the best of your time on the phone by using this Launcher ([download now][googleplay])!
 
@@ -53,6 +57,10 @@ Auf deinem Startbildschim siehst du lediglich die Uhrzeit und das Datum. Keine A
 Sobald du deine sinnvollsten Apps ausgewählt hast, wirst du keine Zeit mehr damit verlieren, sie unter all den anderen Apps zu suchen.
 Einmal Wischen, ein Knopfdruck - deine App öffnet sich sofort.
 
+Du kanns das Design auch personalisieren ([Beispiel-Themes)][theme-examples]).  **Du wählst dein Hintergrundbild und die App passt sich daran an**.
+Diese Funktion ist noch neu (seit v1.2.0), also kannst du mir gerne Feedback dazu geben!
+Du kannst aber auch einfach die integrierten minimalen und ablenkungsfreieren Themes verwenden.
+
 Diese App **kostet dich nichts** und enthält **keine Werbung**!
 Mache das Beste aus deiner Zeit am Handy indem du diesen Launcher verwendest ([jetzt herunterladen][googleplay])!
 
@@ -84,3 +92,4 @@ Wenn findest, dass diese App **sehr wertvoll für dich** ist, kannst du [mich au
 [fork]: https://github.com/finnmglas/Launcher/fork
 [joingh]: https://github.com/join
 [newissue]: https://github.com/finnmglas/Launcher/issues/new/choose
+[theme-examples]: https://github.com/finnmglas/Launcher/blob/master/docs/README.md
