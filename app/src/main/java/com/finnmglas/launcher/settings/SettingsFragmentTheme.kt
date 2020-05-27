@@ -111,6 +111,12 @@ class SettingsFragmentTheme : Fragment() {
                     dominantColor = palette.getDominantColor(ContextCompat.getColor(context!!, R.color.darkTheme_accent_color))
                     vibrantColor = palette.getVibrantColor(ContextCompat.getColor(context!!, R.color.darkTheme_accent_color))
 
+                    // never let dominantColor equal vibrantColor
+                    if(dominantColor == vibrantColor) {
+                        vibrantColor = manipulateColor(vibrantColor, 1.2F)
+                        dominantColor = manipulateColor(dominantColor, 0.8F)
+                    }
+
                     /* Save image Uri as string */
                     val editor: SharedPreferences.Editor = context!!.getSharedPreferences(
                         context!!.getString(R.string.preference_file_key), Context.MODE_PRIVATE).edit()

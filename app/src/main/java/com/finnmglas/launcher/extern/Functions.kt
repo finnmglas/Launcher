@@ -7,7 +7,10 @@ import android.content.DialogInterface
 import android.content.Intent
 import android.content.SharedPreferences
 import android.content.pm.PackageManager
-import android.graphics.*
+import android.graphics.Bitmap
+import android.graphics.BlendMode
+import android.graphics.BlendModeColorFilter
+import android.graphics.Color
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -17,6 +20,7 @@ import android.view.animation.*
 import android.widget.Button
 import android.widget.Toast
 import com.finnmglas.launcher.R
+import kotlin.math.roundToInt
 
 /** Variables for all of the app */
 var upApp = ""
@@ -316,5 +320,20 @@ fun setButtonColor(btn: Button, color: Int) {
         // not setting it here, unable to find a good alternative
         // I tried:
         // btn.background.colorFilter = PorterDuffColorFilter(color, PorterDuff.Mode.SRC_ATOP)
+        // TODO at some point (or you do it now)
     }
+}
+
+// Taken from: https://stackoverflow.com/a/33072575/12787264
+fun manipulateColor(color: Int, factor: Float): Int {
+    val a = Color.alpha(color)
+    val r = (Color.red(color) * factor).roundToInt()
+    val g = (Color.green(color) * factor).roundToInt()
+    val b = (Color.blue(color) * factor).roundToInt()
+    return Color.argb(
+        a,
+        r.coerceAtMost(255),
+        g.coerceAtMost(255),
+        b.coerceAtMost(255)
+    )
 }
