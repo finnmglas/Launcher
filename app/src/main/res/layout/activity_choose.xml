@@ -58,25 +58,19 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <ScrollView
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/activity_choose_apps_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="86dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
-        android:layout_marginBottom="16dp"
+        android:scrollbars="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/activity_choose_app_bar">
-
-        <LinearLayout
-            android:id="@+id/activity_choose_apps_list"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" />
-    </ScrollView>
+        app:layout_constraintTop_toBottomOf="@id/activity_choose_app_bar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

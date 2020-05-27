@@ -42,9 +42,8 @@ class SettingsFragmentApps : Fragment() {
             setButtonColor(fragment_settings_apps_choose_vol_up_btn, vibrantColor)
             setButtonColor(fragment_settings_apps_choose_vol_down_btn, vibrantColor)
 
-            setButtonColor(fragment_settings_apps_launch_btn, vibrantColor)
+            setButtonColor(fragment_settings_apps_btn, vibrantColor)
             setButtonColor(fragment_settings_apps_install_btn, vibrantColor)
-            setButtonColor(fragment_settings_apps_remove_btn, vibrantColor)
         }
 
         // Action - selecting buttons
@@ -56,9 +55,9 @@ class SettingsFragmentApps : Fragment() {
         fragment_settings_apps_choose_vol_down_btn.setOnClickListener{ chooseApp("volumeDownApp")}
 
         // App management buttons
-        fragment_settings_apps_launch_btn.setOnClickListener{
+        fragment_settings_apps_btn.setOnClickListener{
             val intent = Intent(this.context, ChooseActivity::class.java)
-            intent.putExtra("action", "launch")
+            intent.putExtra("action", "view")
             startActivity(intent)
         }
         fragment_settings_apps_install_btn.setOnClickListener{
@@ -71,11 +70,6 @@ class SettingsFragmentApps : Fragment() {
                 Toast.makeText(this.context, getString(R.string.settings_toast_store_not_found), Toast.LENGTH_SHORT)
                     .show()
             }
-        }
-        fragment_settings_apps_remove_btn.setOnClickListener{
-            val intent = Intent(this.context, ChooseActivity::class.java)
-            intent.putExtra("action", "uninstall")
-            startActivity(intent)
         }
 
         super.onStart()

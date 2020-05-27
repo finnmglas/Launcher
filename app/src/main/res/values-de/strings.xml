@@ -26,8 +26,7 @@
     <string name="settings_select_launcher">Launcher wählen</string>
     <string name="settings_reset">Zurücksetzen</string>
     <string name="settings_reset_message">All deine Einstellungen gehen verloren. Weitermachen?</string>
-    <string name="settings_launch">Apps öffnen</string>
-    <string name="settings_uninstall">Apps entfernen</string>
+    <string name="settings_apps">Alle Anwendungen</string>
     <string name="settings_install">Apps installieren</string>
     <string name="settings_home">Zurück</string>
 
@@ -46,8 +45,7 @@
 
     <!-- Choose Activity -->
     <string name="choose_title">App wählen</string>
-    <string name="choose_title_launch">Apps öffnen</string>
-    <string name="choose_title_remove">Apps entfernen</string>
+    <string name="choose_title_view">Alle Apps</string>
 
     <string name="choose_back_settings">Zurück</string>
 

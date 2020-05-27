@@ -10,6 +10,8 @@ import android.util.DisplayMetrics
 import android.view.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GestureDetectorCompat
+import androidx.recyclerview.widget.RecyclerView
+import com.finnmglas.launcher.choose.AppsRecyclerAdapter
 import com.finnmglas.launcher.extern.*
 import kotlinx.android.synthetic.main.activity_main.*
 import java.text.SimpleDateFormat
@@ -17,6 +19,9 @@ import java.util.*
 import kotlin.concurrent.fixedRateTimer
 import kotlin.math.abs
 
+// used for the apps drawer / menu (ChooseActivity)
+lateinit var viewAdapter: RecyclerView.Adapter<*>
+lateinit var viewManager: RecyclerView.LayoutManager
 
 class MainActivity : AppCompatActivity(),
     GestureDetector.OnGestureListener, GestureDetector.OnDoubleTapListener {
@@ -32,7 +37,6 @@ class MainActivity : AppCompatActivity(),
     // timers
     private var clockTimer = Timer()
     private var tooltipTimer = Timer()
-    private var loadAppsTimer = Timer()
 
     private var settingsIconShown = false
 
@@ -76,6 +80,9 @@ class MainActivity : AppCompatActivity(),
 
         // As older APIs somehow do not recognize the xml defined onClick
         activity_main_settings_icon.setOnClickListener() { openSettings() }
+
+        // Load apps list first - speed up settings that way
+        AsyncTask.execute { viewAdapter = AppsRecyclerAdapter( this, "", "") }
 
         // First Startup
         if (!sharedPref.getBoolean("startedBefore", false)){
@@ -125,18 +132,11 @@ class MainActivity : AppCompatActivity(),
                     activity_main_date_view.text = d
             }
         }
-
-        val pm = packageManager
-
-        loadAppsTimer = fixedRateTimer("loadAppsTimer", true, 0L, 30000) {
-            AsyncTask.execute { updateAppList(pm) }
-        }
     }
 
     override fun onPause() {
         super.onPause()
         clockTimer.cancel()
-        loadAppsTimer.cancel()
     }
 
     private fun openSettings(){

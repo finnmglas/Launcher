@@ -7,7 +7,6 @@ import android.content.DialogInterface
 import android.content.Intent
 import android.content.SharedPreferences
 import android.content.pm.PackageManager
-import android.content.pm.ResolveInfo
 import android.graphics.*
 import android.net.Uri
 import android.os.Build
@@ -29,8 +28,6 @@ var volumeDownApp = ""
 
 var calendarApp = ""
 var clockApp = ""
-
-var appsList : MutableList<ResolveInfo> = mutableListOf()
 
 var background : Bitmap? = null
 
@@ -124,13 +121,6 @@ fun isInstalled(uri: String, context: Context): Boolean {
     } catch (e: PackageManager.NameNotFoundException) {
     }
     return false
-}
-
-fun updateAppList(pm : PackageManager) {
-    val intent = Intent(Intent.ACTION_MAIN)
-        .addCategory(Intent.CATEGORY_LAUNCHER)
-    appsList = pm.queryIntentActivities(intent, 0)
-    appsList.sortBy { it.activityInfo.loadLabel(pm).toString() }
 }
 
 private fun getIntent(packageName: String, context: Context): Intent? {

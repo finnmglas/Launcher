@@ -160,10 +160,10 @@
     </TableLayout>
 
     <Button
-        android:id="@+id/fragment_settings_apps_launch_btn"
+        android:id="@+id/fragment_settings_apps_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/settings_launch"
+        android:text="@string/settings_apps"
         android:textAllCaps="false" />
 
     <Button
@@ -173,10 +173,4 @@
         android:text="@string/settings_install"
         android:textAllCaps="false" />
 
-    <Button
-        android:id="@+id/fragment_settings_apps_remove_btn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/settings_uninstall"
-        android:textAllCaps="false" />
 </LinearLayout>
