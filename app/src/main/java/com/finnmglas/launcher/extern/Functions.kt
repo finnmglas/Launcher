@@ -30,6 +30,7 @@ var leftApp = ""
 var volumeUpApp = ""
 var volumeDownApp = ""
 var doubleClickApp = ""
+var longClickApp = ""
 
 var calendarApp = ""
 var clockApp = ""
@@ -212,6 +213,7 @@ fun loadSettings(sharedPref : SharedPreferences){
     volumeDownApp = sharedPref.getString("action_volumeDownApp", "").toString()
 
     doubleClickApp = sharedPref.getString("action_doubleClickApp", "").toString()
+    longClickApp = sharedPref.getString("action_longClickApp", "").toString()
 
     calendarApp = sharedPref.getString("action_calendarApp", "").toString()
     clockApp = sharedPref.getString("action_clockApp", "").toString()
@@ -271,6 +273,9 @@ fun resetSettings(sharedPref : SharedPreferences, context: Context) : MutableLis
     )
     editor.putString("action_volumeDownApp", chosenVolumeDownPackage)
     defaultList.add(chosenVolumeDownName)
+
+    editor.putString("action_doubleClickApp", "")
+    editor.putString("action_longClickApp", "")
 
     val (_, chosenClockPackage) = pickDefaultApp(
         "action_clockApp",

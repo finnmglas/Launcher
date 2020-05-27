@@ -175,7 +175,9 @@ class MainActivity : AppCompatActivity(),
         return true
     }
 
-    override fun onLongPress(event: MotionEvent) { openSettings() }
+    override fun onLongPress(event: MotionEvent) {
+        launchApp(longClickApp, this)
+    }
 
     override fun onDoubleTap(event: MotionEvent): Boolean {
         launchApp(doubleClickApp, this)

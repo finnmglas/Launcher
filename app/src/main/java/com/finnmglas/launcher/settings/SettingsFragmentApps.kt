@@ -42,6 +42,7 @@ class SettingsFragmentApps : Fragment() {
             setButtonColor(fragment_settings_apps_choose_vol_up_btn, vibrantColor)
             setButtonColor(fragment_settings_apps_choose_vol_down_btn, vibrantColor)
             setButtonColor(fragment_settings_apps_choose_double_click_btn, vibrantColor)
+            setButtonColor(fragment_settings_apps_choose_long_click_btn, vibrantColor)
 
             setButtonColor(fragment_settings_apps_btn, vibrantColor)
             setButtonColor(fragment_settings_apps_install_btn, vibrantColor)
@@ -55,6 +56,7 @@ class SettingsFragmentApps : Fragment() {
         fragment_settings_apps_choose_vol_up_btn.setOnClickListener{ chooseApp("volumeUpApp")}
         fragment_settings_apps_choose_vol_down_btn.setOnClickListener{ chooseApp("volumeDownApp")}
         fragment_settings_apps_choose_double_click_btn.setOnClickListener { chooseApp("doubleClickApp") }
+        fragment_settings_apps_choose_long_click_btn.setOnClickListener { chooseApp("longClickApp") }
 
         // App management buttons
         fragment_settings_apps_btn.setOnClickListener{
