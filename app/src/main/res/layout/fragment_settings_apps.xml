@@ -157,6 +157,52 @@
 
         </TableRow>
 
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/fragment_settings_apps_choose_double_click_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10sp"
+                android:paddingRight="10sp"
+                android:text="@string/settings_choose_double_click"
+                android:textSize="20sp" />
+
+            <Button
+                android:id="@+id/fragment_settings_apps_choose_double_click_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/settings_choose_btn"
+                android:textAllCaps="false" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/fragment_settings_apps_choose_long_click_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10sp"
+                android:paddingRight="10sp"
+                android:text="@string/settings_choose_long_click"
+                android:textSize="20sp" />
+
+            <Button
+                android:id="@+id/fragment_settings_apps_choose_long_click_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/settings_choose_btn"
+                android:textAllCaps="false" />
+
+        </TableRow>
+
     </TableLayout>
 
     <Button

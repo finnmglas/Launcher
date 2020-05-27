@@ -21,6 +21,8 @@
     <string name="settings_choose_right">Balayez droit</string>
     <string name="settings_choose_vol_up">Monter volume</string>
     <string name="settings_choose_vol_down">Baisser volume</string>
+    <string name="settings_choose_double_click">Double clic</string>
+    <string name="settings_choose_long_click">Clic long</string>
 
     <string name="settings_choose_btn">Choisir App</string>
     <string name="settings_select_launcher">Choisir Launcher</string>

@@ -8,7 +8,6 @@ import android.view.WindowManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.finnmglas.launcher.choose.AppsRecyclerAdapter
 import com.finnmglas.launcher.extern.*
 import kotlinx.android.synthetic.main.activity_choose.*

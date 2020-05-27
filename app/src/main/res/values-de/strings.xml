@@ -21,6 +21,8 @@
     <string name="settings_choose_right">Rechtswischen</string>
     <string name="settings_choose_vol_up">Lautstärke +</string>
     <string name="settings_choose_vol_down">Lautstärke -</string>
+    <string name="settings_choose_double_click">Doppelklick</string>
+    <string name="settings_choose_long_click">Langer Klick</string>
 
     <string name="settings_choose_btn">App wählen</string>
     <string name="settings_select_launcher">Launcher wählen</string>

@@ -65,7 +65,6 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:onClick="clickAnywhere"
-        android:textColor="#ccc"
         android:textSize="64sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
