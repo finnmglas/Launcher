@@ -66,15 +66,11 @@ class ChooseActivity : AppCompatActivity() {
         }
     }
 
-    /*
-    }*/
-
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == REQUEST_UNINSTALL) {
             if (resultCode == Activity.RESULT_OK) {
                 Toast.makeText(this, getString(R.string.choose_removed_toast), Toast.LENGTH_LONG).show()
-                updateAppList(packageManager)
                 finish()
             } else if (resultCode == Activity.RESULT_FIRST_USER) {
                 Toast.makeText(this, getString(R.string.choose_not_removed_toast), Toast.LENGTH_LONG).show()

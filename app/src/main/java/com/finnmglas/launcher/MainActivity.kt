@@ -32,7 +32,6 @@ class MainActivity : AppCompatActivity(),
     // timers
     private var clockTimer = Timer()
     private var tooltipTimer = Timer()
-    private var loadAppsTimer = Timer()
 
     private var settingsIconShown = false
 
@@ -125,18 +124,11 @@ class MainActivity : AppCompatActivity(),
                     activity_main_date_view.text = d
             }
         }
-
-        val pm = packageManager
-
-        loadAppsTimer = fixedRateTimer("loadAppsTimer", true, 0L, 30000) {
-            AsyncTask.execute { updateAppList(pm) }
-        }
     }
 
     override fun onPause() {
         super.onPause()
         clockTimer.cancel()
-        loadAppsTimer.cancel()
     }
 
     private fun openSettings(){

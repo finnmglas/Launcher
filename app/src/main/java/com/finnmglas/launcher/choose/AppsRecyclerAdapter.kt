@@ -10,7 +10,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.finnmglas.launcher.R
 import com.finnmglas.launcher.extern.*
@@ -36,8 +35,6 @@ class AppsRecyclerAdapter(val activity: Activity, val action: String?, val forAp
                     val launchIntent: Intent = context.packageManager
                         .getLaunchIntentForPackage(appPackageName)!!
                     context.startActivity(launchIntent)
-                    Toast.makeText(v.context, appsList[pos].label.toString(), Toast.LENGTH_LONG)
-                        .show()
                 }
                 "pick" -> {
                     val returnIntent = Intent()
