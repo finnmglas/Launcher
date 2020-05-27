@@ -93,5 +93,6 @@ class AppsRecyclerAdapter(val activity: Activity, val action: String?, val forAp
             app.icon = ri.activityInfo.loadIcon(pm)
             appsList.add(app)
         }
+        appsList.sortBy { it.label.toString() }
     }
 }
