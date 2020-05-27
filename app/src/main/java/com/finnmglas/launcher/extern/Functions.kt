@@ -29,6 +29,7 @@ var rightApp = ""
 var leftApp = ""
 var volumeUpApp = ""
 var volumeDownApp = ""
+var doubleClickApp = ""
 
 var calendarApp = ""
 var clockApp = ""
@@ -40,10 +41,10 @@ var vibrantColor = 0
 
 /** REQUEST CODES */
 
-val REQUEST_PICK_IMAGE = 1
-val REQUEST_CHOOSE_APP = 2
-val REQUEST_UNINSTALL = 3
-val REQUEST_PERMISSION_STORAGE = 4
+const val REQUEST_PICK_IMAGE = 1
+const val REQUEST_CHOOSE_APP = 2
+const val REQUEST_UNINSTALL = 3
+const val REQUEST_PERMISSION_STORAGE = 4
 
 /** Animate */
 
@@ -209,6 +210,8 @@ fun loadSettings(sharedPref : SharedPreferences){
     leftApp = sharedPref.getString("action_leftApp", "").toString()
     volumeUpApp = sharedPref.getString("action_volumeUpApp", "").toString()
     volumeDownApp = sharedPref.getString("action_volumeDownApp", "").toString()
+
+    doubleClickApp = sharedPref.getString("action_doubleClickApp", "").toString()
 
     calendarApp = sharedPref.getString("action_calendarApp", "").toString()
     clockApp = sharedPref.getString("action_clockApp", "").toString()

@@ -29,6 +29,7 @@
     <string name="settings_choose_right">Swipe Right</string>
     <string name="settings_choose_vol_up">Volume Up</string>
     <string name="settings_choose_vol_down">Volume Down</string>
+    <string name="settings_choose_double_click">Double Click</string>
     <string name="settings_choose_btn">Choose App</string>
 
     <string name="settings_select_launcher">Select Launcher</string>

@@ -177,6 +177,11 @@ class MainActivity : AppCompatActivity(),
 
     override fun onLongPress(event: MotionEvent) { openSettings() }
 
+    override fun onDoubleTap(event: MotionEvent): Boolean {
+        launchApp(doubleClickApp, this)
+        return false
+    }
+
     // Tooltip
     override fun onSingleTapConfirmed(event: MotionEvent): Boolean {
         when(settingsIconShown) {
@@ -213,7 +218,6 @@ class MainActivity : AppCompatActivity(),
 
     /* TODO: Remove those. For now they are necessary
      *  because this inherits from GestureDetector.OnGestureListener */
-    override fun onDoubleTap(event: MotionEvent): Boolean { return false }
     override fun onDoubleTapEvent(event: MotionEvent): Boolean { return false }
     override fun onDown(event: MotionEvent): Boolean { return false }
     override fun onScroll(e1: MotionEvent, e2: MotionEvent, dX: Float, dY: Float): Boolean { return false }
