@@ -16,9 +16,6 @@ import kotlinx.android.synthetic.main.activity_choose.*
 
 class ChooseActivity : AppCompatActivity() {
 
-    private lateinit var viewAdapter: RecyclerView.Adapter<*>
-    private lateinit var viewManager: RecyclerView.LayoutManager
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -49,9 +46,8 @@ class ChooseActivity : AppCompatActivity() {
         val forApp = bundle.getString("forApp") // which app we choose
 
         when (action) {
-            "launch" -> activity_choose_heading.text = getString(R.string.choose_title_launch)
+            "view" -> activity_choose_heading.text = getString(R.string.choose_title_view)
             "pick" -> activity_choose_heading.text = getString(R.string.choose_title)
-            "uninstall" -> activity_choose_heading.text = getString(R.string.choose_title_remove)
         }
 
         // set up the list / recycler

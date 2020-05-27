@@ -26,9 +26,8 @@
     <string name="settings_select_launcher">Choisir Launcher</string>
     <string name="settings_reset">Réinitialiser</string>
     <string name="settings_reset_message">Vous allez supprimer toutes vos préférences. Continuer?</string>
-    <string name="settings_launch">Lancer apps</string>
-    <string name="settings_uninstall">Désinstaller apps</string>
-    <string name="settings_install">Installer apps</string>
+    <string name="settings_apps">Toutes les applications</string>
+    <string name="settings_install">Installer applications</string>
     <string name="settings_home">Retourner</string>
 
     <string name="settings_toast_store_not_found">Pas trouvé le PlayStore</string>
@@ -46,8 +45,7 @@
 
     <!-- Choose Activity -->
     <string name="choose_title">Choisir App</string>
-    <string name="choose_title_launch">Lancer Apps</string>
-    <string name="choose_title_remove">Désinstaller</string>
+    <string name="choose_title_view">Applications</string>
 
     <string name="choose_back_settings">Retourner</string>
 

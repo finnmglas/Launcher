@@ -3,6 +3,7 @@ package com.finnmglas.launcher.choose
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.view.LayoutInflater
@@ -12,7 +13,9 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.finnmglas.launcher.R
-import com.finnmglas.launcher.extern.*
+import com.finnmglas.launcher.extern.FontAwesome
+import com.finnmglas.launcher.extern.REQUEST_CHOOSE_APP
+import com.finnmglas.launcher.extern.REQUEST_UNINSTALL
 
 
 class AppsRecyclerAdapter(val activity: Activity, val action: String?, val forApp: String?):
@@ -24,6 +27,7 @@ class AppsRecyclerAdapter(val activity: Activity, val action: String?, val forAp
         View.OnClickListener {
         var textView: TextView = itemView.findViewById(R.id.choose_row_app_name)
         var img: ImageView = itemView.findViewById(R.id.choose_row_app_icon) as ImageView
+        var delete: FontAwesome = itemView.findViewById(R.id.choose_row_app_delete)
 
         override fun onClick(v: View) {
             val pos = adapterPosition
@@ -31,7 +35,7 @@ class AppsRecyclerAdapter(val activity: Activity, val action: String?, val forAp
             val appPackageName = appsList[pos].packageName.toString()
 
             when (action){
-                "launch" -> {
+                "view" -> {
                     val launchIntent: Intent = context.packageManager
                         .getLaunchIntentForPackage(appPackageName)!!
                     context.startActivity(launchIntent)
@@ -43,12 +47,6 @@ class AppsRecyclerAdapter(val activity: Activity, val action: String?, val forAp
                     activity.setResult(REQUEST_CHOOSE_APP, returnIntent)
                     activity.finish()
                 }
-                "uninstall" -> {
-                    val intent = Intent(Intent.ACTION_UNINSTALL_PACKAGE)
-                    intent.data = Uri.parse("package:$appPackageName")
-                    intent.putExtra(Intent.EXTRA_RETURN_RESULT, true)
-                    activity.startActivityForResult(intent, REQUEST_UNINSTALL)
-                }
             }
         }
 
@@ -57,12 +55,21 @@ class AppsRecyclerAdapter(val activity: Activity, val action: String?, val forAp
 
     override fun onBindViewHolder(viewHolder: ViewHolder, i: Int) {
         val appLabel = appsList[i].label.toString()
-        val appPackage = appsList[i].packageName.toString()
+        val appPackageName = appsList[i].packageName.toString()
         val appIcon = appsList[i].icon
-        val textView = viewHolder.textView
-        textView.text = appLabel
-        val imageView: ImageView = viewHolder.img
-        imageView.setImageDrawable(appIcon)
+        val isSystemApp = appsList[i].isSystemApp
+
+        viewHolder.textView.text = appLabel
+        viewHolder.img.setImageDrawable(appIcon)
+
+        viewHolder.delete.setOnClickListener{
+            val intent = Intent(Intent.ACTION_UNINSTALL_PACKAGE)
+            intent.data = Uri.parse("package:$appPackageName")
+            intent.putExtra(Intent.EXTRA_RETURN_RESULT, true)
+            activity.startActivityForResult(intent, REQUEST_UNINSTALL)
+        }
+
+        viewHolder.delete.visibility = if(isSystemApp || action == "pick") View.INVISIBLE else View.VISIBLE
     }
 
     override fun getItemCount(): Int { return appsList.size }

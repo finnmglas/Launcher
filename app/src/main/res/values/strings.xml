@@ -34,9 +34,8 @@
     <string name="settings_select_launcher">Select Launcher</string>
     <string name="settings_reset">Reset Settings</string>
     <string name="settings_reset_message">You are going to discard all your preferences. Continue?</string>
-    <string name="settings_launch">Launch Apps</string>
-    <string name="settings_uninstall">Uninstall Apps</string>
-    <string name="settings_install">Install Apps</string>
+    <string name="settings_apps">View all apps</string>
+    <string name="settings_install">Install apps</string>
     <string name="settings_home">Back Home</string>
 
     <string name="settings_toast_store_not_found">PlayStore not found</string>
@@ -55,8 +54,7 @@
 
     <!-- Choose Activity -->
     <string name="choose_title">Choose App</string>
-    <string name="choose_title_launch">Launch Apps</string>
-    <string name="choose_title_remove">Uninstall Apps</string>
+    <string name="choose_title_view">All Apps</string>
 
     <string name="choose_back_settings">Back to Settings</string>
 
