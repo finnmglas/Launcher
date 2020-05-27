@@ -1,6 +1,6 @@
-[<img src="https://github.com/finnmglas/Launcher/blob/master/docs/img/Play-function-graphic.jpg" width="98%" height="~" />][googleplay]
+[<img src="https://raw.githubusercontent.com/finnmglas/Launcher/master/docs/img/Play-function-graphic.jpg" width="98%" height="~" />][googleplay]
 
-[<img src="https://github.com/finnmglas/Launcher/blob/master/docs/img/Play-1.jpg" width="32%" height="~" /> <img src="https://github.com/finnmglas/Launcher/blob/master/docs/img/Play-2.jpg" width="32%" height="~" /> <img src="https://github.com/finnmglas/Launcher/blob/master/docs/img/Play-3.jpg" width="32%" height="~" />][googleplay]
+[<img src="https://raw.githubusercontent.com/finnmglas/Launcher/master/docs/img/Play-1.jpg" width="32%" height="~" /> <img src="https://raw.githubusercontent.com/finnmglas/Launcher/master/docs/img/Play-2.jpg" width="32%" height="~" /> <img src="https://raw.githubusercontent.com/finnmglas/Launcher/master/docs/img/Play-3.jpg" width="32%" height="~" />][googleplay]
 
 # <a name="en"></a> Launcher
 
