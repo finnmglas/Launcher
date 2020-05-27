@@ -2,21 +2,22 @@ package com.finnmglas.launcher
 
 import android.app.Activity
 import android.content.Intent
-import android.graphics.Color
-import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
-import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.finnmglas.launcher.choose.AppsRecyclerAdapter
 import com.finnmglas.launcher.extern.*
 import kotlinx.android.synthetic.main.activity_choose.*
 
 
 class ChooseActivity : AppCompatActivity() {
 
-    /** Activity Lifecycle functions */
+    private lateinit var viewAdapter: RecyclerView.Adapter<*>
+    private lateinit var viewManager: RecyclerView.LayoutManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,56 +43,31 @@ class ChooseActivity : AppCompatActivity() {
         // As older APIs somehow do not recognize the xml defined onClick
         activity_choose_close.setOnClickListener() { finish() }
 
+        // get info about which action this activity is open for
         val bundle = intent.extras
         val action = bundle!!.getString("action") // why choose an app
         val forApp = bundle.getString("forApp") // which app we choose
 
-        if (action == "launch")
-            activity_choose_heading.text = getString(R.string.choose_title_launch)
-        else if (action == "pick")
-            activity_choose_heading.text = getString(R.string.choose_title)
-        else if (action == "uninstall")
-            activity_choose_heading.text = getString(R.string.choose_title_remove)
+        when (action) {
+            "launch" -> activity_choose_heading.text = getString(R.string.choose_title_launch)
+            "pick" -> activity_choose_heading.text = getString(R.string.choose_title)
+            "uninstall" -> activity_choose_heading.text = getString(R.string.choose_title_remove)
+        }
 
-        /* Build Layout */
+        // set up the list / recycler
+        viewManager = LinearLayoutManager(this)
+        viewAdapter = AppsRecyclerAdapter( this, action, forApp)
 
-        for (resolveInfo in appsList) {
-            val app = resolveInfo.activityInfo
-
-            // creating TextView programmatically
-            val tvdynamic = TextView(this)
-            tvdynamic.textSize = 24f
-            tvdynamic.text = app.loadLabel(packageManager).toString()
-            tvdynamic.setTextColor(Color.parseColor("#cccccc"))
-
-            if (action == "launch"){
-                tvdynamic.setOnClickListener { startActivity(packageManager.getLaunchIntentForPackage(app.packageName)) }
-            }
-            else if (action == "pick"){
-                tvdynamic.setOnClickListener {
-                    val returnIntent = Intent()
-                    returnIntent.putExtra("value", app.packageName)
-                    returnIntent.putExtra("forApp", forApp)
-                    setResult(
-                        REQUEST_CHOOSE_APP,
-                        returnIntent
-                    )
-                    finish()
-                }
-            }
-            else if (action == "uninstall"){
-                tvdynamic.setOnClickListener {
-                    val intent = Intent(Intent.ACTION_UNINSTALL_PACKAGE)
-                    intent.data = Uri.parse("package:" + app.packageName)
-                    intent.putExtra(Intent.EXTRA_RETURN_RESULT, true)
-                    startActivityForResult(intent,
-                        REQUEST_UNINSTALL
-                    )
-                }
-            }
-            activity_choose_apps_list.addView(tvdynamic)
+        activity_choose_apps_recycler_view.apply {
+            // improve performance (since content changes don't change the layout size)
+            setHasFixedSize(true)
+            layoutManager = viewManager
+            adapter = viewAdapter
         }
     }
+
+    /*
+    }*/
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
