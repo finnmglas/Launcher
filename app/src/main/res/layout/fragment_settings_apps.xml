@@ -25,7 +25,8 @@
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center">
+            android:gravity="center"
+            android:minHeight="@dimen/app_action_height">
 
             <TextView
                 android:id="@+id/fragment_settings_apps_text_up"
@@ -39,7 +40,7 @@
             <ImageView
                 android:id="@+id/fragment_settings_apps_up_icon"
                 android:layout_width="wrap_content"
-                android:layout_height="48dip"
+                android:layout_height="@dimen/app_icon_side"
                 android:visibility="gone"
                 tools:ignore="ContentDescription" />
 
@@ -56,7 +57,8 @@
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center">
+            android:gravity="center"
+            android:minHeight="@dimen/app_action_height">
 
             <TextView
                 android:id="@+id/fragment_settings_apps_choose_down_text"
@@ -70,7 +72,7 @@
             <ImageView
                 android:id="@+id/fragment_settings_apps_down_icon"
                 android:layout_width="wrap_content"
-                android:layout_height="48dip"
+                android:layout_height="@dimen/app_icon_side"
                 android:visibility="gone"
                 tools:ignore="ContentDescription" />
 
@@ -86,7 +88,8 @@
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center">
+            android:gravity="center"
+            android:minHeight="@dimen/app_action_height">
 
             <TextView
                 android:id="@+id/fragment_settings_apps_choose_left_text"
@@ -100,7 +103,7 @@
             <ImageView
                 android:id="@+id/fragment_settings_apps_left_icon"
                 android:layout_width="wrap_content"
-                android:layout_height="48dip"
+                android:layout_height="@dimen/app_icon_side"
                 android:visibility="gone"
                 tools:ignore="ContentDescription" />
 
@@ -115,7 +118,8 @@
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center">
+            android:gravity="center"
+            android:minHeight="@dimen/app_action_height">
 
             <TextView
                 android:id="@+id/fragment_settings_apps_choose_right_text"
@@ -129,7 +133,7 @@
             <ImageView
                 android:id="@+id/fragment_settings_apps_right_icon"
                 android:layout_width="wrap_content"
-                android:layout_height="48dip"
+                android:layout_height="@dimen/app_icon_side"
                 android:visibility="gone"
                 tools:ignore="ContentDescription" />
 
@@ -145,7 +149,8 @@
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center">
+            android:gravity="center"
+            android:minHeight="@dimen/app_action_height">
 
             <TextView
                 android:id="@+id/fragment_settings_apps_choose_vol_up_text"
@@ -159,7 +164,7 @@
             <ImageView
                 android:id="@+id/fragment_settings_apps_vol_up_icon"
                 android:layout_width="wrap_content"
-                android:layout_height="48dip"
+                android:layout_height="@dimen/app_icon_side"
                 android:visibility="gone"
                 tools:ignore="ContentDescription" />
 
@@ -174,7 +179,8 @@
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center">
+            android:gravity="center"
+            android:minHeight="@dimen/app_action_height">
 
             <TextView
                 android:id="@+id/fragment_settings_apps_choose_vol_down_text"
@@ -188,7 +194,7 @@
             <ImageView
                 android:id="@+id/fragment_settings_apps_vol_down_icon"
                 android:layout_width="wrap_content"
-                android:layout_height="48dip"
+                android:layout_height="@dimen/app_icon_side"
                 android:visibility="gone"
                 tools:ignore="ContentDescription" />
 
@@ -204,7 +210,8 @@
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center">
+            android:gravity="center"
+            android:minHeight="@dimen/app_action_height">
 
             <TextView
                 android:id="@+id/fragment_settings_apps_choose_double_click_text"
@@ -218,7 +225,7 @@
             <ImageView
                 android:id="@+id/fragment_settings_apps_double_click_icon"
                 android:layout_width="wrap_content"
-                android:layout_height="48dip"
+                android:layout_height="@dimen/app_icon_side"
                 android:visibility="gone"
                 tools:ignore="ContentDescription" />
 
@@ -234,7 +241,8 @@
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center">
+            android:gravity="center"
+            android:minHeight="@dimen/app_action_height">
 
             <TextView
                 android:id="@+id/fragment_settings_apps_choose_long_click_text"
@@ -248,7 +256,7 @@
             <ImageView
                 android:id="@+id/fragment_settings_apps_long_click_icon"
                 android:layout_width="wrap_content"
-                android:layout_height="48dip"
+                android:layout_height="@dimen/app_icon_side"
                 android:visibility="gone"
                 tools:ignore="ContentDescription" />
 
