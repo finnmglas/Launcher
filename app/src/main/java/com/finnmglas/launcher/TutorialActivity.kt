@@ -7,10 +7,10 @@ import android.util.TypedValue
 import android.view.*
 import androidx.appcompat.app.AppCompatActivity
 import com.finnmglas.launcher.extern.*
-import kotlinx.android.synthetic.main.activity_firststartup.*
+import kotlinx.android.synthetic.main.activity_tutorial.*
 
 
-class FirstStartupActivity : AppCompatActivity(){
+class TutorialActivity : AppCompatActivity(){
 
     /** Variables for this activity */
 
@@ -37,7 +37,7 @@ class FirstStartupActivity : AppCompatActivity(){
                 else -> R.style.finnmglasTheme
             }
         )
-        setContentView(R.layout.activity_firststartup)
+        setContentView(R.layout.activity_tutorial)
 
         if (getSavedTheme(this) == "custom") {
             activity_firststartup_app_bar.setBackgroundColor(dominantColor)

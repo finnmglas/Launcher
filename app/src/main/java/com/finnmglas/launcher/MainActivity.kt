@@ -86,7 +86,7 @@ class MainActivity : AppCompatActivity(),
 
         // First Startup
         if (!sharedPref.getBoolean("startedBefore", false)){
-            startActivity(Intent(this, FirstStartupActivity::class.java))
+            startActivity(Intent(this, TutorialActivity::class.java))
             tooltipTimer.cancel()
         }
     }

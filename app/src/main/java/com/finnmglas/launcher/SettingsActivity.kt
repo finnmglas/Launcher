@@ -1,26 +1,15 @@
 package com.finnmglas.launcher
 
-import android.Manifest
-import android.app.AlertDialog
 import android.content.*
-import android.content.pm.PackageManager
-import android.net.Uri
-import android.os.Build
 import android.os.Bundle
-import android.provider.MediaStore
-import android.provider.Settings
 import android.view.View
 import android.view.WindowManager
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import androidx.viewpager.widget.ViewPager
 import com.finnmglas.launcher.extern.*
 import com.finnmglas.launcher.settings.SectionsPagerAdapter
 import com.google.android.material.tabs.TabLayout
 import kotlinx.android.synthetic.main.activity_settings.*
-import kotlinx.android.synthetic.main.fragment_settings_apps.*
-import kotlinx.android.synthetic.main.fragment_settings_theme.*
 
 
 class SettingsActivity : AppCompatActivity() {

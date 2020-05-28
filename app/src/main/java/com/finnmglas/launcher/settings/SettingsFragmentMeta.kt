@@ -13,7 +13,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.finnmglas.launcher.FirstStartupActivity
+import com.finnmglas.launcher.TutorialActivity
 import com.finnmglas.launcher.R
 import com.finnmglas.launcher.extern.*
 import kotlinx.android.synthetic.main.fragment_settings_meta.*
@@ -76,7 +76,7 @@ class SettingsFragmentMeta : Fragment() {
         }
 
         fragment_settings_meta_view_tutorial_btn.setOnClickListener {
-            startActivity(Intent(this.context, FirstStartupActivity::class.java))
+            startActivity(Intent(this.context, TutorialActivity::class.java))
         }
 
         // prompting for settings-reset confirmation

@@ -24,7 +24,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".FirstStartupActivity"
+        <activity android:name=".TutorialActivity"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity">
         </activity>

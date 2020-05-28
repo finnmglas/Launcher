@@ -8,7 +8,7 @@
     android:layout_height="match_parent"
     android:background="?attr/colorPrimary"
     android:onClick="clickAnywhere"
-    tools:context=".FirstStartupActivity">
+    tools:context=".TutorialActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/activity_firststartup_app_bar"
