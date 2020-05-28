@@ -36,12 +36,21 @@
                 android:text="@string/settings_choose_up"
                 android:textSize="20sp" />
 
+            <ImageView
+                android:id="@+id/fragment_settings_apps_up_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="48dip"
+                android:visibility="gone"
+                tools:ignore="ContentDescription" />
+
             <Button
                 android:id="@+id/fragment_settings_apps_choose_up_btn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/settings_choose_btn"
-                android:textAllCaps="false" />
+                android:textAllCaps="false"
+                android:visibility="visible" />
+
         </TableRow>
 
         <TableRow
@@ -57,6 +66,13 @@
                 android:paddingRight="10sp"
                 android:text="@string/settings_choose_down"
                 android:textSize="20sp" />
+
+            <ImageView
+                android:id="@+id/fragment_settings_apps_down_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="48dip"
+                android:visibility="gone"
+                tools:ignore="ContentDescription" />
 
             <Button
                 android:id="@+id/fragment_settings_apps_choose_down_btn"
@@ -81,6 +97,13 @@
                 android:text="@string/settings_choose_left"
                 android:textSize="20sp" />
 
+            <ImageView
+                android:id="@+id/fragment_settings_apps_left_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="48dip"
+                android:visibility="gone"
+                tools:ignore="ContentDescription" />
+
             <Button
                 android:id="@+id/fragment_settings_apps_choose_left_btn"
                 android:layout_width="wrap_content"
@@ -102,6 +125,13 @@
                 android:paddingRight="10sp"
                 android:text="@string/settings_choose_right"
                 android:textSize="20sp" />
+
+            <ImageView
+                android:id="@+id/fragment_settings_apps_right_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="48dip"
+                android:visibility="gone"
+                tools:ignore="ContentDescription" />
 
             <Button
                 android:id="@+id/fragment_settings_apps_choose_right_btn"
@@ -126,6 +156,13 @@
                 android:text="@string/settings_choose_vol_up"
                 android:textSize="20sp" />
 
+            <ImageView
+                android:id="@+id/fragment_settings_apps_vol_up_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="48dip"
+                android:visibility="gone"
+                tools:ignore="ContentDescription" />
+
             <Button
                 android:id="@+id/fragment_settings_apps_choose_vol_up_btn"
                 android:layout_width="wrap_content"
@@ -147,6 +184,13 @@
                 android:paddingRight="10sp"
                 android:text="@string/settings_choose_vol_down"
                 android:textSize="20sp" />
+
+            <ImageView
+                android:id="@+id/fragment_settings_apps_vol_down_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="48dip"
+                android:visibility="gone"
+                tools:ignore="ContentDescription" />
 
             <Button
                 android:id="@+id/fragment_settings_apps_choose_vol_down_btn"
@@ -171,6 +215,13 @@
                 android:text="@string/settings_choose_double_click"
                 android:textSize="20sp" />
 
+            <ImageView
+                android:id="@+id/fragment_settings_apps_double_click_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="48dip"
+                android:visibility="gone"
+                tools:ignore="ContentDescription" />
+
             <Button
                 android:id="@+id/fragment_settings_apps_choose_double_click_btn"
                 android:layout_width="wrap_content"
@@ -193,6 +244,13 @@
                 android:paddingRight="10sp"
                 android:text="@string/settings_choose_long_click"
                 android:textSize="20sp" />
+
+            <ImageView
+                android:id="@+id/fragment_settings_apps_long_click_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="48dip"
+                android:visibility="gone"
+                tools:ignore="ContentDescription" />
 
             <Button
                 android:id="@+id/fragment_settings_apps_choose_long_click_btn"
