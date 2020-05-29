@@ -13,276 +13,48 @@
     android:paddingRight="32sp"
     tools:context=".settings.SettingsFragmentApps">
 
-    <TableLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingBottom="32sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="match_parent">
 
-        <TableRow
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/activity_settings_actions_recycler_view"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center_vertical"
-            android:minHeight="@dimen/app_action_height">
+            android:layout_height="0dp"
+            android:layout_marginBottom="16dp"
+            app:layout_constraintBottom_toTopOf="@+id/settings_app_btn_layout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-            <TextView
-                android:id="@+id/fragment_settings_apps_text_up"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingLeft="10sp"
-                android:paddingRight="10sp"
-                android:text="@string/settings_choose_up"
-                android:textSize="20sp" />
+        </androidx.recyclerview.widget.RecyclerView>
 
-            <ImageView
-                android:id="@+id/fragment_settings_apps_up_icon"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:visibility="gone"
-                tools:ignore="ContentDescription" />
+        <LinearLayout
+            android:id="@+id/settings_app_btn_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="32dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
 
             <Button
-                android:id="@+id/fragment_settings_apps_choose_up_btn"
+                android:id="@+id/fragment_settings_apps_btn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/settings_choose_btn"
-                android:textAllCaps="false"
-                android:visibility="visible" />
-
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center_vertical"
-            android:minHeight="@dimen/app_action_height">
-
-            <TextView
-                android:id="@+id/fragment_settings_apps_choose_down_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingLeft="10sp"
-                android:paddingRight="10sp"
-                android:text="@string/settings_choose_down"
-                android:textSize="20sp" />
-
-            <ImageView
-                android:id="@+id/fragment_settings_apps_down_icon"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/app_icon_side"
-                android:visibility="gone"
-                tools:ignore="ContentDescription" />
-
-            <Button
-                android:id="@+id/fragment_settings_apps_choose_down_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/settings_choose_btn"
+                android:text="@string/settings_apps"
                 android:textAllCaps="false" />
 
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center_vertical"
-            android:minHeight="@dimen/app_action_height">
-
-            <TextView
-                android:id="@+id/fragment_settings_apps_choose_left_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingLeft="10sp"
-                android:paddingRight="10sp"
-                android:text="@string/settings_choose_left"
-                android:textSize="20sp" />
-
-            <ImageView
-                android:id="@+id/fragment_settings_apps_left_icon"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/app_icon_side"
-                android:visibility="gone"
-                tools:ignore="ContentDescription" />
-
             <Button
-                android:id="@+id/fragment_settings_apps_choose_left_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/settings_choose_btn"
-                android:textAllCaps="false" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center_vertical"
-            android:minHeight="@dimen/app_action_height">
-
-            <TextView
-                android:id="@+id/fragment_settings_apps_choose_right_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingLeft="10sp"
-                android:paddingRight="10sp"
-                android:text="@string/settings_choose_right"
-                android:textSize="20sp" />
-
-            <ImageView
-                android:id="@+id/fragment_settings_apps_right_icon"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/app_icon_side"
-                android:visibility="gone"
-                tools:ignore="ContentDescription" />
-
-            <Button
-                android:id="@+id/fragment_settings_apps_choose_right_btn"
+                android:id="@+id/fragment_settings_apps_install_btn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/settings_choose_btn"
+                android:text="@string/settings_install"
                 android:textAllCaps="false" />
 
-        </TableRow>
+        </LinearLayout>
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center_vertical"
-            android:minHeight="@dimen/app_action_height">
-
-            <TextView
-                android:id="@+id/fragment_settings_apps_choose_vol_up_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingLeft="10sp"
-                android:paddingRight="10sp"
-                android:text="@string/settings_choose_vol_up"
-                android:textSize="20sp" />
-
-            <ImageView
-                android:id="@+id/fragment_settings_apps_vol_up_icon"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/app_icon_side"
-                android:visibility="gone"
-                tools:ignore="ContentDescription" />
-
-            <Button
-                android:id="@+id/fragment_settings_apps_choose_vol_up_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/settings_choose_btn"
-                android:textAllCaps="false" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center_vertical"
-            android:minHeight="@dimen/app_action_height">
-
-            <TextView
-                android:id="@+id/fragment_settings_apps_choose_vol_down_text"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="10sp"
-                android:paddingRight="10sp"
-                android:text="@string/settings_choose_vol_down"
-                android:textSize="20sp" />
-
-            <ImageView
-                android:id="@+id/fragment_settings_apps_vol_down_icon"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/app_icon_side"
-                android:visibility="gone"
-                tools:ignore="ContentDescription" />
-
-            <Button
-                android:id="@+id/fragment_settings_apps_choose_vol_down_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/settings_choose_btn"
-                android:textAllCaps="false" />
-
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center_vertical"
-            android:minHeight="@dimen/app_action_height">
-
-            <TextView
-                android:id="@+id/fragment_settings_apps_choose_double_click_text"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="10sp"
-                android:paddingRight="10sp"
-                android:text="@string/settings_choose_double_click"
-                android:textSize="20sp" />
-
-            <ImageView
-                android:id="@+id/fragment_settings_apps_double_click_icon"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/app_icon_side"
-                android:visibility="gone"
-                tools:ignore="ContentDescription" />
-
-            <Button
-                android:id="@+id/fragment_settings_apps_choose_double_click_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/settings_choose_btn"
-                android:textAllCaps="false" />
-
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center_vertical"
-            android:minHeight="@dimen/app_action_height">
-
-            <TextView
-                android:id="@+id/fragment_settings_apps_choose_long_click_text"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="10sp"
-                android:paddingRight="10sp"
-                android:text="@string/settings_choose_long_click"
-                android:textSize="20sp" />
-
-            <ImageView
-                android:id="@+id/fragment_settings_apps_long_click_icon"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/app_icon_side"
-                android:visibility="gone"
-                tools:ignore="ContentDescription" />
-
-            <Button
-                android:id="@+id/fragment_settings_apps_choose_long_click_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/settings_choose_btn"
-                android:textAllCaps="false" />
-
-        </TableRow>
-
-    </TableLayout>
-
-    <Button
-        android:id="@+id/fragment_settings_apps_btn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/settings_apps"
-        android:textAllCaps="false" />
-
-    <Button
-        android:id="@+id/fragment_settings_apps_install_btn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/settings_install"
-        android:textAllCaps="false" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </LinearLayout>
