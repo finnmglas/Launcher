@@ -12,6 +12,8 @@
         <item name="android:buttonStyle">@style/Widget.AppCompat.Button.Colored</item>
         <item name="colorButtonNormal">@color/finnmglasTheme_accent_color</item>
 
+        <item name="android:popupMenuStyle">@style/PopupMenuCustom</item>
+
         <item name="android:windowDisablePreview">true</item>
         <item name="android:windowAnimationStyle">@style/WindowFadeTransition</item>
     </style>
@@ -27,6 +29,8 @@
         <item name="android:buttonStyle">@style/Widget.AppCompat.Button.Colored</item>
         <item name="colorButtonNormal">@color/darkTheme_accent_color</item>
 
+        <item name="android:popupMenuStyle">@style/PopupMenuCustom</item>
+
         <item name="android:windowDisablePreview">true</item>
         <item name="android:windowAnimationStyle">@style/WindowFadeTransition</item>
     </style>
@@ -37,8 +41,14 @@
         <item name="android:buttonStyle">@style/Widget.AppCompat.Button.Colored</item>
         <item name="colorButtonNormal">#252827</item>
 
+        <item name="android:popupMenuStyle">@style/PopupMenuCustom</item>
+
         <item name="android:windowDisablePreview">true</item>
         <item name="android:windowAnimationStyle">@style/WindowFadeTransition</item>
+    </style>
+
+    <style name="PopupMenuCustom" parent="@android:style/Widget.PopupMenu">
+        <item name="android:popupBackground">#252827</item>
     </style>
 
     <style name="AlertDialogCustom" parent="Theme.AppCompat.Light.Dialog.Alert">

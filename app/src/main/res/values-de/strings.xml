@@ -23,8 +23,11 @@
     <string name="settings_choose_vol_down">Lautstärke -</string>
     <string name="settings_choose_double_click">Doppelklick</string>
     <string name="settings_choose_long_click">Langer Klick</string>
-
     <string name="settings_choose_btn">App wählen</string>
+
+    <string name="app_menu_delete_text">Deinstallieren</string>
+    <string name="app_menu_info_text">App Info</string>
+
     <string name="settings_select_launcher">Launcher wählen</string>
     <string name="settings_reset">Zurücksetzen</string>
     <string name="settings_reset_message">All deine Einstellungen gehen verloren. Weitermachen?</string>
