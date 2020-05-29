@@ -3,14 +3,13 @@ package com.finnmglas.launcher.settings.actions
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
-import androidx.core.app.ActivityCompat.startActivityForResult
 import androidx.recyclerview.widget.RecyclerView
 import com.finnmglas.launcher.ChooseActivity
 import com.finnmglas.launcher.R
@@ -29,6 +28,8 @@ class ActionsRecyclerAdapter(val activity: Activity):
         var textView: TextView = itemView.findViewById(R.id.row_action_name)
         var img: ImageView = itemView.findViewById(R.id.row_app_icon) as ImageView
         var chooseButton: Button = itemView.findViewById(R.id.row_choose_button)
+        var removeAction: FontAwesome = itemView.findViewById(R.id.row_remove_action)
+
 
         override fun onClick(v: View) {
             val pos = adapterPosition
@@ -41,16 +42,31 @@ class ActionsRecyclerAdapter(val activity: Activity):
     }
 
     override fun onBindViewHolder(viewHolder: ViewHolder, i: Int) {
-        val actionName = actionsList[i].actionName
         val actionText = actionsList[i].actionText
+        val actionName = actionsList[i].actionName
         val content = actionsList[i].content
 
         viewHolder.textView.text = actionText
         try {
             viewHolder.img.setImageDrawable(activity.packageManager.getApplicationIcon(content.toString()))
             viewHolder.img.setOnClickListener{ chooseApp(actionName.toString()) }
+            viewHolder.removeAction.setOnClickListener{
+                val sharedPref = activity.getSharedPreferences(
+                    activity.getString(R.string.preference_file_key), Context.MODE_PRIVATE)
+
+                val editor : SharedPreferences.Editor = sharedPref.edit()
+                editor.putString("action_$actionName", "") // clear it
+                editor.apply()
+
+                viewHolder.img.visibility = View.INVISIBLE
+                viewHolder.removeAction.visibility = View.GONE
+                viewHolder.chooseButton.visibility = View.VISIBLE
+                viewHolder.chooseButton.setOnClickListener{ chooseApp(actionName.toString()) }
+            }
+
         } catch (e : Exception) {
             viewHolder.img.visibility = View.INVISIBLE
+            viewHolder.removeAction.visibility = View.GONE
             viewHolder.chooseButton.visibility = View.VISIBLE
             viewHolder.chooseButton.setOnClickListener{ chooseApp(actionName.toString()) }
         }
@@ -81,7 +97,6 @@ class ActionsRecyclerAdapter(val activity: Activity):
         val intent = Intent(activity, ChooseActivity::class.java)
         intent.putExtra("action", "pick")
         intent.putExtra("forApp", forAction) // for which action we choose the app
-        Toast.makeText(activity, forAction, Toast.LENGTH_LONG).show()
         activity.startActivityForResult(intent, REQUEST_CHOOSE_APP)
     }
 }

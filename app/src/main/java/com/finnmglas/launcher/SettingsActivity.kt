@@ -4,7 +4,6 @@ import android.content.*
 import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager.widget.ViewPager
 import com.finnmglas.launcher.extern.*
@@ -67,7 +66,6 @@ class SettingsActivity : AppCompatActivity() {
                 val value = data?.getStringExtra("value")
                 val forApp = data?.getStringExtra("forApp") ?: return
 
-                Toast.makeText(this, forApp, Toast.LENGTH_LONG).show()
                 // Save the new App to Preferences
                 val sharedPref = this.getSharedPreferences(
                     getString(R.string.preference_file_key), Context.MODE_PRIVATE)
