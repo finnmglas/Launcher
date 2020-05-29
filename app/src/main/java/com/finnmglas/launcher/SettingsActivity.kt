@@ -1,7 +1,10 @@
 package com.finnmglas.launcher
 
-import android.content.*
+import android.content.Context
+import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
+import android.provider.Settings
 import android.view.View
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
@@ -41,9 +44,10 @@ class SettingsActivity : AppCompatActivity() {
 
         // As older APIs somehow do not recognize the xml defined onClick
         activity_settings_close.setOnClickListener() { finish() }
+        // open device settings (see https://stackoverflow.com/a/62092663/12787264)
         activity_settings_device_settings.setOnClickListener {
             intendedSettingsPause = true
-            startActivityForResult(Intent(android.provider.Settings.ACTION_SETTINGS), 0)
+            startActivity(Intent(Settings.ACTION_SETTINGS))
         }
     }
 
