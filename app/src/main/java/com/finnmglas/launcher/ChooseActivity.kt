@@ -12,6 +12,8 @@ import com.finnmglas.launcher.choose.AppsRecyclerAdapter
 import com.finnmglas.launcher.extern.*
 import kotlinx.android.synthetic.main.activity_choose.*
 
+var intendedChoosePause = false // know when to close
+
 class ChooseActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -63,11 +65,12 @@ class ChooseActivity : AppCompatActivity() {
     override fun onPause() {
         super.onPause()
         intendedSettingsPause = false
-        finish()
+        if(!intendedChoosePause) finish()
     }
 
     override fun onResume() {
         super.onResume()
+        intendedChoosePause = false
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

@@ -17,6 +17,7 @@ import com.finnmglas.launcher.extern.FontAwesome
 import com.finnmglas.launcher.extern.REQUEST_CHOOSE_APP
 import com.finnmglas.launcher.extern.REQUEST_UNINSTALL
 import com.finnmglas.launcher.extern.openAppSettings
+import com.finnmglas.launcher.intendedChoosePause
 
 class AppsRecyclerAdapter(val activity: Activity, val action: String?, val forApp: String?):
     RecyclerView.Adapter<AppsRecyclerAdapter.ViewHolder>() {
@@ -70,6 +71,7 @@ class AppsRecyclerAdapter(val activity: Activity, val action: String?, val forAp
             popup.setOnMenuItemClickListener {
                 when (it.itemId) {
                     R.id.app_menu_delete -> { // delete
+                        intendedChoosePause = true
                         val intent = Intent(Intent.ACTION_UNINSTALL_PACKAGE)
                         intent.data = Uri.parse("package:$appPackageName")
                         intent.putExtra(Intent.EXTRA_RETURN_RESULT, true)
@@ -78,6 +80,7 @@ class AppsRecyclerAdapter(val activity: Activity, val action: String?, val forAp
                         true
                     }
                     R.id.app_menu_info -> { // open app settings
+                        intendedChoosePause = true
                         openAppSettings(appPackageName, activity)
                         true
                     }
