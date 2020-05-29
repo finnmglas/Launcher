@@ -60,7 +60,25 @@ class SettingsActivity : AppCompatActivity() {
 
     fun backHome(view: View) { finish() }
 
-    /** Theme - related */
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        when (requestCode) {
+            REQUEST_CHOOSE_APP -> {
+                val value = data?.getStringExtra("value")
+                val forApp = data?.getStringExtra("forApp") ?: return
+
+                // Save the new App to Preferences
+                val sharedPref = this.getSharedPreferences(
+                    getString(R.string.preference_file_key), Context.MODE_PRIVATE)
+
+                val editor : SharedPreferences.Editor = sharedPref.edit()
+                editor.putString("action_$forApp", value.toString())
+                editor.apply()
+
+                loadSettings(sharedPref)
+            }
+            else -> super.onActivityResult(requestCode, resultCode, data)
+        }
+    }
 
 
 }

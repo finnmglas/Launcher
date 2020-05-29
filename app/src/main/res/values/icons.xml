@@ -11,6 +11,7 @@
   <string name="fas_donate" translatable="false">&#xf4b9;</string>
   <string name="fas_share" translatable="false">&#xf064;</string>
   <string name="fas_trash" translatable="false">&#xf1f8;</string>
+  <string name="fas_times" translatable="false">&#xf00d;</string>
 
   <!-- icons that can be used with type="brands" -->
   <string name="fab_apple" translatable="false">&#xf179;</string>
