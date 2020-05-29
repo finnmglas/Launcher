@@ -62,6 +62,7 @@ class ActionsRecyclerAdapter(val activity: Activity):
                 viewHolder.removeAction.visibility = View.GONE
                 viewHolder.chooseButton.visibility = View.VISIBLE
                 viewHolder.chooseButton.setOnClickListener{ chooseApp(actionName.toString()) }
+                setButtonColor(viewHolder.chooseButton, vibrantColor)
             }
 
         } catch (e : Exception) {
@@ -69,6 +70,7 @@ class ActionsRecyclerAdapter(val activity: Activity):
             viewHolder.removeAction.visibility = View.GONE
             viewHolder.chooseButton.visibility = View.VISIBLE
             viewHolder.chooseButton.setOnClickListener{ chooseApp(actionName.toString()) }
+            setButtonColor(viewHolder.chooseButton, vibrantColor)
         }
     }
 
