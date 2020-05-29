@@ -16,6 +16,7 @@ import android.view.ViewGroup
 import com.finnmglas.launcher.TutorialActivity
 import com.finnmglas.launcher.R
 import com.finnmglas.launcher.extern.*
+import com.finnmglas.launcher.intendedSettingsPause
 import kotlinx.android.synthetic.main.fragment_settings_meta.*
 
 /** The 'Meta' Tab associated Fragment in Settings */
@@ -50,6 +51,7 @@ class SettingsFragmentMeta : Fragment() {
         // Button onClicks
 
         fragment_settings_meta_select_launcher_btn.setOnClickListener {
+            intendedSettingsPause = true
             // on newer sdk: choose launcher
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 val callHomeSettingIntent = Intent(Settings.ACTION_HOME_SETTINGS)
@@ -76,6 +78,7 @@ class SettingsFragmentMeta : Fragment() {
         }
 
         fragment_settings_meta_view_tutorial_btn.setOnClickListener {
+            intendedSettingsPause = true
             startActivity(Intent(this.context, TutorialActivity::class.java))
         }
 
@@ -97,33 +100,36 @@ class SettingsFragmentMeta : Fragment() {
 
         // Footer onClicks
         fragment_settings_meta_footer_github_icon.setOnClickListener {
+            intendedSettingsPause = true
             openNewTabWindow(getString(R.string.settings_footer_repo), this.context!!)
         }
         // rate app
         fragment_settings_meta_footer_play_icon.setOnClickListener {
             try {
                 val rateIntent = rateIntentForUrl("market://details")
+                intendedSettingsPause = true
                 startActivity(rateIntent)
             } catch (e: ActivityNotFoundException) {
                 val rateIntent = rateIntentForUrl("https://play.google.com/store/apps/details")
+                intendedSettingsPause = true
                 startActivity(rateIntent)
             }
         }
 
-        /*fragment_settings_meta_footer_website_icon.setOnClickListener {
-            openNewTabWindow(getString(R.string.settings_footer_web), this.context!!)
-        }*/
         fragment_settings_meta_footer_globe_icon.setOnClickListener {
+            intendedSettingsPause = true
             openNewTabWindow(getString(R.string.settings_footer_web), this.context!!)
         }
 
         // contact developer
         fragment_settings_meta_contact_btn.setOnClickListener {
+            intendedSettingsPause = true
             openNewTabWindow(getString(R.string.settings_meta_contact_url), context!!)
         }
 
         // donate
         fragment_settings_meta_donate_btn.setOnClickListener {
+            intendedSettingsPause = true
             openNewTabWindow(getString(R.string.settings_meta_donate_url), context!!)
         }
 

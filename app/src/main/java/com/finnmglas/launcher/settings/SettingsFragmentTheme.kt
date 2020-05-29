@@ -17,6 +17,7 @@ import androidx.core.content.ContextCompat
 import androidx.palette.graphics.Palette
 import com.finnmglas.launcher.R
 import com.finnmglas.launcher.extern.*
+import com.finnmglas.launcher.intendedSettingsPause
 import kotlinx.android.synthetic.main.fragment_settings_theme.*
 
 /** The 'Theme' Tab associated Fragment in Settings */
@@ -49,14 +50,17 @@ class SettingsFragmentTheme : Fragment() {
 
         // Theme changing buttons
         fragment_settings_theme_select_dark_btn.setOnClickListener {
+            intendedSettingsPause = true
             saveTheme(context!!, "dark")
             activity!!.recreate()
         }
         fragment_settings_theme_select_finn_btn.setOnClickListener {
+            intendedSettingsPause = true
             saveTheme(context!!, "finn")
             activity!!.recreate()
         }
         fragment_settings_theme_select_custom_btn.setOnClickListener {
+            intendedSettingsPause = true
             // Request permission (on newer APIs)
             if (Build.VERSION.SDK_INT >= 23) {
                 when {
@@ -72,6 +76,7 @@ class SettingsFragmentTheme : Fragment() {
             else letUserPickImage()
         }
         fragment_settings_theme_custom_examples_btn.setOnClickListener {
+            intendedSettingsPause = true
             // Show example usage
             openNewTabWindow("https://github.com/finnmglas/Launcher/blob/master/docs/README.md", context!!)
         }
@@ -95,6 +100,7 @@ class SettingsFragmentTheme : Fragment() {
         intent.type = "image/*"
         intent.action = Intent.ACTION_PICK // other option: Intent.ACTION_GET_CONTENT
         if (crop) intent.putExtra("crop", "true")
+        intendedSettingsPause = true
         startActivityForResult(intent, REQUEST_PICK_IMAGE)
     }
 
@@ -126,6 +132,7 @@ class SettingsFragmentTheme : Fragment() {
                     editor.apply()
 
                     saveTheme(context!!, "custom")
+                    intendedSettingsPause = true
                     activity!!.recreate()
                 }
             }

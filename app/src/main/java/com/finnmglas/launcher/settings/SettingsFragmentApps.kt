@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.finnmglas.launcher.ChooseActivity
 import com.finnmglas.launcher.R
 import com.finnmglas.launcher.extern.*
+import com.finnmglas.launcher.intendedSettingsPause
 import com.finnmglas.launcher.settings.actions.ActionsRecyclerAdapter
 import kotlinx.android.synthetic.main.fragment_settings_apps.*
 
@@ -57,6 +58,7 @@ class SettingsFragmentApps : Fragment() {
         fragment_settings_apps_btn.setOnClickListener{
             val intent = Intent(this.context, ChooseActivity::class.java)
             intent.putExtra("action", "view")
+            intendedSettingsPause = true
             startActivity(intent)
         }
         fragment_settings_apps_install_btn.setOnClickListener{
@@ -65,6 +67,7 @@ class SettingsFragmentApps : Fragment() {
                     Intent.ACTION_VIEW,
                     Uri.parse("https://play.google.com/store/apps/"))
                 startActivity(rateIntent)
+                intendedSettingsPause = true
             } catch (e: ActivityNotFoundException) {
                 Toast.makeText(this.context, getString(R.string.settings_toast_store_not_found), Toast.LENGTH_SHORT)
                     .show()

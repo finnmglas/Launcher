@@ -11,6 +11,7 @@ import com.finnmglas.launcher.settings.SectionsPagerAdapter
 import com.google.android.material.tabs.TabLayout
 import kotlinx.android.synthetic.main.activity_settings.*
 
+var intendedSettingsPause = false // know when to close
 
 class SettingsActivity : AppCompatActivity() {
 
@@ -41,6 +42,7 @@ class SettingsActivity : AppCompatActivity() {
         // As older APIs somehow do not recognize the xml defined onClick
         activity_settings_close.setOnClickListener() { finish() }
         activity_settings_device_settings.setOnClickListener {
+            intendedSettingsPause = true
             startActivityForResult(Intent(android.provider.Settings.ACTION_SETTINGS), 0)
         }
     }
@@ -56,6 +58,16 @@ class SettingsActivity : AppCompatActivity() {
             activity_settings_close.setTextColor(vibrantColor)
             activity_settings_tabs.setSelectedTabIndicatorColor(vibrantColor)
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        intendedSettingsPause = false
+    }
+
+    override fun onPause() {
+        super.onPause()
+        if (!intendedSettingsPause) finish()
     }
 
     fun backHome(view: View) { finish() }

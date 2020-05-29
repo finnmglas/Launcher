@@ -15,6 +15,7 @@ import com.finnmglas.launcher.ChooseActivity
 import com.finnmglas.launcher.R
 import com.finnmglas.launcher.extern.FontAwesome
 import com.finnmglas.launcher.extern.*
+import com.finnmglas.launcher.intendedSettingsPause
 import java.lang.Exception
 
 
@@ -101,6 +102,7 @@ class ActionsRecyclerAdapter(val activity: Activity):
         val intent = Intent(activity, ChooseActivity::class.java)
         intent.putExtra("action", "pick")
         intent.putExtra("forApp", forAction) // for which action we choose the app
+        intendedSettingsPause = true
         activity.startActivityForResult(intent, REQUEST_CHOOSE_APP)
     }
 }
