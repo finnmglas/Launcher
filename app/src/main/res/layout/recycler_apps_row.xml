@@ -36,7 +36,7 @@
         android:layout_width="20sp"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="@string/fas_trash"
+        android:text="@string/fas_three_dots"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

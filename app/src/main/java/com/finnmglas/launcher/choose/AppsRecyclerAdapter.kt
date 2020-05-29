@@ -3,20 +3,20 @@ package com.finnmglas.launcher.choose
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
-import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.PopupMenu
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.finnmglas.launcher.R
 import com.finnmglas.launcher.extern.FontAwesome
 import com.finnmglas.launcher.extern.REQUEST_CHOOSE_APP
 import com.finnmglas.launcher.extern.REQUEST_UNINSTALL
-
+import com.finnmglas.launcher.extern.openAppSettings
 
 class AppsRecyclerAdapter(val activity: Activity, val action: String?, val forApp: String?):
     RecyclerView.Adapter<AppsRecyclerAdapter.ViewHolder>() {
@@ -62,11 +62,30 @@ class AppsRecyclerAdapter(val activity: Activity, val action: String?, val forAp
         viewHolder.textView.text = appLabel
         viewHolder.img.setImageDrawable(appIcon)
 
-        viewHolder.delete.setOnClickListener{
-            val intent = Intent(Intent.ACTION_UNINSTALL_PACKAGE)
-            intent.data = Uri.parse("package:$appPackageName")
-            intent.putExtra(Intent.EXTRA_RETURN_RESULT, true)
-            activity.startActivityForResult(intent, REQUEST_UNINSTALL)
+        viewHolder.delete.setOnClickListener{ //creating a popup menu
+
+            val popup = PopupMenu(activity, viewHolder.delete)
+            popup.inflate(R.menu.menu_app)
+
+            popup.setOnMenuItemClickListener {
+                when (it.itemId) {
+                    R.id.app_menu_delete -> { // delete
+                        val intent = Intent(Intent.ACTION_UNINSTALL_PACKAGE)
+                        intent.data = Uri.parse("package:$appPackageName")
+                        intent.putExtra(Intent.EXTRA_RETURN_RESULT, true)
+                        activity.startActivityForResult(intent, REQUEST_UNINSTALL)
+
+                        true
+                    }
+                    R.id.app_menu_info -> { // open app settings
+                        openAppSettings(appPackageName, activity)
+                        true
+                    }
+                    else -> false
+                }
+            }
+
+            popup.show()
         }
 
         viewHolder.delete.visibility = if(isSystemApp || action == "pick") View.INVISIBLE else View.VISIBLE

@@ -12,7 +12,6 @@ import com.finnmglas.launcher.choose.AppsRecyclerAdapter
 import com.finnmglas.launcher.extern.*
 import kotlinx.android.synthetic.main.activity_choose.*
 
-
 class ChooseActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -65,6 +64,10 @@ class ChooseActivity : AppCompatActivity() {
         super.onPause()
         intendedSettingsPause = false
         finish()
+    }
+
+    override fun onResume() {
+        super.onResume()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
