@@ -27,7 +27,7 @@ class AppsRecyclerAdapter(val activity: Activity, val action: String?, val forAp
         View.OnClickListener {
         var textView: TextView = itemView.findViewById(R.id.choose_row_app_name)
         var img: ImageView = itemView.findViewById(R.id.choose_row_app_icon) as ImageView
-        var delete: FontAwesome = itemView.findViewById(R.id.choose_row_app_delete)
+        var menuDots: FontAwesome = itemView.findViewById(R.id.choose_row_app_menu)
 
         override fun onClick(v: View) {
             val pos = adapterPosition
@@ -62,9 +62,9 @@ class AppsRecyclerAdapter(val activity: Activity, val action: String?, val forAp
         viewHolder.textView.text = appLabel
         viewHolder.img.setImageDrawable(appIcon)
 
-        viewHolder.delete.setOnClickListener{ //creating a popup menu
+        viewHolder.menuDots.setOnClickListener{ //creating a popup menu
 
-            val popup = PopupMenu(activity, viewHolder.delete)
+            val popup = PopupMenu(activity, viewHolder.menuDots)
             popup.inflate(R.menu.menu_app)
 
             popup.setOnMenuItemClickListener {
@@ -88,7 +88,7 @@ class AppsRecyclerAdapter(val activity: Activity, val action: String?, val forAp
             popup.show()
         }
 
-        viewHolder.delete.visibility = if(isSystemApp || action == "pick") View.INVISIBLE else View.VISIBLE
+        viewHolder.menuDots.visibility = if(isSystemApp || action == "pick") View.INVISIBLE else View.VISIBLE
     }
 
     override fun getItemCount(): Int { return appsList.size }

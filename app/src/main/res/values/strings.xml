@@ -33,6 +33,9 @@
     <string name="settings_choose_long_click">Long Click</string>
     <string name="settings_choose_btn">Choose App</string>
 
+    <string name="app_menu_delete_text">Uninstall</string>
+    <string name="app_menu_info_text">App Info</string>
+
     <string name="settings_select_launcher">Select Launcher</string>
     <string name="settings_reset">Reset Settings</string>
     <string name="settings_reset_message">You are going to discard all your preferences. Continue?</string>
