@@ -51,6 +51,9 @@ class ActionsRecyclerAdapter(val activity: Activity):
         try {
             viewHolder.img.setImageDrawable(activity.packageManager.getApplicationIcon(content.toString()))
             viewHolder.img.setOnClickListener{ chooseApp(actionName.toString()) }
+
+            if (getSavedTheme(activity) == "dark") transformGrayscale(viewHolder.img)
+
             viewHolder.removeAction.setOnClickListener{
                 val sharedPref = activity.getSharedPreferences(
                     activity.getString(R.string.preference_file_key), Context.MODE_PRIVATE)

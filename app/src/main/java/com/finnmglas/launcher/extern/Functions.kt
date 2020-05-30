@@ -7,10 +7,7 @@ import android.content.DialogInterface
 import android.content.Intent
 import android.content.SharedPreferences
 import android.content.pm.PackageManager
-import android.graphics.Bitmap
-import android.graphics.BlendMode
-import android.graphics.BlendModeColorFilter
-import android.graphics.Color
+import android.graphics.*
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -18,9 +15,11 @@ import android.provider.Settings
 import android.view.View
 import android.view.animation.*
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.Toast
 import com.finnmglas.launcher.R
 import kotlin.math.roundToInt
+
 
 /** Variables for all of the app */
 var upApp = ""
@@ -344,4 +343,13 @@ fun manipulateColor(color: Int, factor: Float): Int {
         g.coerceAtMost(255),
         b.coerceAtMost(255)
     )
+}
+
+// Taken from: https://stackoverflow.com/a/30340794/12787264
+fun transformGrayscale(imageView: ImageView){
+    val matrix = ColorMatrix()
+    matrix.setSaturation(0f)
+
+    val filter = ColorMatrixColorFilter(matrix)
+    imageView.colorFilter = filter
 }

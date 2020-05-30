@@ -13,10 +13,7 @@ import android.widget.PopupMenu
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.finnmglas.launcher.R
-import com.finnmglas.launcher.extern.FontAwesome
-import com.finnmglas.launcher.extern.REQUEST_CHOOSE_APP
-import com.finnmglas.launcher.extern.REQUEST_UNINSTALL
-import com.finnmglas.launcher.extern.openAppSettings
+import com.finnmglas.launcher.extern.*
 import com.finnmglas.launcher.intendedChoosePause
 
 class AppsRecyclerAdapter(val activity: Activity, val action: String?, val forApp: String?):
@@ -62,6 +59,8 @@ class AppsRecyclerAdapter(val activity: Activity, val action: String?, val forAp
 
         viewHolder.textView.text = appLabel
         viewHolder.img.setImageDrawable(appIcon)
+
+        if (getSavedTheme(activity) == "dark") transformGrayscale(viewHolder.img)
 
         viewHolder.menuDots.setOnClickListener{ //creating a popup menu
 
