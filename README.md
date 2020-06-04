@@ -1,3 +1,4 @@
+[![](https://img.shields.io/github/v/release/finnmglas/Launcher)][latest-release]
 [![](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)][issues]
 [![](https://img.shields.io/github/license/finnmglas/Launcher)][license]
 
@@ -114,6 +115,7 @@ Wenn findest, dass diese App **sehr wertvoll für dich** ist, kannst du [mich au
 [contributors]: https://github.com/finnmglas/Launcher/graphs/contributors
 [theme-examples]: https://github.com/finnmglas/Launcher/blob/master/docs/README.md
 [license]: https://github.com/finnmglas/Launcher/blob/master/LICENSE
+[latest-release]: https://github.com/finnmglas/Launcher/releases/latest
 
 
 [wallpaper-1]: https://images.pexels.com/photos/1906658/pexels-photo-1906658.jpeg?cs=srgb&dl=silhouette-photography-of-person-under-starry-sky-1906658.jpg&fm=jpg
