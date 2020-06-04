@@ -1,8 +1,15 @@
+[![](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)][issues]
+[![](https://img.shields.io/github/license/finnmglas/Launcher)][license]
+
 [<img src="https://raw.githubusercontent.com/finnmglas/Launcher/master/docs/img/Play-function-graphic.jpg" width="98%" height="~" />][googleplay]
 
 [<img src="https://raw.githubusercontent.com/finnmglas/Launcher/master/docs/img/Play-1.jpg" width="32%" height="~" /> <img src="https://raw.githubusercontent.com/finnmglas/Launcher/master/docs/img/Play-2.jpg" width="32%" height="~" /> <img src="https://raw.githubusercontent.com/finnmglas/Launcher/master/docs/img/Play-3.jpg" width="32%" height="~" />][googleplay]
 
 # <a name="en"></a> Launcher
+
+[![](https://img.shields.io/github/watchers/finnmglas/Launcher?label=Watch&style=social)][watch]
+[![](https://img.shields.io/github/stars/finnmglas/Launcher?label=Star&style=social)][star]
+[![](https://img.shields.io/github/forks/finnmglas/Launcher?label=Fork&style=social)][fork]
 
 [-> Read this in German (Deutsch)](#de)
 
@@ -39,6 +46,8 @@ To actually contribute you just [_fork_ this repository][fork] and create a new 
 You commit your changes / improvements to that _branch_ and open a new _pull request_. That simple.
 
 If you feel like **this app delivers incredible value to you**, you can also [support me on PayPal][financial]. I will make every cent work for the good of human kind. I consider this the purpose of my existence.
+
+[![Get it on Google Play](https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png)](https://play.google.com/store/apps/details?id=com.finnmglas.launcher&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1)
 
 ---
 
@@ -97,9 +106,14 @@ Wenn findest, dass diese App **sehr wertvoll für dich** ist, kannst du [mich au
 [website-de]: https://www.finnmglas.com/de/
 [financial]: https://www.paypal.me/finnmglas
 [fork]: https://github.com/finnmglas/Launcher/fork
+[star]: https://github.com/finnmglas/Launcher/stargazers
+[watch]: https://github.com/finnmglas/Launcher/watchers
 [joingh]: https://github.com/join
 [newissue]: https://github.com/finnmglas/Launcher/issues/new/choose
+[issues]: https://github.com/finnmglas/Launcher/issues
+[contributors]: https://github.com/finnmglas/Launcher/graphs/contributors
 [theme-examples]: https://github.com/finnmglas/Launcher/blob/master/docs/README.md
+[license]: https://github.com/finnmglas/Launcher/blob/master/LICENSE
 
 
 [wallpaper-1]: https://images.pexels.com/photos/1906658/pexels-photo-1906658.jpeg?cs=srgb&dl=silhouette-photography-of-person-under-starry-sky-1906658.jpg&fm=jpg
