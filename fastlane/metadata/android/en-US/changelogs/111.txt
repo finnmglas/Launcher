@@ -1,0 +1,6 @@
+New Features:
+- There are two new actions: Double Click and Long Click
+- App icons now are displayed in the apps-list
+- In the apps tab of settings, you can now see your selected apps (icons)
+- Apps can be now deleted, and their info can be viewed using the apps-list
+- In the dark theme, of course, icons will be grayscale

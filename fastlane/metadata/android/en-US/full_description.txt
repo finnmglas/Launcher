@@ -1,0 +1,7 @@
+This is a Launcher (an app managing your homescreen and letting you start other apps).
+
+It is designed to be as <b>minimal, efficient and free of distraction</b> as possible. This is why it can help people using their phone in a more efficient way than ever before.
+
+Your homescreen only shows the date and a clock. No distraction. All it takes to launch an app is one interaction. After you selected your most important Apps, you will spend way less time on your homescreen, trying to find them. One Swipe, one buttonpress - your App opens immediately.
+
+You can even customize it (view theme examples). You simply <b>choose a wallpaper and the app adjusts to it.</b> As this feature is quite new (since v1.2.0), please make sure to give some feedback on how it works … you can also just use the builtin minimal themes.
