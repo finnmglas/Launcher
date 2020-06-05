@@ -48,7 +48,8 @@ You commit your changes / improvements to that _branch_ and open a new _pull req
 
 If you feel like **this app delivers incredible value to you**, you can also [support me on PayPal][financial]. I will make every cent work for the good of human kind. I consider this the purpose of my existence.
 
-[![Get it on Google Play](https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png)](https://play.google.com/store/apps/details?id=com.finnmglas.launcher&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1)
+[<img alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" width="49%">](https://play.google.com/store/apps/details?id=com.finnmglas.launcher&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1)
+[<img alt="Get on IzzyOnDroid" src="https://gitlab.com/IzzyOnDroid/repo/-/raw/master/assets/IzzyOnDroid.png" width="49%">](https://apt.izzysoft.de/fdroid/index/apk/com.finnmglas.launcher)
 
 ---
 
