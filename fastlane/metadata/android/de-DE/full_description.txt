@@ -1,0 +1,7 @@
+Diese App ist ein Launcher (eine App, die deinen Startbildschirm verwaltet und dich andere Apps starten lässt).
+Sie ist so <b>minimalistisch, effizient und frei von Ablenkung</b> gestaltet wie möglich. Dadurch hilft sie jedem Nutzer, sein Mobiltelefon effektiver denn je zu benutzen.
+Auf deinem Startbildschim siehst du lediglich die Uhrzeit und das Datum. Keine Ablenkung. Mit nur einer kurzen Interaktion öffnest du Apps. Sobald du deine sinnvollsten Apps ausgewählt hast, wirst du keine Zeit mehr damit verlieren, sie unter all den anderen Apps zu suchen. Einmal Wischen, ein Knopfdruck - deine App öffnet sich sofort.
+Du kannst das Design auch personalisieren (Beispiel-Themes)). <b>Du wählst dein Hintergrundbild und die App passt sich daran an.</b> Diese Funktion ist noch neu (seit v1.2.0), also kannst du mir gerne Feedback dazu geben! Du kannst aber auch einfach die integrierten minimalen und ablenkungsfreieren Themes verwenden.
+
+<b>Datenschutz</b>
+Diese App sammelt, empfängt und teilt keine persönlichen Daten. Sie hilft dir, egal wer du bist!

@@ -1,0 +1,6 @@
+Neue Features:
+- Zwei neue Aktionen: `Doppelklick` und `Langer Klick`
+- In der Apps-Liste werden jetzt icons angezeigt
+- Mithilfe dieser Liste kannst du auch apps bearbeiten bzw. löschen
+- Du siehst jetzt deine ausgewählten App icons in den Einstellungen
+- Im dunklen Theme ist selbstverständlich trotzdem alles Schwarz-weiß
