@@ -1,0 +1,7 @@
+Il s'agit d'un lanceur (une application qui gère votre écran d'accueil et vous permet de démarrer d'autres applications).
+Il est conçu pour être aussi <b>minimal, efficace et exempt de distraction</b> que possible. C'est pourquoi il peut aider les gens à utiliser leur téléphone de manière plus efficace que jamais.
+Votre écran d'accueil n'affiche que la date et une horloge. Aucune distraction. Pour lancer une application, il suffit d'une interaction. Après avoir sélectionné vos applications les plus importantes, vous passerez beaucoup moins de temps sur votre écran d'accueil, en essayant de les trouver. Un coup, un bouton - votre application s'ouvre immédiatement.
+Vous pouvez même le personnaliser (voir des exemples de thèmes). Vous <b> choisissez simplement un fond d'écran et l'application s'y adapte. </b> Comme cette fonctionnalité est assez récente (depuis la v1.2.0), assurez-vous de donner quelques commentaires sur la façon dont cela fonctionne… vous pouvez également simplement utiliser le thèmes minimaux intégrés.
+
+<b> Confidentialité </b>
+Cette application ne collecte, ne reçoit ni ne partage aucune donnée personnelle. Cela vous aide, peu importe qui vous êtes!

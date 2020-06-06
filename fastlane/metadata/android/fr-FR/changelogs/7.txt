@@ -1,0 +1,7 @@
+
+Nouvelles fonctionnalités:
+- Deux nouvelles actions: «Double clic» et «Long clic»
+- Les icônes sont maintenant affichées dans la liste des applications
+- Vous pouvez également utiliser cette liste pour modifier ou supprimer des applications
+- Vous verrez maintenant les icônes de vos applications sélectionnées dans les paramètres
+- Dans le thème sombre tout est bien sûr en noir et blanc
