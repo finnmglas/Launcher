@@ -323,10 +323,13 @@ fun getDominantColor(bitmap: Bitmap?): Int {
 fun setButtonColor(btn: Button, color: Int) {
     if (Build.VERSION.SDK_INT >= 29)
         btn.background.colorFilter = BlendModeColorFilter(color, BlendMode.MULTIPLY)
+    else if(Build.VERSION.SDK_INT >= 21) {
+        // tested with API 17 (Android 4.4.2 on S4 mini) -> fails
+        // tested with API 28 (Android 9 on S8) -> necessary
+        btn.background.colorFilter = PorterDuffColorFilter(color, PorterDuff.Mode.SRC_ATOP)
+    }
     else {
         // not setting it here, unable to find a good alternative
-        // I tried:
-        // btn.background.colorFilter = PorterDuffColorFilter(color, PorterDuff.Mode.SRC_ATOP)
         // TODO at some point (or you do it now)
     }
 }
