@@ -62,35 +62,48 @@ class AppsRecyclerAdapter(val activity: Activity, val action: String?, val forAp
 
         if (getSavedTheme(activity) == "dark") transformGrayscale(viewHolder.img)
 
-        viewHolder.menuDots.setOnClickListener{ //creating a popup menu
+        // decide when to show the options popup menu about
+        if (isSystemApp || action == "pick") {
+            viewHolder.menuDots.visibility = View.INVISIBLE
+        }
+        else {
+            viewHolder.menuDots.visibility = View.VISIBLE
 
-            val popup = PopupMenu(activity, viewHolder.menuDots)
-            popup.inflate(R.menu.menu_app)
+            viewHolder.menuDots.setOnClickListener{ showOptionsPopup(viewHolder, appPackageName) }
+            viewHolder.menuDots.setOnLongClickListener{ showOptionsPopup(viewHolder, appPackageName) }
+            viewHolder.textView.setOnLongClickListener{ showOptionsPopup(viewHolder, appPackageName) }
+            viewHolder.img.setOnLongClickListener{ showOptionsPopup(viewHolder, appPackageName) }
+        }
+    }
 
-            popup.setOnMenuItemClickListener {
-                when (it.itemId) {
-                    R.id.app_menu_delete -> { // delete
-                        intendedChoosePause = true
-                        val intent = Intent(Intent.ACTION_UNINSTALL_PACKAGE)
-                        intent.data = Uri.parse("package:$appPackageName")
-                        intent.putExtra(Intent.EXTRA_RETURN_RESULT, true)
-                        activity.startActivityForResult(intent, REQUEST_UNINSTALL)
+    private fun showOptionsPopup(viewHolder: ViewHolder, appPackageName: String): Boolean {
+        //create the popup menu
 
-                        true
-                    }
-                    R.id.app_menu_info -> { // open app settings
-                        intendedChoosePause = true
-                        openAppSettings(appPackageName, activity)
-                        true
-                    }
-                    else -> false
+        val popup = PopupMenu(activity, viewHolder.menuDots)
+        popup.inflate(R.menu.menu_app)
+
+        popup.setOnMenuItemClickListener {
+            when (it.itemId) {
+                R.id.app_menu_delete -> { // delete
+                    intendedChoosePause = true
+                    val intent = Intent(Intent.ACTION_UNINSTALL_PACKAGE)
+                    intent.data = Uri.parse("package:$appPackageName")
+                    intent.putExtra(Intent.EXTRA_RETURN_RESULT, true)
+                    activity.startActivityForResult(intent, REQUEST_UNINSTALL)
+
+                    true
                 }
+                R.id.app_menu_info -> { // open app settings
+                    intendedChoosePause = true
+                    openAppSettings(appPackageName, activity)
+                    true
+                }
+                else -> false
             }
-
-            popup.show()
         }
 
-        viewHolder.menuDots.visibility = if(isSystemApp || action == "pick") View.INVISIBLE else View.VISIBLE
+        popup.show()
+        return true
     }
 
     override fun getItemCount(): Int { return appsList.size }
