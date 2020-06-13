@@ -73,6 +73,10 @@ class AppsRecyclerAdapter(val activity: Activity, val action: String?, val forAp
             viewHolder.menuDots.setOnLongClickListener{ showOptionsPopup(viewHolder, appPackageName) }
             viewHolder.textView.setOnLongClickListener{ showOptionsPopup(viewHolder, appPackageName) }
             viewHolder.img.setOnLongClickListener{ showOptionsPopup(viewHolder, appPackageName) }
+
+            // ensure onClicks are actually caught
+            viewHolder.textView.setOnClickListener{ viewHolder.onClick(viewHolder.textView) }
+            viewHolder.img.setOnClickListener{ viewHolder.onClick(viewHolder.img) }
         }
     }
 
