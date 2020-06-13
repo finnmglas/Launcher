@@ -8,6 +8,7 @@ import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.DisplayMetrics
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -18,6 +19,8 @@ import androidx.palette.graphics.Palette
 import com.finnmglas.launcher.R
 import com.finnmglas.launcher.extern.*
 import com.finnmglas.launcher.intendedSettingsPause
+import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_settings.*
 import kotlinx.android.synthetic.main.fragment_settings_theme.*
 
 /** The 'Theme' Tab associated Fragment in Settings */
@@ -66,7 +69,7 @@ class SettingsFragmentTheme : Fragment() {
                 when {
                     ContextCompat.checkSelfPermission(context!!,
                         Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED
-                    -> letUserPickImage()
+                    -> letUserPickImage(true)
                     shouldShowRequestPermissionRationale(Manifest.permission.WRITE_EXTERNAL_STORAGE)
                     -> {}
                     else
@@ -99,7 +102,15 @@ class SettingsFragmentTheme : Fragment() {
         val intent = Intent()
         intent.type = "image/*"
         intent.action = Intent.ACTION_PICK // other option: Intent.ACTION_GET_CONTENT
-        if (crop) intent.putExtra("crop", "true")
+
+        if (crop) { // crop to for the target devices screen
+            intent.putExtra("crop", "true")
+            val displayMetrics = DisplayMetrics()
+            activity!!.windowManager.defaultDisplay.getMetrics(displayMetrics)
+            intent.putExtra("aspectX", displayMetrics.widthPixels)
+            intent.putExtra("aspectY", displayMetrics.heightPixels)
+        }
+        
         intendedSettingsPause = true
         startActivityForResult(intent, REQUEST_PICK_IMAGE)
     }
