@@ -61,6 +61,9 @@
     <string name="choose_title">Choose App</string>
     <string name="choose_title_view">All Apps</string>
 
+    <string name="choose_tab_app" translatable="false">Apps</string>
+    <string name="choose_tab_other" translatable="false">Other</string>
+
     <string name="choose_back_settings">Back to Settings</string>
 
     <string name="choose_removed_toast">Removed the selected application</string>
