@@ -54,12 +54,12 @@ class ChooseActivity : AppCompatActivity() {
         viewManager = LinearLayoutManager(this)
         viewAdapter = AppsRecyclerAdapter( this, action, forApp)
 
-        activity_choose_apps_recycler_view.apply {
+        /*activity_choose_apps_recycler_view.apply {
             // improve performance (since content changes don't change the layout size)
             setHasFixedSize(true)
             layoutManager = viewManager
             adapter = viewAdapter
-        }
+        }*/
     }
 
     override fun onPause() {
