@@ -50,8 +50,8 @@ class OtherRecyclerAdapter(val activity: Activity):
 
     init {
         othersList = ArrayList()
-        othersList.add(OtherInfo("Settings", "launcher:settings"))
-        othersList.add(OtherInfo("AppsList", "launcher:choose"))
+        othersList.add(OtherInfo("Launcher Settings", "launcher:settings"))
+        othersList.add(OtherInfo("Launcher AppsList", "launcher:choose"))
     }
 
     /*  */

@@ -21,6 +21,7 @@ import androidx.core.content.ContextCompat.startActivity
 import com.finnmglas.launcher.ChooseActivity
 import com.finnmglas.launcher.R
 import com.finnmglas.launcher.SettingsActivity
+import com.finnmglas.launcher.intendedSettingsPause
 import kotlin.math.roundToInt
 
 
@@ -222,7 +223,10 @@ fun openSettings(activity: Activity){
 }
 
 fun openAppsList(activity: Activity){
-    activity.startActivity(Intent(activity, ChooseActivity::class.java))
+    val intent = Intent(activity, ChooseActivity::class.java)
+    intent.putExtra("action", "view")
+    intendedSettingsPause = true
+    activity.startActivity(intent)
     activity.overridePendingTransition(R.anim.bottom_up, android.R.anim.fade_out)
 }
 
