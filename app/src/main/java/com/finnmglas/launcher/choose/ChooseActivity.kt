@@ -1,4 +1,4 @@
-package com.finnmglas.launcher
+package com.finnmglas.launcher.choose
 
 import android.app.Activity
 import android.content.Intent
@@ -8,8 +8,9 @@ import android.view.WindowManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager.widget.ViewPager
-import com.finnmglas.launcher.choose.ChooseSectionsPagerAdapter
+import com.finnmglas.launcher.R
 import com.finnmglas.launcher.extern.*
+import com.finnmglas.launcher.settings.intendedSettingsPause
 import com.google.android.material.tabs.TabLayout
 import kotlinx.android.synthetic.main.activity_choose.*
 

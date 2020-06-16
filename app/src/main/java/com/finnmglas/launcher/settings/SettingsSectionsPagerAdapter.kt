@@ -5,6 +5,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import com.finnmglas.launcher.*
+import com.finnmglas.launcher.settings.actions.SettingsFragmentApps
+import com.finnmglas.launcher.settings.meta.SettingsFragmentMeta
+import com.finnmglas.launcher.settings.theme.SettingsFragmentTheme
 
 private val TAB_TITLES = arrayOf(
     R.string.settings_tab_app,

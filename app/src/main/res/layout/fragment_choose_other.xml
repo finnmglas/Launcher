@@ -8,7 +8,7 @@
     android:background="?attr/colorPrimary"
     android:gravity="center|top"
     android:orientation="vertical"
-    tools:context=".choose.ChooseFragmentOther">
+    tools:context=".choose.other.ChooseFragmentOther">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

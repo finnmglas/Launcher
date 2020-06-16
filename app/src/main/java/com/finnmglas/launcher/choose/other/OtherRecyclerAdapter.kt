@@ -1,7 +1,6 @@
 package com.finnmglas.launcher.choose.other
 
 import android.app.Activity
-import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
@@ -10,7 +9,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.finnmglas.launcher.R
 import com.finnmglas.launcher.extern.*
-import com.finnmglas.launcher.forApp
+import com.finnmglas.launcher.choose.forApp
 
 /* Will only be used if an app / action is picked */
 class OtherRecyclerAdapter(val activity: Activity):

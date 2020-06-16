@@ -11,8 +11,9 @@ import android.view.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GestureDetectorCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.finnmglas.launcher.choose.AppsRecyclerAdapter
+import com.finnmglas.launcher.choose.apps.AppsRecyclerAdapter
 import com.finnmglas.launcher.extern.*
+import com.finnmglas.launcher.tutorial.TutorialActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import java.text.SimpleDateFormat
 import java.util.*
@@ -82,7 +83,9 @@ class MainActivity : AppCompatActivity(),
         activity_main_settings_icon.setOnClickListener() { openSettings(this) }
 
         // Load apps list first - speed up settings that way
-        AsyncTask.execute { viewAdapter = AppsRecyclerAdapter( this, "", "") }
+        AsyncTask.execute { viewAdapter =
+            AppsRecyclerAdapter(this, "", "")
+        }
 
         // First Startup
         if (!sharedPref.getBoolean("startedBefore", false)){

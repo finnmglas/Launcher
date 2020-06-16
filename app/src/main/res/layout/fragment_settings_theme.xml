@@ -13,7 +13,7 @@
     android:paddingLeft="32sp"
     android:paddingTop="16sp"
     android:paddingRight="32sp"
-    tools:context=".settings.SettingsFragmentMeta">
+    tools:context=".settings.meta.SettingsFragmentMeta">
 
     <ScrollView
         android:layout_width="match_parent"

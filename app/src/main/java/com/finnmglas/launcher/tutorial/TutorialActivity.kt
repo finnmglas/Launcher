@@ -1,4 +1,4 @@
-package com.finnmglas.launcher
+package com.finnmglas.launcher.tutorial
 
 import android.content.Context
 import android.content.SharedPreferences
@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.TypedValue
 import android.view.*
 import androidx.appcompat.app.AppCompatActivity
+import com.finnmglas.launcher.R
 import com.finnmglas.launcher.extern.*
 import kotlinx.android.synthetic.main.activity_tutorial.*
 

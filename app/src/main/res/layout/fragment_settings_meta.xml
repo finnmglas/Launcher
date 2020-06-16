@@ -12,7 +12,7 @@
     android:paddingLeft="32sp"
     android:paddingTop="16sp"
     android:paddingRight="32sp"
-    tools:context=".settings.SettingsFragmentMeta">
+    tools:context=".settings.meta.SettingsFragmentMeta">
 
     <Button
         android:id="@+id/fragment_settings_meta_select_launcher_btn"

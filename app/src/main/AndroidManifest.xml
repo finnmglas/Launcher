@@ -24,15 +24,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".TutorialActivity"
+        <activity android:name=".tutorial.TutorialActivity"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity">
         </activity>
-        <activity android:name=".ChooseActivity"
+        <activity android:name=".choose.ChooseActivity"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity">
         </activity>
-        <activity android:name=".SettingsActivity"
+        <activity android:name=".settings.SettingsActivity"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity">
         </activity>

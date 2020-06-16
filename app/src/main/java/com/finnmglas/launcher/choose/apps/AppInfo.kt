@@ -1,4 +1,4 @@
-package com.finnmglas.launcher.choose
+package com.finnmglas.launcher.choose.apps
 
 import android.graphics.drawable.Drawable
 

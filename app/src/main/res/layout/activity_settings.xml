@@ -7,7 +7,7 @@
     android:id="@+id/activity_settings_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SettingsActivity">
+    tools:context=".settings.SettingsActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/activity_settings_app_bar"

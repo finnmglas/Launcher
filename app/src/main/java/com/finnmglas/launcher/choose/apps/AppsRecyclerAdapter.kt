@@ -1,4 +1,4 @@
-package com.finnmglas.launcher.choose
+package com.finnmglas.launcher.choose.apps
 
 import android.app.Activity
 import android.content.Context
@@ -14,7 +14,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.finnmglas.launcher.R
 import com.finnmglas.launcher.extern.*
-import com.finnmglas.launcher.intendedChoosePause
+import com.finnmglas.launcher.choose.intendedChoosePause
 
 class AppsRecyclerAdapter(val activity: Activity, val action: String?, val forApp: String?):
     RecyclerView.Adapter<AppsRecyclerAdapter.ViewHolder>() {

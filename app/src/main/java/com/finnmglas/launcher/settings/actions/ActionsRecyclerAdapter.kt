@@ -11,11 +11,11 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.finnmglas.launcher.ChooseActivity
+import com.finnmglas.launcher.choose.ChooseActivity
 import com.finnmglas.launcher.R
 import com.finnmglas.launcher.extern.FontAwesome
 import com.finnmglas.launcher.extern.*
-import com.finnmglas.launcher.intendedSettingsPause
+import com.finnmglas.launcher.settings.intendedSettingsPause
 import java.lang.Exception
 
 
