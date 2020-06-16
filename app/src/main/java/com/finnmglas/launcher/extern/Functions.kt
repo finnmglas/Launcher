@@ -17,7 +17,10 @@ import android.view.animation.*
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.Toast
+import androidx.core.content.ContextCompat.startActivity
+import com.finnmglas.launcher.ChooseActivity
 import com.finnmglas.launcher.R
+import com.finnmglas.launcher.SettingsActivity
 import kotlin.math.roundToInt
 
 
@@ -134,9 +137,19 @@ private fun getIntent(packageName: String, context: Context): Intent? {
     return intent
 }
 
+// select what to launch
+fun launch(data: String, activity: Activity) {
+    if (data.startsWith("launcher:")) // [type]:[info]
+        when(data.split(":")[1]) {
+            "settings" -> openSettings(activity)
+            "choose" -> openAppsList(activity)
+        }
+    else launchApp(data, activity) // app
+
+}
+
 fun launchApp(packageName: String, context: Context) {
-    val intent =
-        getIntent(packageName, context)
+    val intent = getIntent(packageName, context)
 
     if (intent != null) {
         context.startActivity(intent)
@@ -201,6 +214,16 @@ fun openAppSettings(pkg :String, context:Context){
     val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
     intent.data = Uri.parse("package:$pkg")
     context.startActivity(intent)
+}
+
+fun openSettings(activity: Activity){
+    activity.startActivity(Intent(activity, SettingsActivity::class.java))
+    activity.overridePendingTransition(R.anim.bottom_up, android.R.anim.fade_out)
+}
+
+fun openAppsList(activity: Activity){
+    activity.startActivity(Intent(activity, ChooseActivity::class.java))
+    activity.overridePendingTransition(R.anim.bottom_up, android.R.anim.fade_out)
 }
 
 fun loadSettings(sharedPref : SharedPreferences){
