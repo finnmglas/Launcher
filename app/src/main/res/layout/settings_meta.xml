@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:custom="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/fragment_settings_meta_container"
+    android:id="@+id/settings_meta_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="?attr/colorPrimary"
@@ -15,21 +15,21 @@
     tools:context=".settings.meta.SettingsFragmentMeta">
 
     <Button
-        android:id="@+id/fragment_settings_meta_select_launcher_btn"
+        android:id="@+id/settings_meta_button_select_launcher"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/settings_select_launcher"
         android:textAllCaps="false" />
 
     <Button
-        android:id="@+id/fragment_settings_meta_view_tutorial_btn"
+        android:id="@+id/settings_meta_button_view_tutorial"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/settings_show_tutorial"
         android:textAllCaps="false" />
 
     <Button
-        android:id="@+id/fragment_settings_meta_reset_settings_btn"
+        android:id="@+id/settings_meta_button_reset_settings"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="32sp"
@@ -37,6 +37,7 @@
         android:textAllCaps="false" />
 
     <LinearLayout
+        android:id="@+id/settings_meta_layout_icons"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32sp"
@@ -44,8 +45,8 @@
         android:gravity="center"
         android:orientation="horizontal">
 
-        <com.finnmglas.launcher.extern.FontAwesome
-            android:id="@+id/fragment_settings_meta_footer_play_icon"
+        <com.finnmglas.launcher.libraries.FontAwesome
+            android:id="@+id/settings_meta_icon_google_play"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
@@ -60,8 +61,8 @@
             android:textSize="40sp"
             custom:type="brands" />
 
-        <com.finnmglas.launcher.extern.FontAwesome
-            android:id="@+id/fragment_settings_meta_footer_github_icon"
+        <com.finnmglas.launcher.libraries.FontAwesome
+            android:id="@+id/settings_meta_icon_github"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
@@ -76,8 +77,8 @@
             android:textSize="40sp"
             custom:type="brands" />
 
-        <com.finnmglas.launcher.extern.FontAwesome
-            android:id="@+id/fragment_settings_meta_footer_globe_icon"
+        <com.finnmglas.launcher.libraries.FontAwesome
+            android:id="@+id/settings_meta_icon_globe"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
@@ -95,7 +96,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/fragment_settings_meta_contact_btn"
+        android:id="@+id/settings_meta_button_contact"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="32sp"
@@ -103,7 +104,7 @@
         android:textAllCaps="false" />
 
     <Button
-        android:id="@+id/fragment_settings_meta_donate_btn"
+        android:id="@+id/settings_meta_button_donate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/settings_meta_donate"

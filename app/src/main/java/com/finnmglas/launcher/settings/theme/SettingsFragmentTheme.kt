@@ -16,10 +16,9 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.palette.graphics.Palette
-import com.finnmglas.launcher.R
-import com.finnmglas.launcher.extern.*
+import com.finnmglas.launcher.*
 import com.finnmglas.launcher.settings.intendedSettingsPause
-import kotlinx.android.synthetic.main.fragment_settings_theme.*
+import kotlinx.android.synthetic.main.settings_theme.*
 
 /** The 'Theme' Tab associated Fragment in Settings */
 
@@ -31,36 +30,48 @@ class SettingsFragmentTheme : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_settings_theme, container, false)
+        return inflater.inflate(R.layout.settings_theme, container, false)
     }
 
     override fun onStart(){
         // Hide 'select' button for the selected theme or allow customisation
         when (getSavedTheme(context!!)) {
-            "dark" -> fragment_settings_theme_select_dark_btn.visibility = View.INVISIBLE
-            "finn" -> fragment_settings_theme_select_finn_btn.visibility = View.INVISIBLE
+            "dark" -> settings_theme_dark_button_select.visibility = View.INVISIBLE
+            "finn" -> settings_theme_finn_button_select.visibility = View.INVISIBLE
             "custom" -> {
-                fragment_settings_theme_select_custom_btn.text = getString(R.string.settings_select_image)
-                fragment_settings_theme_container.setBackgroundColor(dominantColor)
-                setButtonColor(fragment_settings_theme_select_finn_btn, vibrantColor)
-                setButtonColor(fragment_settings_theme_select_dark_btn, vibrantColor)
-                setButtonColor(fragment_settings_theme_select_custom_btn, vibrantColor)
-                setButtonColor(fragment_settings_theme_custom_examples_btn, vibrantColor)
+                settings_theme_custom_button_select.text = getString(R.string.settings_select_image)
+                settings_theme_container.setBackgroundColor(dominantColor)
+                setButtonColor(
+                    settings_theme_finn_button_select,
+                    vibrantColor
+                )
+                setButtonColor(
+                    settings_theme_dark_button_select,
+                    vibrantColor
+                )
+                setButtonColor(
+                    settings_theme_custom_button_select,
+                    vibrantColor
+                )
+                setButtonColor(
+                    settings_theme_custom_button_examples,
+                    vibrantColor
+                )
             }
         }
 
         // Theme changing buttons
-        fragment_settings_theme_select_dark_btn.setOnClickListener {
+        settings_theme_dark_button_select.setOnClickListener {
             intendedSettingsPause = true
             saveTheme(context!!, "dark")
             activity!!.recreate()
         }
-        fragment_settings_theme_select_finn_btn.setOnClickListener {
+        settings_theme_finn_button_select.setOnClickListener {
             intendedSettingsPause = true
             saveTheme(context!!, "finn")
             activity!!.recreate()
         }
-        fragment_settings_theme_select_custom_btn.setOnClickListener {
+        settings_theme_custom_button_select.setOnClickListener {
             intendedSettingsPause = true
             // Request permission (on newer APIs)
             if (Build.VERSION.SDK_INT >= 23) {
@@ -71,15 +82,20 @@ class SettingsFragmentTheme : Fragment() {
                     shouldShowRequestPermissionRationale(Manifest.permission.WRITE_EXTERNAL_STORAGE)
                     -> {}
                     else
-                    -> requestPermissions(arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE), REQUEST_PERMISSION_STORAGE)
+                    -> requestPermissions(arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
+                        REQUEST_PERMISSION_STORAGE
+                    )
                 }
             }
             else letUserPickImage()
         }
-        fragment_settings_theme_custom_examples_btn.setOnClickListener {
+        settings_theme_custom_button_examples.setOnClickListener {
             intendedSettingsPause = true
             // Show example usage
-            openNewTabWindow("https://github.com/finnmglas/Launcher/blob/master/docs/README.md", context!!)
+            openNewTabWindow(
+                "https://github.com/finnmglas/Launcher/blob/master/docs/README.md",
+                context!!
+            )
         }
 
         super.onStart()
@@ -128,16 +144,28 @@ class SettingsFragmentTheme : Fragment() {
 
                     // never let dominantColor equal vibrantColor
                     if(dominantColor == vibrantColor) {
-                        vibrantColor = manipulateColor(vibrantColor, 1.2F)
-                        dominantColor = manipulateColor(dominantColor, 0.8F)
+                        vibrantColor =
+                            manipulateColor(
+                                vibrantColor,
+                                1.2F
+                            )
+                        dominantColor =
+                            manipulateColor(
+                                dominantColor,
+                                0.8F
+                            )
                     }
 
                     /* Save image Uri as string */
                     val editor: SharedPreferences.Editor = context!!.getSharedPreferences(
                         context!!.getString(R.string.preference_file_key), Context.MODE_PRIVATE).edit()
                     editor.putString("background_uri", imageUri.toString())
-                    editor.putInt("custom_dominant", dominantColor)
-                    editor.putInt("custom_vibrant", vibrantColor)
+                    editor.putInt("custom_dominant",
+                        dominantColor
+                    )
+                    editor.putInt("custom_vibrant",
+                        vibrantColor
+                    )
                     editor.apply()
 
                     saveTheme(context!!, "custom")

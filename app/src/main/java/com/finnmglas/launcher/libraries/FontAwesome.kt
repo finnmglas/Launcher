@@ -1,4 +1,4 @@
-package com.finnmglas.launcher.extern // replace with your package
+package com.finnmglas.launcher.libraries // replace with your package
 
 // On GitHub: https://github.com/finnmglas/fontawesome-android
 

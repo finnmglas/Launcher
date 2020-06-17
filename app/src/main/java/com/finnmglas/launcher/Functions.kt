@@ -1,4 +1,4 @@
-package com.finnmglas.launcher.extern
+package com.finnmglas.launcher
 
 import android.app.Activity
 import android.app.AlertDialog
@@ -17,8 +17,7 @@ import android.view.animation.*
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.Toast
-import com.finnmglas.launcher.choose.ChooseActivity
-import com.finnmglas.launcher.R
+import com.finnmglas.launcher.list.ListActivity
 import com.finnmglas.launcher.settings.SettingsActivity
 import com.finnmglas.launcher.settings.intendedSettingsPause
 import kotlin.math.roundToInt
@@ -217,7 +216,7 @@ fun openSettings(activity: Activity){
 }
 
 fun openAppsList(activity: Activity){
-    val intent = Intent(activity, ChooseActivity::class.java)
+    val intent = Intent(activity, ListActivity::class.java)
     intent.putExtra("action", "view")
     intendedSettingsPause = true
     activity.startActivity(intent)

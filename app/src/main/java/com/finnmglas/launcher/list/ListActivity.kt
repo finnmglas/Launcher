@@ -1,4 +1,4 @@
-package com.finnmglas.launcher.choose
+package com.finnmglas.launcher.list
 
 import android.app.Activity
 import android.content.Intent
@@ -8,20 +8,26 @@ import android.view.WindowManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager.widget.ViewPager
-import com.finnmglas.launcher.R
-import com.finnmglas.launcher.extern.*
+import com.finnmglas.launcher.*
 import com.finnmglas.launcher.settings.intendedSettingsPause
 import com.google.android.material.tabs.TabLayout
-import kotlinx.android.synthetic.main.activity_choose.*
+import kotlinx.android.synthetic.main.list.*
+
+import android.content.Context
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentPagerAdapter
+import com.finnmglas.launcher.list.apps.ChooseFragmentApps
+import com.finnmglas.launcher.list.other.ChooseFragmentOther
 
 var intendedChoosePause = false // know when to close
 
-// TODO: Better solution for this (used in choose-fragments)
+// TODO: Better solution for this (used in list-fragments)
 var action = "view"
 var forApp = ""
 
 
-class ChooseActivity : AppCompatActivity() {
+class ListActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,16 +42,16 @@ class ChooseActivity : AppCompatActivity() {
                 else -> R.style.finnmglasTheme
             }
         )
-        setContentView(R.layout.activity_choose)
+        setContentView(R.layout.list)
 
         if (getSavedTheme(this) == "custom") {
-            activity_choose_container.setBackgroundColor(dominantColor)
-            activity_choose_app_bar.setBackgroundColor(dominantColor)
-            activity_choose_close.setTextColor(vibrantColor)
+            list_container.setBackgroundColor(dominantColor)
+            list_appbar.setBackgroundColor(dominantColor)
+            list_close.setTextColor(vibrantColor)
         }
 
         // As older APIs somehow do not recognize the xml defined onClick
-        activity_choose_close.setOnClickListener() { finish() }
+        list_close.setOnClickListener() { finish() }
 
         // get info about which action this activity is open for
         val bundle = intent.extras
@@ -57,18 +63,18 @@ class ChooseActivity : AppCompatActivity() {
 
         // Hide tabs for the "view" action
         if (action == "view") {
-            activity_choose_tabs.visibility = View.GONE
+            list_tabs.visibility = View.GONE
         }
 
         when (action) {
-            "view" -> activity_choose_heading.text = getString(R.string.choose_title_view)
-            "pick" -> activity_choose_heading.text = getString(R.string.choose_title)
+            "view" -> list_heading.text = getString(R.string.choose_title_view)
+            "pick" -> list_heading.text = getString(R.string.choose_title)
         }
 
-        val sectionsPagerAdapter = ChooseSectionsPagerAdapter(this, supportFragmentManager)
-        val viewPager: ViewPager = findViewById(R.id.activity_choose_view_pager)
+        val sectionsPagerAdapter = ListSectionsPagerAdapter(this, supportFragmentManager)
+        val viewPager: ViewPager = findViewById(R.id.list_viewpager)
         viewPager.adapter = sectionsPagerAdapter
-        val tabs: TabLayout = findViewById(R.id.activity_choose_tabs)
+        val tabs: TabLayout = findViewById(R.id.list_tabs)
         tabs.setupWithViewPager(viewPager)
     }
 
@@ -100,4 +106,33 @@ class ChooseActivity : AppCompatActivity() {
 
     fun backHome(view: View) { finish() }
 
+}
+
+private val TAB_TITLES = arrayOf(
+    R.string.choose_tab_app,
+    R.string.choose_tab_other
+)
+
+/** Returns the fragment corresponding to the selected tab.*/
+class ListSectionsPagerAdapter(private val context: Context, fm: FragmentManager)
+    : FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
+
+    override fun getItem(position: Int): Fragment {
+        return when (position){
+            0 -> ChooseFragmentApps()
+            1 -> ChooseFragmentOther()
+            else -> Fragment()
+        }
+    }
+
+    override fun getPageTitle(position: Int): CharSequence? {
+        return context.resources.getString(TAB_TITLES[position])
+    }
+
+    override fun getCount(): Int {
+        return when (action) {
+            "view" -> 1
+            else -> 2
+        }
+    }
 }

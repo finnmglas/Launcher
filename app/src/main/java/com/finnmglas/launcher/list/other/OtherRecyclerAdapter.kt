@@ -1,4 +1,4 @@
-package com.finnmglas.launcher.choose.other
+package com.finnmglas.launcher.list.other
 
 import android.app.Activity
 import android.content.Intent
@@ -8,8 +8,9 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.finnmglas.launcher.R
-import com.finnmglas.launcher.extern.*
-import com.finnmglas.launcher.choose.forApp
+import com.finnmglas.launcher.REQUEST_CHOOSE_APP
+import com.finnmglas.launcher.libraries.*
+import com.finnmglas.launcher.list.forApp
 
 /* Will only be used if an app / action is picked */
 class OtherRecyclerAdapter(val activity: Activity):
@@ -19,8 +20,8 @@ class OtherRecyclerAdapter(val activity: Activity):
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),
         View.OnClickListener {
-        var textView: TextView = itemView.findViewById(R.id.row_other_name)
-        var iconView: FontAwesome = itemView.findViewById(R.id.row_other_fa_icon)
+        var textView: TextView = itemView.findViewById(R.id.list_other_row_name)
+        var iconView: FontAwesome = itemView.findViewById(R.id.list_other_row_icon)
 
 
         override fun onClick(v: View) {
@@ -45,7 +46,7 @@ class OtherRecyclerAdapter(val activity: Activity):
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        val view: View = inflater.inflate(R.layout.recycler_other_row, parent, false)
+        val view: View = inflater.inflate(R.layout.list_other_row, parent, false)
         return ViewHolder(view)
     }
 

@@ -2,9 +2,8 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:custom="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/fragment_settings_theme_container"
+    android:id="@+id/settings_theme_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="?attr/colorPrimary"
@@ -16,6 +15,7 @@
     tools:context=".settings.meta.SettingsFragmentMeta">
 
     <ScrollView
+        android:id="@+id/settings_theme_scroller"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -25,6 +25,7 @@
             android:orientation="vertical">
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/settings_theme_finn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10sp"
@@ -35,6 +36,7 @@
                     android:layout_height="match_parent">
 
                     <ImageView
+                        android:id="@+id/settings_theme_finn_img"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:adjustViewBounds="true"
@@ -43,7 +45,7 @@
                         tools:ignore="ContentDescription" />
 
                     <Button
-                        android:id="@+id/fragment_settings_theme_select_finn_btn"
+                        android:id="@+id/settings_theme_finn_button_select"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/settings_select_theme"
@@ -56,6 +58,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/settings_theme_dark"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10sp"
@@ -66,6 +69,7 @@
                     android:layout_height="match_parent">
 
                     <ImageView
+                        android:id="@+id/settings_theme_dark_img"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:adjustViewBounds="true"
@@ -74,7 +78,7 @@
                         tools:ignore="ContentDescription" />
 
                     <Button
-                        android:id="@+id/fragment_settings_theme_select_dark_btn"
+                        android:id="@+id/settings_theme_dark_button_select"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/settings_select_theme"
@@ -86,6 +90,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/settings_theme_custom"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10sp"
@@ -96,7 +101,7 @@
                     android:layout_height="match_parent">
 
                     <ImageView
-                        android:id="@+id/imageView"
+                        android:id="@+id/settings_theme_custom_img"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:adjustViewBounds="true"
@@ -105,7 +110,7 @@
                         tools:ignore="ContentDescription" />
 
                     <Button
-                        android:id="@+id/fragment_settings_theme_select_custom_btn"
+                        android:id="@+id/settings_theme_custom_button_select"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/settings_select_theme"
@@ -114,15 +119,15 @@
                         app:layout_constraintEnd_toEndOf="parent" />
 
                     <Button
-                        android:id="@+id/fragment_settings_theme_custom_examples_btn"
+                        android:id="@+id/settings_theme_custom_button_examples"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/settings_theme_examples"
                         android:textAllCaps="false"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@id/fragment_settings_theme_select_custom_btn" />
+                        app:layout_constraintEnd_toStartOf="@id/settings_theme_custom_button_select" />
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
             </androidx.cardview.widget.CardView>
 

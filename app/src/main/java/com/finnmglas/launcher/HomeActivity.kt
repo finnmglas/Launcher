@@ -11,10 +11,9 @@ import android.view.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GestureDetectorCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.finnmglas.launcher.choose.apps.AppsRecyclerAdapter
-import com.finnmglas.launcher.extern.*
+import com.finnmglas.launcher.list.apps.AppsRecyclerAdapter
 import com.finnmglas.launcher.tutorial.TutorialActivity
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.home.*
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.concurrent.fixedRateTimer
@@ -24,7 +23,7 @@ import kotlin.math.abs
 lateinit var viewAdapter: RecyclerView.Adapter<*>
 lateinit var viewManager: RecyclerView.LayoutManager
 
-class MainActivity : AppCompatActivity(),
+class HomeActivity : AppCompatActivity(),
     GestureDetector.OnGestureListener, GestureDetector.OnDoubleTapListener {
 
     private var currentTheme = "" // keep track of theme changes
@@ -74,13 +73,13 @@ class MainActivity : AppCompatActivity(),
                 else -> R.style.customTheme
             }
         )
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.home)
 
         // Start by showing the settings icon
         showSettingsIcon()
 
         // As older APIs somehow do not recognize the xml defined onClick
-        activity_main_settings_icon.setOnClickListener() {
+        home_settings_icon.setOnClickListener() {
             openSettings(this)
             overridePendingTransition(R.anim.bottom_up, android.R.anim.fade_out)
         }
@@ -107,7 +106,7 @@ class MainActivity : AppCompatActivity(),
         loadSettings(sharedPref)
 
         if (currentTheme == "custom") {
-            activity_main_settings_icon.setTextColor(vibrantColor)
+            home_settings_icon.setTextColor(vibrantColor)
         }
 
         mDetector = GestureDetectorCompat(this, this)
@@ -121,21 +120,23 @@ class MainActivity : AppCompatActivity(),
 
         // TODO: do this immediately after changing preferences
         if (currentTheme != getSavedTheme(this)) recreate()
-        if (activity_main_background_image != null && getSavedTheme(this) == "custom")
-            activity_main_background_image.setImageBitmap(background)
+        if (home_background_image != null && getSavedTheme(
+                this
+            ) == "custom")
+            home_background_image.setImageBitmap(background)
 
         val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
         val timeFormat = SimpleDateFormat("HH:mm:ss", Locale.getDefault())
 
         clockTimer = fixedRateTimer("clockTimer", true, 0L, 100) {
-            this@MainActivity.runOnUiThread {
+            this@HomeActivity.runOnUiThread {
                 val t = timeFormat.format(Date())
-                if (activity_main_time_view.text != t)
-                    activity_main_time_view.text = t
+                if (home_time_view.text != t)
+                    home_time_view.text = t
 
                 val d = dateFormat.format(Date())
-                if (activity_main_date_view.text != d)
-                    activity_main_date_view.text = d
+                if (home_date_view.text != d)
+                    home_date_view.text = d
             }
         }
     }
@@ -149,13 +150,29 @@ class MainActivity : AppCompatActivity(),
 
     override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
         if (keyCode == KeyEvent.KEYCODE_BACK) { if (settingsIconShown) hideSettingsIcon() }
-        else if (keyCode == KeyEvent.KEYCODE_VOLUME_UP) launch(volumeUpApp, this)
-        else if (keyCode == KeyEvent.KEYCODE_VOLUME_DOWN) launch(volumeDownApp, this)
+        else if (keyCode == KeyEvent.KEYCODE_VOLUME_UP) launch(
+            volumeUpApp,
+            this
+        )
+        else if (keyCode == KeyEvent.KEYCODE_VOLUME_DOWN) launch(
+            volumeDownApp,
+            this
+        )
         return true
     }
 
-    fun dateViewOnTouch(v: View) { launch(calendarApp, this) }
-    fun timeViewOnTouch(v: View) { launch(clockApp, this) }
+    fun dateViewOnTouch(v: View) {
+        launch(
+            calendarApp,
+            this
+        )
+    }
+    fun timeViewOnTouch(v: View) {
+        launch(
+            clockApp,
+            this
+        )
+    }
 
     override fun onFling(e1: MotionEvent, e2: MotionEvent, dX: Float, dY: Float): Boolean {
 
@@ -168,24 +185,42 @@ class MainActivity : AppCompatActivity(),
         val strictness = 4 // how distinguished the swipe has to be to be accepted
 
         // Only open if the swipe was not from the phones top edge
-        if (diffY < -height / 8 && abs(diffY) > strictness * abs(diffX) && e1.y > 100) launch(downApp, this)
+        if (diffY < -height / 8 && abs(diffY) > strictness * abs(diffX) && e1.y > 100) launch(
+            downApp,
+            this
+        )
         else if (diffY > height / 8 && abs(diffY) > strictness * abs(diffX)) {
-            launch(upApp, this)
+            launch(
+                upApp,
+                this
+            )
             overridePendingTransition(R.anim.bottom_up, android.R.anim.fade_out)
         }
-        else if (diffX > width / 4 && abs(diffX) > strictness * abs(diffY)) launch(leftApp, this)
-        else if (diffX < -width / 4 && abs(diffX) > strictness * abs(diffY)) launch(rightApp, this)
+        else if (diffX > width / 4 && abs(diffX) > strictness * abs(diffY)) launch(
+            leftApp,
+            this
+        )
+        else if (diffX < -width / 4 && abs(diffX) > strictness * abs(diffY)) launch(
+            rightApp,
+            this
+        )
 
         return true
     }
 
     override fun onLongPress(event: MotionEvent) {
-        if(longClickApp != "") launch(longClickApp, this)
+        if(longClickApp != "") launch(
+            longClickApp,
+            this
+        )
         else openSettings(this)
     }
 
     override fun onDoubleTap(event: MotionEvent): Boolean {
-        launch(doubleClickApp, this)
+        launch(
+            doubleClickApp,
+            this
+        )
         return false
     }
 
@@ -201,23 +236,25 @@ class MainActivity : AppCompatActivity(),
     }
 
     private fun showSettingsIcon(){
-        activity_main_settings_icon.fadeRotateIn()
-        activity_main_settings_icon.visibility = View.VISIBLE
+        home_settings_icon.fadeRotateIn()
+        home_settings_icon.visibility = View.VISIBLE
         settingsIconShown = true
 
         tooltipTimer = fixedRateTimer("tooltipTimer", true, 10000, 1000) {
-            this@MainActivity.runOnUiThread { hideSettingsIcon() }
+            this@HomeActivity.runOnUiThread { hideSettingsIcon() }
         }
     }
 
     private fun hideSettingsIcon(){
         tooltipTimer.cancel()
-        activity_main_settings_icon.fadeRotateOut()
-        activity_main_settings_icon.visibility = View.INVISIBLE
+        home_settings_icon.fadeRotateOut()
+        home_settings_icon.visibility = View.INVISIBLE
         settingsIconShown = false
     }
 
-    fun settingsIconOnTouch(view: View){ openSettings(this) }
+    fun settingsIconOnTouch(view: View){
+        openSettings(this)
+    }
 
     override fun onTouchEvent(event: MotionEvent): Boolean {
         return if (mDetector.onTouchEvent(event)) { false } else { super.onTouchEvent(event) }

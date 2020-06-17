@@ -14,7 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/finnmglasTheme">
 
-        <activity android:name=".MainActivity"
+        <activity android:name=".HomeActivity"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity">
             <intent-filter>
@@ -28,7 +28,7 @@
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity">
         </activity>
-        <activity android:name=".choose.ChooseActivity"
+        <activity android:name=".list.ListActivity"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity">
         </activity>

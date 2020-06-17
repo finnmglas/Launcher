@@ -1,4 +1,4 @@
-package com.finnmglas.launcher.choose.apps
+package com.finnmglas.launcher.list.apps
 
 import android.app.Activity
 import android.content.Context
@@ -12,9 +12,9 @@ import android.widget.ImageView
 import android.widget.PopupMenu
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.finnmglas.launcher.R
-import com.finnmglas.launcher.extern.*
-import com.finnmglas.launcher.choose.intendedChoosePause
+import com.finnmglas.launcher.*
+import com.finnmglas.launcher.libraries.*
+import com.finnmglas.launcher.list.intendedChoosePause
 
 class AppsRecyclerAdapter(val activity: Activity, val action: String?, val forApp: String?):
     RecyclerView.Adapter<AppsRecyclerAdapter.ViewHolder>() {
@@ -23,9 +23,9 @@ class AppsRecyclerAdapter(val activity: Activity, val action: String?, val forAp
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),
         View.OnClickListener {
-        var textView: TextView = itemView.findViewById(R.id.choose_row_app_name)
-        var img: ImageView = itemView.findViewById(R.id.choose_row_app_icon) as ImageView
-        var menuDots: FontAwesome = itemView.findViewById(R.id.choose_row_app_menu)
+        var textView: TextView = itemView.findViewById(R.id.list_apps_row_name)
+        var img: ImageView = itemView.findViewById(R.id.list_apps_row_icon) as ImageView
+        var menuDots: FontAwesome = itemView.findViewById(R.id.list_apps_row_menu)
 
         override fun onClick(v: View) {
             val pos = adapterPosition
@@ -60,7 +60,9 @@ class AppsRecyclerAdapter(val activity: Activity, val action: String?, val forAp
         viewHolder.textView.text = appLabel
         viewHolder.img.setImageDrawable(appIcon)
 
-        if (getSavedTheme(activity) == "dark") transformGrayscale(viewHolder.img)
+        if (getSavedTheme(activity) == "dark") transformGrayscale(
+            viewHolder.img
+        )
 
         // decide when to show the options popup menu about
         if (isSystemApp || action == "pick") {
@@ -93,13 +95,18 @@ class AppsRecyclerAdapter(val activity: Activity, val action: String?, val forAp
                     val intent = Intent(Intent.ACTION_UNINSTALL_PACKAGE)
                     intent.data = Uri.parse("package:$appPackageName")
                     intent.putExtra(Intent.EXTRA_RETURN_RESULT, true)
-                    activity.startActivityForResult(intent, REQUEST_UNINSTALL)
+                    activity.startActivityForResult(intent,
+                        REQUEST_UNINSTALL
+                    )
 
                     true
                 }
                 R.id.app_menu_info -> { // open app settings
                     intendedChoosePause = true
-                    openAppSettings(appPackageName, activity)
+                    openAppSettings(
+                        appPackageName,
+                        activity
+                    )
                     true
                 }
                 else -> false
@@ -114,7 +121,7 @@ class AppsRecyclerAdapter(val activity: Activity, val action: String?, val forAp
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        val view: View = inflater.inflate(R.layout.recycler_apps_row, parent, false)
+        val view: View = inflater.inflate(R.layout.list_apps_row, parent, false)
         return ViewHolder(view)
     }
 

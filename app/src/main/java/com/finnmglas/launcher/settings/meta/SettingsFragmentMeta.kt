@@ -13,11 +13,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.finnmglas.launcher.*
 import com.finnmglas.launcher.tutorial.TutorialActivity
-import com.finnmglas.launcher.R
-import com.finnmglas.launcher.extern.*
 import com.finnmglas.launcher.settings.intendedSettingsPause
-import kotlinx.android.synthetic.main.fragment_settings_meta.*
+import kotlinx.android.synthetic.main.settings_meta.*
 
 /** The 'Meta' Tab associated Fragment in Settings */
 
@@ -29,28 +28,43 @@ class SettingsFragmentMeta : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_settings_meta, container, false)
+        return inflater.inflate(R.layout.settings_meta, container, false)
     }
 
     override fun onStart() {
 
         if (getSavedTheme(context!!) == "custom") {
-            fragment_settings_meta_container.setBackgroundColor(dominantColor)
+            settings_meta_container.setBackgroundColor(dominantColor)
 
-            setButtonColor(fragment_settings_meta_select_launcher_btn, vibrantColor)
-            setButtonColor(fragment_settings_meta_view_tutorial_btn, vibrantColor)
-            setButtonColor(fragment_settings_meta_reset_settings_btn, vibrantColor)
-            setButtonColor(fragment_settings_meta_contact_btn, vibrantColor)
-            setButtonColor(fragment_settings_meta_donate_btn, vibrantColor)
+            setButtonColor(
+                settings_meta_button_select_launcher,
+                vibrantColor
+            )
+            setButtonColor(
+                settings_meta_button_view_tutorial,
+                vibrantColor
+            )
+            setButtonColor(
+                settings_meta_button_reset_settings,
+                vibrantColor
+            )
+            setButtonColor(
+                settings_meta_button_contact,
+                vibrantColor
+            )
+            setButtonColor(
+                settings_meta_button_donate,
+                vibrantColor
+            )
 
-            fragment_settings_meta_footer_play_icon.setTextColor(vibrantColor)
-            fragment_settings_meta_footer_github_icon.setTextColor(vibrantColor)
-            fragment_settings_meta_footer_globe_icon.setTextColor(vibrantColor)
+            settings_meta_icon_google_play.setTextColor(vibrantColor)
+            settings_meta_icon_github.setTextColor(vibrantColor)
+            settings_meta_icon_globe.setTextColor(vibrantColor)
         }
 
         // Button onClicks
 
-        fragment_settings_meta_select_launcher_btn.setOnClickListener {
+        settings_meta_button_select_launcher.setOnClickListener {
             intendedSettingsPause = true
             // on newer sdk: choose launcher
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -65,7 +79,10 @@ class SettingsFragmentMeta : Fragment() {
                     .setPositiveButton(android.R.string.yes,
                         DialogInterface.OnClickListener { _, _ ->
                             try {
-                                openAppSettings(this.context!!.packageName, this.context!!)
+                                openAppSettings(
+                                    this.context!!.packageName,
+                                    this.context!!
+                                )
                             } catch ( e : ActivityNotFoundException) {
                                 val intent = Intent(Settings.ACTION_MANAGE_APPLICATIONS_SETTINGS)
                                 startActivity(intent)
@@ -77,20 +94,24 @@ class SettingsFragmentMeta : Fragment() {
             }
         }
 
-        fragment_settings_meta_view_tutorial_btn.setOnClickListener {
+        settings_meta_button_view_tutorial.setOnClickListener {
             intendedSettingsPause = true
             startActivity(Intent(this.context, TutorialActivity::class.java))
         }
 
         // prompting for settings-reset confirmation
-        fragment_settings_meta_reset_settings_btn.setOnClickListener {
+        settings_meta_button_reset_settings.setOnClickListener {
             AlertDialog.Builder(this.context!!, R.style.AlertDialogCustom)
                 .setTitle(getString(R.string.settings_reset))
                 .setMessage(getString(R.string.settings_reset_message))
                 .setPositiveButton(android.R.string.yes,
                     DialogInterface.OnClickListener { _, _ ->
-                        resetSettings(this.context!!.getSharedPreferences(getString(R.string.preference_file_key),
-                            Context.MODE_PRIVATE), this.context!!)
+                        resetSettings(
+                            this.context!!.getSharedPreferences(
+                                getString(R.string.preference_file_key),
+                                Context.MODE_PRIVATE
+                            ), this.context!!
+                        )
                         activity!!.finish()
                     })
                 .setNegativeButton(android.R.string.no, null)
@@ -99,12 +120,15 @@ class SettingsFragmentMeta : Fragment() {
         }
 
         // Footer onClicks
-        fragment_settings_meta_footer_github_icon.setOnClickListener {
+        settings_meta_icon_github.setOnClickListener {
             intendedSettingsPause = true
-            openNewTabWindow(getString(R.string.settings_footer_repo), this.context!!)
+            openNewTabWindow(
+                getString(R.string.settings_footer_repo),
+                this.context!!
+            )
         }
         // rate app
-        fragment_settings_meta_footer_play_icon.setOnClickListener {
+        settings_meta_icon_google_play.setOnClickListener {
             try {
                 val rateIntent = rateIntentForUrl("market://details")
                 intendedSettingsPause = true
@@ -116,21 +140,30 @@ class SettingsFragmentMeta : Fragment() {
             }
         }
 
-        fragment_settings_meta_footer_globe_icon.setOnClickListener {
+        settings_meta_icon_globe.setOnClickListener {
             intendedSettingsPause = true
-            openNewTabWindow(getString(R.string.settings_footer_web), this.context!!)
+            openNewTabWindow(
+                getString(R.string.settings_footer_web),
+                this.context!!
+            )
         }
 
         // contact developer
-        fragment_settings_meta_contact_btn.setOnClickListener {
+        settings_meta_button_contact.setOnClickListener {
             intendedSettingsPause = true
-            openNewTabWindow(getString(R.string.settings_meta_contact_url), context!!)
+            openNewTabWindow(
+                getString(R.string.settings_meta_contact_url),
+                context!!
+            )
         }
 
         // donate
-        fragment_settings_meta_donate_btn.setOnClickListener {
+        settings_meta_button_donate.setOnClickListener {
             intendedSettingsPause = true
-            openNewTabWindow(getString(R.string.settings_meta_donate_url), context!!)
+            openNewTabWindow(
+                getString(R.string.settings_meta_donate_url),
+                context!!
+            )
         }
 
         super.onStart()

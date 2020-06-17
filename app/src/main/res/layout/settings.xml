@@ -4,13 +4,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:custom="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_settings_container"
+    android:id="@+id/settings_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".settings.SettingsActivity">
 
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/activity_settings_app_bar"
+        android:id="@+id/settings_appbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -19,7 +19,7 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/activity_settings_heading"
+                android:id="@+id/settings_heading"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -33,8 +33,8 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <com.finnmglas.launcher.extern.FontAwesome
-                android:id="@+id/activity_settings_close"
+            <com.finnmglas.launcher.libraries.FontAwesome
+                android:id="@+id/settings_close"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
@@ -52,8 +52,8 @@
                 app:layout_constraintTop_toTopOf="parent"
                 custom:type="solid" />
 
-            <com.finnmglas.launcher.extern.FontAwesome
-                android:id="@+id/activity_settings_device_settings"
+            <com.finnmglas.launcher.libraries.FontAwesome
+                android:id="@+id/settings_system"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
@@ -67,11 +67,12 @@
                 custom:layout_constraintBottom_toBottomOf="parent"
                 custom:layout_constraintStart_toStartOf="parent"
                 custom:layout_constraintTop_toTopOf="parent"
-                custom:type="solid" />
+                custom:type="solid"
+                android:layout_marginStart="8dp" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <com.google.android.material.tabs.TabLayout
-            android:id="@+id/activity_settings_tabs"
+            android:id="@+id/settings_tabs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:tabTextColor="?attr/android:textColor" />
@@ -79,7 +80,7 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.viewpager.widget.ViewPager
-        android:id="@+id/activity_settings_view_pager"
+        android:id="@+id/settings_viewpager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />

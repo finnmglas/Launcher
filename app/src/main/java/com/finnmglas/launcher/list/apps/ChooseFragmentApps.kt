@@ -1,4 +1,4 @@
-package com.finnmglas.launcher.choose.apps
+package com.finnmglas.launcher.list.apps
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,10 +7,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.finnmglas.launcher.R
-import com.finnmglas.launcher.choose.action
-import com.finnmglas.launcher.extern.*
-import com.finnmglas.launcher.choose.forApp
-import kotlinx.android.synthetic.main.fragment_choose_apps.*
+import com.finnmglas.launcher.list.action
+import com.finnmglas.launcher.list.forApp
+import com.finnmglas.launcher.dominantColor
+import com.finnmglas.launcher.getSavedTheme
+import kotlinx.android.synthetic.main.list_apps.*
 
 
 /** The 'Apps' Tab associated Fragment in the Chooser */
@@ -23,14 +24,14 @@ class ChooseFragmentApps : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_choose_apps, container, false)
+        return inflater.inflate(R.layout.list_apps, container, false)
     }
 
     override fun onStart() {
         super.onStart()
 
         if (getSavedTheme(context!!) == "custom") {
-            fragment_choose_apps_container.setBackgroundColor(dominantColor)
+            list_apps_container.setBackgroundColor(dominantColor)
         }
 
         // set up the list / recycler
@@ -41,7 +42,7 @@ class ChooseFragmentApps : Fragment() {
             forApp
         )
 
-        fragment_choose_apps_recycler_view.apply {
+        list_apps_rview.apply {
             // improve performance (since content changes don't change the layout size)
             setHasFixedSize(true)
             layoutManager = viewManager
