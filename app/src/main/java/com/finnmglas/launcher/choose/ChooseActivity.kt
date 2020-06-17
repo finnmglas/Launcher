@@ -1,4 +1,4 @@
-package com.finnmglas.launcher
+package com.finnmglas.launcher.choose
 
 import android.app.Activity
 import android.content.Intent
@@ -7,12 +7,19 @@ import android.view.View
 import android.view.WindowManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.finnmglas.launcher.choose.AppsRecyclerAdapter
+import androidx.viewpager.widget.ViewPager
+import com.finnmglas.launcher.R
 import com.finnmglas.launcher.extern.*
+import com.finnmglas.launcher.settings.intendedSettingsPause
+import com.google.android.material.tabs.TabLayout
 import kotlinx.android.synthetic.main.activity_choose.*
 
 var intendedChoosePause = false // know when to close
+
+// TODO: Better solution for this (used in choose-fragments)
+var action = "view"
+var forApp = ""
+
 
 class ChooseActivity : AppCompatActivity() {
 
@@ -42,24 +49,27 @@ class ChooseActivity : AppCompatActivity() {
 
         // get info about which action this activity is open for
         val bundle = intent.extras
-        val action = bundle!!.getString("action") // why choose an app
-        val forApp = bundle.getString("forApp") // which app we choose
+        if (bundle != null) {
+            action = bundle.getString("action")!! // why choose an app
+            if (action != "view")
+                forApp = bundle.getString("forApp")!! // which app we choose
+        }
+
+        // Hide tabs for the "view" action
+        if (action == "view") {
+            activity_choose_tabs.visibility = View.GONE
+        }
 
         when (action) {
             "view" -> activity_choose_heading.text = getString(R.string.choose_title_view)
             "pick" -> activity_choose_heading.text = getString(R.string.choose_title)
         }
 
-        // set up the list / recycler
-        viewManager = LinearLayoutManager(this)
-        viewAdapter = AppsRecyclerAdapter( this, action, forApp)
-
-        activity_choose_apps_recycler_view.apply {
-            // improve performance (since content changes don't change the layout size)
-            setHasFixedSize(true)
-            layoutManager = viewManager
-            adapter = viewAdapter
-        }
+        val sectionsPagerAdapter = ChooseSectionsPagerAdapter(this, supportFragmentManager)
+        val viewPager: ViewPager = findViewById(R.id.activity_choose_view_pager)
+        viewPager.adapter = sectionsPagerAdapter
+        val tabs: TabLayout = findViewById(R.id.activity_choose_tabs)
+        tabs.setupWithViewPager(viewPager)
     }
 
     override fun onPause() {

@@ -11,7 +11,7 @@
     android:paddingLeft="32sp"
     android:paddingTop="16sp"
     android:paddingRight="32sp"
-    tools:context=".settings.SettingsFragmentApps">
+    tools:context=".settings.actions.SettingsFragmentApps">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

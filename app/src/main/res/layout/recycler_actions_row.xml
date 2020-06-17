@@ -30,6 +30,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <com.finnmglas.launcher.extern.FontAwesome
+        android:id="@+id/row_app_fa_icon"
+        android:layout_width="@dimen/app_icon_side"
+        android:layout_height="@dimen/app_icon_side"
+        android:gravity="center"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/row_choose_button"
+        app:layout_constraintHorizontal_bias="0.2"
+        app:layout_constraintStart_toStartOf="@+id/row_choose_button"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <ImageView
         android:id="@+id/row_app_icon"
         android:layout_width="@dimen/app_icon_side"

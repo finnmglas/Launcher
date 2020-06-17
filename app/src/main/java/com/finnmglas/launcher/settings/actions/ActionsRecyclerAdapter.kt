@@ -11,11 +11,11 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.finnmglas.launcher.ChooseActivity
+import com.finnmglas.launcher.choose.ChooseActivity
 import com.finnmglas.launcher.R
 import com.finnmglas.launcher.extern.FontAwesome
 import com.finnmglas.launcher.extern.*
-import com.finnmglas.launcher.intendedSettingsPause
+import com.finnmglas.launcher.settings.intendedSettingsPause
 import java.lang.Exception
 
 
@@ -27,6 +27,7 @@ class ActionsRecyclerAdapter(val activity: Activity):
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),
         View.OnClickListener {
         var textView: TextView = itemView.findViewById(R.id.row_action_name)
+        var fontAwesome: FontAwesome = itemView.findViewById(R.id.row_app_fa_icon)
         var img: ImageView = itemView.findViewById(R.id.row_app_icon) as ImageView
         var chooseButton: Button = itemView.findViewById(R.id.row_choose_button)
         var removeAction: FontAwesome = itemView.findViewById(R.id.row_remove_action)
@@ -48,20 +49,44 @@ class ActionsRecyclerAdapter(val activity: Activity):
         val content = actionsList[i].content
 
         viewHolder.textView.text = actionText
-        try {
-            viewHolder.img.setImageDrawable(activity.packageManager.getApplicationIcon(content.toString()))
-            viewHolder.img.setOnClickListener{ chooseApp(actionName.toString()) }
 
-            if (getSavedTheme(activity) == "dark") transformGrayscale(viewHolder.img)
+        viewHolder.removeAction.setOnClickListener{
+            val sharedPref = activity.getSharedPreferences(
+                activity.getString(R.string.preference_file_key), Context.MODE_PRIVATE)
 
-            viewHolder.removeAction.setOnClickListener{
-                val sharedPref = activity.getSharedPreferences(
-                    activity.getString(R.string.preference_file_key), Context.MODE_PRIVATE)
+            val editor : SharedPreferences.Editor = sharedPref.edit()
+            editor.putString("action_$actionName", "") // clear it
+            editor.apply()
 
-                val editor : SharedPreferences.Editor = sharedPref.edit()
-                editor.putString("action_$actionName", "") // clear it
-                editor.apply()
+            viewHolder.fontAwesome.visibility = View.INVISIBLE
+            viewHolder.img.visibility = View.INVISIBLE
+            viewHolder.removeAction.visibility = View.GONE
+            viewHolder.chooseButton.visibility = View.VISIBLE
+            viewHolder.chooseButton.setOnClickListener{ chooseApp(actionName.toString()) }
+            if (getSavedTheme(activity) =="custom")
+                setButtonColor(viewHolder.chooseButton, vibrantColor)
+        }
 
+        if (content!!.startsWith("launcher")) {
+            // Set fontAwesome icon
+            viewHolder.fontAwesome.visibility = View.VISIBLE
+            viewHolder.fontAwesome.setOnClickListener{ chooseApp(actionName.toString()) }
+
+            when (content.split(":")[1]) {
+                "settings" ->
+                    viewHolder.fontAwesome.text = activity.getString(R.string.fas_settings)
+                "choose" ->
+                    viewHolder.fontAwesome.text = activity.getString(R.string.fas_bars)
+            }
+        } else {
+            // Set image icon (by packageName)
+            try {
+                viewHolder.img.setImageDrawable(activity.packageManager.getApplicationIcon(content.toString()))
+                viewHolder.img.setOnClickListener{ chooseApp(actionName.toString()) }
+
+                if (getSavedTheme(activity) == "dark") transformGrayscale(viewHolder.img)
+
+            } catch (e : Exception) { // the button is shown, user asked to select an action
                 viewHolder.img.visibility = View.INVISIBLE
                 viewHolder.removeAction.visibility = View.GONE
                 viewHolder.chooseButton.visibility = View.VISIBLE
@@ -69,14 +94,6 @@ class ActionsRecyclerAdapter(val activity: Activity):
                 if (getSavedTheme(activity) =="custom")
                     setButtonColor(viewHolder.chooseButton, vibrantColor)
             }
-
-        } catch (e : Exception) {
-            viewHolder.img.visibility = View.INVISIBLE
-            viewHolder.removeAction.visibility = View.GONE
-            viewHolder.chooseButton.visibility = View.VISIBLE
-            viewHolder.chooseButton.setOnClickListener{ chooseApp(actionName.toString()) }
-            if (getSavedTheme(activity) =="custom")
-                setButtonColor(viewHolder.chooseButton, vibrantColor)
         }
     }
 

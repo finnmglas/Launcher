@@ -1,4 +1,4 @@
-package com.finnmglas.launcher.settings
+package com.finnmglas.launcher.settings.meta
 
 import android.app.AlertDialog
 import android.content.ActivityNotFoundException
@@ -13,10 +13,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.finnmglas.launcher.TutorialActivity
+import com.finnmglas.launcher.tutorial.TutorialActivity
 import com.finnmglas.launcher.R
 import com.finnmglas.launcher.extern.*
-import com.finnmglas.launcher.intendedSettingsPause
+import com.finnmglas.launcher.settings.intendedSettingsPause
 import kotlinx.android.synthetic.main.fragment_settings_meta.*
 
 /** The 'Meta' Tab associated Fragment in Settings */

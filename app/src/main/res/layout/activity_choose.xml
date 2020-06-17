@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="?attr/colorPrimary"
-    tools:context=".ChooseActivity">
+    tools:context=".choose.ChooseActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/activity_choose_app_bar"
@@ -56,20 +56,22 @@
                 custom:type="solid" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/activity_choose_tabs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            custom:tabTextColor="?attr/android:textColor" />
+
     </com.google.android.material.appbar.AppBarLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/activity_choose_apps_recycler_view"
-        android:layout_width="match_parent"
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/activity_choose_view_pager"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:scrollbars="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/activity_choose_app_bar" />
+        app:layout_constraintTop_toBottomOf="@id/activity_choose_app_bar"
+        custom:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

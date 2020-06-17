@@ -1,4 +1,4 @@
-package com.finnmglas.launcher.settings
+package com.finnmglas.launcher.settings.theme
 
 import android.Manifest
 import android.content.Context
@@ -18,9 +18,7 @@ import androidx.core.content.ContextCompat
 import androidx.palette.graphics.Palette
 import com.finnmglas.launcher.R
 import com.finnmglas.launcher.extern.*
-import com.finnmglas.launcher.intendedSettingsPause
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.activity_settings.*
+import com.finnmglas.launcher.settings.intendedSettingsPause
 import kotlinx.android.synthetic.main.fragment_settings_theme.*
 
 /** The 'Theme' Tab associated Fragment in Settings */

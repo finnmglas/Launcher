@@ -11,8 +11,9 @@ import android.view.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GestureDetectorCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.finnmglas.launcher.choose.AppsRecyclerAdapter
+import com.finnmglas.launcher.choose.apps.AppsRecyclerAdapter
 import com.finnmglas.launcher.extern.*
+import com.finnmglas.launcher.tutorial.TutorialActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import java.text.SimpleDateFormat
 import java.util.*
@@ -79,10 +80,15 @@ class MainActivity : AppCompatActivity(),
         showSettingsIcon()
 
         // As older APIs somehow do not recognize the xml defined onClick
-        activity_main_settings_icon.setOnClickListener() { openSettings() }
+        activity_main_settings_icon.setOnClickListener() {
+            openSettings(this)
+            overridePendingTransition(R.anim.bottom_up, android.R.anim.fade_out)
+        }
 
         // Load apps list first - speed up settings that way
-        AsyncTask.execute { viewAdapter = AppsRecyclerAdapter( this, "", "") }
+        AsyncTask.execute { viewAdapter =
+            AppsRecyclerAdapter(this, "", "")
+        }
 
         // First Startup
         if (!sharedPref.getBoolean("startedBefore", false)){
@@ -139,22 +145,17 @@ class MainActivity : AppCompatActivity(),
         clockTimer.cancel()
     }
 
-    private fun openSettings(){
-        startActivity(Intent(this, SettingsActivity::class.java))
-        overridePendingTransition(R.anim.bottom_up, android.R.anim.fade_out)
-    }
-
     /** Touch- and Key-related functions to start activities */
 
     override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
         if (keyCode == KeyEvent.KEYCODE_BACK) { if (settingsIconShown) hideSettingsIcon() }
-        else if (keyCode == KeyEvent.KEYCODE_VOLUME_UP) launchApp(volumeUpApp, this)
-        else if (keyCode == KeyEvent.KEYCODE_VOLUME_DOWN) launchApp(volumeDownApp, this)
+        else if (keyCode == KeyEvent.KEYCODE_VOLUME_UP) launch(volumeUpApp, this)
+        else if (keyCode == KeyEvent.KEYCODE_VOLUME_DOWN) launch(volumeDownApp, this)
         return true
     }
 
-    fun dateViewOnTouch(v: View) { launchApp(calendarApp, this) }
-    fun timeViewOnTouch(v: View) { launchApp(clockApp, this) }
+    fun dateViewOnTouch(v: View) { launch(calendarApp, this) }
+    fun timeViewOnTouch(v: View) { launch(clockApp, this) }
 
     override fun onFling(e1: MotionEvent, e2: MotionEvent, dX: Float, dY: Float): Boolean {
 
@@ -167,21 +168,24 @@ class MainActivity : AppCompatActivity(),
         val strictness = 4 // how distinguished the swipe has to be to be accepted
 
         // Only open if the swipe was not from the phones top edge
-        if (diffY < -height / 8 && abs(diffY) > strictness * abs(diffX) && e1.y > 100) launchApp(downApp, this)
-        else if (diffY > height / 8 && abs(diffY) > strictness * abs(diffX)) launchApp(upApp, this)
-        else if (diffX > width / 4 && abs(diffX) > strictness * abs(diffY)) launchApp(leftApp, this)
-        else if (diffX < -width / 4 && abs(diffX) > strictness * abs(diffY)) launchApp(rightApp, this)
+        if (diffY < -height / 8 && abs(diffY) > strictness * abs(diffX) && e1.y > 100) launch(downApp, this)
+        else if (diffY > height / 8 && abs(diffY) > strictness * abs(diffX)) {
+            launch(upApp, this)
+            overridePendingTransition(R.anim.bottom_up, android.R.anim.fade_out)
+        }
+        else if (diffX > width / 4 && abs(diffX) > strictness * abs(diffY)) launch(leftApp, this)
+        else if (diffX < -width / 4 && abs(diffX) > strictness * abs(diffY)) launch(rightApp, this)
 
         return true
     }
 
     override fun onLongPress(event: MotionEvent) {
-        if(longClickApp != "") launchApp(longClickApp, this)
-        else openSettings()
+        if(longClickApp != "") launch(longClickApp, this)
+        else openSettings(this)
     }
 
     override fun onDoubleTap(event: MotionEvent): Boolean {
-        launchApp(doubleClickApp, this)
+        launch(doubleClickApp, this)
         return false
     }
 
@@ -213,7 +217,7 @@ class MainActivity : AppCompatActivity(),
         settingsIconShown = false
     }
 
-    fun settingsIconOnTouch(view: View){ openSettings() }
+    fun settingsIconOnTouch(view: View){ openSettings(this) }
 
     override fun onTouchEvent(event: MotionEvent): Boolean {
         return if (mDetector.onTouchEvent(event)) { false } else { super.onTouchEvent(event) }

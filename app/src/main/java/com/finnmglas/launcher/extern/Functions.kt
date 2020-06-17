@@ -17,7 +17,10 @@ import android.view.animation.*
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.Toast
+import com.finnmglas.launcher.choose.ChooseActivity
 import com.finnmglas.launcher.R
+import com.finnmglas.launcher.settings.SettingsActivity
+import com.finnmglas.launcher.settings.intendedSettingsPause
 import kotlin.math.roundToInt
 
 
@@ -134,16 +137,22 @@ private fun getIntent(packageName: String, context: Context): Intent? {
     return intent
 }
 
+// select what to launch
+fun launch(data: String, activity: Activity) {
+    if (data.startsWith("launcher:")) // [type]:[info]
+        when(data.split(":")[1]) {
+            "settings" -> openSettings(activity)
+            "choose" -> openAppsList(activity)
+        }
+    else launchApp(data, activity) // app
+
+}
+
 fun launchApp(packageName: String, context: Context) {
-    val intent =
-        getIntent(packageName, context)
+    val intent = getIntent(packageName, context)
 
     if (intent != null) {
         context.startActivity(intent)
-
-        if (context is Activity) {
-            context.overridePendingTransition(0, 0)
-        }
     } else {
         if (isInstalled(packageName, context)){
 
@@ -201,6 +210,17 @@ fun openAppSettings(pkg :String, context:Context){
     val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
     intent.data = Uri.parse("package:$pkg")
     context.startActivity(intent)
+}
+
+fun openSettings(activity: Activity){
+    activity.startActivity(Intent(activity, SettingsActivity::class.java))
+}
+
+fun openAppsList(activity: Activity){
+    val intent = Intent(activity, ChooseActivity::class.java)
+    intent.putExtra("action", "view")
+    intendedSettingsPause = true
+    activity.startActivity(intent)
 }
 
 fun loadSettings(sharedPref : SharedPreferences){
