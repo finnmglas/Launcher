@@ -48,6 +48,8 @@ class ListActivity : AppCompatActivity() {
             list_container.setBackgroundColor(dominantColor)
             list_appbar.setBackgroundColor(dominantColor)
             list_close.setTextColor(vibrantColor)
+
+            list_tabs.setSelectedTabIndicatorColor(vibrantColor)
         }
 
         // As older APIs somehow do not recognize the xml defined onClick

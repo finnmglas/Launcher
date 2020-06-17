@@ -4,6 +4,7 @@
     android:id="@+id/settings_actions_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="?attr/colorPrimary"
     android:paddingLeft="32sp"
     android:paddingTop="16sp"
     android:paddingRight="32sp">
