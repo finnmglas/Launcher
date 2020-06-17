@@ -150,28 +150,24 @@ class HomeActivity : AppCompatActivity(),
 
     override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
         if (keyCode == KeyEvent.KEYCODE_BACK) { if (settingsIconShown) hideSettingsIcon() }
-        else if (keyCode == KeyEvent.KEYCODE_VOLUME_UP) launch(
-            volumeUpApp,
-            this
-        )
-        else if (keyCode == KeyEvent.KEYCODE_VOLUME_DOWN) launch(
-            volumeDownApp,
-            this
-        )
+        else if (keyCode == KeyEvent.KEYCODE_VOLUME_UP) {
+            launch(volumeUpApp, this)
+            overridePendingTransition(0, 0)
+        }
+        else if (keyCode == KeyEvent.KEYCODE_VOLUME_DOWN) {
+            launch(volumeDownApp, this)
+            overridePendingTransition(0, 0)
+        }
         return true
     }
 
     fun dateViewOnTouch(v: View) {
-        launch(
-            calendarApp,
-            this
-        )
+        launch(calendarApp, this)
+        overridePendingTransition(0, 0)
     }
     fun timeViewOnTouch(v: View) {
-        launch(
-            clockApp,
-            this
-        )
+        launch(clockApp,this)
+        overridePendingTransition(0, 0)
     }
 
     override fun onFling(e1: MotionEvent, e2: MotionEvent, dX: Float, dY: Float): Boolean {
@@ -185,42 +181,34 @@ class HomeActivity : AppCompatActivity(),
         val strictness = 4 // how distinguished the swipe has to be to be accepted
 
         // Only open if the swipe was not from the phones top edge
-        if (diffY < -height / 8 && abs(diffY) > strictness * abs(diffX) && e1.y > 100) launch(
-            downApp,
-            this
-        )
+        if (diffY < -height / 8 && abs(diffY) > strictness * abs(diffX) && e1.y > 100) {
+            launch(downApp,this)
+            overridePendingTransition(0, 0)
+        }
         else if (diffY > height / 8 && abs(diffY) > strictness * abs(diffX)) {
-            launch(
-                upApp,
-                this
-            )
+            launch(upApp, this)
             overridePendingTransition(R.anim.bottom_up, android.R.anim.fade_out)
         }
-        else if (diffX > width / 4 && abs(diffX) > strictness * abs(diffY)) launch(
-            leftApp,
-            this
-        )
-        else if (diffX < -width / 4 && abs(diffX) > strictness * abs(diffY)) launch(
-            rightApp,
-            this
-        )
+        else if (diffX > width / 4 && abs(diffX) > strictness * abs(diffY)) {
+            launch(leftApp,this)
+            overridePendingTransition(0, 0)
+        }
+        else if (diffX < -width / 4 && abs(diffX) > strictness * abs(diffY)) {
+            launch(rightApp, this)
+            overridePendingTransition(0, 0)
+        }
 
         return true
     }
 
     override fun onLongPress(event: MotionEvent) {
-        if(longClickApp != "") launch(
-            longClickApp,
-            this
-        )
-        else openSettings(this)
+        launch(longClickApp, this)
+        overridePendingTransition(0, 0)
     }
 
     override fun onDoubleTap(event: MotionEvent): Boolean {
-        launch(
-            doubleClickApp,
-            this
-        )
+        launch(doubleClickApp, this)
+        overridePendingTransition(0, 0)
         return false
     }
 
