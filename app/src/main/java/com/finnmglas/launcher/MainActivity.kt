@@ -80,7 +80,10 @@ class MainActivity : AppCompatActivity(),
         showSettingsIcon()
 
         // As older APIs somehow do not recognize the xml defined onClick
-        activity_main_settings_icon.setOnClickListener() { openSettings(this) }
+        activity_main_settings_icon.setOnClickListener() {
+            openSettings(this)
+            overridePendingTransition(R.anim.bottom_up, android.R.anim.fade_out)
+        }
 
         // Load apps list first - speed up settings that way
         AsyncTask.execute { viewAdapter =
@@ -166,7 +169,10 @@ class MainActivity : AppCompatActivity(),
 
         // Only open if the swipe was not from the phones top edge
         if (diffY < -height / 8 && abs(diffY) > strictness * abs(diffX) && e1.y > 100) launch(downApp, this)
-        else if (diffY > height / 8 && abs(diffY) > strictness * abs(diffX)) launch(upApp, this)
+        else if (diffY > height / 8 && abs(diffY) > strictness * abs(diffX)) {
+            launch(upApp, this)
+            overridePendingTransition(R.anim.bottom_up, android.R.anim.fade_out)
+        }
         else if (diffX > width / 4 && abs(diffX) > strictness * abs(diffY)) launch(leftApp, this)
         else if (diffX < -width / 4 && abs(diffX) > strictness * abs(diffY)) launch(rightApp, this)
 

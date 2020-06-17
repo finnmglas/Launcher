@@ -153,10 +153,6 @@ fun launchApp(packageName: String, context: Context) {
 
     if (intent != null) {
         context.startActivity(intent)
-
-        if (context is Activity) {
-            context.overridePendingTransition(0, 0)
-        }
     } else {
         if (isInstalled(packageName, context)){
 
@@ -218,7 +214,6 @@ fun openAppSettings(pkg :String, context:Context){
 
 fun openSettings(activity: Activity){
     activity.startActivity(Intent(activity, SettingsActivity::class.java))
-    activity.overridePendingTransition(R.anim.bottom_up, android.R.anim.fade_out)
 }
 
 fun openAppsList(activity: Activity){
@@ -226,7 +221,6 @@ fun openAppsList(activity: Activity){
     intent.putExtra("action", "view")
     intendedSettingsPause = true
     activity.startActivity(intent)
-    activity.overridePendingTransition(R.anim.bottom_up, android.R.anim.fade_out)
 }
 
 fun loadSettings(sharedPref : SharedPreferences){
