@@ -20,6 +20,7 @@ class OtherRecyclerAdapter(val activity: Activity):
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),
         View.OnClickListener {
         var textView: TextView = itemView.findViewById(R.id.row_other_name)
+        var iconView: FontAwesome = itemView.findViewById(R.id.row_other_fa_icon)
 
 
         override fun onClick(v: View) {
@@ -34,9 +35,10 @@ class OtherRecyclerAdapter(val activity: Activity):
 
     override fun onBindViewHolder(viewHolder: ViewHolder, i: Int) {
         val otherLabel = othersList[i].label.toString()
-        val otherData = othersList[i].data.toString()
+        val icon = othersList[i].icon.toString()
 
         viewHolder.textView.text = otherLabel
+        viewHolder.iconView.text = icon
     }
 
     override fun getItemCount(): Int { return othersList.size }
@@ -49,8 +51,14 @@ class OtherRecyclerAdapter(val activity: Activity):
 
     init {
         othersList = ArrayList()
-        othersList.add(OtherInfo("Launcher Settings", "launcher:settings"))
-        othersList.add(OtherInfo("Launcher AppsList", "launcher:choose"))
+        othersList.add(
+            OtherInfo("Launcher Settings",
+            "launcher:settings",
+                activity.getString(R.string.fas_settings)))
+        othersList.add(
+            OtherInfo("Launcher AppsList",
+                "launcher:choose",
+                activity.getString(R.string.fas_bars)))
     }
 
     /*  */
