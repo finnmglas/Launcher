@@ -58,8 +58,6 @@ class HomeActivity: UIObject, AppCompatActivity(),
             }
         )
         setContentView(R.layout.home)
-        setTheme()
-        setOnClicks()
 
         // Load apps list first - speed up settings that way
         AsyncTask.execute { viewAdapter =
@@ -84,6 +82,9 @@ class HomeActivity: UIObject, AppCompatActivity(),
 
         // for if the settings changed
         loadSettings()
+        
+        setTheme()
+        setOnClicks()
     }
 
     override fun onResume() {
