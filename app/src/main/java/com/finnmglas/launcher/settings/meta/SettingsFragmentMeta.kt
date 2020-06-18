@@ -2,7 +2,6 @@ package com.finnmglas.launcher.settings.meta
 
 import android.app.AlertDialog
 import android.content.ActivityNotFoundException
-import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.net.Uri
@@ -20,7 +19,7 @@ import kotlinx.android.synthetic.main.settings_meta.*
 
 /** The 'Meta' Tab associated Fragment in Settings */
 
-class SettingsFragmentMeta : Fragment() {
+class SettingsFragmentMeta : Fragment(), UIObject {
 
     /** Lifecycle functions */
 
@@ -32,35 +31,52 @@ class SettingsFragmentMeta : Fragment() {
     }
 
     override fun onStart() {
+        super<Fragment>.onStart()
+        super<UIObject>.onStart()
+
+        setTheme()
+        setOnClicks()
+    }
+
+    /** Extra functions */
+
+    // Rate App
+    //  Just copied code from https://stackoverflow.com/q/10816757/12787264
+    //   that is how we write good software ^^
+
+    private fun rateIntentForUrl(url: String): Intent {
+        val intent = Intent(
+            Intent.ACTION_VIEW,
+            Uri.parse(String.format("%s?id=%s", url, this.context!!.packageName))
+        )
+        var flags = Intent.FLAG_ACTIVITY_NO_HISTORY or Intent.FLAG_ACTIVITY_MULTIPLE_TASK
+        flags = if (Build.VERSION.SDK_INT >= 21) {
+            flags or Intent.FLAG_ACTIVITY_NEW_DOCUMENT
+        } else {
+            flags or Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET
+        }
+        intent.addFlags(flags)
+        return intent
+    }
+
+    override fun setTheme() {
 
         if (getSavedTheme(context!!) == "custom") {
             settings_meta_container.setBackgroundColor(dominantColor)
 
-            setButtonColor(
-                settings_meta_button_select_launcher,
-                vibrantColor
-            )
-            setButtonColor(
-                settings_meta_button_view_tutorial,
-                vibrantColor
-            )
-            setButtonColor(
-                settings_meta_button_reset_settings,
-                vibrantColor
-            )
-            setButtonColor(
-                settings_meta_button_contact,
-                vibrantColor
-            )
-            setButtonColor(
-                settings_meta_button_donate,
-                vibrantColor
-            )
+            setButtonColor(settings_meta_button_select_launcher, vibrantColor)
+            setButtonColor(settings_meta_button_view_tutorial, vibrantColor)
+            setButtonColor(settings_meta_button_reset_settings, vibrantColor)
+            setButtonColor(settings_meta_button_contact, vibrantColor)
+            setButtonColor(settings_meta_button_donate, vibrantColor)
 
             settings_meta_icon_google_play.setTextColor(vibrantColor)
             settings_meta_icon_github.setTextColor(vibrantColor)
             settings_meta_icon_globe.setTextColor(vibrantColor)
         }
+    }
+
+    override fun setOnClicks() {
 
         // Button onClicks
 
@@ -106,12 +122,7 @@ class SettingsFragmentMeta : Fragment() {
                 .setMessage(getString(R.string.settings_reset_message))
                 .setPositiveButton(android.R.string.yes,
                     DialogInterface.OnClickListener { _, _ ->
-                        resetSettings(
-                            this.context!!.getSharedPreferences(
-                                getString(R.string.preference_file_key),
-                                Context.MODE_PRIVATE
-                            ), this.context!!
-                        )
+                        resetSettings(launcherPreferences, this.context!!)
                         activity!!.finish()
                     })
                 .setNegativeButton(android.R.string.no, null)
@@ -165,28 +176,5 @@ class SettingsFragmentMeta : Fragment() {
                 context!!
             )
         }
-
-        super.onStart()
-    }
-
-    /** Extra functions */
-
-    // Rate App
-    //  Just copied code from https://stackoverflow.com/q/10816757/12787264
-    //   that is how we write good software ^^
-
-    private fun rateIntentForUrl(url: String): Intent {
-        val intent = Intent(
-            Intent.ACTION_VIEW,
-            Uri.parse(String.format("%s?id=%s", url, this.context!!.packageName))
-        )
-        var flags = Intent.FLAG_ACTIVITY_NO_HISTORY or Intent.FLAG_ACTIVITY_MULTIPLE_TASK
-        flags = if (Build.VERSION.SDK_INT >= 21) {
-            flags or Intent.FLAG_ACTIVITY_NEW_DOCUMENT
-        } else {
-            flags or Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET
-        }
-        intent.addFlags(flags)
-        return intent
     }
 }

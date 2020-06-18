@@ -18,7 +18,7 @@ import kotlinx.android.synthetic.main.settings_actions.*
 
 /** The 'Apps' Tab associated Fragment in Settings */
 
-class SettingsFragmentActions : Fragment() {
+class SettingsFragmentActions : Fragment(), UIObject {
 
     /** Lifecycle functions */
 
@@ -30,7 +30,25 @@ class SettingsFragmentActions : Fragment() {
     }
 
     override fun onStart() {
+        super<Fragment>.onStart()
+        super<UIObject>.onStart()
 
+        setTheme()
+        setOnClicks()
+
+        // set up the list / recycler
+        val actionViewManager = LinearLayoutManager(context)
+        val actionViewAdapter = ActionsRecyclerAdapter( activity!! )
+
+        settings_actions_rview.apply {
+            // improve performance (since content changes don't change the layout size)
+            setHasFixedSize(true)
+            layoutManager = actionViewManager
+            adapter = actionViewAdapter
+        }
+    }
+
+    override fun setTheme() {
         if (getSavedTheme(context!!) == "custom") {
             settings_actions_container.setBackgroundColor(dominantColor)
 
@@ -43,18 +61,9 @@ class SettingsFragmentActions : Fragment() {
                 vibrantColor
             )
         }
+    }
 
-
-        // set up the list / recycler
-        val actionViewManager = LinearLayoutManager(context)
-        val actionViewAdapter = ActionsRecyclerAdapter( activity!! )
-
-        settings_actions_rview.apply {
-            // improve performance (since content changes don't change the layout size)
-            setHasFixedSize(true)
-            layoutManager = actionViewManager
-            adapter = actionViewAdapter
-        }
+    override fun setOnClicks() {
 
         // App management buttons
         settings_actions_button_view_apps.setOnClickListener{
@@ -75,7 +84,5 @@ class SettingsFragmentActions : Fragment() {
                     .show()
             }
         }
-
-        super.onStart()
     }
 }

@@ -22,6 +22,8 @@ import com.finnmglas.launcher.settings.SettingsActivity
 import com.finnmglas.launcher.settings.intendedSettingsPause
 import kotlin.math.roundToInt
 
+/** Preferences (Global, initialised when app is started) */
+lateinit var launcherPreferences: SharedPreferences
 
 /** Variables for all of the app */
 var upApp = ""
@@ -331,13 +333,6 @@ fun pickDefaultApp(action: String, context: Context) : Pair<String, String>{
 }
 
 /** Bitmaps */
-
-fun getDominantColor(bitmap: Bitmap?): Int {
-    val newBitmap = Bitmap.createScaledBitmap(bitmap!!, 1, 1, true)
-    val color = newBitmap.getPixel(0, 0)
-    newBitmap.recycle()
-    return color
-}
 
 fun setButtonColor(btn: Button, color: Int) {
     if (Build.VERSION.SDK_INT >= 29)

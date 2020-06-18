@@ -4,7 +4,6 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.view.WindowManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager.widget.ViewPager
@@ -17,8 +16,8 @@ import android.content.Context
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
-import com.finnmglas.launcher.list.apps.ChooseFragmentApps
-import com.finnmglas.launcher.list.other.ChooseFragmentOther
+import com.finnmglas.launcher.list.apps.ListFragmentApps
+import com.finnmglas.launcher.list.other.ListFragmentOther
 
 var intendedChoosePause = false // know when to close
 
@@ -27,14 +26,12 @@ var action = "view"
 var forApp = ""
 
 
-class ListActivity : AppCompatActivity() {
+class ListActivity : AppCompatActivity(), UIObject {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
-        window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
-
+        // TODO: Don't use actual themes, rather create them on the fly
         setTheme(
             when (getSavedTheme(this)) {
                 "dark" -> R.style.darkTheme
@@ -44,40 +41,14 @@ class ListActivity : AppCompatActivity() {
         )
         setContentView(R.layout.list)
 
-        if (getSavedTheme(this) == "custom") {
-            list_container.setBackgroundColor(dominantColor)
-            list_appbar.setBackgroundColor(dominantColor)
-            list_close.setTextColor(vibrantColor)
+        setTheme()
+        setOnClicks()
+        configure()
+    }
 
-            list_tabs.setSelectedTabIndicatorColor(vibrantColor)
-        }
-
-        // As older APIs somehow do not recognize the xml defined onClick
-        list_close.setOnClickListener() { finish() }
-
-        // get info about which action this activity is open for
-        val bundle = intent.extras
-        if (bundle != null) {
-            action = bundle.getString("action")!! // why choose an app
-            if (action != "view")
-                forApp = bundle.getString("forApp")!! // which app we choose
-        }
-
-        // Hide tabs for the "view" action
-        if (action == "view") {
-            list_tabs.visibility = View.GONE
-        }
-
-        when (action) {
-            "view" -> list_heading.text = getString(R.string.choose_title_view)
-            "pick" -> list_heading.text = getString(R.string.choose_title)
-        }
-
-        val sectionsPagerAdapter = ListSectionsPagerAdapter(this, supportFragmentManager)
-        val viewPager: ViewPager = findViewById(R.id.list_viewpager)
-        viewPager.adapter = sectionsPagerAdapter
-        val tabs: TabLayout = findViewById(R.id.list_tabs)
-        tabs.setupWithViewPager(viewPager)
+    override fun onStart(){
+        super<AppCompatActivity>.onStart()
+        super<UIObject>.onStart()
     }
 
     override fun onPause() {
@@ -104,10 +75,45 @@ class ListActivity : AppCompatActivity() {
         }
     }
 
-    /** onClick functions */
+    override fun setTheme() {
+        if (getSavedTheme(this) == "custom") {
+            list_container.setBackgroundColor(dominantColor)
+            list_appbar.setBackgroundColor(dominantColor)
+            list_close.setTextColor(vibrantColor)
 
-    fun backHome(view: View) { finish() }
+            list_tabs.setSelectedTabIndicatorColor(vibrantColor)
+        }
+    }
 
+    override fun setOnClicks() {
+        list_close.setOnClickListener() { finish() }
+    }
+
+    override fun configure() {
+        // get info about which action this activity is open for
+        val bundle = intent.extras
+        if (bundle != null) {
+            action = bundle.getString("action")!! // why choose an app
+            if (action != "view")
+                forApp = bundle.getString("forApp")!! // which app we choose
+        }
+
+        // Hide tabs for the "view" action
+        if (action == "view") {
+            list_tabs.visibility = View.GONE
+        }
+
+        when (action) {
+            "view" -> list_heading.text = getString(R.string.choose_title_view)
+            "pick" -> list_heading.text = getString(R.string.choose_title)
+        }
+
+        val sectionsPagerAdapter = ListSectionsPagerAdapter(this, supportFragmentManager)
+        val viewPager: ViewPager = findViewById(R.id.list_viewpager)
+        viewPager.adapter = sectionsPagerAdapter
+        val tabs: TabLayout = findViewById(R.id.list_tabs)
+        tabs.setupWithViewPager(viewPager)
+    }
 }
 
 private val TAB_TITLES = arrayOf(
@@ -121,8 +127,8 @@ class ListSectionsPagerAdapter(private val context: Context, fm: FragmentManager
 
     override fun getItem(position: Int): Fragment {
         return when (position){
-            0 -> ChooseFragmentApps()
-            1 -> ChooseFragmentOther()
+            0 -> ListFragmentApps()
+            1 -> ListFragmentOther()
             else -> Fragment()
         }
     }

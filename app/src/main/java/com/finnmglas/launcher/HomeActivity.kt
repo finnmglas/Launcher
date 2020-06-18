@@ -21,9 +21,8 @@ import kotlin.math.abs
 
 // used for the apps drawer / menu (ChooseActivity)
 lateinit var viewAdapter: RecyclerView.Adapter<*>
-lateinit var viewManager: RecyclerView.LayoutManager
 
-class HomeActivity : AppCompatActivity(),
+class HomeActivity: UIObject, AppCompatActivity(),
     GestureDetector.OnGestureListener, GestureDetector.OnDoubleTapListener {
 
     private var currentTheme = "" // keep track of theme changes
@@ -44,45 +43,23 @@ class HomeActivity : AppCompatActivity(),
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // Preferences
-        val sharedPref = this.getSharedPreferences(
+        launcherPreferences = this.getSharedPreferences(
             getString(R.string.preference_file_key), Context.MODE_PRIVATE)
 
-        // Flags
-        window.setFlags(
-            WindowManager.LayoutParams.FLAG_FULLSCREEN,
-            WindowManager.LayoutParams.FLAG_FULLSCREEN
-        )
-        window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
-
+        loadSettings(launcherPreferences)
         currentTheme = getSavedTheme(this)
 
-        if (currentTheme == "custom") {
-            try {
-                background = MediaStore.Images.Media.getBitmap(this.contentResolver, Uri.parse(sharedPref.getString("background_uri", "")))
-            } catch (e: Exception) {  }
-
-            if (background == null)
-                currentTheme = saveTheme(this, "finn")
-        }
-
+        // TODO: Don't use actual themes, rather create them on the fly
         setTheme(
-            when (currentTheme) {
+            when (getSavedTheme(this)) {
                 "dark" -> R.style.darkTheme
                 "finn" -> R.style.finnmglasTheme
                 else -> R.style.customTheme
             }
         )
         setContentView(R.layout.home)
-
-        // Start by showing the settings icon
-        showSettingsIcon()
-
-        // As older APIs somehow do not recognize the xml defined onClick
-        home_settings_icon.setOnClickListener() {
-            openSettings(this)
-            overridePendingTransition(R.anim.bottom_up, android.R.anim.fade_out)
-        }
+        setTheme()
+        setOnClicks()
 
         // Load apps list first - speed up settings that way
         AsyncTask.execute { viewAdapter =
@@ -90,29 +67,23 @@ class HomeActivity : AppCompatActivity(),
         }
 
         // First Startup
-        if (!sharedPref.getBoolean("startedBefore", false)){
+        if (!launcherPreferences.getBoolean("startedBefore", false)){
             startActivity(Intent(this, TutorialActivity::class.java))
             tooltipTimer.cancel()
         }
     }
 
     override fun onStart(){
-        super.onStart()
-
-        // Preferences
-        val sharedPref = this.getSharedPreferences(
-            getString(R.string.preference_file_key), Context.MODE_PRIVATE)
-
-        loadSettings(sharedPref)
-
-        if (currentTheme == "custom") {
-            home_settings_icon.setTextColor(vibrantColor)
-        }
+        super<AppCompatActivity>.onStart()
+        super<UIObject>.onStart()
 
         mDetector = GestureDetectorCompat(this, this)
         mDetector.setOnDoubleTapListener(this)
 
         windowManager.defaultDisplay.getMetrics(displayMetrics)
+
+        // for if the settings changed
+        loadSettings(launcherPreferences)
     }
 
     override fun onResume() {
@@ -159,15 +130,6 @@ class HomeActivity : AppCompatActivity(),
             overridePendingTransition(0, 0)
         }
         return true
-    }
-
-    fun dateViewOnTouch(v: View) {
-        launch(calendarApp, this)
-        overridePendingTransition(0, 0)
-    }
-    fun timeViewOnTouch(v: View) {
-        launch(clockApp,this)
-        overridePendingTransition(0, 0)
     }
 
     override fun onFling(e1: MotionEvent, e2: MotionEvent, dX: Float, dY: Float): Boolean {
@@ -240,12 +202,41 @@ class HomeActivity : AppCompatActivity(),
         settingsIconShown = false
     }
 
-    fun settingsIconOnTouch(view: View){
-        openSettings(this)
-    }
-
     override fun onTouchEvent(event: MotionEvent): Boolean {
         return if (mDetector.onTouchEvent(event)) { false } else { super.onTouchEvent(event) }
+    }
+
+    override fun setTheme() {
+        // Start by showing the settings icon
+        showSettingsIcon()
+
+        if (currentTheme == "custom") {
+            home_settings_icon.setTextColor(vibrantColor)
+            try {
+                background = MediaStore.Images.Media.getBitmap(this.contentResolver, Uri.parse(
+                    launcherPreferences.getString("background_uri", "")))
+            } catch (e: Exception) {  }
+
+            if (background == null)
+                currentTheme = saveTheme(this, "finn")
+        }
+    }
+
+    override fun setOnClicks() {
+        home_settings_icon.setOnClickListener() {
+            openSettings(this)
+            overridePendingTransition(R.anim.bottom_up, android.R.anim.fade_out)
+        }
+
+        home_date_view.setOnClickListener() {
+            launch(calendarApp, this)
+            overridePendingTransition(0, 0)
+        }
+
+        home_time_view.setOnClickListener() {
+            launch(clockApp,this)
+            overridePendingTransition(0, 0)
+        }
     }
 
     /* TODO: Remove those. For now they are necessary

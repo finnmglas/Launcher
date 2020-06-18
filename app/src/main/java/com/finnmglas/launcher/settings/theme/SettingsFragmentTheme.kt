@@ -22,10 +22,9 @@ import kotlinx.android.synthetic.main.settings_theme.*
 
 /** The 'Theme' Tab associated Fragment in Settings */
 
-class SettingsFragmentTheme : Fragment() {
+class SettingsFragmentTheme : Fragment(), UIObject {
 
     /** Lifecycle functions */
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -34,71 +33,11 @@ class SettingsFragmentTheme : Fragment() {
     }
 
     override fun onStart(){
-        // Hide 'select' button for the selected theme or allow customisation
-        when (getSavedTheme(context!!)) {
-            "dark" -> settings_theme_dark_button_select.visibility = View.INVISIBLE
-            "finn" -> settings_theme_finn_button_select.visibility = View.INVISIBLE
-            "custom" -> {
-                settings_theme_custom_button_select.text = getString(R.string.settings_select_image)
-                settings_theme_container.setBackgroundColor(dominantColor)
-                setButtonColor(
-                    settings_theme_finn_button_select,
-                    vibrantColor
-                )
-                setButtonColor(
-                    settings_theme_dark_button_select,
-                    vibrantColor
-                )
-                setButtonColor(
-                    settings_theme_custom_button_select,
-                    vibrantColor
-                )
-                setButtonColor(
-                    settings_theme_custom_button_examples,
-                    vibrantColor
-                )
-            }
-        }
+        super<Fragment>.onStart()
+        super<UIObject>.onStart()
 
-        // Theme changing buttons
-        settings_theme_dark_button_select.setOnClickListener {
-            intendedSettingsPause = true
-            saveTheme(context!!, "dark")
-            activity!!.recreate()
-        }
-        settings_theme_finn_button_select.setOnClickListener {
-            intendedSettingsPause = true
-            saveTheme(context!!, "finn")
-            activity!!.recreate()
-        }
-        settings_theme_custom_button_select.setOnClickListener {
-            intendedSettingsPause = true
-            // Request permission (on newer APIs)
-            if (Build.VERSION.SDK_INT >= 23) {
-                when {
-                    ContextCompat.checkSelfPermission(context!!,
-                        Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED
-                    -> letUserPickImage(true)
-                    shouldShowRequestPermissionRationale(Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                    -> {}
-                    else
-                    -> requestPermissions(arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
-                        REQUEST_PERMISSION_STORAGE
-                    )
-                }
-            }
-            else letUserPickImage()
-        }
-        settings_theme_custom_button_examples.setOnClickListener {
-            intendedSettingsPause = true
-            // Show example usage
-            openNewTabWindow(
-                "https://github.com/finnmglas/Launcher/blob/master/docs/README.md",
-                context!!
-            )
-        }
-
-        super.onStart()
+        setTheme()
+        setOnClicks()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -130,7 +69,6 @@ class SettingsFragmentTheme : Fragment() {
     }
 
     private fun handlePickedImage(resultCode: Int, data: Intent?) {
-
         if (resultCode == AppCompatActivity.RESULT_OK) {
             if (data == null) return
 
@@ -173,6 +111,74 @@ class SettingsFragmentTheme : Fragment() {
                     activity!!.recreate()
                 }
             }
+        }
+    }
+
+    override fun setTheme() {
+        // Hide 'select' button for the selected theme or allow customisation
+        when (getSavedTheme(context!!)) {
+            "dark" -> settings_theme_dark_button_select.visibility = View.INVISIBLE
+            "finn" -> settings_theme_finn_button_select.visibility = View.INVISIBLE
+            "custom" -> {
+                settings_theme_custom_button_select.text = getString(R.string.settings_select_image)
+                settings_theme_container.setBackgroundColor(dominantColor)
+                setButtonColor(
+                    settings_theme_finn_button_select,
+                    vibrantColor
+                )
+                setButtonColor(
+                    settings_theme_dark_button_select,
+                    vibrantColor
+                )
+                setButtonColor(
+                    settings_theme_custom_button_select,
+                    vibrantColor
+                )
+                setButtonColor(
+                    settings_theme_custom_button_examples,
+                    vibrantColor
+                )
+            }
+        }
+    }
+
+    override fun setOnClicks() {
+        // Theme changing buttons
+        settings_theme_dark_button_select.setOnClickListener {
+            intendedSettingsPause = true
+            saveTheme(context!!, "dark")
+            activity!!.recreate()
+        }
+        settings_theme_finn_button_select.setOnClickListener {
+            intendedSettingsPause = true
+            saveTheme(context!!, "finn")
+            activity!!.recreate()
+        }
+        settings_theme_custom_button_select.setOnClickListener {
+            intendedSettingsPause = true
+            // Request permission (on newer APIs)
+            if (Build.VERSION.SDK_INT >= 23) {
+                when {
+                    ContextCompat.checkSelfPermission(context!!,
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED
+                    -> letUserPickImage(true)
+                    shouldShowRequestPermissionRationale(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                    -> {}
+                    else
+                    -> requestPermissions(arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
+                        REQUEST_PERMISSION_STORAGE
+                    )
+                }
+            }
+            else letUserPickImage()
+        }
+        settings_theme_custom_button_examples.setOnClickListener {
+            intendedSettingsPause = true
+            // Show example usage
+            openNewTabWindow(
+                "https://github.com/finnmglas/Launcher/blob/master/docs/README.md",
+                context!!
+            )
         }
     }
 }

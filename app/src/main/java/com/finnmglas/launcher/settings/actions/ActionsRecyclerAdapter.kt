@@ -3,7 +3,6 @@ package com.finnmglas.launcher.settings.actions
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -31,7 +30,6 @@ class ActionsRecyclerAdapter(val activity: Activity):
         var chooseButton: Button = itemView.findViewById(R.id.settings_actions_row_button_choose)
         var removeAction: FontAwesome = itemView.findViewById(R.id.settings_actions_row_remove)
 
-
         override fun onClick(v: View) {
             val pos = adapterPosition
             val context: Context = v.context
@@ -50,10 +48,8 @@ class ActionsRecyclerAdapter(val activity: Activity):
         viewHolder.textView.text = actionText
 
         viewHolder.removeAction.setOnClickListener{
-            val sharedPref = activity.getSharedPreferences(
-                activity.getString(R.string.preference_file_key), Context.MODE_PRIVATE)
 
-            val editor : SharedPreferences.Editor = sharedPref.edit()
+            val editor = launcherPreferences.edit()
             editor.putString("action_$actionName", "") // clear it
             editor.apply()
 

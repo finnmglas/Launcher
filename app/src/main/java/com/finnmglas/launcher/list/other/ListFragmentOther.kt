@@ -13,7 +13,7 @@ import kotlinx.android.synthetic.main.list_other.*
 
 /** The 'Other' Tab associated Fragment in the Chooser */
 
-class ChooseFragmentOther : Fragment() {
+class ListFragmentOther : Fragment() {
 
     /** Lifecycle functions */
 

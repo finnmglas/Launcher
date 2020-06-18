@@ -2,7 +2,6 @@ package com.finnmglas.launcher.settings
 
 import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.provider.Settings
 import android.view.View
@@ -12,7 +11,6 @@ import androidx.viewpager.widget.ViewPager
 import com.finnmglas.launcher.*
 import com.google.android.material.tabs.TabLayout
 import kotlinx.android.synthetic.main.settings.*
-
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
@@ -23,13 +21,14 @@ import com.finnmglas.launcher.settings.theme.SettingsFragmentTheme
 
 var intendedSettingsPause = false // know when to close
 
-class SettingsActivity : AppCompatActivity() {
+class SettingsActivity: AppCompatActivity(), UIObject {
 
     /** Activity Lifecycle functions */
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        // TODO: Don't use actual themes, rather create them on the fly
         setTheme(
             when (getSavedTheme(this)) {
                 "dark" -> R.style.darkTheme
@@ -39,9 +38,8 @@ class SettingsActivity : AppCompatActivity() {
         )
 
         setContentView(R.layout.settings)
-
-        window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
-        window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
+        setTheme()
+        setOnClicks()
 
         val sectionsPagerAdapter = SettingsSectionsPagerAdapter(this, supportFragmentManager)
         val viewPager: ViewPager = findViewById(R.id.settings_viewpager)
@@ -49,26 +47,11 @@ class SettingsActivity : AppCompatActivity() {
         val tabs: TabLayout = findViewById(R.id.settings_tabs)
         tabs.setupWithViewPager(viewPager)
 
-        // As older APIs somehow do not recognize the xml defined onClick
-        settings_close.setOnClickListener() { finish() }
-        // open device settings (see https://stackoverflow.com/a/62092663/12787264)
-        settings_system.setOnClickListener {
-            intendedSettingsPause = true
-            startActivity(Intent(Settings.ACTION_SETTINGS))
-        }
     }
 
     override fun onStart() {
-        super.onStart()
-
-        if (getSavedTheme(this) == "custom") {
-            settings_container.setBackgroundColor(dominantColor)
-            settings_appbar.setBackgroundColor(dominantColor)
-
-            settings_system.setTextColor(vibrantColor)
-            settings_close.setTextColor(vibrantColor)
-            settings_tabs.setSelectedTabIndicatorColor(vibrantColor)
-        }
+        super<AppCompatActivity>.onStart()
+        super<UIObject>.onStart()
     }
 
     override fun onResume() {
@@ -81,28 +64,42 @@ class SettingsActivity : AppCompatActivity() {
         if (!intendedSettingsPause) finish()
     }
 
-    fun backHome(view: View) { finish() }
-
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         when (requestCode) {
             REQUEST_CHOOSE_APP -> {
                 val value = data?.getStringExtra("value")
                 val forApp = data?.getStringExtra("forApp") ?: return
 
-                // Save the new App to Preferences
-                val sharedPref = this.getSharedPreferences(
-                    getString(R.string.preference_file_key), Context.MODE_PRIVATE)
+                launcherPreferences.edit()
+                    .putString("action_$forApp", value.toString())
+                    .apply()
 
-                val editor : SharedPreferences.Editor = sharedPref.edit()
-                editor.putString("action_$forApp", value.toString())
-                editor.apply()
-
-                loadSettings(sharedPref)
+                loadSettings(launcherPreferences)
             }
             else -> super.onActivityResult(requestCode, resultCode, data)
         }
     }
 
+    override fun setTheme() {
+        if (getSavedTheme(this) == "custom") {
+            settings_container.setBackgroundColor(dominantColor)
+            settings_appbar.setBackgroundColor(dominantColor)
+
+            settings_system.setTextColor(vibrantColor)
+            settings_close.setTextColor(vibrantColor)
+            settings_tabs.setSelectedTabIndicatorColor(vibrantColor)
+        }
+    }
+
+    override fun setOnClicks(){
+        // As older APIs somehow do not recognize the xml defined onClick
+        settings_close.setOnClickListener() { finish() }
+        // open device settings (see https://stackoverflow.com/a/62092663/12787264)
+        settings_system.setOnClickListener {
+            intendedSettingsPause = true
+            startActivity(Intent(Settings.ACTION_SETTINGS))
+        }
+    }
 }
 
 private val TAB_TITLES = arrayOf(

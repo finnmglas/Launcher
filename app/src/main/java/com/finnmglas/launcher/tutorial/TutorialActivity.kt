@@ -1,7 +1,6 @@
 package com.finnmglas.launcher.tutorial
 
 import android.content.Context
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.TypedValue
 import android.view.*
@@ -10,7 +9,7 @@ import com.finnmglas.launcher.*
 import kotlinx.android.synthetic.main.tutorial.*
 
 
-class TutorialActivity : AppCompatActivity(){
+class TutorialActivity : AppCompatActivity(), UIObject{
 
     /** Variables for this activity */
 
@@ -23,13 +22,7 @@ class TutorialActivity : AppCompatActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // Flags
-        window.setFlags(
-            WindowManager.LayoutParams.FLAG_FULLSCREEN,
-            WindowManager.LayoutParams.FLAG_FULLSCREEN
-        )
-        window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
-
+        // TODO: Don't use actual themes, rather create them on the fly
         setTheme(
             when (getSavedTheme(this)) {
                 "dark" -> R.style.darkTheme
@@ -37,35 +30,31 @@ class TutorialActivity : AppCompatActivity(){
                 else -> R.style.finnmglasTheme
             }
         )
+
         setContentView(R.layout.tutorial)
+        setTheme()
+        setOnClicks()
 
-        if (getSavedTheme(this) == "custom") {
-            tutorial_appbar.setBackgroundColor(dominantColor)
-            tutorial_container.setBackgroundColor(dominantColor)
-            tutorial_close.setTextColor(vibrantColor)
-        }
 
-        tutorial_page_hint.blink() // animate
         loadMenu(this)
 
-        val sharedPref = this.getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE)
-
-        isFirstTime = !sharedPref.getBoolean("startedBefore", false)
+        isFirstTime = !launcherPreferences.getBoolean("startedBefore", false)
 
         if (isFirstTime)
             defaultApps = resetSettings(
-                sharedPref,
+                launcherPreferences,
                 this
             ) // UP, DOWN, RIGHT, LEFT, VOLUME_UP, VOLUME_DOWN
         else
             tutorial_appbar.visibility = View.VISIBLE
+    }
 
-        // As older APIs somehow do not recognize the xml defined onClick
-        tutorial_close.setOnClickListener() { finish() }
+    override fun onStart() {
+        super<AppCompatActivity>.onStart()
+        super<UIObject>.onStart()
     }
 
     /** Touch- and Key-related functions to navigate */
-
     override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
         if (keyCode == KeyEvent.KEYCODE_VOLUME_UP){
             menuNumber++
@@ -87,14 +76,7 @@ class TutorialActivity : AppCompatActivity(){
         loadMenu(this)
     }
 
-    fun backToSettings(view: View){
-        finish()
-    }
-
-    /** Touch- and Key-related functions to navigate */
-
-    private fun loadMenu(context :Context) { // Context needed for packageManager
-
+    private fun loadMenu(context: Context) { // Context needed for packageManager
         val intro = resources.getStringArray(R.array.intro)
 
         if (menuNumber < intro.size){
@@ -113,14 +95,26 @@ class TutorialActivity : AppCompatActivity(){
 
         } else { // End intro
             if (isFirstTime){
-                val sharedPref = this.getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE)
-
-                val editor: SharedPreferences.Editor = sharedPref.edit()
-                editor.putBoolean("startedBefore", true) // never auto run this again
-                editor.putLong("firstStartup", System.currentTimeMillis() / 1000L) // record first startup timestamp
-                editor.apply()
+                launcherPreferences.edit()
+                    .putBoolean("startedBefore", true) // never auto run this again
+                    .putLong("firstStartup", System.currentTimeMillis() / 1000L) // record first startup timestamp
+                    .apply()
             }
             finish()
         }
+    }
+
+    override fun setTheme() {
+        if (getSavedTheme(this) == "custom") {
+            tutorial_appbar.setBackgroundColor(dominantColor)
+            tutorial_container.setBackgroundColor(dominantColor)
+            tutorial_close.setTextColor(vibrantColor)
+        }
+
+        tutorial_page_hint.blink() // animate
+    }
+
+    override fun setOnClicks() {
+        tutorial_close.setOnClickListener() { finish() }
     }
 }

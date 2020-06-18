@@ -45,7 +45,6 @@
                 android:layout_marginRight="8dp"
                 android:gravity="center"
                 android:includeFontPadding="true"
-                android:onClick="backHome"
                 android:paddingLeft="16sp"
                 android:paddingRight="16sp"
                 android:text="@string/fa_close_window"

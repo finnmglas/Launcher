@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.finnmglas.launcher.R
+import com.finnmglas.launcher.UIObject
 import com.finnmglas.launcher.list.action
 import com.finnmglas.launcher.list.forApp
 import com.finnmglas.launcher.dominantColor
@@ -14,9 +15,9 @@ import com.finnmglas.launcher.getSavedTheme
 import kotlinx.android.synthetic.main.list_apps.*
 
 
-/** The 'Apps' Tab associated Fragment in the Chooser */
+/** The 'Apps' Tab associated Fragment for the List */
 
-class ChooseFragmentApps : Fragment() {
+class ListFragmentApps : Fragment(), UIObject {
 
     /** Lifecycle functions */
 
@@ -28,26 +29,28 @@ class ChooseFragmentApps : Fragment() {
     }
 
     override fun onStart() {
-        super.onStart()
+        super<Fragment>.onStart()
+        super<UIObject>.onStart()
 
+        setTheme()
+        configure()
+    }
+
+    override fun setTheme() {
         if (getSavedTheme(context!!) == "custom") {
             list_apps_container.setBackgroundColor(dominantColor)
         }
+    }
 
+    override fun setOnClicks() { }
+
+    override fun configure() {
         // set up the list / recycler
-        val viewManager = LinearLayoutManager(context)
-        val viewAdapter = AppsRecyclerAdapter(
-            activity!!,
-            action,
-            forApp
-        )
-
         list_apps_rview.apply {
             // improve performance (since content changes don't change the layout size)
             setHasFixedSize(true)
-            layoutManager = viewManager
-            adapter = viewAdapter
+            layoutManager = LinearLayoutManager(context)
+            adapter = AppsRecyclerAdapter(activity!!, action, forApp)
         }
-
     }
 }
