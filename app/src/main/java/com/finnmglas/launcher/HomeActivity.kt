@@ -82,7 +82,7 @@ class HomeActivity: UIObject, AppCompatActivity(),
 
         // for if the settings changed
         loadSettings()
-        
+
         setTheme()
         setOnClicks()
     }
@@ -116,6 +116,8 @@ class HomeActivity: UIObject, AppCompatActivity(),
     override fun onPause() {
         super.onPause()
         clockTimer.cancel()
+
+        hideSettingsIcon()
     }
 
     /** Touch- and Key-related functions to start activities */
