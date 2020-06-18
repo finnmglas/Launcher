@@ -1,9 +1,7 @@
 package com.finnmglas.launcher.settings.theme
 
 import android.Manifest
-import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
@@ -95,18 +93,13 @@ class SettingsFragmentTheme : Fragment(), UIObject {
                     }
 
                     /* Save image Uri as string */
-                    val editor: SharedPreferences.Editor = context!!.getSharedPreferences(
-                        context!!.getString(R.string.preference_file_key), Context.MODE_PRIVATE).edit()
-                    editor.putString("background_uri", imageUri.toString())
-                    editor.putInt("custom_dominant",
-                        dominantColor
-                    )
-                    editor.putInt("custom_vibrant",
-                        vibrantColor
-                    )
-                    editor.apply()
+                    launcherPreferences.edit()
+                        .putString("background_uri", imageUri.toString())
+                        .putInt("custom_dominant", dominantColor)
+                        .putInt("custom_vibrant", vibrantColor)
+                        .apply()
 
-                    saveTheme(context!!, "custom")
+                    saveTheme("custom")
                     intendedSettingsPause = true
                     activity!!.recreate()
                 }
@@ -146,12 +139,12 @@ class SettingsFragmentTheme : Fragment(), UIObject {
         // Theme changing buttons
         settings_theme_dark_button_select.setOnClickListener {
             intendedSettingsPause = true
-            saveTheme(context!!, "dark")
+            saveTheme("dark")
             activity!!.recreate()
         }
         settings_theme_finn_button_select.setOnClickListener {
             intendedSettingsPause = true
-            saveTheme(context!!, "finn")
+            saveTheme("finn")
             activity!!.recreate()
         }
         settings_theme_custom_button_select.setOnClickListener {

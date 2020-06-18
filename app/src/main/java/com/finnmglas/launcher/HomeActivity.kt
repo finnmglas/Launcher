@@ -46,7 +46,7 @@ class HomeActivity: UIObject, AppCompatActivity(),
         launcherPreferences = this.getSharedPreferences(
             getString(R.string.preference_file_key), Context.MODE_PRIVATE)
 
-        loadSettings(launcherPreferences)
+        loadSettings()
         currentTheme = getSavedTheme(this)
 
         // TODO: Don't use actual themes, rather create them on the fly
@@ -83,7 +83,7 @@ class HomeActivity: UIObject, AppCompatActivity(),
         windowManager.defaultDisplay.getMetrics(displayMetrics)
 
         // for if the settings changed
-        loadSettings(launcherPreferences)
+        loadSettings()
     }
 
     override fun onResume() {
@@ -143,22 +143,14 @@ class HomeActivity: UIObject, AppCompatActivity(),
         val strictness = 4 // how distinguished the swipe has to be to be accepted
 
         // Only open if the swipe was not from the phones top edge
-        if (diffY < -height / 8 && abs(diffY) > strictness * abs(diffX) && e1.y > 100) {
-            launch(downApp,this)
-            overridePendingTransition(R.anim.top_down, android.R.anim.fade_out)
-        }
-        else if (diffY > height / 8 && abs(diffY) > strictness * abs(diffX)) {
-            launch(upApp, this)
-            overridePendingTransition(R.anim.bottom_up, android.R.anim.fade_out)
-        }
-        else if (diffX > width / 4 && abs(diffX) > strictness * abs(diffY)) {
-            launch(leftApp,this)
-            overridePendingTransition(R.anim.right_left, android.R.anim.fade_out)
-        }
-        else if (diffX < -width / 4 && abs(diffX) > strictness * abs(diffY)) {
-            launch(rightApp, this)
-            overridePendingTransition(R.anim.left_right, android.R.anim.fade_out)
-        }
+        if (diffY < -height / 8 && abs(diffY) > strictness * abs(diffX) && e1.y > 100)
+            launch(downApp,this, R.anim.top_down)
+        else if (diffY > height / 8 && abs(diffY) > strictness * abs(diffX))
+            launch(upApp, this, R.anim.bottom_up)
+        else if (diffX > width / 4 && abs(diffX) > strictness * abs(diffY))
+            launch(leftApp,this, R.anim.right_left)
+        else if (diffX < -width / 4 && abs(diffX) > strictness * abs(diffY))
+            launch(rightApp, this, R.anim.left_right)
 
         return true
     }
@@ -218,7 +210,7 @@ class HomeActivity: UIObject, AppCompatActivity(),
             } catch (e: Exception) {  }
 
             if (background == null)
-                currentTheme = saveTheme(this, "finn")
+                currentTheme = saveTheme("finn")
         }
     }
 

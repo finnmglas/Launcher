@@ -1,7 +1,6 @@
 package com.finnmglas.launcher.settings.actions
 
 import android.app.Activity
-import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
@@ -32,9 +31,6 @@ class ActionsRecyclerAdapter(val activity: Activity):
 
         override fun onClick(v: View) {
             val pos = adapterPosition
-            val context: Context = v.context
-            val content = actionsList[pos]
-
         }
 
         init { itemView.setOnClickListener(this) }
@@ -49,9 +45,9 @@ class ActionsRecyclerAdapter(val activity: Activity):
 
         viewHolder.removeAction.setOnClickListener{
 
-            val editor = launcherPreferences.edit()
-            editor.putString("action_$actionName", "") // clear it
-            editor.apply()
+            launcherPreferences.edit()
+                .putString("action_$actionName", "") // clear it
+                .apply()
 
             viewHolder.fontAwesome.visibility = View.INVISIBLE
             viewHolder.img.visibility = View.INVISIBLE

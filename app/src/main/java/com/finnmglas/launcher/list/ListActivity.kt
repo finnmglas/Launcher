@@ -11,7 +11,6 @@ import com.finnmglas.launcher.*
 import com.finnmglas.launcher.settings.intendedSettingsPause
 import com.google.android.material.tabs.TabLayout
 import kotlinx.android.synthetic.main.list.*
-
 import android.content.Context
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager

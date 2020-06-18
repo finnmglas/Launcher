@@ -122,7 +122,7 @@ class SettingsFragmentMeta : Fragment(), UIObject {
                 .setMessage(getString(R.string.settings_reset_message))
                 .setPositiveButton(android.R.string.yes,
                     DialogInterface.OnClickListener { _, _ ->
-                        resetSettings(launcherPreferences, this.context!!)
+                        resetSettings(this.context!!)
                         activity!!.finish()
                     })
                 .setNegativeButton(android.R.string.no, null)

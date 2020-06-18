@@ -41,10 +41,7 @@ class TutorialActivity : AppCompatActivity(), UIObject{
         isFirstTime = !launcherPreferences.getBoolean("startedBefore", false)
 
         if (isFirstTime)
-            defaultApps = resetSettings(
-                launcherPreferences,
-                this
-            ) // UP, DOWN, RIGHT, LEFT, VOLUME_UP, VOLUME_DOWN
+            defaultApps = resetSettings(this) // UP, DOWN, RIGHT, LEFT, VOLUME_UP, VOLUME_DOWN
         else
             tutorial_appbar.visibility = View.VISIBLE
     }

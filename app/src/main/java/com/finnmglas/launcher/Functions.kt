@@ -20,12 +20,13 @@ import android.widget.Toast
 import com.finnmglas.launcher.list.ListActivity
 import com.finnmglas.launcher.settings.SettingsActivity
 import com.finnmglas.launcher.settings.intendedSettingsPause
+import com.finnmglas.launcher.tutorial.TutorialActivity
 import kotlin.math.roundToInt
 
-/** Preferences (Global, initialised when app is started) */
+/** Preferences (global, initialised when app is started) */
 lateinit var launcherPreferences: SharedPreferences
 
-/** Variables for all of the app */
+/** Variables containing settings */
 var upApp = ""
 var downApp = ""
 var rightApp = ""
@@ -138,15 +139,18 @@ private fun getIntent(packageName: String, context: Context): Intent? {
     return intent
 }
 
-// select what to launch
-fun launch(data: String, activity: Activity) {
+fun launch(data: String, activity: Activity,
+           animationIn: Int = android.R.anim.fade_in, animationOut: Int = android.R.anim.fade_out) {
+
     if (data.startsWith("launcher:")) // [type]:[info]
         when(data.split(":")[1]) {
             "settings" -> openSettings(activity)
             "choose" -> openAppsList(activity)
+            "tutorial" -> openTutorial(activity)
         }
     else launchApp(data, activity) // app
 
+    activity.overridePendingTransition(animationIn, animationOut)
 }
 
 fun launchApp(packageName: String, context: Context) {
@@ -190,19 +194,13 @@ fun openNewTabWindow(urls: String, context : Context) {
 /** Settings related functions */
 
 fun getSavedTheme(context : Context) : String {
-    val sharedPref = context.getSharedPreferences(
-        context.getString(R.string.preference_file_key), Context.MODE_PRIVATE)
-
-    return sharedPref.getString("theme", "finn").toString()
+    return launcherPreferences.getString("theme", "finn").toString()
 }
 
-fun saveTheme(context : Context, themeName : String) : String {
-    val sharedPref = context.getSharedPreferences(
-        context.getString(R.string.preference_file_key), Context.MODE_PRIVATE)
-
-    val editor: SharedPreferences.Editor = sharedPref.edit()
-    editor.putString("theme", themeName)
-    editor.apply()
+fun saveTheme(themeName : String) : String {
+    launcherPreferences.edit()
+        .putString("theme", themeName)
+        .apply()
 
     return themeName
 }
@@ -217,6 +215,10 @@ fun openSettings(activity: Activity){
     activity.startActivity(Intent(activity, SettingsActivity::class.java))
 }
 
+fun openTutorial(activity: Activity){
+    activity.startActivity(Intent(activity, TutorialActivity::class.java))
+}
+
 fun openAppsList(activity: Activity){
     val intent = Intent(activity, ListActivity::class.java)
     intent.putExtra("action", "view")
@@ -224,32 +226,32 @@ fun openAppsList(activity: Activity){
     activity.startActivity(intent)
 }
 
-fun loadSettings(sharedPref : SharedPreferences){
-    upApp = sharedPref.getString("action_upApp", "").toString()
-    downApp = sharedPref.getString("action_downApp", "").toString()
-    rightApp = sharedPref.getString("action_rightApp", "").toString()
-    leftApp = sharedPref.getString("action_leftApp", "").toString()
-    volumeUpApp = sharedPref.getString("action_volumeUpApp", "").toString()
-    volumeDownApp = sharedPref.getString("action_volumeDownApp", "").toString()
+fun loadSettings(){
+    upApp = launcherPreferences.getString("action_upApp", "").toString()
+    downApp = launcherPreferences.getString("action_downApp", "").toString()
+    rightApp = launcherPreferences.getString("action_rightApp", "").toString()
+    leftApp = launcherPreferences.getString("action_leftApp", "").toString()
+    volumeUpApp = launcherPreferences.getString("action_volumeUpApp", "").toString()
+    volumeDownApp = launcherPreferences.getString("action_volumeDownApp", "").toString()
 
-    doubleClickApp = sharedPref.getString("action_doubleClickApp", "").toString()
-    longClickApp = sharedPref.getString("action_longClickApp", "").toString()
+    doubleClickApp = launcherPreferences.getString("action_doubleClickApp", "").toString()
+    longClickApp = launcherPreferences.getString("action_longClickApp", "").toString()
 
-    calendarApp = sharedPref.getString("action_calendarApp", "").toString()
-    clockApp = sharedPref.getString("action_clockApp", "").toString()
+    calendarApp = launcherPreferences.getString("action_calendarApp", "").toString()
+    clockApp = launcherPreferences.getString("action_clockApp", "").toString()
 
-    dominantColor = sharedPref.getInt("custom_dominant", 0)
-    vibrantColor = sharedPref.getInt("custom_vibrant", 0)
+    dominantColor = launcherPreferences.getInt("custom_dominant", 0)
+    vibrantColor = launcherPreferences.getInt("custom_vibrant", 0)
 }
 
-fun resetSettings(sharedPref : SharedPreferences, context: Context) : MutableList<String>{
+fun resetSettings(context: Context) : MutableList<String>{
 
     // set default theme
-    saveTheme(context, "finn")
+    saveTheme("finn")
 
     val defaultList :MutableList<String> = mutableListOf<String>()
 
-    val editor: SharedPreferences.Editor = sharedPref.edit()
+    val editor = launcherPreferences.edit()
 
     val (chosenUpName, chosenUpPackage) = pickDefaultApp(
         "action_upApp",
