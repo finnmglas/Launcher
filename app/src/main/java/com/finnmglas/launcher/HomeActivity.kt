@@ -145,7 +145,7 @@ class HomeActivity: UIObject, AppCompatActivity(),
         // Only open if the swipe was not from the phones top edge
         if (diffY < -height / 8 && abs(diffY) > strictness * abs(diffX) && e1.y > 100) {
             launch(downApp,this)
-            overridePendingTransition(0, 0)
+            overridePendingTransition(R.anim.top_down, android.R.anim.fade_out)
         }
         else if (diffY > height / 8 && abs(diffY) > strictness * abs(diffX)) {
             launch(upApp, this)
@@ -153,11 +153,11 @@ class HomeActivity: UIObject, AppCompatActivity(),
         }
         else if (diffX > width / 4 && abs(diffX) > strictness * abs(diffY)) {
             launch(leftApp,this)
-            overridePendingTransition(0, 0)
+            overridePendingTransition(R.anim.right_left, android.R.anim.fade_out)
         }
         else if (diffX < -width / 4 && abs(diffX) > strictness * abs(diffY)) {
             launch(rightApp, this)
-            overridePendingTransition(0, 0)
+            overridePendingTransition(R.anim.left_right, android.R.anim.fade_out)
         }
 
         return true
