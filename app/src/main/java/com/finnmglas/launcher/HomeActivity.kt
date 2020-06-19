@@ -32,8 +32,6 @@ import kotlin.math.abs
 class HomeActivity: UIObject, AppCompatActivity(),
     GestureDetector.OnGestureListener, GestureDetector.OnDoubleTapListener {
 
-    private var currentTheme = "" // keep track of theme changes
-
     private lateinit var mDetector: GestureDetectorCompat
 
     // timers
@@ -64,8 +62,6 @@ class HomeActivity: UIObject, AppCompatActivity(),
 
         // Initialise layout
         setContentView(R.layout.home)
-
-        currentTheme = getSavedTheme(this)
     }
 
     override fun onStart(){
@@ -82,11 +78,7 @@ class HomeActivity: UIObject, AppCompatActivity(),
     override fun onResume() {
         super.onResume()
 
-        // TODO: do this immediately after changing preferences
-        if (currentTheme != getSavedTheme(this)) recreate()
-        if (home_background_image != null && getSavedTheme(
-                this
-            ) == "custom")
+        if (home_background_image != null && getSavedTheme(this) == "custom")
             home_background_image.setImageBitmap(background)
 
         val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
@@ -187,36 +179,52 @@ class HomeActivity: UIObject, AppCompatActivity(),
         return if (mDetector.onTouchEvent(event)) { false } else { super.onTouchEvent(event) }
     }
 
-    override fun setTheme() {
+    override fun applyTheme() {
         // Start by showing the settings icon
         showSettingsIcon()
 
-        if (currentTheme == "custom") {
-            home_settings_icon.setTextColor(vibrantColor)
-            try {
-                background = MediaStore.Images.Media.getBitmap(this.contentResolver, Uri.parse(
-                    launcherPreferences.getString("background_uri", "")))
-            } catch (e: Exception) {  }
+        home_settings_icon.setTextColor(vibrantColor)
+        home_container.setBackgroundColor(dominantColor)
 
-            if (background == null)
-                currentTheme = saveTheme("finn")
+        if (launcherPreferences.getString("background_uri", "") != "") {
+            try {
+                background = MediaStore.Images.Media.getBitmap(
+                    this.contentResolver, Uri.parse(
+                        launcherPreferences.getString("background_uri", "")
+                    )
+                )
+            } catch (e: Exception) { }
+
+            if (background == null) { // same as in Settings - TODO make function called by both
+                dominantColor = resources.getColor(R.color.finnmglasTheme_background_color)
+                vibrantColor = resources.getColor(R.color.finnmglasTheme_accent_color)
+
+                launcherPreferences.edit()
+                    .putString("background_uri", "")
+                    .putInt("custom_dominant", dominantColor)
+                    .putInt("custom_vibrant", vibrantColor)
+                    .apply()
+
+                saveTheme("finn")
+                recreate()
+            }
+            home_background_image.visibility = View.VISIBLE
+        } else {
+            home_background_image.visibility = View.INVISIBLE
         }
     }
 
     override fun setOnClicks() {
         home_settings_icon.setOnClickListener() {
-            openSettings(this)
-            overridePendingTransition(R.anim.bottom_up, android.R.anim.fade_out)
+            launch("launcher:settings", this, R.anim.bottom_up)
         }
 
         home_date_view.setOnClickListener() {
             launch(calendarApp, this)
-            overridePendingTransition(0, 0)
         }
 
         home_time_view.setOnClickListener() {
             launch(clockApp,this)
-            overridePendingTransition(0, 0)
         }
     }
 

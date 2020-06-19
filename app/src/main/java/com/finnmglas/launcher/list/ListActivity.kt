@@ -69,21 +69,19 @@ class ListActivity : AppCompatActivity(), UIObject {
         }
     }
 
-    override fun setTheme() {
-        if (getSavedTheme(this) == "custom") {
-            list_container.setBackgroundColor(dominantColor)
-            list_appbar.setBackgroundColor(dominantColor)
-            list_close.setTextColor(vibrantColor)
+    override fun applyTheme() {
+        list_container.setBackgroundColor(dominantColor)
+        list_appbar.setBackgroundColor(dominantColor)
+        list_close.setTextColor(vibrantColor)
 
-            list_tabs.setSelectedTabIndicatorColor(vibrantColor)
-        }
+        list_tabs.setSelectedTabIndicatorColor(vibrantColor)
     }
 
     override fun setOnClicks() {
         list_close.setOnClickListener() { finish() }
     }
 
-    override fun configure() {
+    override fun adjustLayout() {
         // get info about which action this activity is open for
         val bundle = intent.extras
         if (bundle != null) {

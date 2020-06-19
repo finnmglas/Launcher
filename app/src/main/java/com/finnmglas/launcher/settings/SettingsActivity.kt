@@ -75,15 +75,13 @@ class SettingsActivity: AppCompatActivity(), UIObject {
         }
     }
 
-    override fun setTheme() {
-        if (getSavedTheme(this) == "custom") {
-            settings_container.setBackgroundColor(dominantColor)
-            settings_appbar.setBackgroundColor(dominantColor)
+    override fun applyTheme() {
+        settings_container.setBackgroundColor(dominantColor)
+        settings_appbar.setBackgroundColor(dominantColor)
 
-            settings_system.setTextColor(vibrantColor)
-            settings_close.setTextColor(vibrantColor)
-            settings_tabs.setSelectedTabIndicatorColor(vibrantColor)
-        }
+        settings_system.setTextColor(vibrantColor)
+        settings_close.setTextColor(vibrantColor)
+        settings_tabs.setSelectedTabIndicatorColor(vibrantColor)
     }
 
     override fun setOnClicks(){

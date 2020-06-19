@@ -58,21 +58,18 @@ class SettingsFragmentMeta : Fragment(), UIObject {
         return intent
     }
 
-    override fun setTheme() {
+    override fun applyTheme() {
+        settings_meta_container.setBackgroundColor(dominantColor)
 
-        if (getSavedTheme(context!!) == "custom") {
-            settings_meta_container.setBackgroundColor(dominantColor)
+        setButtonColor(settings_meta_button_select_launcher, vibrantColor)
+        setButtonColor(settings_meta_button_view_tutorial, vibrantColor)
+        setButtonColor(settings_meta_button_reset_settings, vibrantColor)
+        setButtonColor(settings_meta_button_contact, vibrantColor)
+        setButtonColor(settings_meta_button_donate, vibrantColor)
 
-            setButtonColor(settings_meta_button_select_launcher, vibrantColor)
-            setButtonColor(settings_meta_button_view_tutorial, vibrantColor)
-            setButtonColor(settings_meta_button_reset_settings, vibrantColor)
-            setButtonColor(settings_meta_button_contact, vibrantColor)
-            setButtonColor(settings_meta_button_donate, vibrantColor)
-
-            settings_meta_icon_google_play.setTextColor(vibrantColor)
-            settings_meta_icon_github.setTextColor(vibrantColor)
-            settings_meta_icon_globe.setTextColor(vibrantColor)
-        }
+        settings_meta_icon_google_play.setTextColor(vibrantColor)
+        settings_meta_icon_github.setTextColor(vibrantColor)
+        settings_meta_icon_globe.setTextColor(vibrantColor)
     }
 
     override fun setOnClicks() {

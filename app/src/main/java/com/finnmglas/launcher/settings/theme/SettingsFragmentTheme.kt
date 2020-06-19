@@ -104,44 +104,52 @@ class SettingsFragmentTheme : Fragment(), UIObject {
         }
     }
 
-    override fun setTheme() {
+    override fun applyTheme() {
         // Hide 'select' button for the selected theme or allow customisation
         when (getSavedTheme(context!!)) {
             "dark" -> settings_theme_dark_button_select.visibility = View.INVISIBLE
             "finn" -> settings_theme_finn_button_select.visibility = View.INVISIBLE
-            "custom" -> {
+            "custom" ->
                 settings_theme_custom_button_select.text = getString(R.string.settings_select_image)
-                settings_theme_container.setBackgroundColor(dominantColor)
-                setButtonColor(
-                    settings_theme_finn_button_select,
-                    vibrantColor
-                )
-                setButtonColor(
-                    settings_theme_dark_button_select,
-                    vibrantColor
-                )
-                setButtonColor(
-                    settings_theme_custom_button_select,
-                    vibrantColor
-                )
-                setButtonColor(
-                    settings_theme_custom_button_examples,
-                    vibrantColor
-                )
-            }
         }
+
+        settings_theme_container.setBackgroundColor(dominantColor)
+        setButtonColor(settings_theme_finn_button_select, vibrantColor)
+        setButtonColor(settings_theme_dark_button_select, vibrantColor)
+        setButtonColor(settings_theme_custom_button_select, vibrantColor)
+        setButtonColor(settings_theme_custom_button_examples, vibrantColor)
     }
 
     override fun setOnClicks() {
         // Theme changing buttons
         settings_theme_dark_button_select.setOnClickListener {
-            intendedSettingsPause = true
+            dominantColor = resources.getColor(R.color.darkTheme_background_color)
+            vibrantColor = resources.getColor(R.color.darkTheme_accent_color)
+
+            launcherPreferences.edit()
+                .putString("background_uri", "")
+                .putInt("custom_dominant", dominantColor)
+                .putInt("custom_vibrant", vibrantColor)
+                .apply()
+
             saveTheme("dark")
+
+            intendedSettingsPause = true
             activity!!.recreate()
         }
         settings_theme_finn_button_select.setOnClickListener {
-            intendedSettingsPause = true
+            dominantColor = resources.getColor(R.color.finnmglasTheme_background_color)
+            vibrantColor = resources.getColor(R.color.finnmglasTheme_accent_color)
+
+            launcherPreferences.edit()
+                .putString("background_uri", "")
+                .putInt("custom_dominant", dominantColor)
+                .putInt("custom_vibrant", vibrantColor)
+                .apply()
+
             saveTheme("finn")
+
+            intendedSettingsPause = true
             activity!!.recreate()
         }
         settings_theme_custom_button_select.setOnClickListener {

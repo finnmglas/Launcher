@@ -52,11 +52,8 @@ class ActionsRecyclerAdapter(val activity: Activity):
             viewHolder.removeAction.visibility = View.GONE
             viewHolder.chooseButton.visibility = View.VISIBLE
             viewHolder.chooseButton.setOnClickListener{ chooseApp(actionName.toString()) }
-            if (getSavedTheme(activity) =="custom")
-                setButtonColor(
-                    viewHolder.chooseButton,
-                    vibrantColor
-                )
+
+            setButtonColor(viewHolder.chooseButton, vibrantColor)
         }
 
         if (content!!.startsWith("launcher")) {
@@ -85,11 +82,7 @@ class ActionsRecyclerAdapter(val activity: Activity):
                 viewHolder.removeAction.visibility = View.GONE
                 viewHolder.chooseButton.visibility = View.VISIBLE
                 viewHolder.chooseButton.setOnClickListener{ chooseApp(actionName.toString()) }
-                if (getSavedTheme(activity) =="custom")
-                    setButtonColor(
-                        viewHolder.chooseButton,
-                        vibrantColor
-                    )
+                setButtonColor(viewHolder.chooseButton, vibrantColor)
             }
         }
     }

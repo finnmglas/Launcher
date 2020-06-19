@@ -15,13 +15,13 @@ interface UIObject {
             window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
         }
 
-        setTheme()
+        applyTheme()
         setOnClicks()
-        configure()
+        adjustLayout()
     }
 
     // Don't use actual themes, rather create them on the fly for faster theme-switching
-    fun setTheme() { }      // colors
-    fun setOnClicks() { }   // onClicks
-    fun configure() { }     // layoutElements
+    fun applyTheme() { }
+    fun setOnClicks() { }
+    fun adjustLayout() { }
 }

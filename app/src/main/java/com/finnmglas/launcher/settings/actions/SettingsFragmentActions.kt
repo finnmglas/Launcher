@@ -49,19 +49,11 @@ class SettingsFragmentActions : Fragment(), UIObject {
         }
     }
 
-    override fun setTheme() {
-        if (getSavedTheme(context!!) == "custom") {
-            settings_actions_container.setBackgroundColor(dominantColor)
+    override fun applyTheme() {
+        settings_actions_container.setBackgroundColor(dominantColor)
 
-            setButtonColor(
-                settings_actions_button_view_apps,
-                vibrantColor
-            )
-            setButtonColor(
-                settings_actions_button_install_apps,
-                vibrantColor
-            )
-        }
+        setButtonColor(settings_actions_button_view_apps, vibrantColor)
+        setButtonColor(settings_actions_button_install_apps, vibrantColor)
     }
 
     override fun setOnClicks() {

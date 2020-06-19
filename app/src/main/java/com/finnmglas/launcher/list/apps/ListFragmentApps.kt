@@ -34,15 +34,13 @@ class ListFragmentApps : Fragment(), UIObject {
         super<UIObject>.onStart()
     }
 
-    override fun setTheme() {
-        if (getSavedTheme(context!!) == "custom") {
-            list_apps_container.setBackgroundColor(dominantColor)
-        }
+    override fun applyTheme() {
+        list_apps_container.setBackgroundColor(dominantColor)
     }
 
     override fun setOnClicks() { }
 
-    override fun configure() {
+    override fun adjustLayout() {
         // set up the list / recycler
         list_apps_rview.apply {
             // improve performance (since content changes don't change the layout size)

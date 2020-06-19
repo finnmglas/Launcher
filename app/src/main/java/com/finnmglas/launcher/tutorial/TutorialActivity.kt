@@ -89,12 +89,10 @@ class TutorialActivity: AppCompatActivity(), UIObject {
         }
     }
 
-    override fun setTheme() {
-        if (getSavedTheme(this) == "custom") {
-            tutorial_appbar.setBackgroundColor(dominantColor)
-            tutorial_container.setBackgroundColor(dominantColor)
-            tutorial_close.setTextColor(vibrantColor)
-        }
+    override fun applyTheme() {
+        tutorial_appbar.setBackgroundColor(dominantColor)
+        tutorial_container.setBackgroundColor(dominantColor)
+        tutorial_close.setTextColor(vibrantColor)
 
         tutorial_page_hint.blink() // animate
     }
