@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/list_other_row_container"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="15sp">
 
-    <com.finnmglas.launcher.extern.FontAwesome
-        android:id="@+id/row_other_fa_icon"
+    <com.finnmglas.launcher.libraries.FontAwesome
+        android:id="@+id/list_other_row_icon"
         android:layout_width="40sp"
         android:layout_height="40sp"
         android:gravity="center"
@@ -18,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/row_other_name"
+        android:id="@+id/list_other_row_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="60sp"

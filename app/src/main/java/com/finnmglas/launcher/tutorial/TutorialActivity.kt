@@ -1,68 +1,44 @@
 package com.finnmglas.launcher.tutorial
 
 import android.content.Context
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.TypedValue
 import android.view.*
 import androidx.appcompat.app.AppCompatActivity
-import com.finnmglas.launcher.R
-import com.finnmglas.launcher.extern.*
-import kotlinx.android.synthetic.main.activity_tutorial.*
+import com.finnmglas.launcher.*
+import kotlinx.android.synthetic.main.tutorial.*
 
-
-class TutorialActivity : AppCompatActivity(){
-
-    /** Variables for this activity */
+/**
+ * The [TutorialActivity] is displayed automatically on new installations.
+ * It can also be opened from Settings.
+ *
+ * It tells the user about the concept behind launcher
+ * and helps with the setup process (on new installations)
+ */
+class TutorialActivity: AppCompatActivity(), UIObject {
 
     private var menuNumber = 0
     private var defaultApps = mutableListOf<String>()
     private var isFirstTime = false
 
-    /** Activity Lifecycle functions */
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // Flags
-        window.setFlags(
-            WindowManager.LayoutParams.FLAG_FULLSCREEN,
-            WindowManager.LayoutParams.FLAG_FULLSCREEN
-        )
-        window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
-
-        setTheme(
-            when (getSavedTheme(this)) {
-                "dark" -> R.style.darkTheme
-                "finn" -> R.style.finnmglasTheme
-                else -> R.style.finnmglasTheme
-            }
-        )
-        setContentView(R.layout.activity_tutorial)
-
-        if (getSavedTheme(this) == "custom") {
-            activity_firststartup_app_bar.setBackgroundColor(dominantColor)
-            activity_firststartup_container.setBackgroundColor(dominantColor)
-            activity_firststartup_close.setTextColor(vibrantColor)
-        }
-
-        activity_firststartup_hint_text.blink() // animate
+        // Initialise layout
+        setContentView(R.layout.tutorial)
         loadMenu(this)
 
-        val sharedPref = this.getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE)
-
-        isFirstTime = !sharedPref.getBoolean("startedBefore", false)
-
+        // Check if it is the first time starting the app
+        isFirstTime = !launcherPreferences.getBoolean("startedBefore", false)
         if (isFirstTime)
-            defaultApps = resetSettings(sharedPref, this) // UP, DOWN, RIGHT, LEFT, VOLUME_UP, VOLUME_DOWN
-        else
-            activity_firststartup_app_bar.visibility = View.VISIBLE
-
-        // As older APIs somehow do not recognize the xml defined onClick
-        activity_firststartup_close.setOnClickListener() { finish() }
+            defaultApps = resetSettings(this) // UP, DOWN, RIGHT, LEFT, VOLUME_UP, VOLUME_DOWN
+        else tutorial_appbar.visibility = View.VISIBLE
     }
 
-    /** Touch- and Key-related functions to navigate */
+    override fun onStart() {
+        super<AppCompatActivity>.onStart()
+        super<UIObject>.onStart()
+    }
 
     override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
         if (keyCode == KeyEvent.KEYCODE_VOLUME_UP){
@@ -85,40 +61,43 @@ class TutorialActivity : AppCompatActivity(){
         loadMenu(this)
     }
 
-    fun backToSettings(view: View){
-        finish()
-    }
-
-    /** Touch- and Key-related functions to navigate */
-
-    private fun loadMenu(context :Context) { // Context needed for packageManager
-
+    private fun loadMenu(context: Context) { // Context needed for packageManager
         val intro = resources.getStringArray(R.array.intro)
 
         if (menuNumber < intro.size){
             val entry = intro[menuNumber].split("|").toTypedArray() //heading|infoText|hintText|size
 
-            activity_firststartup_section_heading.text = entry[0]
+            tutorial_page_heading.text = entry[0]
             if (entry[4] == "1" && isFirstTime)
-                activity_firststartup_descriptive_text.text = String.format(entry[1],
+                tutorial_page_text.text = String.format(entry[1],
                 defaultApps[0], defaultApps[1], defaultApps[2], defaultApps[3], defaultApps[4], defaultApps[5])
             else if (entry[4] == "1" && !isFirstTime)
-                activity_firststartup_descriptive_text.text = String.format(entry[1],
+                tutorial_page_text.text = String.format(entry[1],
                 "-", "-", "-", "-", "-", "-")
-            else activity_firststartup_descriptive_text.text = entry[1]
-            activity_firststartup_hint_text.text = entry[2]
-            activity_firststartup_descriptive_text.setTextSize(TypedValue.COMPLEX_UNIT_SP, entry[3].toFloat())
+            else tutorial_page_text.text = entry[1]
+            tutorial_page_hint.text = entry[2]
+            tutorial_page_text.setTextSize(TypedValue.COMPLEX_UNIT_SP, entry[3].toFloat())
 
         } else { // End intro
             if (isFirstTime){
-                val sharedPref = this.getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE)
-
-                val editor: SharedPreferences.Editor = sharedPref.edit()
-                editor.putBoolean("startedBefore", true) // never auto run this again
-                editor.putLong("firstStartup", System.currentTimeMillis() / 1000L) // record first startup timestamp
-                editor.apply()
+                launcherPreferences.edit()
+                    .putBoolean("startedBefore", true) // never auto run this again
+                    .putLong("firstStartup", System.currentTimeMillis() / 1000L) // record first startup timestamp
+                    .apply()
             }
             finish()
         }
+    }
+
+    override fun applyTheme() {
+        tutorial_appbar.setBackgroundColor(dominantColor)
+        tutorial_container.setBackgroundColor(dominantColor)
+        tutorial_close.setTextColor(vibrantColor)
+
+        tutorial_page_hint.blink() // animate
+    }
+
+    override fun setOnClicks() {
+        tutorial_close.setOnClickListener() { finish() }
     }
 }

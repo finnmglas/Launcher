@@ -1,7 +1,14 @@
 package com.finnmglas.launcher.settings.actions
 
-class ActionInfo(actionText: CharSequence, actionName: CharSequence, content: CharSequence) {
-    var actionName: CharSequence? = actionName
-    var actionText: CharSequence? = actionText
-    var content: CharSequence? = content
+/**
+ * Stores information used in [ActionsRecyclerAdapter] rows.
+ *
+ * Represents an action - something to be triggered by swiping, clicking etc.
+ *
+ * @param data - a string identifying the app / action / intent to be launched
+ */
+class ActionInfo(actionText: CharSequence, actionName: CharSequence, data: CharSequence) {
+    val actionName: CharSequence? = actionName
+    val actionText: CharSequence? = actionText
+    val data: CharSequence? = data
 }

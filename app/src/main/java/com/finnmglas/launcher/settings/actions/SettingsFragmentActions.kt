@@ -10,55 +10,62 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.finnmglas.launcher.choose.ChooseActivity
-import com.finnmglas.launcher.R
-import com.finnmglas.launcher.extern.*
+import com.finnmglas.launcher.*
+import com.finnmglas.launcher.list.ListActivity
 import com.finnmglas.launcher.settings.intendedSettingsPause
-import kotlinx.android.synthetic.main.fragment_settings_apps.*
+import kotlinx.android.synthetic.main.settings_actions.*
 
 
-/** The 'Apps' Tab associated Fragment in Settings */
+/**
+ *  The [SettingsFragmentActions] is a used as a tab in the SettingsActivity.
+ *
+ *  It is used to change Apps / Intents to be launched when a specific action
+ *  is triggered.
+ *  It also allows the user to view all apps ([ListActivity]) or install new ones.
+ */
 
-class SettingsFragmentApps : Fragment() {
-
-    /** Lifecycle functions */
+class SettingsFragmentActions : Fragment(), UIObject {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_settings_apps, container, false)
+        return inflater.inflate(R.layout.settings_actions, container, false)
     }
 
     override fun onStart() {
-
-        if (getSavedTheme(context!!) == "custom") {
-            fragment_settings_apps_container.setBackgroundColor(dominantColor)
-
-            setButtonColor(fragment_settings_apps_btn, vibrantColor)
-            setButtonColor(fragment_settings_apps_install_btn, vibrantColor)
-        }
-
+        super<Fragment>.onStart()
+        super<UIObject>.onStart()
 
         // set up the list / recycler
         val actionViewManager = LinearLayoutManager(context)
         val actionViewAdapter = ActionsRecyclerAdapter( activity!! )
 
-        activity_settings_actions_recycler_view.apply {
+        settings_actions_rview.apply {
             // improve performance (since content changes don't change the layout size)
             setHasFixedSize(true)
             layoutManager = actionViewManager
             adapter = actionViewAdapter
         }
+    }
+
+    override fun applyTheme() {
+        settings_actions_container.setBackgroundColor(dominantColor)
+
+        setButtonColor(settings_actions_button_view_apps, vibrantColor)
+        setButtonColor(settings_actions_button_install_apps, vibrantColor)
+    }
+
+    override fun setOnClicks() {
 
         // App management buttons
-        fragment_settings_apps_btn.setOnClickListener{
-            val intent = Intent(this.context, ChooseActivity::class.java)
-            intent.putExtra("action", "view")
+        settings_actions_button_view_apps.setOnClickListener{
+            val intent = Intent(this.context, ListActivity::class.java)
+            intent.putExtra("intention", "view")
             intendedSettingsPause = true
             startActivity(intent)
         }
-        fragment_settings_apps_install_btn.setOnClickListener{
+        settings_actions_button_install_apps.setOnClickListener{
             try {
                 val rateIntent = Intent(
                     Intent.ACTION_VIEW,
@@ -70,7 +77,5 @@ class SettingsFragmentApps : Fragment() {
                     .show()
             }
         }
-
-        super.onStart()
     }
 }

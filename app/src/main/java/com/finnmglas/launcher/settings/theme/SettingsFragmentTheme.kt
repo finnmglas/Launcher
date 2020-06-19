@@ -1,9 +1,7 @@
 package com.finnmglas.launcher.settings.theme
 
 import android.Manifest
-import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
@@ -16,73 +14,27 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.palette.graphics.Palette
-import com.finnmglas.launcher.R
-import com.finnmglas.launcher.extern.*
+import com.finnmglas.launcher.*
 import com.finnmglas.launcher.settings.intendedSettingsPause
-import kotlinx.android.synthetic.main.fragment_settings_theme.*
+import kotlinx.android.synthetic.main.settings_theme.*
 
-/** The 'Theme' Tab associated Fragment in Settings */
-
-class SettingsFragmentTheme : Fragment() {
-
-    /** Lifecycle functions */
+/**
+ * The [SettingsFragmentTheme] is a used as a tab in the SettingsActivity.
+ *
+ * It is used to change themes, select wallpapers ... theme related stuff
+ */
+class SettingsFragmentTheme : Fragment(), UIObject {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_settings_theme, container, false)
+        return inflater.inflate(R.layout.settings_theme, container, false)
     }
 
     override fun onStart(){
-        // Hide 'select' button for the selected theme or allow customisation
-        when (getSavedTheme(context!!)) {
-            "dark" -> fragment_settings_theme_select_dark_btn.visibility = View.INVISIBLE
-            "finn" -> fragment_settings_theme_select_finn_btn.visibility = View.INVISIBLE
-            "custom" -> {
-                fragment_settings_theme_select_custom_btn.text = getString(R.string.settings_select_image)
-                fragment_settings_theme_container.setBackgroundColor(dominantColor)
-                setButtonColor(fragment_settings_theme_select_finn_btn, vibrantColor)
-                setButtonColor(fragment_settings_theme_select_dark_btn, vibrantColor)
-                setButtonColor(fragment_settings_theme_select_custom_btn, vibrantColor)
-                setButtonColor(fragment_settings_theme_custom_examples_btn, vibrantColor)
-            }
-        }
-
-        // Theme changing buttons
-        fragment_settings_theme_select_dark_btn.setOnClickListener {
-            intendedSettingsPause = true
-            saveTheme(context!!, "dark")
-            activity!!.recreate()
-        }
-        fragment_settings_theme_select_finn_btn.setOnClickListener {
-            intendedSettingsPause = true
-            saveTheme(context!!, "finn")
-            activity!!.recreate()
-        }
-        fragment_settings_theme_select_custom_btn.setOnClickListener {
-            intendedSettingsPause = true
-            // Request permission (on newer APIs)
-            if (Build.VERSION.SDK_INT >= 23) {
-                when {
-                    ContextCompat.checkSelfPermission(context!!,
-                        Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED
-                    -> letUserPickImage(true)
-                    shouldShowRequestPermissionRationale(Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                    -> {}
-                    else
-                    -> requestPermissions(arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE), REQUEST_PERMISSION_STORAGE)
-                }
-            }
-            else letUserPickImage()
-        }
-        fragment_settings_theme_custom_examples_btn.setOnClickListener {
-            intendedSettingsPause = true
-            // Show example usage
-            openNewTabWindow("https://github.com/finnmglas/Launcher/blob/master/docs/README.md", context!!)
-        }
-
-        super.onStart()
+        super<Fragment>.onStart()
+        super<UIObject>.onStart()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -93,8 +45,6 @@ class SettingsFragmentTheme : Fragment() {
             else -> super.onActivityResult(requestCode, resultCode, data)
         }
     }
-
-    /** Extra functions */
 
     private fun letUserPickImage(crop: Boolean = false) {
         val intent = Intent()
@@ -114,7 +64,6 @@ class SettingsFragmentTheme : Fragment() {
     }
 
     private fun handlePickedImage(resultCode: Int, data: Intent?) {
-
         if (resultCode == AppCompatActivity.RESULT_OK) {
             if (data == null) return
 
@@ -128,23 +77,106 @@ class SettingsFragmentTheme : Fragment() {
 
                     // never let dominantColor equal vibrantColor
                     if(dominantColor == vibrantColor) {
-                        vibrantColor = manipulateColor(vibrantColor, 1.2F)
-                        dominantColor = manipulateColor(dominantColor, 0.8F)
+                        vibrantColor =
+                            manipulateColor(
+                                vibrantColor,
+                                1.2F
+                            )
+                        dominantColor =
+                            manipulateColor(
+                                dominantColor,
+                                0.8F
+                            )
                     }
 
                     /* Save image Uri as string */
-                    val editor: SharedPreferences.Editor = context!!.getSharedPreferences(
-                        context!!.getString(R.string.preference_file_key), Context.MODE_PRIVATE).edit()
-                    editor.putString("background_uri", imageUri.toString())
-                    editor.putInt("custom_dominant", dominantColor)
-                    editor.putInt("custom_vibrant", vibrantColor)
-                    editor.apply()
+                    launcherPreferences.edit()
+                        .putString("background_uri", imageUri.toString())
+                        .putInt("custom_dominant", dominantColor)
+                        .putInt("custom_vibrant", vibrantColor)
+                        .apply()
 
-                    saveTheme(context!!, "custom")
+                    saveTheme("custom")
                     intendedSettingsPause = true
                     activity!!.recreate()
                 }
             }
+        }
+    }
+
+    override fun applyTheme() {
+        // Hide 'select' button for the selected theme or allow customisation
+        when (getSavedTheme(context!!)) {
+            "dark" -> settings_theme_dark_button_select.visibility = View.INVISIBLE
+            "finn" -> settings_theme_finn_button_select.visibility = View.INVISIBLE
+            "custom" ->
+                settings_theme_custom_button_select.text = getString(R.string.settings_select_image)
+        }
+
+        settings_theme_container.setBackgroundColor(dominantColor)
+        setButtonColor(settings_theme_finn_button_select, vibrantColor)
+        setButtonColor(settings_theme_dark_button_select, vibrantColor)
+        setButtonColor(settings_theme_custom_button_select, vibrantColor)
+        setButtonColor(settings_theme_custom_button_examples, vibrantColor)
+    }
+
+    override fun setOnClicks() {
+        // Theme changing buttons
+        settings_theme_dark_button_select.setOnClickListener {
+            dominantColor = resources.getColor(R.color.darkTheme_background_color)
+            vibrantColor = resources.getColor(R.color.darkTheme_accent_color)
+
+            launcherPreferences.edit()
+                .putString("background_uri", "")
+                .putInt("custom_dominant", dominantColor)
+                .putInt("custom_vibrant", vibrantColor)
+                .apply()
+
+            saveTheme("dark")
+
+            intendedSettingsPause = true
+            activity!!.recreate()
+        }
+        settings_theme_finn_button_select.setOnClickListener {
+            dominantColor = resources.getColor(R.color.finnmglasTheme_background_color)
+            vibrantColor = resources.getColor(R.color.finnmglasTheme_accent_color)
+
+            launcherPreferences.edit()
+                .putString("background_uri", "")
+                .putInt("custom_dominant", dominantColor)
+                .putInt("custom_vibrant", vibrantColor)
+                .apply()
+
+            saveTheme("finn")
+
+            intendedSettingsPause = true
+            activity!!.recreate()
+        }
+        settings_theme_custom_button_select.setOnClickListener {
+            intendedSettingsPause = true
+            // Request permission (on newer APIs)
+            if (Build.VERSION.SDK_INT >= 23) {
+                when {
+                    ContextCompat.checkSelfPermission(context!!,
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED
+                    -> letUserPickImage(true)
+                    shouldShowRequestPermissionRationale(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                    -> {}
+                    else
+                    -> requestPermissions(arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
+                        REQUEST_PERMISSION_STORAGE
+                    )
+                }
+            }
+            else letUserPickImage()
+        }
+        settings_theme_custom_button_examples.setOnClickListener {
+            intendedSettingsPause = true
+            // Show example usage
+            openNewTabWindow(
+                "https://github.com/finnmglas/Launcher/blob/master/docs/README.md",
+                context!!
+            )
         }
     }
 }

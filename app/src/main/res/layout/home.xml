@@ -1,17 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:custom="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_main_container"
+    android:id="@+id/home_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="?attr/colorPrimary"
     android:longClickable="false"
-    tools:context=".MainActivity">
+    tools:context=".HomeActivity">
 
     <ImageView
-        android:id="@+id/activity_main_background_image"
+        android:id="@+id/home_background_image"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:adjustViewBounds="true"
@@ -20,11 +21,10 @@
         tools:ignore="ContentDescription" />
 
     <TextView
-        android:id="@+id/activity_main_date_view"
+        android:id="@+id/home_date_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="start|center_vertical"
-        android:onClick="dateViewOnTouch"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -33,11 +33,10 @@
         app:layout_constraintVertical_bias="0.45" />
 
     <TextView
-        android:id="@+id/activity_main_time_view"
+        android:id="@+id/home_time_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="start|center_vertical"
-        android:onClick="timeViewOnTouch"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -45,11 +44,10 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.finnmglas.launcher.extern.FontAwesome
-        android:id="@+id/activity_main_settings_icon"
+    <com.finnmglas.launcher.libraries.FontAwesome
+        android:id="@+id/home_settings_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="settingsIconOnTouch"
         android:text="@string/fas_settings"
         android:textColor="?attr/colorAccent"
         android:textSize="36sp"

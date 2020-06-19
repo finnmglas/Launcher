@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/list_apps_row_container"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="15sp">
 
     <ImageView
-        android:id="@+id/choose_row_app_icon"
+        android:id="@+id/list_apps_row_icon"
         android:layout_width="40sp"
         android:layout_height="40sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -16,7 +18,7 @@
         tools:ignore="ContentDescription" />
 
     <TextView
-        android:id="@+id/choose_row_app_name"
+        android:id="@+id/list_apps_row_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="60sp"
@@ -27,12 +29,12 @@
         android:text=""
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/choose_row_app_menu"
+        app:layout_constraintEnd_toStartOf="@+id/list_apps_row_menu"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.finnmglas.launcher.extern.FontAwesome
-        android:id="@+id/choose_row_app_menu"
+    <com.finnmglas.launcher.libraries.FontAwesome
+        android:id="@+id/list_apps_row_menu"
         android:layout_width="30sp"
         android:layout_height="0dp"
         android:gravity="center"

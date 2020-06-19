@@ -2,66 +2,51 @@ package com.finnmglas.launcher.settings
 
 import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.provider.Settings
-import android.view.View
-import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager.widget.ViewPager
-import com.finnmglas.launcher.R
-import com.finnmglas.launcher.extern.*
+import com.finnmglas.launcher.*
 import com.google.android.material.tabs.TabLayout
-import kotlinx.android.synthetic.main.activity_settings.*
+import kotlinx.android.synthetic.main.settings.*
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentPagerAdapter
+import com.finnmglas.launcher.settings.actions.SettingsFragmentActions
+import com.finnmglas.launcher.settings.theme.SettingsFragmentTheme
+import com.finnmglas.launcher.settings.meta.SettingsFragmentMeta
+
 
 var intendedSettingsPause = false // know when to close
 
-class SettingsActivity : AppCompatActivity() {
-
-    /** Activity Lifecycle functions */
+/**
+ * The [SettingsActivity] is a tabbed activity:
+ *
+ * | Actions    |   Choose apps or intents to be launched   | [SettingsFragmentActions] |
+ * | Theme      |   Select a theme / Customize              | [SettingsFragmentTheme]   |
+ * | Meta       |   About Launcher / Contact etc.           | [SettingsFragmentMeta]    |
+ *
+ * Settings are closed automatically if the activity goes `onPause` unexpectedly.
+ */
+class SettingsActivity: AppCompatActivity(), UIObject {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setTheme(
-            when (getSavedTheme(this)) {
-                "dark" -> R.style.darkTheme
-                "finn" -> R.style.finnmglasTheme
-                else -> R.style.customTheme
-            }
-        )
+        // Initialise layout
+        setContentView(R.layout.settings)
 
-        setContentView(R.layout.activity_settings)
-
-        window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
-        window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
-
+        // set up tabs and swiping in settings
         val sectionsPagerAdapter = SettingsSectionsPagerAdapter(this, supportFragmentManager)
-        val viewPager: ViewPager = findViewById(R.id.activity_settings_view_pager)
+        val viewPager: ViewPager = findViewById(R.id.settings_viewpager)
         viewPager.adapter = sectionsPagerAdapter
-        val tabs: TabLayout = findViewById(R.id.activity_settings_tabs)
+        val tabs: TabLayout = findViewById(R.id.settings_tabs)
         tabs.setupWithViewPager(viewPager)
-
-        // As older APIs somehow do not recognize the xml defined onClick
-        activity_settings_close.setOnClickListener() { finish() }
-        // open device settings (see https://stackoverflow.com/a/62092663/12787264)
-        activity_settings_device_settings.setOnClickListener {
-            intendedSettingsPause = true
-            startActivity(Intent(Settings.ACTION_SETTINGS))
-        }
     }
 
     override fun onStart() {
-        super.onStart()
-
-        if (getSavedTheme(this) == "custom") {
-            activity_settings_container.setBackgroundColor(dominantColor)
-            activity_settings_app_bar.setBackgroundColor(dominantColor)
-
-            activity_settings_device_settings.setTextColor(vibrantColor)
-            activity_settings_close.setTextColor(vibrantColor)
-            activity_settings_tabs.setSelectedTabIndicatorColor(vibrantColor)
-        }
+        super<AppCompatActivity>.onStart()
+        super<UIObject>.onStart()
     }
 
     override fun onResume() {
@@ -74,27 +59,63 @@ class SettingsActivity : AppCompatActivity() {
         if (!intendedSettingsPause) finish()
     }
 
-    fun backHome(view: View) { finish() }
-
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         when (requestCode) {
             REQUEST_CHOOSE_APP -> {
                 val value = data?.getStringExtra("value")
                 val forApp = data?.getStringExtra("forApp") ?: return
 
-                // Save the new App to Preferences
-                val sharedPref = this.getSharedPreferences(
-                    getString(R.string.preference_file_key), Context.MODE_PRIVATE)
+                launcherPreferences.edit()
+                    .putString("action_$forApp", value.toString())
+                    .apply()
 
-                val editor : SharedPreferences.Editor = sharedPref.edit()
-                editor.putString("action_$forApp", value.toString())
-                editor.apply()
-
-                loadSettings(sharedPref)
+                loadSettings()
             }
             else -> super.onActivityResult(requestCode, resultCode, data)
         }
     }
 
+    override fun applyTheme() {
+        settings_container.setBackgroundColor(dominantColor)
+        settings_appbar.setBackgroundColor(dominantColor)
 
+        settings_system.setTextColor(vibrantColor)
+        settings_close.setTextColor(vibrantColor)
+        settings_tabs.setSelectedTabIndicatorColor(vibrantColor)
+    }
+
+    override fun setOnClicks(){
+        // As older APIs somehow do not recognize the xml defined onClick
+        settings_close.setOnClickListener() { finish() }
+        // open device settings (see https://stackoverflow.com/a/62092663/12787264)
+        settings_system.setOnClickListener {
+            intendedSettingsPause = true
+            startActivity(Intent(Settings.ACTION_SETTINGS))
+        }
+    }
+}
+
+private val TAB_TITLES = arrayOf(
+    R.string.settings_tab_app,
+    R.string.settings_tab_theme,
+    R.string.settings_tab_launcher
+)
+
+class SettingsSectionsPagerAdapter(private val context: Context, fm: FragmentManager)
+    : FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
+
+    override fun getItem(position: Int): Fragment {
+        return when (position){
+            0 -> SettingsFragmentActions()
+            1 -> SettingsFragmentTheme()
+            2 -> SettingsFragmentMeta()
+            else -> Fragment()
+        }
+    }
+
+    override fun getPageTitle(position: Int): CharSequence? {
+        return context.resources.getString(TAB_TITLES[position])
+    }
+
+    override fun getCount(): Int { return 3 }
 }
