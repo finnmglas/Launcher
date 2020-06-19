@@ -33,9 +33,6 @@ class SettingsFragmentActions : Fragment(), UIObject {
         super<Fragment>.onStart()
         super<UIObject>.onStart()
 
-        setTheme()
-        setOnClicks()
-
         // set up the list / recycler
         val actionViewManager = LinearLayoutManager(context)
         val actionViewAdapter = ActionsRecyclerAdapter( activity!! )

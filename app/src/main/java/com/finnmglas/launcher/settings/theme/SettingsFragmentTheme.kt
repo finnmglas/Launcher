@@ -33,9 +33,6 @@ class SettingsFragmentTheme : Fragment(), UIObject {
     override fun onStart(){
         super<Fragment>.onStart()
         super<UIObject>.onStart()
-
-        setTheme()
-        setOnClicks()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

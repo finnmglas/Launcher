@@ -10,9 +10,14 @@ interface UIObject {
             window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
             window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
         }
+
+        setTheme()
+        setOnClicks()
+        configure()
     }
 
-    fun setTheme()
-    fun setOnClicks()
-    fun configure() {}
+    // Don't use actual themes, rather create them on the fly for faster theme-switching
+    fun setTheme() { }      // colors
+    fun setOnClicks() { }   // onClicks
+    fun configure() { }     // layoutElements
 }

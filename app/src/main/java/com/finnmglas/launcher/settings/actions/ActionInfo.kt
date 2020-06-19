@@ -1,7 +1,10 @@
 package com.finnmglas.launcher.settings.actions
 
+/**
+ * Stores information used in [ActionsRecyclerAdapter] rows.
+ */
 class ActionInfo(actionText: CharSequence, actionName: CharSequence, content: CharSequence) {
-    var actionName: CharSequence? = actionName
-    var actionText: CharSequence? = actionText
-    var content: CharSequence? = content
+    val actionName: CharSequence? = actionName
+    val actionText: CharSequence? = actionText
+    val content: CharSequence? = content
 }

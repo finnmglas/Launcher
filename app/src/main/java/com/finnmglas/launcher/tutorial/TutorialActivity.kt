@@ -9,41 +9,24 @@ import com.finnmglas.launcher.*
 import kotlinx.android.synthetic.main.tutorial.*
 
 
-class TutorialActivity : AppCompatActivity(), UIObject{
-
-    /** Variables for this activity */
+class TutorialActivity : AppCompatActivity(), UIObject {
 
     private var menuNumber = 0
     private var defaultApps = mutableListOf<String>()
     private var isFirstTime = false
 
-    /** Activity Lifecycle functions */
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // TODO: Don't use actual themes, rather create them on the fly
-        setTheme(
-            when (getSavedTheme(this)) {
-                "dark" -> R.style.darkTheme
-                "finn" -> R.style.finnmglasTheme
-                else -> R.style.finnmglasTheme
-            }
-        )
-
+        // Initialise layout
         setContentView(R.layout.tutorial)
-        setTheme()
-        setOnClicks()
-
-
         loadMenu(this)
 
+        // Check if it is the first time starting the app
         isFirstTime = !launcherPreferences.getBoolean("startedBefore", false)
-
         if (isFirstTime)
             defaultApps = resetSettings(this) // UP, DOWN, RIGHT, LEFT, VOLUME_UP, VOLUME_DOWN
-        else
-            tutorial_appbar.visibility = View.VISIBLE
+        else tutorial_appbar.visibility = View.VISIBLE
     }
 
     override fun onStart() {
@@ -51,7 +34,6 @@ class TutorialActivity : AppCompatActivity(), UIObject{
         super<UIObject>.onStart()
     }
 
-    /** Touch- and Key-related functions to navigate */
     override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
         if (keyCode == KeyEvent.KEYCODE_VOLUME_UP){
             menuNumber++

@@ -12,6 +12,7 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
+import android.util.DisplayMetrics
 import android.view.View
 import android.view.animation.*
 import android.widget.Button
@@ -27,6 +28,8 @@ import kotlin.math.roundToInt
 lateinit var launcherPreferences: SharedPreferences
 
 /** Variables containing settings */
+val displayMetrics = DisplayMetrics()
+
 var upApp = ""
 var downApp = ""
 var rightApp = ""

@@ -30,19 +30,8 @@ class ListActivity : AppCompatActivity(), UIObject {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // TODO: Don't use actual themes, rather create them on the fly
-        setTheme(
-            when (getSavedTheme(this)) {
-                "dark" -> R.style.darkTheme
-                "finn" -> R.style.finnmglasTheme
-                else -> R.style.finnmglasTheme
-            }
-        )
+        // Initialise layout
         setContentView(R.layout.list)
-
-        setTheme()
-        setOnClicks()
-        configure()
     }
 
     override fun onStart(){

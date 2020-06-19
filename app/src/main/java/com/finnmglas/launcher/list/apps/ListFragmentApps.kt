@@ -31,9 +31,6 @@ class ListFragmentApps : Fragment(), UIObject {
     override fun onStart() {
         super<Fragment>.onStart()
         super<UIObject>.onStart()
-
-        setTheme()
-        configure()
     }
 
     override fun setTheme() {

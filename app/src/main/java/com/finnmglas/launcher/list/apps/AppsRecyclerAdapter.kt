@@ -16,7 +16,7 @@ import com.finnmglas.launcher.*
 import com.finnmglas.launcher.libraries.*
 import com.finnmglas.launcher.list.intendedChoosePause
 
-class AppsRecyclerAdapter(val activity: Activity, val action: String?, val forApp: String?):
+class AppsRecyclerAdapter(val activity: Activity, val action: String? = "view", val forApp: String? = ""):
     RecyclerView.Adapter<AppsRecyclerAdapter.ViewHolder>() {
 
     private val appsList: MutableList<AppInfo>

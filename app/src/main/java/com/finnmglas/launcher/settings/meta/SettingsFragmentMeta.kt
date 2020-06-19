@@ -33,9 +33,6 @@ class SettingsFragmentMeta : Fragment(), UIObject {
     override fun onStart() {
         super<Fragment>.onStart()
         super<UIObject>.onStart()
-
-        setTheme()
-        setOnClicks()
     }
 
     /** Extra functions */

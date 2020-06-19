@@ -6,11 +6,9 @@ import android.net.Uri
 import android.os.AsyncTask
 import android.os.Bundle
 import android.provider.MediaStore
-import android.util.DisplayMetrics
 import android.view.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GestureDetectorCompat
-import androidx.recyclerview.widget.RecyclerView
 import com.finnmglas.launcher.list.apps.AppsRecyclerAdapter
 import com.finnmglas.launcher.tutorial.TutorialActivity
 import kotlinx.android.synthetic.main.home.*
@@ -19,19 +17,15 @@ import java.util.*
 import kotlin.concurrent.fixedRateTimer
 import kotlin.math.abs
 
-// used for the apps drawer / menu (ChooseActivity)
-lateinit var viewAdapter: RecyclerView.Adapter<*>
+// used in `ListFragmentApps`
+lateinit var appListViewAdapter: AppsRecyclerAdapter
 
 class HomeActivity: UIObject, AppCompatActivity(),
     GestureDetector.OnGestureListener, GestureDetector.OnDoubleTapListener {
 
     private var currentTheme = "" // keep track of theme changes
 
-    /** Variables for this activity */
     private lateinit var mDetector: GestureDetectorCompat
-
-    // get device dimensions
-    private val displayMetrics = DisplayMetrics()
 
     // timers
     private var clockTimer = Timer()
@@ -43,48 +37,38 @@ class HomeActivity: UIObject, AppCompatActivity(),
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        // Initialise globals
         launcherPreferences = this.getSharedPreferences(
             getString(R.string.preference_file_key), Context.MODE_PRIVATE)
 
-        loadSettings()
-        currentTheme = getSavedTheme(this)
+        windowManager.defaultDisplay.getMetrics(displayMetrics)
 
-        // TODO: Don't use actual themes, rather create them on the fly
-        setTheme(
-            when (getSavedTheme(this)) {
-                "dark" -> R.style.darkTheme
-                "finn" -> R.style.finnmglasTheme
-                else -> R.style.customTheme
-            }
-        )
+        loadSettings()
+
+        // Preload list of apps (speed up loading time)
+        AsyncTask.execute {
+            appListViewAdapter = AppsRecyclerAdapter(this)
+        }
+
+        // First time opening the app: show Tutorial
+        if (!launcherPreferences.getBoolean("startedBefore", false))
+            startActivity(Intent(this, TutorialActivity::class.java))
+
+        // Initialise layout
         setContentView(R.layout.home)
 
-        // Load apps list first - speed up settings that way
-        AsyncTask.execute { viewAdapter =
-            AppsRecyclerAdapter(this, "", "")
-        }
-
-        // First Startup
-        if (!launcherPreferences.getBoolean("startedBefore", false)){
-            startActivity(Intent(this, TutorialActivity::class.java))
-            tooltipTimer.cancel()
-        }
+        currentTheme = getSavedTheme(this)
     }
 
     override fun onStart(){
         super<AppCompatActivity>.onStart()
-        super<UIObject>.onStart()
 
         mDetector = GestureDetectorCompat(this, this)
         mDetector.setOnDoubleTapListener(this)
 
-        windowManager.defaultDisplay.getMetrics(displayMetrics)
-
         // for if the settings changed
         loadSettings()
-
-        setTheme()
-        setOnClicks()
+        super<UIObject>.onStart()
     }
 
     override fun onResume() {
@@ -124,14 +108,10 @@ class HomeActivity: UIObject, AppCompatActivity(),
 
     override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
         if (keyCode == KeyEvent.KEYCODE_BACK) { if (settingsIconShown) hideSettingsIcon() }
-        else if (keyCode == KeyEvent.KEYCODE_VOLUME_UP) {
-            launch(volumeUpApp, this)
-            overridePendingTransition(0, 0)
-        }
-        else if (keyCode == KeyEvent.KEYCODE_VOLUME_DOWN) {
-            launch(volumeDownApp, this)
-            overridePendingTransition(0, 0)
-        }
+        else if (keyCode == KeyEvent.KEYCODE_VOLUME_UP)
+            launch(volumeUpApp, this,0, 0)
+        else if (keyCode == KeyEvent.KEYCODE_VOLUME_DOWN)
+            launch(volumeDownApp, this,0, 0)
         return true
     }
 

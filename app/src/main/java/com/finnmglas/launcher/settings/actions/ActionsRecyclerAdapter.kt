@@ -29,9 +29,7 @@ class ActionsRecyclerAdapter(val activity: Activity):
         var chooseButton: Button = itemView.findViewById(R.id.settings_actions_row_button_choose)
         var removeAction: FontAwesome = itemView.findViewById(R.id.settings_actions_row_remove)
 
-        override fun onClick(v: View) {
-            val pos = adapterPosition
-        }
+        override fun onClick(v: View) { }
 
         init { itemView.setOnClickListener(this) }
     }

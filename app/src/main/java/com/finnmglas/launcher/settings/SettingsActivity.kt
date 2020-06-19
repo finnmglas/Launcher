@@ -26,25 +26,15 @@ class SettingsActivity: AppCompatActivity(), UIObject {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // TODO: Don't use actual themes, rather create them on the fly
-        setTheme(
-            when (getSavedTheme(this)) {
-                "dark" -> R.style.darkTheme
-                "finn" -> R.style.finnmglasTheme
-                else -> R.style.customTheme
-            }
-        )
-
+        // Initialise layout
         setContentView(R.layout.settings)
-        setTheme()
-        setOnClicks()
 
+        // set up tabs and swiping in settings
         val sectionsPagerAdapter = SettingsSectionsPagerAdapter(this, supportFragmentManager)
         val viewPager: ViewPager = findViewById(R.id.settings_viewpager)
         viewPager.adapter = sectionsPagerAdapter
         val tabs: TabLayout = findViewById(R.id.settings_tabs)
         tabs.setupWithViewPager(viewPager)
-
     }
 
     override fun onStart() {
