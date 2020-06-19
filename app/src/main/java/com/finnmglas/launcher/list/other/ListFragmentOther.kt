@@ -11,11 +11,13 @@ import com.finnmglas.launcher.dominantColor
 import com.finnmglas.launcher.getSavedTheme
 import kotlinx.android.synthetic.main.list_other.*
 
-/** The 'Other' Tab associated Fragment in the Chooser */
-
+/**
+ * The [ListFragmentOther] is used as a tab in ListActivity,
+ * when the `intention` for launching the ListActivity was to select something to be launched.
+ *
+ * It lists `other` things like internal activities to be launched as an action.
+ */
 class ListFragmentOther : Fragment() {
-
-    /** Lifecycle functions */
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

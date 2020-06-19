@@ -37,7 +37,7 @@ class ActionsRecyclerAdapter(val activity: Activity):
     override fun onBindViewHolder(viewHolder: ViewHolder, i: Int) {
         val actionText = actionsList[i].actionText
         val actionName = actionsList[i].actionName
-        val content = actionsList[i].content
+        val content = actionsList[i].data
 
         viewHolder.textView.text = actionText
 
@@ -133,7 +133,7 @@ class ActionsRecyclerAdapter(val activity: Activity):
     /*  */
     private fun chooseApp(forAction: String) {
         val intent = Intent(activity, ListActivity::class.java)
-        intent.putExtra("action", "pick")
+        intent.putExtra("intention", "pick")
         intent.putExtra("forApp", forAction) // for which action we choose the app
         intendedSettingsPause = true
         activity.startActivityForResult(intent,

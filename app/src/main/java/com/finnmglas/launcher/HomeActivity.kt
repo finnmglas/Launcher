@@ -17,9 +17,18 @@ import java.util.*
 import kotlin.concurrent.fixedRateTimer
 import kotlin.math.abs
 
-// used in `ListFragmentApps`
-lateinit var appListViewAdapter: AppsRecyclerAdapter
-
+/**
+ * [HomeActivity] is the actual application Launcher,
+ * what makes this application special / unique.
+ *
+ * In this activity we display the date and time,
+ * and we listen for actions like tapping, swiping or button presses.
+ *
+ * As it also is the first thing that is started when someone opens Launcher,
+ * it also contains some logic related to the overall application:
+ * - Setting global variables (preferences etc.)
+ * - Opening the [TutorialActivity] on new installations
+ */
 class HomeActivity: UIObject, AppCompatActivity(),
     GestureDetector.OnGestureListener, GestureDetector.OnDoubleTapListener {
 
@@ -33,7 +42,6 @@ class HomeActivity: UIObject, AppCompatActivity(),
 
     private var settingsIconShown = false
 
-    /** Activity Lifecycle functions */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -103,8 +111,6 @@ class HomeActivity: UIObject, AppCompatActivity(),
 
         hideSettingsIcon()
     }
-
-    /** Touch- and Key-related functions to start activities */
 
     override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
         if (keyCode == KeyEvent.KEYCODE_BACK) { if (settingsIconShown) hideSettingsIcon() }

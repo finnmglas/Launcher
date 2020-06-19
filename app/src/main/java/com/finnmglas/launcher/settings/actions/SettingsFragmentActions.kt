@@ -16,11 +16,15 @@ import com.finnmglas.launcher.settings.intendedSettingsPause
 import kotlinx.android.synthetic.main.settings_actions.*
 
 
-/** The 'Apps' Tab associated Fragment in Settings */
+/**
+ *  The [SettingsFragmentActions] is a used as a tab in the SettingsActivity.
+ *
+ *  It is used to change Apps / Intents to be launched when a specific action
+ *  is triggered.
+ *  It also allows the user to view all apps ([ListActivity]) or install new ones.
+ */
 
 class SettingsFragmentActions : Fragment(), UIObject {
-
-    /** Lifecycle functions */
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -65,7 +69,7 @@ class SettingsFragmentActions : Fragment(), UIObject {
         // App management buttons
         settings_actions_button_view_apps.setOnClickListener{
             val intent = Intent(this.context, ListActivity::class.java)
-            intent.putExtra("action", "view")
+            intent.putExtra("intention", "view")
             intendedSettingsPause = true
             startActivity(intent)
         }

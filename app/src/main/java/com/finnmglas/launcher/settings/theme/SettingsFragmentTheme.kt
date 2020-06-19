@@ -18,11 +18,13 @@ import com.finnmglas.launcher.*
 import com.finnmglas.launcher.settings.intendedSettingsPause
 import kotlinx.android.synthetic.main.settings_theme.*
 
-/** The 'Theme' Tab associated Fragment in Settings */
-
+/**
+ * The [SettingsFragmentTheme] is a used as a tab in the SettingsActivity.
+ *
+ * It is used to change themes, select wallpapers ... theme related stuff
+ */
 class SettingsFragmentTheme : Fragment(), UIObject {
 
-    /** Lifecycle functions */
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -43,8 +45,6 @@ class SettingsFragmentTheme : Fragment(), UIObject {
             else -> super.onActivityResult(requestCode, resultCode, data)
         }
     }
-
-    /** Extra functions */
 
     private fun letUserPickImage(crop: Boolean = false) {
         val intent = Intent()

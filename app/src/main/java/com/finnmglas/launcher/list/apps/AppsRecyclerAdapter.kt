@@ -16,7 +16,17 @@ import com.finnmglas.launcher.*
 import com.finnmglas.launcher.libraries.*
 import com.finnmglas.launcher.list.intendedChoosePause
 
-class AppsRecyclerAdapter(val activity: Activity, val action: String? = "view", val forApp: String? = ""):
+/**
+ * A [RecyclerView] (efficient scrollable list) containing all apps on the users device.
+ * The apps details are represented by [AppInfo].
+ *
+ * @param activity - the activity this is in
+ * @param intention - why the list is displayed ("view", "pick")
+ * @param forApp - the action which an app is chosen for (when the intention is "pick")
+ */
+class AppsRecyclerAdapter(val activity: Activity,
+                          val intention: String? = "view",
+                          val forApp: String? = ""):
     RecyclerView.Adapter<AppsRecyclerAdapter.ViewHolder>() {
 
     private val appsList: MutableList<AppInfo>
@@ -32,7 +42,7 @@ class AppsRecyclerAdapter(val activity: Activity, val action: String? = "view", 
             val context: Context = v.context
             val appPackageName = appsList[pos].packageName.toString()
 
-            when (action){
+            when (intention){
                 "view" -> {
                     val launchIntent: Intent = context.packageManager
                         .getLaunchIntentForPackage(appPackageName)!!
@@ -65,7 +75,7 @@ class AppsRecyclerAdapter(val activity: Activity, val action: String? = "view", 
         )
 
         // decide when to show the options popup menu about
-        if (isSystemApp || action == "pick") {
+        if (isSystemApp || intention == "pick") {
             viewHolder.menuDots.visibility = View.INVISIBLE
         }
         else {

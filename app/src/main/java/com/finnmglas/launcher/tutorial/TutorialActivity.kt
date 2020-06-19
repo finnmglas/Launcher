@@ -8,8 +8,14 @@ import androidx.appcompat.app.AppCompatActivity
 import com.finnmglas.launcher.*
 import kotlinx.android.synthetic.main.tutorial.*
 
-
-class TutorialActivity : AppCompatActivity(), UIObject {
+/**
+ * The [TutorialActivity] is displayed automatically on new installations.
+ * It can also be opened from Settings.
+ *
+ * It tells the user about the concept behind launcher
+ * and helps with the setup process (on new installations)
+ */
+class TutorialActivity: AppCompatActivity(), UIObject {
 
     private var menuNumber = 0
     private var defaultApps = mutableListOf<String>()

@@ -13,15 +13,22 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import com.finnmglas.launcher.settings.actions.SettingsFragmentActions
-import com.finnmglas.launcher.settings.meta.SettingsFragmentMeta
 import com.finnmglas.launcher.settings.theme.SettingsFragmentTheme
+import com.finnmglas.launcher.settings.meta.SettingsFragmentMeta
 
 
 var intendedSettingsPause = false // know when to close
 
+/**
+ * The [SettingsActivity] is a tabbed activity:
+ *
+ * | Actions    |   Choose apps or intents to be launched   | [SettingsFragmentActions] |
+ * | Theme      |   Select a theme / Customize              | [SettingsFragmentTheme]   |
+ * | Meta       |   About Launcher / Contact etc.           | [SettingsFragmentMeta]    |
+ *
+ * Settings are closed automatically if the activity goes `onPause` unexpectedly.
+ */
 class SettingsActivity: AppCompatActivity(), UIObject {
-
-    /** Activity Lifecycle functions */
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -96,7 +103,6 @@ private val TAB_TITLES = arrayOf(
     R.string.settings_tab_launcher
 )
 
-/** Returns the fragment corresponding to the selected tab.*/
 class SettingsSectionsPagerAdapter(private val context: Context, fm: FragmentManager)
     : FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 

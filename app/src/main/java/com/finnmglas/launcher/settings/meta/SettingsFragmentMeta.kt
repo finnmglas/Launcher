@@ -17,11 +17,15 @@ import com.finnmglas.launcher.tutorial.TutorialActivity
 import com.finnmglas.launcher.settings.intendedSettingsPause
 import kotlinx.android.synthetic.main.settings_meta.*
 
-/** The 'Meta' Tab associated Fragment in Settings */
-
+/**
+ * The [SettingsFragmentMeta] is a used as a tab in the SettingsActivity.
+ *
+ * It is used to change settings and access resources about Launcher,
+ * that are not directly related to the behaviour of the app itself.
+ *
+ * (greek `meta` = above, next level)
+ */
 class SettingsFragmentMeta : Fragment(), UIObject {
-
-    /** Lifecycle functions */
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,8 +38,6 @@ class SettingsFragmentMeta : Fragment(), UIObject {
         super<Fragment>.onStart()
         super<UIObject>.onStart()
     }
-
-    /** Extra functions */
 
     // Rate App
     //  Just copied code from https://stackoverflow.com/q/10816757/12787264

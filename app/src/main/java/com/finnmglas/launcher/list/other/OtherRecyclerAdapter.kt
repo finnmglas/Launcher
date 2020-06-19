@@ -12,7 +12,13 @@ import com.finnmglas.launcher.REQUEST_CHOOSE_APP
 import com.finnmglas.launcher.libraries.*
 import com.finnmglas.launcher.list.forApp
 
-/* Will only be used if an app / action is picked */
+/**
+ * The [OtherRecyclerAdapter] will only be displayed in the ListActivity,
+ * if an app / intent / etc. is picked to be launched when an action is recognized.
+ *
+ * It lists `other` things to be launched that are not really represented by a URI,
+ * rather by Launcher- internal conventions.
+ */
 class OtherRecyclerAdapter(val activity: Activity):
     RecyclerView.Adapter<OtherRecyclerAdapter.ViewHolder>() {
 

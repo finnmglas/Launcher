@@ -21,10 +21,16 @@ import com.finnmglas.launcher.list.other.ListFragmentOther
 var intendedChoosePause = false // know when to close
 
 // TODO: Better solution for this (used in list-fragments)
-var action = "view"
+var intention = "view"
 var forApp = ""
 
-
+/**
+ * The [ListActivity] is the most general purpose activity in Launcher:
+ * - used to view all apps and edit their settings
+ * - used to choose an app / intent to be launched
+ *
+ * The activity itself can also be chosen to be launched as an action.
+ */
 class ListActivity : AppCompatActivity(), UIObject {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -81,17 +87,17 @@ class ListActivity : AppCompatActivity(), UIObject {
         // get info about which action this activity is open for
         val bundle = intent.extras
         if (bundle != null) {
-            action = bundle.getString("action")!! // why choose an app
-            if (action != "view")
+            intention = bundle.getString("intention")!! // why choose an app
+            if (intention != "view")
                 forApp = bundle.getString("forApp")!! // which app we choose
         }
 
         // Hide tabs for the "view" action
-        if (action == "view") {
+        if (intention == "view") {
             list_tabs.visibility = View.GONE
         }
 
-        when (action) {
+        when (intention) {
             "view" -> list_heading.text = getString(R.string.choose_title_view)
             "pick" -> list_heading.text = getString(R.string.choose_title)
         }
@@ -109,7 +115,10 @@ private val TAB_TITLES = arrayOf(
     R.string.choose_tab_other
 )
 
-/** Returns the fragment corresponding to the selected tab.*/
+/**
+ * The [ListSectionsPagerAdapter] returns the fragment,
+ * which corresponds to the selected tab in [ListActivity].
+ */
 class ListSectionsPagerAdapter(private val context: Context, fm: FragmentManager)
     : FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
@@ -126,7 +135,7 @@ class ListSectionsPagerAdapter(private val context: Context, fm: FragmentManager
     }
 
     override fun getCount(): Int {
-        return when (action) {
+        return when (intention) {
             "view" -> 1
             else -> 2
         }

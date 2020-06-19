@@ -19,15 +19,19 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.Toast
 import com.finnmglas.launcher.list.ListActivity
+import com.finnmglas.launcher.list.apps.AppsRecyclerAdapter
 import com.finnmglas.launcher.settings.SettingsActivity
 import com.finnmglas.launcher.settings.intendedSettingsPause
 import com.finnmglas.launcher.tutorial.TutorialActivity
 import kotlin.math.roundToInt
 
-/** Preferences (global, initialised when app is started) */
+/* Preferences (global, initialised when app is started) */
 lateinit var launcherPreferences: SharedPreferences
 
-/** Variables containing settings */
+/* Objects used by multiple activities */
+lateinit var appListViewAdapter: AppsRecyclerAdapter
+
+/* Variables containing settings */
 val displayMetrics = DisplayMetrics()
 
 var upApp = ""
@@ -47,14 +51,14 @@ var background : Bitmap? = null
 var dominantColor = 0
 var vibrantColor = 0
 
-/** REQUEST CODES */
+/* REQUEST CODES */
 
 const val REQUEST_PICK_IMAGE = 1
 const val REQUEST_CHOOSE_APP = 2
 const val REQUEST_UNINSTALL = 3
 const val REQUEST_PERMISSION_STORAGE = 4
 
-/** Animate */
+/* Animate */
 
 // Taken from https://stackoverflow.com/questions/47293269
 fun View.blink(
@@ -125,7 +129,7 @@ fun View.fadeRotateOut(duration: Long = 500L) {
     startAnimation(combined)
 }
 
-/** Activity related */
+/* Activity related */
 
 fun isInstalled(uri: String, context: Context): Boolean {
     try {
@@ -194,7 +198,7 @@ fun openNewTabWindow(urls: String, context : Context) {
     context.startActivity(intents)
 }
 
-/** Settings related functions */
+/* Settings related functions */
 
 fun getSavedTheme(context : Context) : String {
     return launcherPreferences.getString("theme", "finn").toString()
@@ -224,7 +228,7 @@ fun openTutorial(activity: Activity){
 
 fun openAppsList(activity: Activity){
     val intent = Intent(activity, ListActivity::class.java)
-    intent.putExtra("action", "view")
+    intent.putExtra("intention", "view")
     intendedSettingsPause = true
     activity.startActivity(intent)
 }
@@ -337,7 +341,7 @@ fun pickDefaultApp(action: String, context: Context) : Pair<String, String>{
     return Pair(context.getString(R.string.none_found), "")
 }
 
-/** Bitmaps */
+/* Bitmaps */
 
 fun setButtonColor(btn: Button, color: Int) {
     if (Build.VERSION.SDK_INT >= 29)
