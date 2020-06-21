@@ -53,7 +53,7 @@ If you want to contribute code, you will need a Github Account ([create one here
 To actually contribute you just [_fork_ this repository][fork] and create a new _branch_ (called `feature/...` or `fix/...`).
 You commit your changes / improvements to that _branch_ and open a new _pull request_. That simple.
 
-If you feel like **this app delivers incredible value to you**, you can also [support me on PayPal][financial]. I will make every cent work for the good of human kind. I consider this the purpose of my existence.
+If you feel like **this app delivers incredible value to you**, you can also [support me and my projects][financial]. I will make every cent work for the good of human kind. I consider this the purpose of my existence.
 
 ---
 
@@ -110,7 +110,7 @@ Wenn du mit deinen Programmierfähigkeiten helfen willst, benötigst du einen Gi
 Um dann Code einzureichen [_forke_ dieses repository][fork] und erstelle einen neuen _Branch_ (nenne ihn `feature/...` oder `fix/...`).
 Dann schreibst du deine Verbesserung in diesen _Branch_ und öffnest einen neue _Pull Request_. So einfach.
 
-Wenn findest, dass diese App **sehr wertvoll für dich** ist, kannst du [mich auf PayPal unterstützen][financial]. Ich werde jeden Cent in meinen Projekten und denen anderer, zum Wohle der Menschheit einsetzen. Ich halte dies für den Zweck meiner Existenz.
+Wenn findest, dass diese App **sehr wertvoll für dich** ist, kannst du [mich und meine Projekte unterstützen][financial]. Ich werde jeden Cent in meinen Projekten und denen anderer, zum Wohle der Menschheit einsetzen. Ich halte dies für den Zweck meiner Existenz.
 
 ---
 
@@ -159,7 +159,7 @@ Si vous voulez vous aider avec vos compétences en programmation, vous avez beso
 Pour ensuite soumettre le code [_forkez_ ce dépôt][fork] et créer un nouveau _Branch_ (appelez-le `feature / ...` ou `fix / ...`).
 Ensuite, vous écrivez votre amélioration dans ce _Branch_ et ouvrez un nouveau _Pull Request_. Si facile.
 
-Si vous trouvez cette application **très précieuse pour vous**, vous pouvez [me soutenir sur PayPal][financial]. J'utiliserai chaque centime dans mes projets et ceux des autres au profit de l'humanité. Je pense que c'est le but de mon existence.
+Si vous trouvez cette application **très précieuse pour vous**, vous pouvez [soutenir moi et mes projects][financial]. J'utiliserai chaque centime dans mes projets et ceux des autres au profit de l'humanité. Je pense que c'est le but de mon existence.
 
 <!-- Download links / stores -->
 
@@ -177,7 +177,7 @@ Si vous trouvez cette application **très précieuse pour vous**, vous pouvez [m
 [website-de]: https://www.finnmglas.com/de/
 [website-fr]: https://www.finnmglas.com/fr/
 
-[financial]: https://www.paypal.me/finnmglas
+[financial]: https://sponsor.finnmglas.com
 
 <!-- GitHub related -->
 
