@@ -176,7 +176,7 @@ class AppsRecyclerAdapter(val activity: Activity,
 
         // Launch apps automatically if only one result is found
         // TODO: Add option to disable this
-        if (appsListDisplayed.size == 1) {
+        if (appsListDisplayed.size == 1 && intention == "view") {
             launch(appsListDisplayed[0].packageName.toString(), activity)
 
             val inputMethodManager = activity.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager

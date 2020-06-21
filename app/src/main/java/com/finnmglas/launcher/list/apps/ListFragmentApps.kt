@@ -1,12 +1,9 @@
 package com.finnmglas.launcher.list.apps
 
-import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.SearchView
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.finnmglas.launcher.R
@@ -38,10 +35,8 @@ class ListFragmentApps : Fragment(), UIObject {
 
     override fun applyTheme() {
         list_apps_container.setBackgroundColor(dominantColor)
-
-        val id: Int = list_apps_searchview.context.resources
-            .getIdentifier("android:id/search_src_text", null, null)
-        list_apps_searchview.findViewById<TextView>(id).setTextColor(Color.WHITE)
+        list_apps_searchview.setBackgroundColor(dominantColor)
+        list_apps_searchbar.setBackgroundColor(dominantColor)
     }
 
     override fun setOnClicks() { }
@@ -58,7 +53,8 @@ class ListFragmentApps : Fragment(), UIObject {
             adapter = appsRViewAdapter
         }
 
-        list_apps_searchview.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+        list_apps_searchview.setOnQueryTextListener(object :
+            androidx.appcompat.widget.SearchView.OnQueryTextListener {
 
             override fun onQueryTextSubmit(query: String): Boolean {
                 appsRViewAdapter.filter(query);
