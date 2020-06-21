@@ -13,8 +13,10 @@ import android.widget.PopupMenu
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.finnmglas.launcher.*
-import com.finnmglas.launcher.libraries.*
+import com.finnmglas.launcher.libraries.FontAwesome
 import com.finnmglas.launcher.list.intendedChoosePause
+import java.util.*
+import kotlin.collections.ArrayList
 
 /**
  * A [RecyclerView] (efficient scrollable list) containing all apps on the users device.
@@ -30,6 +32,7 @@ class AppsRecyclerAdapter(val activity: Activity,
     RecyclerView.Adapter<AppsRecyclerAdapter.ViewHolder>() {
 
     private val appsList: MutableList<AppInfo>
+    private val appsListDisplayed: MutableList<AppInfo>
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),
         View.OnClickListener {
@@ -40,7 +43,7 @@ class AppsRecyclerAdapter(val activity: Activity,
         override fun onClick(v: View) {
             val pos = adapterPosition
             val context: Context = v.context
-            val appPackageName = appsList[pos].packageName.toString()
+            val appPackageName = appsListDisplayed[pos].packageName.toString()
 
             when (intention){
                 "view" -> {
@@ -62,10 +65,10 @@ class AppsRecyclerAdapter(val activity: Activity,
     }
 
     override fun onBindViewHolder(viewHolder: ViewHolder, i: Int) {
-        val appLabel = appsList[i].label.toString()
-        val appPackageName = appsList[i].packageName.toString()
-        val appIcon = appsList[i].icon
-        val isSystemApp = appsList[i].isSystemApp
+        val appLabel = appsListDisplayed[i].label.toString()
+        val appPackageName = appsListDisplayed[i].packageName.toString()
+        val appIcon = appsListDisplayed[i].icon
+        val isSystemApp = appsListDisplayed[i].isSystemApp
 
         viewHolder.textView.text = appLabel
         viewHolder.img.setImageDrawable(appIcon)
@@ -127,7 +130,7 @@ class AppsRecyclerAdapter(val activity: Activity,
         return true
     }
 
-    override fun getItemCount(): Int { return appsList.size }
+    override fun getItemCount(): Int { return appsListDisplayed.size }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -136,8 +139,11 @@ class AppsRecyclerAdapter(val activity: Activity,
     }
 
     init {
-        val pm: PackageManager = activity.packageManager
         appsList = ArrayList()
+        appsListDisplayed = ArrayList()
+
+        val pm: PackageManager = activity.packageManager
+
         val i = Intent(Intent.ACTION_MAIN, null)
         i.addCategory(Intent.CATEGORY_LAUNCHER)
         val allApps = pm.queryIntentActivities(i, 0)
@@ -149,5 +155,23 @@ class AppsRecyclerAdapter(val activity: Activity,
             appsList.add(app)
         }
         appsList.sortBy { it.label.toString() }
+        appsListDisplayed.addAll(appsList)
+    }
+
+    /**
+     * The function [filter] is used to search elements within this [RecyclerView].
+     */
+    fun filter(text: String) {
+        appsListDisplayed.clear()
+        if (text.isEmpty()) {
+            appsListDisplayed.addAll(appsList)
+        } else {
+            for (item in appsList) {
+                if (item.label.toString().toLowerCase(Locale.ROOT).contains(text.toLowerCase(Locale.ROOT))) {
+                    appsListDisplayed.add(item)
+                }
+            }
+        }
+        notifyDataSetChanged()
     }
 }
