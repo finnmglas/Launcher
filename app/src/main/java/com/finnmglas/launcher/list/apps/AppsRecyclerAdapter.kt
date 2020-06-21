@@ -8,6 +8,7 @@ import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.ImageView
 import android.widget.PopupMenu
 import android.widget.TextView
@@ -172,6 +173,16 @@ class AppsRecyclerAdapter(val activity: Activity,
                 }
             }
         }
+
+        // Launch apps automatically if only one result is found
+        // TODO: Add option to disable this
+        if (appsListDisplayed.size == 1) {
+            launch(appsListDisplayed[0].packageName.toString(), activity)
+
+            val inputMethodManager = activity.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+            inputMethodManager.hideSoftInputFromWindow(View(activity).windowToken, 0)
+        }
+
         notifyDataSetChanged()
     }
 }
