@@ -30,7 +30,7 @@
                 android:gravity="center"
                 android:minHeight="?actionBarSize"
                 android:padding="@dimen/appbar_padding"
-                android:text="@string/choose_title"
+                android:text="@string/list_title_pick"
                 android:textAppearance="@style/TextAppearance.Widget.AppCompat.Toolbar.Title"
                 android:textSize="30sp"
                 app:layout_constraintEnd_toEndOf="parent"

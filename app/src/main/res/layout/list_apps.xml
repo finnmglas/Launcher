@@ -23,7 +23,7 @@
             android:layout_margin="8sp"
             android:iconifiedByDefault="false"
             app:iconifiedByDefault="false"
-            app:queryHint="Search Applications"
+            app:queryHint="@string/list_apps_search_hint"
             app:searchHintIcon="@android:drawable/ic_menu_search"
             app:searchIcon="@android:drawable/ic_menu_search" />
     </com.google.android.material.appbar.AppBarLayout>

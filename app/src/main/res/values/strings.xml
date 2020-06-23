@@ -58,16 +58,21 @@
     <string name="settings_meta_donate_url" translatable="false">https://sponsor.finnmglas.com</string>
 
     <!-- List Activity -->
-    <string name="choose_title">Choose App</string>
-    <string name="choose_title_view">All Apps</string>
+    <string name="list_title_pick">Choose App</string>
+    <string name="list_title_view">All Apps</string>
 
-    <string name="choose_tab_app" translatable="false">Apps</string>
-    <string name="choose_tab_other" translatable="false">Other</string>
+    <string name="list_tab_app">Apps</string>
+    <string name="list_tab_other">Other</string>
 
-    <string name="choose_back_settings">Back to Settings</string>
+    <string name="list_back_settings">Back to Settings</string>
 
-    <string name="choose_removed_toast">Removed the selected application</string>
-    <string name="choose_not_removed_toast">Unable to remove application</string>
+    <string name="list_removed_toast">Removed the selected application</string>
+    <string name="list_not_removed_toast">Unable to remove application</string>
+
+    <string name="list_apps_search_hint">Search Applications</string>
+
+    <string name="list_other_settings">Launcher Settings</string>
+    <string name="list_other_list">Launcher AppsList</string>
 
     <!-- Tutorial Activity -->
     <string name="tutorial_title">Tutorial</string>

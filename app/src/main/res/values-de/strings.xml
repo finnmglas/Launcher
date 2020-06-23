@@ -49,13 +49,21 @@
     <string name="settings_meta_donate">Finanziell unterstützen</string>
 
     <!-- List Activity -->
-    <string name="choose_title">App wählen</string>
-    <string name="choose_title_view">Alle Apps</string>
+    <string name="list_title_pick">App wählen</string>
+    <string name="list_title_view">Alle Apps</string>
 
-    <string name="choose_back_settings">Zurück</string>
+    <string name="list_tab_app">Apps</string>
+    <string name="list_tab_other">Andere</string>
 
-    <string name="choose_removed_toast">Die App wurde entfernt</string>
-    <string name="choose_not_removed_toast">Die App konnte nicht entfernt werden</string>
+    <string name="list_back_settings">Zurück</string>
+
+    <string name="list_removed_toast">Die App wurde entfernt</string>
+    <string name="list_not_removed_toast">Die App konnte nicht entfernt werden</string>
+
+    <string name="list_apps_search_hint">Anwendungen suchen</string>
+
+    <string name="list_other_settings">Launcher Einstellungen</string>
+    <string name="list_other_list">Launcher Apps Liste</string>
 
     <!-- Tutorial Activity -->
     <string name="tutorial_title">Tutorial</string>

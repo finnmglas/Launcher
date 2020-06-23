@@ -49,13 +49,21 @@
     <string name="settings_meta_donate">Faire un don</string>
 
     <!-- List Activity -->
-    <string name="choose_title">Choisir App</string>
-    <string name="choose_title_view">Applications</string>
+    <string name="list_title_pick">Choisir App</string>
+    <string name="list_title_view">Applications</string>
 
-    <string name="choose_back_settings">Retourner</string>
+    <string name="list_tab_app">Apps</string>
+    <string name="list_tab_other">Autre</string>
 
-    <string name="choose_removed_toast">Application supprimée</string>
-    <string name="choose_not_removed_toast">Impossible de supprimer l\'application</string>
+    <string name="list_back_settings">Retourner</string>
+
+    <string name="list_removed_toast">Application supprimée</string>
+    <string name="list_not_removed_toast">Impossible de supprimer l\'application</string>
+
+    <string name="list_apps_search_hint">rechercher des applications</string>
+
+    <string name="list_other_settings">Launcher Réglages</string>
+    <string name="list_other_list">Launcher Liste des apps</string>
 
     <!-- Tutorial Activity -->
     <string name="tutorial_title">Le Tutoriel</string>

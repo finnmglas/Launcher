@@ -60,10 +60,10 @@ class ListActivity : AppCompatActivity(), UIObject {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == REQUEST_UNINSTALL) {
             if (resultCode == Activity.RESULT_OK) {
-                Toast.makeText(this, getString(R.string.choose_removed_toast), Toast.LENGTH_LONG).show()
+                Toast.makeText(this, getString(R.string.list_removed_toast), Toast.LENGTH_LONG).show()
                 finish()
             } else if (resultCode == Activity.RESULT_FIRST_USER) {
-                Toast.makeText(this, getString(R.string.choose_not_removed_toast), Toast.LENGTH_LONG).show()
+                Toast.makeText(this, getString(R.string.list_not_removed_toast), Toast.LENGTH_LONG).show()
                 finish()
             }
         }
@@ -96,8 +96,8 @@ class ListActivity : AppCompatActivity(), UIObject {
         }
 
         when (intention) {
-            "view" -> list_heading.text = getString(R.string.choose_title_view)
-            "pick" -> list_heading.text = getString(R.string.choose_title)
+            "view" -> list_heading.text = getString(R.string.list_title_view)
+            "pick" -> list_heading.text = getString(R.string.list_title_pick)
         }
 
         val sectionsPagerAdapter = ListSectionsPagerAdapter(this, supportFragmentManager)
@@ -109,8 +109,8 @@ class ListActivity : AppCompatActivity(), UIObject {
 }
 
 private val TAB_TITLES = arrayOf(
-    R.string.choose_tab_app,
-    R.string.choose_tab_other
+    R.string.list_tab_app,
+    R.string.list_tab_other
 )
 
 /**
