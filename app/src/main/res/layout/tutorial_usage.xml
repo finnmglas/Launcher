@@ -15,7 +15,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Usage"
+        android:text="@string/tutorial_usage_title"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -28,7 +28,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginBottom="32dp"
         android:gravity="center"
-        android:text="Your home screen contains the local date and time. No distraction."
+        android:text="@string/tutorial_usage_text"
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/tutorial_usage_screen"
         app:layout_constraintEnd_toEndOf="parent"
@@ -45,7 +45,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/tutorial_usage_text"
         app:layout_constraintTop_toBottomOf="@id/tutorial_usage_text"
-        app:srcCompat="@drawable/home_round_screen" />
+        app:srcCompat="@drawable/home_round_screen"
+        tools:ignore="ContentDescription" />
 
     <TextView
         android:id="@+id/tutorial_usage_text_2"
@@ -54,7 +55,7 @@
         android:layout_marginTop="32dp"
         android:layout_marginBottom="16dp"
         android:gravity="center"
-        android:text="You can launch your apps with a single swipe or button press. Choose some in the next slide."
+        android:text="@string/tutorial_usage_text_2"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

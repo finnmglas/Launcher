@@ -57,7 +57,7 @@
     <string name="settings_meta_donate">Make a donation</string>
     <string name="settings_meta_donate_url" translatable="false">https://sponsor.finnmglas.com</string>
 
-    <!-- Choose Activity -->
+    <!-- List Activity -->
     <string name="choose_title">Choose App</string>
     <string name="choose_title_view">All Apps</string>
 
@@ -69,23 +69,25 @@
     <string name="choose_removed_toast">Removed the selected application</string>
     <string name="choose_not_removed_toast">Unable to remove application</string>
 
-    <!-- FirstStartup Activity -->
+    <!-- Tutorial Activity -->
     <string name="tutorial_title">Tutorial</string>
-    <string-array name="intro">
-        <!--item> heading | infoText | hintText | size | format </item-->
-        <item>|Take a few seconds to learn how to use this Launcher!\n\n|— Tap anywhere to continue —|36F|0</item>
-        <item>Concept|It is designed to be minimal, efficient and free of distraction.|— Tap anywhere to continue —|36F|0</item>
-        <item>Concept|It is free of payments, ads and tracking services.|— Tap anywhere to continue —|36F|0</item>
-        <item>Usage|Your home screen contains the local date and time. No distraction.|— Tap anywhere to continue —|36F|0</item>
-        <item>Usage|You can open your apps with a single swipe or button press.|— Tap anywhere to continue —|36F|0</item>
-        <item>Setup|We have set up some default actions for you…|— Use volume keys to navigate —|36F|0</item>
-        <item>Setup|Swipe Up: Open a Browser (%1$s)\n\nSwipe Down: Open internal Search App (%2$s)\n\n
-            Swipe Right: Open Mail (%3$s)\n\nSwipe Left: Open Calendar (%4$s)\n\n
-            Volume Up: Open a messenger (%5$s)\n\nVolume Down: Open Utilities (%6$s)|— Use volume keys to navigate —|18F|1
-        </item>
-        <item>Setup|You can choose your own apps:\n\nOpen settings by tapping and holding the home screen.|— Use volume keys to navigate —|36F|0</item>
-        <item>|You are ready to get started!\n\n I hope this provides great value to you!\n\n- Finn M Glas\n\n|— Launcher by Finn M Glas —|36F|0</item>
-    </string-array>
+    <string name="tutorial_start_text">Take a few seconds to learn how to use this Launcher!</string>
+
+    <string name="tutorial_concept_title">Concept</string>
+    <string name="tutorial_concept_text">Launcher is designed to be minimal, efficient and free of distraction.\n\nIt is free of payments, ads and tracking services.</string>
+    <string name="tutorial_concept_text_2">The app is open-source (MIT license) and available on GitHub!\n\nMake sure to check out the repository!</string>
+
+    <string name="tutorial_usage_title">Usage</string>
+    <string name="tutorial_usage_text">Your home screen contains the local date and time. No distraction.</string>
+    <string name="tutorial_usage_text_2">You can launch your apps with a single swipe or button press. Choose some in the next slide.</string>
+
+    <string name="tutorial_setup_title">Setup</string>
+    <string name="tutorial_setup_text">We chose some default apps for you, if you want to, you can change them now.</string>
+    <string name="tutorial_setup_text_2">You can also change your selection later.</string>
+
+    <string name="tutorial_finish_title">Let\'s go!</string>
+    <string name="tutorial_finish_text">You are ready to get started!\n\n I hope this provides great value to you!\n\n- Finn M Glas\n(the developer)</string>
+    <string name="tutorial_finish_button">Start Launcher</string>
 
     <!-- Default Apps for different actions (button-press, swipes ...) -->
     <string-array name="default_up">

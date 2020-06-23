@@ -16,7 +16,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Concept"
+        android:text="@string/tutorial_concept_title"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -27,7 +27,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Launcher is designed to be minimal, efficient and free of distraction.\n\nIt is free of payments, ads and tracking services."
+        android:text="@string/tutorial_concept_text"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -41,7 +41,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:gravity="center"
-        android:text="The app is open-source (MIT license) and available on GitHub!\n\nMake sure to check out the repository!"
+        android:text="@string/tutorial_concept_text_2"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -59,6 +59,7 @@
         app:layout_constraintBottom_toTopOf="@+id/tutorial_concept_text_2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tutorial_concept_text" />
+        app:layout_constraintTop_toBottomOf="@+id/tutorial_concept_text"
+        tools:ignore="ContentDescription" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
