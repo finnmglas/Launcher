@@ -10,7 +10,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="?attr/colorPrimary"
-    tools:context=".tutorial.tab.TutorialFragmentFinish">
+    tools:context=".tutorial.tabs.TutorialFragmentFinish">
 
     <TextView
         android:id="@+id/tutorial_finish_title"

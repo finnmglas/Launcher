@@ -10,7 +10,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import androidx.viewpager.widget.ViewPager
 import com.finnmglas.launcher.*
-import com.finnmglas.launcher.tutorial.tab.*
+import com.finnmglas.launcher.tutorial.tabs.*
 import com.google.android.material.tabs.TabLayout
 import kotlinx.android.synthetic.main.tutorial.*
 

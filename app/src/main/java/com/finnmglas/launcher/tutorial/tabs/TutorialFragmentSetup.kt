@@ -1,4 +1,4 @@
-package com.finnmglas.launcher.tutorial.tab
+package com.finnmglas.launcher.tutorial.tabs
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,20 +6,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.finnmglas.launcher.*
-import kotlinx.android.synthetic.main.tutorial_concept.*
+import kotlinx.android.synthetic.main.tutorial_setup.*
 
 /**
- * The [TutorialFragmentConcept] is a used as a tab in the TutorialActivity.
+ * The [TutorialFragmentSetup] is a used as a tab in the TutorialActivity.
  *
- * It is used to display info about Launchers concept (open source, efficiency ...)
+ * It is used to display info in the tutorial
  */
-class TutorialFragmentConcept(): Fragment(), UIObject {
+class TutorialFragmentSetup(): Fragment(), UIObject {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.tutorial_concept, container, false)
+        return inflater.inflate(R.layout.tutorial_setup, container, false)
     }
 
     override fun onStart(){
@@ -28,6 +28,6 @@ class TutorialFragmentConcept(): Fragment(), UIObject {
     }
 
     override fun applyTheme() {
-        tutorial_concept_container.setBackgroundColor(dominantColor)
+        tutorial_setup_container.setBackgroundColor(dominantColor)
     }
 }

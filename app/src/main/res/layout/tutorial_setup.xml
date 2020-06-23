@@ -9,7 +9,7 @@
     android:background="?attr/colorPrimary"
     android:paddingLeft="32sp"
     android:paddingRight="32sp"
-    tools:context=".tutorial.tab.TutorialFragmentSetup">
+    tools:context=".tutorial.tabs.TutorialFragmentSetup">
 
     <TextView
         android:id="@+id/tutorial_setup_title"

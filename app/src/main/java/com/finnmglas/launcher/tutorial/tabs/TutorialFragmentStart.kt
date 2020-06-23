@@ -1,4 +1,4 @@
-package com.finnmglas.launcher.tutorial.tab
+package com.finnmglas.launcher.tutorial.tabs
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

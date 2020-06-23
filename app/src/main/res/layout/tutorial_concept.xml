@@ -9,7 +9,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="?attr/colorPrimary"
-    tools:context=".tutorial.tab.TutorialFragmentConcept">
+    tools:context=".tutorial.tabs.TutorialFragmentConcept">
 
     <TextView
         android:id="@+id/tutorial_concept_title"
