@@ -11,14 +11,38 @@
     android:background="?attr/colorPrimary"
     tools:context=".tutorial.tab.TutorialFragmentStart">
 
-    <TextView
-        android:id="@+id/tutorial_start_title"
+    <com.finnmglas.launcher.libraries.FontAwesome
+        android:id="@+id/tutorial_start_icon_right_2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Launcher"
-        android:textSize="30sp"
+        android:text="@string/fas_angle_double_right"
+        android:textSize="64sp"
+        app:layout_constraintBottom_toTopOf="@id/tutorial_start_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tutorial_start_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Take a few seconds to learn how to use this Launcher!"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.finnmglas.launcher.libraries.FontAwesome
+        android:id="@+id/tutorial_start_icon_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/fas_angle_double_right"
+        android:textSize="64sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tutorial_start_text" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
