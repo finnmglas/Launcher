@@ -1,20 +1,56 @@
 package com.finnmglas.launcher.settings.actions
 
-import android.app.Activity
-import android.content.Intent
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.finnmglas.launcher.*
+import com.finnmglas.launcher.list.ListActivity
+import kotlinx.android.synthetic.main.settings_actions_recycler.*
+import android.app.Activity
+import android.content.Intent
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.finnmglas.launcher.*
-import com.finnmglas.launcher.list.ListActivity
 import com.finnmglas.launcher.libraries.FontAwesome
 import com.finnmglas.launcher.settings.intendedSettingsPause
 import java.lang.Exception
 
+/**
+ *  The [SettingsFragmentActionsRecycler] is a fragment containing the [ActionsRecyclerAdapter],
+ *  which displays all selected actions / apps.
+ *
+ *  It is used in the Tutorial and in Settings
+ */
+class SettingsFragmentActionsRecycler : Fragment(), UIObject {
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        return inflater.inflate(R.layout.settings_actions_recycler, container, false)
+    }
+
+    override fun onStart() {
+        super<Fragment>.onStart()
+
+        // set up the list / recycler
+        val actionViewManager = LinearLayoutManager(context)
+        val actionViewAdapter = ActionsRecyclerAdapter( activity!! )
+
+        settings_actions_rview.apply {
+            // improve performance (since content changes don't change the layout size)
+            setHasFixedSize(true)
+            layoutManager = actionViewManager
+            adapter = actionViewAdapter
+        }
+
+        super<UIObject>.onStart()
+    }
+}
 
 class ActionsRecyclerAdapter(val activity: Activity):
     RecyclerView.Adapter<ActionsRecyclerAdapter.ViewHolder>() {
@@ -46,6 +82,8 @@ class ActionsRecyclerAdapter(val activity: Activity):
             launcherPreferences.edit()
                 .putString("action_$actionName", "") // clear it
                 .apply()
+
+            loadSettings() // apply new settings to the app
 
             viewHolder.fontAwesome.visibility = View.INVISIBLE
             viewHolder.img.visibility = View.INVISIBLE

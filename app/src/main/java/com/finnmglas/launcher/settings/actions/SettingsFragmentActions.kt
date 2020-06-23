@@ -9,7 +9,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.finnmglas.launcher.*
 import com.finnmglas.launcher.list.ListActivity
 import com.finnmglas.launcher.settings.intendedSettingsPause
@@ -36,17 +35,6 @@ class SettingsFragmentActions : Fragment(), UIObject {
     override fun onStart() {
         super<Fragment>.onStart()
         super<UIObject>.onStart()
-
-        // set up the list / recycler
-        val actionViewManager = LinearLayoutManager(context)
-        val actionViewAdapter = ActionsRecyclerAdapter( activity!! )
-
-        settings_actions_rview.apply {
-            // improve performance (since content changes don't change the layout size)
-            setHasFixedSize(true)
-            layoutManager = actionViewManager
-            adapter = actionViewAdapter
-        }
     }
 
     override fun applyTheme() {

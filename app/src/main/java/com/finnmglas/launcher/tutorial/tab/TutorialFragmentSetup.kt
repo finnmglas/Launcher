@@ -23,9 +23,6 @@ class TutorialFragmentSetup(): Fragment(), UIObject {
     }
 
     override fun onStart(){
-        var defaultApps = mutableListOf<String>()
-        defaultApps = resetSettings(context!!) // UP, DOWN, RIGHT, LEFT, VOLUME_UP, VOLUME_DOWN
-
         super<Fragment>.onStart()
         super<UIObject>.onStart()
     }

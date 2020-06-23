@@ -1,6 +1,7 @@
 package com.finnmglas.launcher.tutorial
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.*
 import androidx.appcompat.app.AppCompatActivity
@@ -31,6 +32,9 @@ class TutorialActivity: AppCompatActivity(), UIObject {
         // Check if the app was started before
         if (launcherPreferences.getBoolean("startedBefore", false))
             tutorial_appbar.visibility = View.VISIBLE
+        else resetSettings(this)
+
+        loadSettings()
 
         // set up tabs and swiping in settings
         val sectionsPagerAdapter = TutorialSectionsPagerAdapter(this, supportFragmentManager)
@@ -54,6 +58,30 @@ class TutorialActivity: AppCompatActivity(), UIObject {
     override fun setOnClicks() {
         tutorial_close.setOnClickListener() { finish() }
     }
+
+    // same as in SettingsActivity; TODO: Use same function
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        when (requestCode) {
+            REQUEST_CHOOSE_APP -> {
+                val value = data?.getStringExtra("value")
+                val forApp = data?.getStringExtra("forApp") ?: return
+
+                launcherPreferences.edit()
+                    .putString("action_$forApp", value.toString())
+                    .apply()
+
+                loadSettings()
+            }
+            else -> super.onActivityResult(requestCode, resultCode, data)
+        }
+    }
+
+    // Prevent going back, allow if viewed again later
+    override fun onBackPressed() {
+        if (launcherPreferences.getBoolean("startedBefore", false))
+            super.onBackPressed()
+    }
+
 }
 
 /**

@@ -59,22 +59,6 @@ class SettingsActivity: AppCompatActivity(), UIObject {
         if (!intendedSettingsPause) finish()
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        when (requestCode) {
-            REQUEST_CHOOSE_APP -> {
-                val value = data?.getStringExtra("value")
-                val forApp = data?.getStringExtra("forApp") ?: return
-
-                launcherPreferences.edit()
-                    .putString("action_$forApp", value.toString())
-                    .apply()
-
-                loadSettings()
-            }
-            else -> super.onActivityResult(requestCode, resultCode, data)
-        }
-    }
-
     override fun applyTheme() {
         settings_container.setBackgroundColor(dominantColor)
         settings_appbar.setBackgroundColor(dominantColor)
@@ -91,6 +75,22 @@ class SettingsActivity: AppCompatActivity(), UIObject {
         settings_system.setOnClickListener {
             intendedSettingsPause = true
             startActivity(Intent(Settings.ACTION_SETTINGS))
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        when (requestCode) {
+            REQUEST_CHOOSE_APP -> {
+                val value = data?.getStringExtra("value")
+                val forApp = data?.getStringExtra("forApp") ?: return
+
+                launcherPreferences.edit()
+                    .putString("action_$forApp", value.toString())
+                    .apply()
+
+                loadSettings()
+            }
+            else -> super.onActivityResult(requestCode, resultCode, data)
         }
     }
 }
