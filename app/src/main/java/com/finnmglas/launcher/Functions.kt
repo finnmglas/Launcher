@@ -253,12 +253,21 @@ fun loadSettings(){
 
 fun resetSettings(context: Context) : MutableList<String>{
 
-    // set default theme
-    saveTheme("finn")
-
     val defaultList :MutableList<String> = mutableListOf<String>()
 
     val editor = launcherPreferences.edit()
+
+    // set default theme
+    dominantColor = context.resources.getColor(R.color.finnmglasTheme_background_color)
+    vibrantColor = context.resources.getColor(R.color.finnmglasTheme_accent_color)
+
+    launcherPreferences.edit()
+        .putString("background_uri", "")
+        .putInt("custom_dominant", dominantColor)
+        .putInt("custom_vibrant", vibrantColor)
+        .apply()
+
+    saveTheme("finn")
 
     val (chosenUpName, chosenUpPackage) = pickDefaultApp(
         "action_upApp",

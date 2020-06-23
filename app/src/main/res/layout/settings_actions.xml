@@ -9,17 +9,16 @@
     android:paddingTop="16sp"
     android:paddingRight="32sp">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/settings_actions_rview"
+    <fragment
+        android:id="@+id/settings_actions_rview_fragment"
+        android:name="com.finnmglas.launcher.settings.actions.SettingsFragmentActionsRecycler"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toTopOf="@+id/settings_actions_buttons"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-    </androidx.recyclerview.widget.RecyclerView>
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <LinearLayout
         android:id="@+id/settings_actions_buttons"

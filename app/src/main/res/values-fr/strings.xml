@@ -48,7 +48,7 @@
     <string name="settings_meta_contact_url">https://www.finnmglas.com/fr/contact/</string>
     <string name="settings_meta_donate">Faire un don</string>
 
-    <!-- Choose Activity -->
+    <!-- List Activity -->
     <string name="choose_title">Choisir App</string>
     <string name="choose_title_view">Applications</string>
 
@@ -57,21 +57,24 @@
     <string name="choose_removed_toast">Application supprimée</string>
     <string name="choose_not_removed_toast">Impossible de supprimer l\'application</string>
 
-    <!-- FirstStartup Activity -->
+    <!-- Tutorial Activity -->
     <string name="tutorial_title">Le Tutoriel</string>
-    <string-array name="intro">
-        <!--item> heading | infoText | hintText | size | format </item-->
-        <item>|Prenez un moment et apprenez à utiliser ce lanceur!\n\n|— Appuyez pour continuer —|36F|0</item>
-        <item>Concept|Il vous offre un environnement minimaliste, efficace et sans distraction.|— Appuyez pour continuer —|36F|0</item>
-        <item>Concept|Il ne vous coûte rien, ne contient aucune publicité, ne recueille pas de données personnelles.|— Appuyez pour continuer —|36F|0</item>
-        <item>Utilisation|Vous ne voyez que la date et l\'heure sur votre écran d\'accueil. Aucune distraction.|— Appuyez pour continuer —|36F|0</item>
-        <item>Utilisation|Vous ouvrez des applications en faisant glisser l\'écran ou en appuyant sur les touches de volume.|— Appuyez pour continuer —|36F|0</item>
-        <item>Installer|Nous avons mis en place quelques promotions standards pour vous…|— Retour = volume en baisse —|36F|0</item>
-        <item>Installer|Balayez haut: Ouvrir le navigateur (%1$s)\n\nBalayez bas: Ouvrir l\'application de recherche interne (%2$s)\n\n
-            Balayez droit: Ouvrir Mail (%3$s)\n\nBalayez gauche: Ouvrir le Calendrier (%4$s)\n\n
-            Monter volume: Ouvrir Messenger (%5$s)\n\nBaisser volume: Ouvrir utilitaires (%6$s)|— Retour = volume en baisse —|18F|1
-        </item>
-        <item>Installer|Vous pouvez choisir vos applications:\n\nOuvrez les paramètres en appuyant longuement sur l\'écran d\'accueil.|— Retour = volume en baisse —|36F|0</item>
-        <item>|Vous êtes prêt à commencer!\n\nJ\'espère que cette application vous sera très précieuse!\n\n- Finn M Glas\n\n|— Launcher par Finn M Glas —|36F|0</item>
-    </string-array>
+    <string name="tutorial_start_text">Prenez un moment et apprenez à utiliser ce lanceur!</string>
+
+    <string name="tutorial_concept_title">Concept</string>
+    <string name="tutorial_concept_text">Launcher vous offre un environnement minimaliste, efficace et sans distraction.\n\nIl ne vous coûte rien, ne contient aucune publicité, ne recueille pas de données personnelles.</string>
+    <string name="tutorial_concept_text_2">L\'application est open-source (licence MIT) et disponible sur GitHub!\n\nAssurez-vous de visiter le repo!</string>
+
+    <string name="tutorial_usage_title">Utilisation</string>
+    <string name="tutorial_usage_text">Vous ne voyez que la date et l\'heure sur votre écran d\'accueil. Aucune distraction.</string>
+    <string name="tutorial_usage_text_2">Vous ouvrez des applications en faisant glisser l\'écran ou en appuyant sur les touches de volume. Choisissez-les maintenant.</string>
+
+    <string name="tutorial_setup_title">Installer</string>
+    <string name="tutorial_setup_text">Nous avons choisi quelques applications standards pour vous, vous pouvez changer-les maintenant.</string>
+    <string name="tutorial_setup_text_2">Vous pouvez également modifier votre sélection ultérieurement.</string>
+
+    <string name="tutorial_finish_title">Allez!</string>
+    <string name="tutorial_finish_text">Vous êtes prêt à commencer!\n\nJ\'espère que cette application vous sera très précieuse!\n\n- Finn M Glas\n(le développeur)</string>
+    <string name="tutorial_finish_button">Ouvrir Launcher</string>
+
 </resources>

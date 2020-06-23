@@ -14,6 +14,11 @@
   <string name="fas_times" translatable="false">&#xf00d;</string> <!-- 'close' -->
   <string name="fas_three_dots" translatable="false">&#xf142;</string> <!-- 'ellipsis-v' -->
 
+  <string name="fas_angle_double_left" translatable="false">&#xf100;</string>
+  <string name="fas_angle_double_right" translatable="false">&#xf101;</string>
+  <string name="fas_angle_double_up" translatable="false">&#xf102;</string>
+  <string name="fas_angle_double_down" translatable="false">&#xf103;</string>
+
   <!-- icons that can be used with type="brands" -->
   <string name="fab_apple" translatable="false">&#xf179;</string>
   <string name="fab_instagram" translatable="false">&#xf16d;</string>
