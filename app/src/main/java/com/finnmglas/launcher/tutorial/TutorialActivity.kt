@@ -10,6 +10,7 @@ import androidx.fragment.app.FragmentPagerAdapter
 import androidx.viewpager.widget.ViewPager
 import com.finnmglas.launcher.*
 import com.finnmglas.launcher.tutorial.tab.TutorialFragmentTab
+import com.google.android.material.tabs.TabLayout
 import kotlinx.android.synthetic.main.tutorial.*
 
 /**
@@ -40,8 +41,8 @@ class TutorialActivity: AppCompatActivity(), UIObject {
         val sectionsPagerAdapter = TutorialSectionsPagerAdapter(this, supportFragmentManager, defaultApps, isFirstTime)
         val viewPager: ViewPager = findViewById(R.id.tutorial_viewpager)
         viewPager.adapter = sectionsPagerAdapter
-        //val tabs: TabLayout = findViewById(R.id.tutorial_tabs)
-        //tabs.setupWithViewPager(viewPager)
+        val tabs: TabLayout = findViewById(R.id.tutorial_tabs)
+        tabs.setupWithViewPager(viewPager)
     }
 
     override fun onStart() {
@@ -73,8 +74,8 @@ class TutorialSectionsPagerAdapter(private val context: Context, fm: FragmentMan
     }
 
     override fun getPageTitle(position: Int): CharSequence? {
-        return position.toString()
+        return ""
     }
 
-    override fun getCount(): Int { return 20 }
+    override fun getCount(): Int { return 9 }
 }
