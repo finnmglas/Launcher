@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/tutorial_usage_container"
-    android:paddingLeft="32sp"
-    android:paddingRight="32sp"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="?attr/colorPrimary"
+    android:paddingLeft="32sp"
+    android:paddingRight="32sp"
     tools:context=".tutorial.tab.TutorialFragmentUsage">
 
     <TextView
-        android:id="@+id/tutorial_concept_title2"
+        android:id="@+id/tutorial_usage_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -21,4 +20,43 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tutorial_usage_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="32dp"
+        android:gravity="center"
+        android:text="Your home screen contains the local date and time. No distraction."
+        app:layout_constraintBottom_toTopOf="@+id/tutorial_usage_screen"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tutorial_usage_title" />
+
+    <ImageView
+        android:id="@+id/tutorial_usage_screen"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="centerInside"
+        android:src="@drawable/home_round_screen"
+        app:layout_constraintBottom_toTopOf="@id/tutorial_usage_text_2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/tutorial_usage_text"
+        app:layout_constraintTop_toBottomOf="@id/tutorial_usage_text"
+        app:srcCompat="@drawable/home_round_screen" />
+
+    <TextView
+        android:id="@+id/tutorial_usage_text_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="16dp"
+        android:gravity="center"
+        android:text="You can launch your apps with a single swipe or button press. Choose some in the next slide."
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tutorial_usage_screen" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

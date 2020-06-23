@@ -27,6 +27,7 @@
         android:id="@+id/tutorial_finish_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:text="You are ready to get started!\n\n I hope this provides great value to you!\n\n- Finn M Glas (alias 'the developer')"
         android:textSize="15sp"
         app:layout_constraintBottom_toTopOf="@id/tutorial_finish_button_start"
