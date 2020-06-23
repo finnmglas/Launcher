@@ -29,9 +29,23 @@ class TutorialFragmentFinish(): Fragment(), UIObject {
 
     override fun applyTheme() {
         tutorial_finish_container.setBackgroundColor(dominantColor)
+        setButtonColor(tutorial_finish_button_start, vibrantColor)
     }
 
-    fun go() {
+    override fun setOnClicks() {
+        super.setOnClicks()
+        tutorial_finish_button_start.setOnClickListener{ finishTutorial() }
+    }
+
+    override fun adjustLayout() {
+        super.adjustLayout()
+
+        // Different text if opened again later (from settings)
+        if (launcherPreferences.getBoolean("startedBefore", false))
+            tutorial_finish_button_start.text = "Back to Settings"
+    }
+
+    private fun finishTutorial() {
         if (!launcherPreferences.getBoolean("startedBefore", false)){
             launcherPreferences.edit()
                 .putBoolean("startedBefore", true) // never auto run this again
