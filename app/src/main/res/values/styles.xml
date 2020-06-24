@@ -1,49 +1,27 @@
 <resources>
 
-    <!-- Personal Theme of Finn M Glas -->
-    <style name="finnmglasTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <!-- Base theme for Launcher
+
+     This does not define the actual style of launcher,
+     as the style / colors etc are dynamically generated.
+
+     This is more like a fallback- theme that may partially be used by older apis.
+
+     -->
+    <style name="baseTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/finnmglasTheme_background_color</item>
         <item name="colorPrimaryDark">@color/finnmglasTheme_background_color</item>
         <item name="android:colorBackground">@color/finnmglasTheme_background_color</item>
 
-        <item name="colorAccent">#888</item>
+        <item name="colorAccent">#555</item>
 
-        <item name="android:textColor">@color/finnmglasTheme_text_color</item>
+        <item name="android:textColor">#ffffff</item>
         <item name="android:textColorSecondary">@color/finnmglasTheme_text_color</item>
         <item name="android:textColorPrimary">@color/finnmglasTheme_text_color</item>
         <item name="android:textColorHint">#555</item>
 
         <item name="android:buttonStyle">@style/Widget.AppCompat.Button.Colored</item>
-        <item name="colorButtonNormal">@color/finnmglasTheme_accent_color</item>
-
-        <item name="android:popupMenuStyle">@style/PopupMenuCustom</item>
-
-        <item name="android:windowDisablePreview">true</item>
-        <item name="android:windowAnimationStyle">@style/WindowFadeTransition</item>
-    </style>
-
-    <!-- A dark efficiency theme -->
-    <style name="darkTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">@color/darkTheme_background_color</item>
-        <item name="colorPrimaryDark">@color/darkTheme_background_color</item>
-
-        <item name="colorAccent">@color/darkTheme_accent_color</item>
-
-        <item name="android:textColor">@color/darkTheme_text_color</item>
-        <item name="android:buttonStyle">@style/Widget.AppCompat.Button.Colored</item>
-        <item name="colorButtonNormal">@color/darkTheme_accent_color</item>
-
-        <item name="android:popupMenuStyle">@style/PopupMenuCustom</item>
-
-        <item name="android:windowDisablePreview">true</item>
-        <item name="android:windowAnimationStyle">@style/WindowFadeTransition</item>
-    </style>
-
-    <!-- Custom theme -->
-    <style name="customTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="android:textColor">#ffffff</item>
-        <item name="android:buttonStyle">@style/Widget.AppCompat.Button.Colored</item>
-        <item name="colorButtonNormal">#252827</item>
+        <item name="colorButtonNormal">#555</item>
 
         <item name="android:popupMenuStyle">@style/PopupMenuCustom</item>
 

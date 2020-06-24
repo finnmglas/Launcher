@@ -59,24 +59,14 @@ class TutorialActivity: AppCompatActivity(), UIObject {
         tutorial_close.setOnClickListener() { finish() }
     }
 
-    // same as in SettingsActivity; TODO: Use same function
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         when (requestCode) {
-            REQUEST_CHOOSE_APP -> {
-                val value = data?.getStringExtra("value")
-                val forApp = data?.getStringExtra("forApp") ?: return
-
-                launcherPreferences.edit()
-                    .putString("action_$forApp", value.toString())
-                    .apply()
-
-                loadSettings()
-            }
+            REQUEST_CHOOSE_APP -> saveListActivityChoice(data)
             else -> super.onActivityResult(requestCode, resultCode, data)
         }
     }
 
-    // Prevent going back, allow if viewed again later
+    // Default: prevent going back, allow if viewed again later
     override fun onBackPressed() {
         if (launcherPreferences.getBoolean(PREF_STARTED, false))
             super.onBackPressed()

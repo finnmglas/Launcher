@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.finnmglas.launcher.*
+import com.finnmglas.launcher.BuildConfig.VERSION_NAME
 import kotlinx.android.synthetic.main.tutorial_finish.*
 
 /**
@@ -37,19 +38,12 @@ class TutorialFragmentFinish(): Fragment(), UIObject {
         tutorial_finish_button_start.setOnClickListener{ finishTutorial() }
     }
 
-    override fun adjustLayout() {
-        super.adjustLayout()
-
-        // Different text if opened again later (from settings)
-        if (launcherPreferences.getBoolean(PREF_STARTED, false))
-            tutorial_finish_button_start.text = "Back to Settings"
-    }
-
     private fun finishTutorial() {
         if (!launcherPreferences.getBoolean(PREF_STARTED, false)){
             launcherPreferences.edit()
                 .putBoolean(PREF_STARTED, true) // never auto run this again
                 .putLong(PREF_STARTED_TIME, System.currentTimeMillis() / 1000L) // record first startup timestamp
+                .putString(PREF_VERSION, VERSION_NAME) // save current launcher version
                 .apply()
         }
         activity!!.finish()

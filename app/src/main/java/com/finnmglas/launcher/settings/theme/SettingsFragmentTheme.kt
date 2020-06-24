@@ -123,34 +123,10 @@ class SettingsFragmentTheme : Fragment(), UIObject {
     override fun setOnClicks() {
         // Theme changing buttons
         settings_theme_dark_button_select.setOnClickListener {
-            dominantColor = resources.getColor(R.color.darkTheme_background_color)
-            vibrantColor = resources.getColor(R.color.darkTheme_accent_color)
-
-            launcherPreferences.edit()
-                .putString(PREF_WALLPAPER, "")
-                .putInt(PREF_DOMINANT, dominantColor)
-                .putInt(PREF_VIBRANT, vibrantColor)
-                .apply()
-
-            saveTheme("dark")
-
-            intendedSettingsPause = true
-            activity!!.recreate()
+            resetToDarkTheme(activity!!)
         }
         settings_theme_finn_button_select.setOnClickListener {
-            dominantColor = resources.getColor(R.color.finnmglasTheme_background_color)
-            vibrantColor = resources.getColor(R.color.finnmglasTheme_accent_color)
-
-            launcherPreferences.edit()
-                .putString(PREF_WALLPAPER, "")
-                .putInt(PREF_DOMINANT, dominantColor)
-                .putInt(PREF_VIBRANT, vibrantColor)
-                .apply()
-
-            saveTheme("finn")
-
-            intendedSettingsPause = true
-            activity!!.recreate()
+            resetToDefaultTheme(activity!!)
         }
         settings_theme_custom_button_select.setOnClickListener {
             intendedSettingsPause = true

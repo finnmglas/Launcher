@@ -53,6 +53,8 @@ const val PREF_THEME = "theme"
 const val PREF_STARTED = "startedBefore"
 const val PREF_STARTED_TIME = "firstStartup"
 
+const val PREF_VERSION = "version"
+
 /* Objects used by multiple activities */
 lateinit var appListViewAdapter: AppsRecyclerAdapter
 
@@ -239,6 +241,40 @@ fun saveTheme(themeName : String) : String {
     return themeName
 }
 
+fun resetToDefaultTheme(activity: Activity) {
+    dominantColor = activity.resources.getColor(R.color.finnmglasTheme_background_color)
+    vibrantColor = activity.resources.getColor(R.color.finnmglasTheme_accent_color)
+
+    launcherPreferences.edit()
+        .putString(PREF_WALLPAPER, "")
+        .putInt(PREF_DOMINANT, dominantColor)
+        .putInt(PREF_VIBRANT, vibrantColor)
+        .apply()
+
+    saveTheme("finn")
+    loadSettings()
+
+    intendedSettingsPause = true
+    activity.recreate()
+}
+
+fun resetToDarkTheme(activity: Activity) {
+    dominantColor = activity.resources.getColor(R.color.darkTheme_background_color)
+    vibrantColor = activity.resources.getColor(R.color.darkTheme_accent_color)
+
+    launcherPreferences.edit()
+        .putString(PREF_WALLPAPER, "")
+        .putInt(PREF_DOMINANT, dominantColor)
+        .putInt(PREF_VIBRANT, vibrantColor)
+        .apply()
+
+    saveTheme("dark")
+
+    intendedSettingsPause = true
+    activity.recreate()
+}
+
+
 fun openAppSettings(pkg :String, context:Context) {
     val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
     intent.data = Uri.parse("package:$pkg")
@@ -322,6 +358,18 @@ fun pickDefaultApp(action: String, context: Context) : String {
     return ""
 }
 
+// Used in Tutorial and Settings `ActivityOnResult`
+fun saveListActivityChoice(data: Intent?) {
+    val value = data?.getStringExtra("value")
+    val forApp = data?.getStringExtra("forApp") ?: return
+
+    launcherPreferences.edit()
+        .putString("action_$forApp", value.toString())
+        .apply()
+
+    loadSettings()
+}
+
 /* Bitmaps */
 
 fun setButtonColor(btn: Button, color: Int) {
@@ -332,10 +380,7 @@ fun setButtonColor(btn: Button, color: Int) {
         // tested with API 28 (Android 9 on S8) -> necessary
         btn.background.colorFilter = PorterDuffColorFilter(color, PorterDuff.Mode.SRC_ATOP)
     }
-    else {
-        // not setting it here, unable to find a good alternative
-        // TODO at some point (or you do it now)
-    }
+    // not setting it in any other case (yet), unable to find a good solution
 }
 
 // Taken from: https://stackoverflow.com/a/33072575/12787264

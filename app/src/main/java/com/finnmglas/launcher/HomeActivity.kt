@@ -16,6 +16,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.concurrent.fixedRateTimer
 import kotlin.math.abs
+import com.finnmglas.launcher.BuildConfig.VERSION_NAME
 
 /**
  * [HomeActivity] is the actual application Launcher,
@@ -56,9 +57,34 @@ class HomeActivity: UIObject, AppCompatActivity(),
             appListViewAdapter = AppsRecyclerAdapter(this)
         }
 
-        // First time opening the app: show Tutorial
+        // First time opening the app: show Tutorial, else: check versions
         if (!launcherPreferences.getBoolean(PREF_STARTED, false))
             startActivity(Intent(this, TutorialActivity::class.java))
+        else when (launcherPreferences.getString(PREF_VERSION, "")) {
+            // Check versions, make sure transitions between versions go well
+
+            VERSION_NAME -> { /* the version installed and used previously are the same */ }
+            "" -> { /* The version used before was pre- v1.3.0,
+                        as version tracking started then */
+
+                /*
+                 * before, the dominant and vibrant color of the `finn` and `dark` theme
+                 * were not stored anywhere. Now they have to be stored:
+                 * -> we just reset them using newly implemented functions
+                 */
+                when (getSavedTheme(this)) {
+                    "finn" -> resetToDefaultTheme(this)
+                    "dark" -> resetToDarkTheme(this)
+                }
+
+                launcherPreferences.edit()
+                    .putString(PREF_VERSION, VERSION_NAME) // save new version
+                    .apply()
+
+                // show the new tutorial
+                startActivity(Intent(this, TutorialActivity::class.java))
+            }
+        }
 
         // Initialise layout
         setContentView(R.layout.home)
@@ -195,19 +221,9 @@ class HomeActivity: UIObject, AppCompatActivity(),
                 )
             } catch (e: Exception) { }
 
-            if (background == null) { // same as in Settings - TODO make function called by both
-                dominantColor = resources.getColor(R.color.finnmglasTheme_background_color)
-                vibrantColor = resources.getColor(R.color.finnmglasTheme_accent_color)
+            // Background image was deleted or something unexpected happened
+            if (background == null) resetToDefaultTheme(this)
 
-                launcherPreferences.edit()
-                    .putString(PREF_WALLPAPER, "")
-                    .putInt(PREF_DOMINANT, dominantColor)
-                    .putInt(PREF_VIBRANT, vibrantColor)
-                    .apply()
-
-                saveTheme("finn")
-                recreate()
-            }
             home_background_image.visibility = View.VISIBLE
         } else {
             home_background_image.visibility = View.INVISIBLE

@@ -20,7 +20,7 @@ import com.finnmglas.launcher.list.other.ListFragmentOther
 
 var intendedChoosePause = false // know when to close
 
-// TODO: Better solution for this (used in list-fragments)
+// TODO: Better solution for this intercommunication fuctionality (used in list-fragments)
 var intention = "view"
 var forApp = ""
 
