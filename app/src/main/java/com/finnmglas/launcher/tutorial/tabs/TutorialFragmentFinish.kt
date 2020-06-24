@@ -41,15 +41,15 @@ class TutorialFragmentFinish(): Fragment(), UIObject {
         super.adjustLayout()
 
         // Different text if opened again later (from settings)
-        if (launcherPreferences.getBoolean("startedBefore", false))
+        if (launcherPreferences.getBoolean(PREF_STARTED, false))
             tutorial_finish_button_start.text = "Back to Settings"
     }
 
     private fun finishTutorial() {
-        if (!launcherPreferences.getBoolean("startedBefore", false)){
+        if (!launcherPreferences.getBoolean(PREF_STARTED, false)){
             launcherPreferences.edit()
-                .putBoolean("startedBefore", true) // never auto run this again
-                .putLong("firstStartup", System.currentTimeMillis() / 1000L) // record first startup timestamp
+                .putBoolean(PREF_STARTED, true) // never auto run this again
+                .putLong(PREF_STARTED_TIME, System.currentTimeMillis() / 1000L) // record first startup timestamp
                 .apply()
         }
         activity!!.finish()

@@ -91,9 +91,9 @@ class SettingsFragmentTheme : Fragment(), UIObject {
 
                     /* Save image Uri as string */
                     launcherPreferences.edit()
-                        .putString("background_uri", imageUri.toString())
-                        .putInt("custom_dominant", dominantColor)
-                        .putInt("custom_vibrant", vibrantColor)
+                        .putString(PREF_WALLPAPER, imageUri.toString())
+                        .putInt(PREF_DOMINANT, dominantColor)
+                        .putInt(PREF_VIBRANT, vibrantColor)
                         .apply()
 
                     saveTheme("custom")
@@ -127,9 +127,9 @@ class SettingsFragmentTheme : Fragment(), UIObject {
             vibrantColor = resources.getColor(R.color.darkTheme_accent_color)
 
             launcherPreferences.edit()
-                .putString("background_uri", "")
-                .putInt("custom_dominant", dominantColor)
-                .putInt("custom_vibrant", vibrantColor)
+                .putString(PREF_WALLPAPER, "")
+                .putInt(PREF_DOMINANT, dominantColor)
+                .putInt(PREF_VIBRANT, vibrantColor)
                 .apply()
 
             saveTheme("dark")
@@ -142,9 +142,9 @@ class SettingsFragmentTheme : Fragment(), UIObject {
             vibrantColor = resources.getColor(R.color.finnmglasTheme_accent_color)
 
             launcherPreferences.edit()
-                .putString("background_uri", "")
-                .putInt("custom_dominant", dominantColor)
-                .putInt("custom_vibrant", vibrantColor)
+                .putString(PREF_WALLPAPER, "")
+                .putInt(PREF_DOMINANT, dominantColor)
+                .putInt(PREF_VIBRANT, vibrantColor)
                 .apply()
 
             saveTheme("finn")

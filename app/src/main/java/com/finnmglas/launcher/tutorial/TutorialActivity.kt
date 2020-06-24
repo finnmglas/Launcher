@@ -30,7 +30,7 @@ class TutorialActivity: AppCompatActivity(), UIObject {
         setContentView(R.layout.tutorial)
 
         // Check if the app was started before
-        if (launcherPreferences.getBoolean("startedBefore", false))
+        if (launcherPreferences.getBoolean(PREF_STARTED, false))
             tutorial_appbar.visibility = View.VISIBLE
         else resetSettings(this)
 
@@ -78,7 +78,7 @@ class TutorialActivity: AppCompatActivity(), UIObject {
 
     // Prevent going back, allow if viewed again later
     override fun onBackPressed() {
-        if (launcherPreferences.getBoolean("startedBefore", false))
+        if (launcherPreferences.getBoolean(PREF_STARTED, false))
             super.onBackPressed()
     }
 

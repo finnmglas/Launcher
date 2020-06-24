@@ -28,6 +28,31 @@ import kotlin.math.roundToInt
 /* Preferences (global, initialised when app is started) */
 lateinit var launcherPreferences: SharedPreferences
 
+/* Preference Key Constants */
+
+const val ACTION_UP = "action_upApp"
+const val ACTION_DOWN = "action_downApp"
+const val ACTION_RIGHT = "action_rightApp"
+const val ACTION_LEFT = "action_leftApp"
+const val ACTION_VOL_UP = "action_volumeUpApp"
+const val ACTION_VOL_DOWN = "action_volumeDownApp"
+const val ACTION_DOUBLE_CLICK = "action_doubleClickApp"
+const val ACTION_LONG_CLICK = "action_longClickApp"
+const val ACTION_CALENDAR = "action_calendarApp"
+const val ACTION_CLOCK = "action_clockApp"
+
+val ACTIONS = listOf(ACTION_UP, ACTION_DOWN, ACTION_RIGHT, ACTION_LEFT,
+    ACTION_VOL_UP, ACTION_VOL_DOWN, ACTION_DOUBLE_CLICK, ACTION_LONG_CLICK,
+    ACTION_CALENDAR, ACTION_CLOCK)
+
+const val PREF_DOMINANT = "custom_dominant"
+const val PREF_VIBRANT = "custom_vibrant"
+const val PREF_WALLPAPER = "background_uri"
+const val PREF_THEME = "theme"
+
+const val PREF_STARTED = "startedBefore"
+const val PREF_STARTED_TIME = "firstStartup"
+
 /* Objects used by multiple activities */
 lateinit var appListViewAdapter: AppsRecyclerAdapter
 
@@ -203,24 +228,24 @@ fun openNewTabWindow(urls: String, context : Context) {
 /* Settings related functions */
 
 fun getSavedTheme(context : Context) : String {
-    return launcherPreferences.getString("theme", "finn").toString()
+    return launcherPreferences.getString(PREF_THEME, "finn").toString()
 }
 
 fun saveTheme(themeName : String) : String {
     launcherPreferences.edit()
-        .putString("theme", themeName)
+        .putString(PREF_THEME, themeName)
         .apply()
 
     return themeName
 }
 
-fun openAppSettings(pkg :String, context:Context){
+fun openAppSettings(pkg :String, context:Context) {
     val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
     intent.data = Uri.parse("package:$pkg")
     context.startActivity(intent)
 }
 
-fun openSettings(activity: Activity){
+fun openSettings(activity: Activity) {
     activity.startActivity(Intent(activity, SettingsActivity::class.java))
 }
 
@@ -235,22 +260,22 @@ fun openAppsList(activity: Activity){
     activity.startActivity(intent)
 }
 
-fun loadSettings(){
-    upApp = launcherPreferences.getString("action_upApp", "").toString()
-    downApp = launcherPreferences.getString("action_downApp", "").toString()
-    rightApp = launcherPreferences.getString("action_rightApp", "").toString()
-    leftApp = launcherPreferences.getString("action_leftApp", "").toString()
-    volumeUpApp = launcherPreferences.getString("action_volumeUpApp", "").toString()
-    volumeDownApp = launcherPreferences.getString("action_volumeDownApp", "").toString()
+fun loadSettings() {
+    upApp = launcherPreferences.getString(ACTION_UP, "")!!
+    downApp = launcherPreferences.getString(ACTION_DOWN, "")!!
+    rightApp = launcherPreferences.getString(ACTION_RIGHT, "")!!
+    leftApp = launcherPreferences.getString(ACTION_LEFT, "")!!
+    volumeUpApp = launcherPreferences.getString(ACTION_VOL_UP, "")!!
+    volumeDownApp = launcherPreferences.getString(ACTION_VOL_DOWN, "")!!
 
-    doubleClickApp = launcherPreferences.getString("action_doubleClickApp", "").toString()
-    longClickApp = launcherPreferences.getString("action_longClickApp", "").toString()
+    doubleClickApp = launcherPreferences.getString(ACTION_DOUBLE_CLICK, "")!!
+    longClickApp = launcherPreferences.getString(ACTION_LONG_CLICK, "")!!
 
-    calendarApp = launcherPreferences.getString("action_calendarApp", "").toString()
-    clockApp = launcherPreferences.getString("action_clockApp", "").toString()
+    calendarApp = launcherPreferences.getString(ACTION_CALENDAR, "")!!
+    clockApp = launcherPreferences.getString(ACTION_CLOCK, "")!!
 
-    dominantColor = launcherPreferences.getInt("custom_dominant", 0)
-    vibrantColor = launcherPreferences.getInt("custom_vibrant", 0)
+    dominantColor = launcherPreferences.getInt(PREF_DOMINANT, 0)
+    vibrantColor = launcherPreferences.getInt(PREF_VIBRANT, 0)
 }
 
 fun resetSettings(context: Context) {
@@ -262,77 +287,32 @@ fun resetSettings(context: Context) {
     vibrantColor = context.resources.getColor(R.color.finnmglasTheme_accent_color)
 
     launcherPreferences.edit()
-        .putString("background_uri", "")
-        .putInt("custom_dominant", dominantColor)
-        .putInt("custom_vibrant", vibrantColor)
+        .putString(PREF_WALLPAPER, "")
+        .putInt(PREF_DOMINANT, dominantColor)
+        .putInt(PREF_VIBRANT, vibrantColor)
         .apply()
 
     saveTheme("finn")
 
-    editor.putString(
-        "action_upApp",
-        pickDefaultApp("action_upApp", context)
-    )
-
-    editor.putString(
-        "action_downApp",
-        pickDefaultApp("action_downApp", context)
-    )
-
-    editor.putString(
-        "action_rightApp",
-        pickDefaultApp("action_rightApp", context)
-    )
-
-    editor.putString(
-        "action_leftApp",
-        pickDefaultApp("action_leftApp", context)
-    )
-
-    editor.putString(
-        "action_calendarApp",
-        pickDefaultApp("action_leftApp", context)
-    )
-
-    editor.putString(
-        "action_volumeUpApp",
-        pickDefaultApp("action_volumeUpApp",context)
-    )
-
-    editor.putString(
-        "action_volumeDownApp",
-        pickDefaultApp("action_volumeDownApp",context)
-    )
-
-    editor.putString(
-        "action_doubleClickApp",
-        pickDefaultApp("action_doubleClickApp", context)
-    )
-
-    editor.putString(
-        "action_longClickApp",
-        pickDefaultApp("action_longClickApp", context)
-    )
-
-    editor.putString(
-        "action_clockApp",
-        pickDefaultApp("action_clockApp", context)
-    )
+    // load action defaults
+    for (actionKey in ACTIONS)
+        editor.putString(actionKey, pickDefaultApp(actionKey, context))
 
     editor.apply()
 }
 
 fun pickDefaultApp(action: String, context: Context) : String {
     val arrayResource = when (action) {
-        "action_upApp" -> R.array.default_up
-        "action_downApp" -> R.array.default_down
-        "action_rightApp" -> R.array.default_right
-        "action_leftApp" -> R.array.default_left
-        "action_volumeUpApp" -> R.array.default_volume_up
-        "action_volumeDownApp" -> R.array.default_volume_down
-        "action_doubleClickApp" -> R.array.default_double_click
-        "action_longClickApp" -> R.array.default_long_click
-        "action_clockApp" -> R.array.default_clock
+        ACTION_UP -> R.array.default_up
+        ACTION_DOWN -> R.array.default_down
+        ACTION_RIGHT -> R.array.default_right
+        ACTION_LEFT -> R.array.default_left
+        ACTION_VOL_UP -> R.array.default_volume_up
+        ACTION_VOL_DOWN -> R.array.default_volume_down
+        ACTION_DOUBLE_CLICK -> R.array.default_double_click
+        ACTION_LONG_CLICK -> R.array.default_long_click
+        ACTION_CLOCK -> R.array.default_clock
+        ACTION_CALENDAR -> R.array.default_left
         else -> return "" // just prevent crashing on unknown input
     }
 

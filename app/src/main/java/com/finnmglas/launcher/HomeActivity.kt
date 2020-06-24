@@ -57,7 +57,7 @@ class HomeActivity: UIObject, AppCompatActivity(),
         }
 
         // First time opening the app: show Tutorial
-        if (!launcherPreferences.getBoolean("startedBefore", false))
+        if (!launcherPreferences.getBoolean(PREF_STARTED, false))
             startActivity(Intent(this, TutorialActivity::class.java))
 
         // Initialise layout
@@ -186,11 +186,11 @@ class HomeActivity: UIObject, AppCompatActivity(),
         home_settings_icon.setTextColor(vibrantColor)
         home_container.setBackgroundColor(dominantColor)
 
-        if (launcherPreferences.getString("background_uri", "") != "") {
+        if (launcherPreferences.getString(PREF_WALLPAPER, "") != "") {
             try {
                 background = MediaStore.Images.Media.getBitmap(
                     this.contentResolver, Uri.parse(
-                        launcherPreferences.getString("background_uri", "")
+                        launcherPreferences.getString(PREF_WALLPAPER, "")
                     )
                 )
             } catch (e: Exception) { }
@@ -200,9 +200,9 @@ class HomeActivity: UIObject, AppCompatActivity(),
                 vibrantColor = resources.getColor(R.color.finnmglasTheme_accent_color)
 
                 launcherPreferences.edit()
-                    .putString("background_uri", "")
-                    .putInt("custom_dominant", dominantColor)
-                    .putInt("custom_vibrant", vibrantColor)
+                    .putString(PREF_WALLPAPER, "")
+                    .putInt(PREF_DOMINANT, dominantColor)
+                    .putInt(PREF_VIBRANT, vibrantColor)
                     .apply()
 
                 saveTheme("finn")
