@@ -132,6 +132,8 @@ fun View.fadeRotateOut(duration: Long = 500L) {
 /* Activity related */
 
 fun isInstalled(uri: String, context: Context): Boolean {
+    if (uri.startsWith("launcher:")) return true // All internal actions
+
     try {
         context.packageManager.getPackageInfo(uri, PackageManager.GET_ACTIVITIES)
         return true
@@ -251,9 +253,7 @@ fun loadSettings(){
     vibrantColor = launcherPreferences.getInt("custom_vibrant", 0)
 }
 
-fun resetSettings(context: Context) : MutableList<String>{
-
-    val defaultList :MutableList<String> = mutableListOf<String>()
+fun resetSettings(context: Context) {
 
     val editor = launcherPreferences.edit()
 
@@ -269,64 +269,60 @@ fun resetSettings(context: Context) : MutableList<String>{
 
     saveTheme("finn")
 
-    val (chosenUpName, chosenUpPackage) = pickDefaultApp(
+    editor.putString(
         "action_upApp",
-        context
+        pickDefaultApp("action_upApp", context)
     )
-    editor.putString("action_upApp", chosenUpPackage)
-    defaultList.add(chosenUpName)
 
-    val (chosenDownName, chosenDownPackage) = pickDefaultApp(
+    editor.putString(
         "action_downApp",
-        context
+        pickDefaultApp("action_downApp", context)
     )
-    editor.putString("action_downApp", chosenDownPackage)
-    defaultList.add(chosenDownName)
 
-    val (chosenRightName, chosenRightPackage) = pickDefaultApp(
+    editor.putString(
         "action_rightApp",
-        context
+        pickDefaultApp("action_rightApp", context)
     )
-    editor.putString("action_rightApp", chosenRightPackage)
-    defaultList.add(chosenRightName)
 
-    val (chosenLeftName, chosenLeftPackage) = pickDefaultApp(
+    editor.putString(
         "action_leftApp",
-        context
+        pickDefaultApp("action_leftApp", context)
     )
-    editor.putString("action_leftApp", chosenLeftPackage)
-    editor.putString("action_calendarApp", chosenLeftPackage)
-    defaultList.add(chosenLeftName)
 
-    val (chosenVolumeUpName, chosenVolumeUpPackage) = pickDefaultApp(
+    editor.putString(
+        "action_calendarApp",
+        pickDefaultApp("action_leftApp", context)
+    )
+
+    editor.putString(
         "action_volumeUpApp",
-        context
+        pickDefaultApp("action_volumeUpApp",context)
     )
-    editor.putString("action_volumeUpApp", chosenVolumeUpPackage)
-    defaultList.add(chosenVolumeUpName)
 
-    val (chosenVolumeDownName, chosenVolumeDownPackage) = pickDefaultApp(
+    editor.putString(
         "action_volumeDownApp",
-        context
+        pickDefaultApp("action_volumeDownApp",context)
     )
-    editor.putString("action_volumeDownApp", chosenVolumeDownPackage)
-    defaultList.add(chosenVolumeDownName)
 
-    editor.putString("action_doubleClickApp", "")
-    editor.putString("action_longClickApp", "")
+    editor.putString(
+        "action_doubleClickApp",
+        pickDefaultApp("action_doubleClickApp", context)
+    )
 
-    val (_, chosenClockPackage) = pickDefaultApp(
+    editor.putString(
+        "action_longClickApp",
+        pickDefaultApp("action_longClickApp", context)
+    )
+
+    editor.putString(
         "action_clockApp",
-        context
+        pickDefaultApp("action_clockApp", context)
     )
-    editor.putString("action_clockApp", chosenClockPackage)
 
     editor.apply()
-
-    return defaultList // UP, DOWN, RIGHT, LEFT, VOLUME_UP, VOLUME_DOWN
 }
 
-fun pickDefaultApp(action: String, context: Context) : Pair<String, String>{
+fun pickDefaultApp(action: String, context: Context) : String {
     val arrayResource = when (action) {
         "action_upApp" -> R.array.default_up
         "action_downApp" -> R.array.default_down
@@ -334,20 +330,16 @@ fun pickDefaultApp(action: String, context: Context) : Pair<String, String>{
         "action_leftApp" -> R.array.default_left
         "action_volumeUpApp" -> R.array.default_volume_up
         "action_volumeDownApp" -> R.array.default_volume_down
+        "action_doubleClickApp" -> R.array.default_double_click
+        "action_longClickApp" -> R.array.default_long_click
         "action_clockApp" -> R.array.default_clock
-        else -> return Pair(context.getString(R.string.none_found), "") // just prevent crashing on unknown input
+        else -> return "" // just prevent crashing on unknown input
     }
 
-    // Related question: https://stackoverflow.com/q/3013655/12787264 (Adjusted)
     val list = context.resources.getStringArray(arrayResource)
-    for (entry in list){
-        val splitResult = entry.split("|").toTypedArray()
-        val pkgname = splitResult[0]
-        val name = splitResult[1]
-
-        if (isInstalled(pkgname, context)) return Pair(name, pkgname)
-    }
-    return Pair(context.getString(R.string.none_found), "")
+    for (packageName in list)
+        if (isInstalled(packageName, context)) return packageName
+    return ""
 }
 
 /* Bitmaps */

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    <!-- Default Apps for different actions (button-press, swipes ...) -->
+
+    <!-- Swipe up - Apps list -->
+    <string-array name="default_up">
+        <item>launcher:choose</item> <!-- The apps list -->
+    </string-array>
+
+    <!-- Swipe down - Browser -->
+    <string-array name="default_down">
+        <item>org.torproject.torbrowser</item> <!-- Tor Browser -->
+        <item>org.mozilla.firefox</item> <!-- Firefox -->
+        <item>com.brave.browser</item> <!-- Brave Browser -->
+        <item>com.duckduckgo.mobile.android</item> <!-- DuckDuckGo Browser -->
+        <item>com.sec.android.app.sbrowser</item> <!-- Samsung Internet -->
+        <item>com.android.chrome</item> <!-- Chrome -->
+    </string-array>
+
+    <!-- Swipe right - Mail -->
+    <string-array name="default_right">
+        <item>de.web.mobile.android.mail</item> <!-- WebMail -->
+        <item>com.samsung.android.email.provider</item> <!-- Samsung Mail -->
+        <item>com.google.android.gm</item> <!-- Google Mail -->
+    </string-array>
+
+    <!-- Swipe left - Calendar -->
+    <string-array name="default_left">
+        <item>com.google.android.calendar</item> <!-- Google Calendar -->
+        <item>com.samsung.android.calendar</item> <!-- Samsung Calendar -->
+    </string-array>
+
+    <!-- Volume up - Messaging -->
+    <string-array name="default_volume_up">
+        <item>com.whatsapp</item> <!-- WhatsApp -->
+        <item>com.facebook.orca</item> <!-- Facebook Messenger -->
+        <item>com.viber.voip</item> <!-- Viber -->
+        <item>com.skype.raider</item> <!-- Skype -->
+        <item>com.snapchat.android</item> <!-- Snapchat -->
+        <item>com.instagram.android</item> <!-- Instagram -->
+        <item>com.zhiliaoapp.musically</item> <!-- TikTok -->
+        <item>com.samsung.android.messaging</item> <!-- Samsung SMS -->
+    </string-array>
+
+    <!-- Volume down - Utility -->
+    <string-array name="default_volume_down">
+        <item>com.sec.android.app.popupcalculator</item> <!-- Samsung Calculator -->
+        <item>com.github.android</item> <!-- GitHub Android -->
+        <item>com.soundbrenner.pulse</item> <!-- Soundbrenner Metronome -->
+    </string-array>
+
+    <!-- Double click - Notes -->
+    <string-array name="default_double_click">
+        <item>com.samsung.android.app.notes</item> <!-- Samsung Notes -->
+        <item>com.sec.android.widgetapp.diotek.smemo</item> <!-- S Memo (older devices) -->
+    </string-array>
+
+    <!-- Long click - Security -->
+    <string-array name="default_long_click">
+        <item>com.twofasapp</item> <!-- 2 Factor Authentication -->
+        <item>launcher:settings</item> <!-- Launcher Settings -->
+    </string-array>
+
+    <!-- Clock -->
+    <string-array name="default_clock">
+        <item>com.sec.android.app.clockpackage</item> <!-- Android Clock -->
+    </string-array>
+
+</resources>

@@ -94,47 +94,4 @@
     <string name="tutorial_finish_text">You are ready to get started!\n\n I hope this provides great value to you!\n\n- Finn M Glas\n(the developer)</string>
     <string name="tutorial_finish_button">Start Launcher</string>
 
-    <!-- Default Apps for different actions (button-press, swipes ...) -->
-    <string-array name="default_up">
-        <item>org.mozilla.firefox|Firefox</item>
-        <item>com.sec.android.app.sbrowser|Samsung Internet</item>
-        <item>com.android.chrome|Chrome</item>
-    </string-array>
-
-    <string-array name="default_down">
-        <item>com.samsung.android.app.galaxyfinder|GalaxyFinder</item>
-        <item>com.prometheusinteractive.voice_launcher|VoiceSearch</item>
-    </string-array>
-
-    <string-array name="default_right">
-        <item>de.web.mobile.android.mail|WebMail</item>
-        <item>com.samsung.android.email.provider|Samsung Mail</item>
-        <item>com.google.android.gm|Google Mail</item>
-    </string-array>
-
-    <string-array name="default_left">
-        <item>com.google.android.calendar|Google Calendar</item>
-        <item>com.samsung.android.calendar|Samsung Calendar</item>
-    </string-array>
-
-    <string-array name="default_volume_up">
-        <item>com.whatsapp|WhatsApp</item>
-        <item>com.facebook.orca|Facebook Messenger</item>
-        <item>com.viber.voip|Viber</item>
-        <item>com.skype.raider|Skype</item>
-        <item>com.snapchat.android|Snapchat</item>
-        <item>com.instagram.android|Instagram</item>
-        <item>com.samsung.android.messaging|Samsung SMS</item>
-    </string-array>
-
-    <string-array name="default_volume_down">
-        <item>com.github.android|GitHub</item>
-        <item>com.soundbrenner.pulse|Soundbrenner Metronome</item>
-        <item>com.sec.android.app.popupcalculator|Calculator</item>
-    </string-array>
-
-    <string-array name="default_clock">
-        <item>com.sec.android.app.clockpackage|Android Clock</item>
-    </string-array>
-
 </resources>
