@@ -1,0 +1,6 @@
+Nouvelles fonctionnalités avec Launcher v1.3.0:
+- La liste des applications et les paramètres peuvent désormais également être utilisés comme une action (glisser)
+- Vous pouvez utiliser la liste des applications beaucoup plus rapidement avec la nouvelle fonction de recherche.
+- Vous pouvez décider si l'écran reste est gardé allumé!
+- Le tutoriel du Launcher a été considérablement amélioré - regardez-le!
+- Nombreuses petites corrections de bugs ^^

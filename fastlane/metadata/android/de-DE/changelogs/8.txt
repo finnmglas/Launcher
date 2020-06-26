@@ -1,0 +1,6 @@
+Neues in Launcher v1.3.0:
+- Die Apps-Liste und Einstellungen können jetzt auch als (Swipe-) Aktion verwendet werden
+- Du kannst die Apps-Liste mit der neuen Such-Funktion deutlich schneller bedienen.
+- Du kannst entscheiden of der Bildschirm wach gehalten wird!
+- Das Launcher Tutorial wurde erheblich verbessert - Sieh es dir an!
+- Viele kleine Bug- Fixes ^^

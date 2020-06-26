@@ -1,0 +1,6 @@
+What's new in Launcher v1.3.0:
+- The apps list and settings can now also be used as a (swipe) action
+- You can use the apps list more efficiently with the new search function.
+- You can decide whether the screen is kept on (disable screen timeout)!
+- The launcher tutorial has been significantly improved - check it out!
+- Many small bug fixes ^^
