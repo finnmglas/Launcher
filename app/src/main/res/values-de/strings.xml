@@ -41,6 +41,8 @@
     <string name="settings_theme_examples">Beispiele</string>
     <string name="settings_select_image">Bild ändern</string>
 
+    <string name="settings_launcher_disable_timeout">Bildschirm wach halten</string>
+
     <string name="settings_footer_repo">https://github.com/finnmglas/Launcher#de</string>
     <string name="settings_footer_web">https://www.finnmglas.com/de/</string>
 
