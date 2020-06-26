@@ -14,9 +14,12 @@ import android.os.Bundle
 import android.provider.Settings
 import android.util.DisplayMetrics
 import android.view.View
+import android.view.Window
+import android.view.WindowManager
 import android.view.animation.*
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.Switch
 import android.widget.Toast
 import com.finnmglas.launcher.list.ListActivity
 import com.finnmglas.launcher.list.apps.AppsRecyclerAdapter
@@ -49,6 +52,8 @@ const val PREF_DOMINANT = "custom_dominant"
 const val PREF_VIBRANT = "custom_vibrant"
 const val PREF_WALLPAPER = "background_uri"
 const val PREF_THEME = "theme"
+
+const val PREF_SCREEN_TIMEOUT_DISABLED = "disableTimeout"
 
 const val PREF_STARTED = "startedBefore"
 const val PREF_STARTED_TIME = "firstStartup"
@@ -322,13 +327,12 @@ fun resetSettings(context: Context) {
     dominantColor = context.resources.getColor(R.color.finnmglasTheme_background_color)
     vibrantColor = context.resources.getColor(R.color.finnmglasTheme_accent_color)
 
-    launcherPreferences.edit()
+    editor
         .putString(PREF_WALLPAPER, "")
         .putInt(PREF_DOMINANT, dominantColor)
         .putInt(PREF_VIBRANT, vibrantColor)
-        .apply()
-
-    saveTheme("finn")
+        .putString(PREF_THEME, "finn")
+        .putBoolean(PREF_SCREEN_TIMEOUT_DISABLED, false)
 
     // load action defaults
     for (actionKey in ACTIONS)
@@ -336,6 +340,17 @@ fun resetSettings(context: Context) {
 
     editor.apply()
 }
+
+fun setWindowFlags(window: Window) {
+    window.setFlags(0, 0) // clear flags
+    window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
+
+    if (launcherPreferences.getBoolean(PREF_SCREEN_TIMEOUT_DISABLED, false))
+        window.setFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON,
+            WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
+    else window.clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
+}
+
 
 fun pickDefaultApp(action: String, context: Context) : String {
     val arrayResource = when (action) {
@@ -381,6 +396,15 @@ fun setButtonColor(btn: Button, color: Int) {
         btn.background.colorFilter = PorterDuffColorFilter(color, PorterDuff.Mode.SRC_ATOP)
     }
     // not setting it in any other case (yet), unable to find a good solution
+}
+
+fun setSwitchColor(sw: Switch, trackColor: Int) {
+    if (Build.VERSION.SDK_INT >= 29) {
+        sw.trackDrawable.colorFilter = BlendModeColorFilter(trackColor, BlendMode.MULTIPLY)
+    }
+    else if(Build.VERSION.SDK_INT >= 21) {
+        sw.trackDrawable.colorFilter = PorterDuffColorFilter(trackColor, PorterDuff.Mode.SRC_ATOP)
+    }
 }
 
 // Taken from: https://stackoverflow.com/a/33072575/12787264

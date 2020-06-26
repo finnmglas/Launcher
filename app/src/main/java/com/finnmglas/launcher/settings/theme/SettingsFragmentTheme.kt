@@ -113,6 +113,8 @@ class SettingsFragmentTheme : Fragment(), UIObject {
                 settings_theme_custom_button_select.text = getString(R.string.settings_select_image)
         }
 
+        setSwitchColor(settings_launcher_switch_screen_timeout, vibrantColor)
+
         settings_theme_container.setBackgroundColor(dominantColor)
         setButtonColor(settings_theme_finn_button_select, vibrantColor)
         setButtonColor(settings_theme_dark_button_select, vibrantColor)
@@ -154,5 +156,19 @@ class SettingsFragmentTheme : Fragment(), UIObject {
                 context!!
             )
         }
+        settings_launcher_switch_screen_timeout.setOnClickListener { // Toggle screen timeout
+            launcherPreferences.edit()
+                .putBoolean(PREF_SCREEN_TIMEOUT_DISABLED,
+                    !launcherPreferences.getBoolean(PREF_SCREEN_TIMEOUT_DISABLED, false))
+                .apply()
+
+            setWindowFlags(activity!!.window)
+        }
+    }
+
+    override fun adjustLayout() {
+        // visually load settings
+        settings_launcher_switch_screen_timeout.isChecked =
+            launcherPreferences.getBoolean(PREF_SCREEN_TIMEOUT_DISABLED, false)
     }
 }
