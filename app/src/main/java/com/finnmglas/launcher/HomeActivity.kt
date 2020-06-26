@@ -126,8 +126,6 @@ class HomeActivity: UIObject, AppCompatActivity(),
     override fun onPause() {
         super.onPause()
         clockTimer.cancel()
-
-        hideSettingsIcon()
     }
 
     override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
@@ -207,7 +205,7 @@ class HomeActivity: UIObject, AppCompatActivity(),
 
     override fun applyTheme() {
         // Start by showing the settings icon
-        showSettingsIcon()
+        if (!settingsIconShown) showSettingsIcon()
 
         home_settings_icon.setTextColor(vibrantColor)
         home_container.setBackgroundColor(dominantColor)
