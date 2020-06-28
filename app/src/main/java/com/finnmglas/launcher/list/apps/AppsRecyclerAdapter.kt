@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
+import android.os.AsyncTask
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -32,7 +33,6 @@ class AppsRecyclerAdapter(val activity: Activity,
                           val forApp: String? = ""):
     RecyclerView.Adapter<AppsRecyclerAdapter.ViewHolder>() {
 
-    private val appsList: MutableList<AppInfo>
     private val appsListDisplayed: MutableList<AppInfo>
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),
@@ -140,22 +140,15 @@ class AppsRecyclerAdapter(val activity: Activity,
     }
 
     init {
-        appsList = ArrayList()
-        appsListDisplayed = ArrayList()
-
-        val pm: PackageManager = activity.packageManager
-
-        val i = Intent(Intent.ACTION_MAIN, null)
-        i.addCategory(Intent.CATEGORY_LAUNCHER)
-        val allApps = pm.queryIntentActivities(i, 0)
-        for (ri in allApps) {
-            val app = AppInfo()
-            app.label = ri.loadLabel(pm)
-            app.packageName = ri.activityInfo.packageName
-            app.icon = ri.activityInfo.loadIcon(pm)
-            appsList.add(app)
+        // Load the apps
+        if (appsList.size == 0)
+            loadApps(activity.packageManager)
+        else {
+            AsyncTask.execute { loadApps(activity.packageManager) }
+            notifyDataSetChanged()
         }
-        appsList.sortBy { it.label.toString() }
+
+        appsListDisplayed = ArrayList()
         appsListDisplayed.addAll(appsList)
     }
 

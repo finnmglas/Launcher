@@ -22,6 +22,7 @@ import android.widget.ImageView
 import android.widget.Switch
 import android.widget.Toast
 import com.finnmglas.launcher.list.ListActivity
+import com.finnmglas.launcher.list.apps.AppInfo
 import com.finnmglas.launcher.list.apps.AppsRecyclerAdapter
 import com.finnmglas.launcher.settings.SettingsActivity
 import com.finnmglas.launcher.settings.intendedSettingsPause
@@ -61,7 +62,7 @@ const val PREF_STARTED_TIME = "firstStartup"
 const val PREF_VERSION = "version"
 
 /* Objects used by multiple activities */
-lateinit var appListViewAdapter: AppsRecyclerAdapter
+val appsList: MutableList<AppInfo> = ArrayList()
 
 /* Variables containing settings */
 val displayMetrics = DisplayMetrics()
@@ -299,6 +300,29 @@ fun openAppsList(activity: Activity){
     intent.putExtra("intention", "view")
     intendedSettingsPause = true
     activity.startActivity(intent)
+}
+
+/**
+ * [loadApps] is used to speed up the [AppsRecyclerAdapter] loading time,
+ * as it caches all the apps and allows for fast access to the data.
+ */
+fun loadApps(packageManager: PackageManager) {
+    val loadList = mutableListOf<AppInfo>()
+
+    val i = Intent(Intent.ACTION_MAIN, null)
+    i.addCategory(Intent.CATEGORY_LAUNCHER)
+    val allApps = packageManager.queryIntentActivities(i, 0)
+    for (ri in allApps) {
+        val app = AppInfo()
+        app.label = ri.loadLabel(packageManager)
+        app.packageName = ri.activityInfo.packageName
+        app.icon = ri.activityInfo.loadIcon(packageManager)
+        loadList.add(app)
+    }
+    loadList.sortBy { it.label.toString() }
+
+    appsList.clear()
+    appsList.addAll(loadList)
 }
 
 fun loadSettings() {

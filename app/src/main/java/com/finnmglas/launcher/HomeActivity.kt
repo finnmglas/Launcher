@@ -52,11 +52,6 @@ class HomeActivity: UIObject, AppCompatActivity(),
 
         loadSettings()
 
-        // Preload list of apps (speed up loading time)
-        AsyncTask.execute {
-            appListViewAdapter = AppsRecyclerAdapter(this)
-        }
-
         // First time opening the app: show Tutorial, else: check versions
         if (!launcherPreferences.getBoolean(PREF_STARTED, false))
             startActivity(Intent(this, TutorialActivity::class.java))
@@ -85,6 +80,9 @@ class HomeActivity: UIObject, AppCompatActivity(),
                 startActivity(Intent(this, TutorialActivity::class.java))
             }
         }
+
+        // Preload apps to speed up the Apps Recycler
+        AsyncTask.execute { loadApps(packageManager) }
 
         // Initialise layout
         setContentView(R.layout.home)
