@@ -56,6 +56,7 @@ const val PREF_WALLPAPER = "background_uri"
 const val PREF_THEME = "theme"
 
 const val PREF_SCREEN_TIMEOUT_DISABLED = "disableTimeout"
+const val PREF_SEARCH_AUTO_LAUNCH = "searchAutoLaunch"
 
 const val PREF_STARTED = "startedBefore"
 const val PREF_STARTED_TIME = "firstStartup"
@@ -358,6 +359,7 @@ fun resetSettings(context: Context) {
         .putInt(PREF_VIBRANT, vibrantColor)
         .putString(PREF_THEME, "finn")
         .putBoolean(PREF_SCREEN_TIMEOUT_DISABLED, false)
+        .putBoolean(PREF_SEARCH_AUTO_LAUNCH, false)
 
     // load action defaults
     for (actionKey in ACTIONS)

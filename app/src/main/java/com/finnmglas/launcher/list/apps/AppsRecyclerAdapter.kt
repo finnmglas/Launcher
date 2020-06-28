@@ -167,9 +167,11 @@ class AppsRecyclerAdapter(val activity: Activity,
             }
         }
 
-        // Launch apps automatically if only one result is found
-        // TODO: Add option to disable this
-        if (appsListDisplayed.size == 1 && intention == "view") {
+        // Launch apps automatically if only one result is found and the user wants it
+        // Disabled at the moment. The Setting 'PREF_SEARCH_AUTO_LAUNCH' may be
+        // modifyable at some later point.
+        if (appsListDisplayed.size == 1 && intention == "view"
+            && launcherPreferences.getBoolean(PREF_SEARCH_AUTO_LAUNCH, false)) {
             launch(appsListDisplayed[0].packageName.toString(), activity)
 
             val inputMethodManager = activity.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
