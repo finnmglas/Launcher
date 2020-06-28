@@ -1,0 +1,6 @@
+Launcher Patch v1.3.1:
+- This is a quick patch for Launcher v1.3.0
+- The AppsList is now way faster as it preloads asynchronously
+- The SearchView in the AppsList is autofocused, as scrolling is less efficient.
+
+I hope you enjoy using Launcher, go check out our GitHub!
