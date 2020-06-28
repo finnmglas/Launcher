@@ -17,6 +17,7 @@ import android.view.View
 import android.view.Window
 import android.view.WindowManager
 import android.view.animation.*
+import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.Switch
@@ -407,6 +408,14 @@ fun saveListActivityChoice(data: Intent?) {
         .apply()
 
     loadSettings()
+}
+
+// Taken form https://stackoverflow.com/a/50743764/12787264
+fun openSoftKeyboard(context: Context, view: View) {
+    view.requestFocus()
+    // open the soft keyboard
+    val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+    imm.showSoftInput(view, InputMethodManager.SHOW_IMPLICIT)
 }
 
 /* Bitmaps */
