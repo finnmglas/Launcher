@@ -10,12 +10,12 @@
 
 <!-- ENGLISH README -->
 
-# <a name="en"></a> Launcher
+# <a name="en"></a> Launcher :rocket:
 
 **`English` | [`Deutsch`](#de) | [`Français`](#fr)**
 
-## What is this App?
-This is a [Launcher][launcherdef] (an app managing your homescreen and letting you start other apps).
+## Concept & Design
+This app is a [Launcher][launcherdef] (an app managing your homescreen and letting you start other apps).
 
 It is designed to be as **minimal, efficient and free of distraction** as possible.
 This is why it can help people using their phone in a more efficient way than ever before.
@@ -31,18 +31,14 @@ you can also just use the builtin minimal themes.
 This app **costs you nothing** and is **ad-free**!
 So make the best of your time on the phone by using this Launcher ([download now][store-googleplay])!
 
-> **If this app manages to permanently make 1000 people just a little more efficient, it has achieved its goal! Its purpose is to do good for everyone!**
-
 [<img alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" width="49%">][store-googleplay-badgecampain]
 [<img alt="Get on IzzyOnDroid" src="https://gitlab.com/IzzyOnDroid/repo/-/raw/master/assets/IzzyOnDroid.png" width="49%">][store-izzyondroid-fdroid]
 
-## Privacy.
+## Privacy
 
 This app does not collect, receive or share any personal data. It helps you, no matter who you are!
 
-This is seriously the most benevolent Privacy Statement the world has ever seen ^^
-
-## How can I contribute?
+## Contributing
 The easiest way to help improving this app is [downloading it][store-googleplay] and testing. As the app is quite new and no experts (but [me][website] ^^) were hired to build it, we need lots of feedback from you! You can either go to Google Play and give us feedback there or [open an issue on Github][newissue].
 
 [![][shield-gh-watch]][watch]
@@ -67,11 +63,11 @@ If you feel like **this app delivers incredible value to you**, you can also [su
 
 <!-- GERMAN README -->
 
-# <a name="de"></a> Launcher
+# <a name="de"></a> Launcher :rocket:
 
 **[`English`](#en) | `Deutsch` | [`Français`](#fr)**
 
-## Was ist diese App?
+## Konzept & Design
 Diese App ist ein [Launcher][launcherdef-de] (eine App, die deinen Startbildschirm verwaltet und dich andere Apps starten lässt).
 
 Sie ist so **minimalistisch, effizient und frei von Ablenkung** gestaltet wie möglich.
@@ -88,18 +84,14 @@ Du kannst aber auch einfach die integrierten minimalen und ablenkungsfreieren Th
 Diese App **kostet dich nichts** und enthält **keine Werbung**!
 Mache das Beste aus deiner Zeit am Handy indem du diesen Launcher verwendest ([jetzt herunterladen][store-googleplay])!
 
-> **Wenn diese App es schafft, über 1000 Menschen dauerhaft nur ein wenig effizienter zu machen, so hat sie ihr Ziel erreicht! Sie ist da, um Gutes zu tun.**
-
 [<img alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" width="49%">][store-googleplay-badgecampain]
 [<img alt="Get on IzzyOnDroid" src="https://gitlab.com/IzzyOnDroid/repo/-/raw/master/assets/IzzyOnDroid.png" width="49%">][store-izzyondroid-fdroid]
 
-## Datenschutz.
+## Datenschutz
 
 Diese App sammelt, empfängt und teilt keine persönlichen Daten. Sie hilft dir, egal wer du bist!
 
-Im Ernst: Das hier ist das beste Datenschutz Statement dass die Welt je gesehen hat ^^
-
-## Wie kann ich helfen?
+## Mitwirkungen
 Die einfachste Möglichkeit beim Optimieren dieser App zu helfen: Du [lädst sie herunter][store-googleplay] und testest sie. Da die App noch sehr neu ist, und ich keine Experten (außer [mir selbst][website-de] ^^) angestellt habe, benötigen wir viel Feedback von dir! Du kannst entweder auf Google Play Feedback geben, oder [auf Github Verbesserungsvorschläge einreichen][newissue].
 
 [![][shield-gh-watch]][watch]
@@ -116,11 +108,11 @@ Wenn findest, dass diese App **sehr wertvoll für dich** ist, kannst du [mich un
 
 <!-- FRENCH README -->
 
-# <a name="fr"></a> Launcher
+# <a name="fr"></a> Launcher :rocket:
 
 **[`English`](#en) | [`Deutsch`](#de) | `Français`**
 
-## Qu'est-ce que cette application?
+## Concept et design
 Cette application est un [lanceur][launcherdef-fr] (une application qui gère votre écran d'accueil et vous permet de démarrer d'autres applications).
 
 Il est **minimaliste, efficace et sans distraction** conçu autant que possible.
@@ -137,18 +129,14 @@ Vous pouvez également simplement utiliser les thèmes intégrés minimaux et sa
 Cette application **ne vous coûte rien** et ne contient **aucune publicité**!
 Profitez au maximum de votre temps au téléphone à l'aide de ce lanceur ([téléchargez maintenant][store-googleplay])!
 
-> **Si cette appli réussit à rendre plus de 1000 personnes un peu plus efficaces sur le long terme, elle a atteint son objectif! Il est là pour faire du bien.**
-
 [<img alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" width="49%">][store-googleplay-badgecampain]
 [<img alt="Get on IzzyOnDroid" src="https://gitlab.com/IzzyOnDroid/repo/-/raw/master/assets/IzzyOnDroid.png" width="49%">][store-izzyondroid-fdroid]
 
-## Confidentialité.
+## Confidentialité
 
 Cette application ne collecte, ne reçoit ni ne partage aucune information personnelle. Cela vous aide, peu importe qui vous êtes!
 
-Sérieusement: c'est la meilleure déclaration de protection des données que le monde ait jamais vue ^^
-
-## Comment puis-je aider?
+## Contribution
 Le moyen le plus simple d'optimiser cette application: vous [la téléchargez][store-googleplay] et la testez. Étant donné que l'application est encore très nouvelle et que je n'ai embauché aucun expert (sauf [moi-même][website-fr] ^^), nous avons besoin de beaucoup de commentaires de votre part! Vous pouvez soit donner votre avis sur Google Play, soit [soumettre des améliorations sur Github][newissue].
 
 [![][shield-gh-watch]][watch]
