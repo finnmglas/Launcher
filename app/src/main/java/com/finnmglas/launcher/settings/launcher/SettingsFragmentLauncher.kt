@@ -185,7 +185,6 @@ class SettingsFragmentLauncher : Fragment(), UIObject {
 
         settings_launcher_format_spinner.setSelection(launcherPreferences.getInt(PREF_DATE_FORMAT, 0))
 
-
         settings_launcher_format_spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
                 launcherPreferences.edit()

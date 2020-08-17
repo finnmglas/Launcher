@@ -153,6 +153,7 @@
         android:id="@+id/settings_launcher_format_spinner"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:entries="@array/settings_launcher_time_formats"
         android:spinnerMode="dropdown"
         app:layout_constraintBottom_toBottomOf="@id/settings_launcher_text_time_format"
         app:layout_constraintEnd_toEndOf="parent"
