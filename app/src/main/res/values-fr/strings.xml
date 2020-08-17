@@ -41,6 +41,14 @@
     <string name="settings_select_image">Changer Image</string>
     <string name="settings_theme_examples">Examples</string>
     <string name="settings_launcher_disable_timeout">Gardez l\'écran allumé</string>
+    <string name="settings_launcher_time_format">Format de date</string>
+
+    <string-array name="settings_launcher_time_formats">
+        <item>Défaut</item>
+        <item>Inversé</item>
+        <item>Temps</item>
+        <item>Allemand</item>
+    </string-array>
 
     <string name="settings_footer_web">https://www.finnmglas.com/fr/</string>
     <string name="settings_footer_repo">https://github.com/finnmglas/Launcher</string>
