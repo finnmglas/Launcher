@@ -17,8 +17,8 @@
     <string name="settings_title">Settings</string>
 
     <string name="settings_tab_app" translatable="false">Apps</string>
-    <string name="settings_tab_theme" translatable="false">Themes</string>
-    <string name="settings_tab_launcher" translatable="false">Meta</string>
+    <string name="settings_tab_launcher" translatable="false">Launcher</string>
+    <string name="settings_tab_meta" translatable="false">Meta</string>
 
     <string name="settings_rate_google_play">Rate us on Google Play</string>
     <string name="settings_show_tutorial">View Launcher Tutorial</string>

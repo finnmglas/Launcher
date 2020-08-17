@@ -1,4 +1,4 @@
-package com.finnmglas.launcher.settings.theme
+package com.finnmglas.launcher.settings.launcher
 
 import android.Manifest
 import android.content.Intent
@@ -19,11 +19,11 @@ import com.finnmglas.launcher.settings.intendedSettingsPause
 import kotlinx.android.synthetic.main.settings_theme.*
 
 /**
- * The [SettingsFragmentTheme] is a used as a tab in the SettingsActivity.
+ * The [SettingsFragmentLauncher] is a used as a tab in the SettingsActivity.
  *
  * It is used to change themes, select wallpapers ... theme related stuff
  */
-class SettingsFragmentTheme : Fragment(), UIObject {
+class SettingsFragmentLauncher : Fragment(), UIObject {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -115,7 +115,7 @@ class SettingsFragmentTheme : Fragment(), UIObject {
 
         setSwitchColor(settings_launcher_switch_screen_timeout, vibrantColor)
 
-        settings_theme_container.setBackgroundColor(dominantColor)
+        settings_launcher_container.setBackgroundColor(dominantColor)
         setButtonColor(settings_theme_finn_button_select, vibrantColor)
         setButtonColor(settings_theme_dark_button_select, vibrantColor)
         setButtonColor(settings_theme_custom_button_select, vibrantColor)
