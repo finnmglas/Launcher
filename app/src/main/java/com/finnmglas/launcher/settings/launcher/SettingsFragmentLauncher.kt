@@ -7,16 +7,19 @@ import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.DisplayMetrics
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
+import android.widget.Spinner
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import androidx.palette.graphics.Palette
 import com.finnmglas.launcher.*
 import com.finnmglas.launcher.settings.intendedSettingsPause
-import kotlinx.android.synthetic.main.settings_theme.*
+import kotlinx.android.synthetic.main.settings_launcher.*
+
 
 /**
  * The [SettingsFragmentLauncher] is a used as a tab in the SettingsActivity.
@@ -29,12 +32,28 @@ class SettingsFragmentLauncher : Fragment(), UIObject {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.settings_theme, container, false)
+        return inflater.inflate(R.layout.settings_launcher, container, false)
     }
 
     override fun onStart(){
         super<Fragment>.onStart()
         super<UIObject>.onStart()
+
+        val staticSpinner = activity!!.findViewById(R.id.settings_launcher_format_spinner) as Spinner
+
+        // Create an ArrayAdapter using the string array and a default spinner
+        val staticAdapter = ArrayAdapter
+            .createFromResource(
+                activity!!, R.array.settings_launcher_time_formats,
+                android.R.layout.simple_spinner_item
+            )
+
+        // Specify the layout to use when the list of choices appears
+        staticAdapter
+            .setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+
+        // Apply the adapter to the spinner
+        staticSpinner.adapter = staticAdapter
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
