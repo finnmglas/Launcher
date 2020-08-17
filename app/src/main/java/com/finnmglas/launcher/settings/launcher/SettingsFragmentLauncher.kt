@@ -10,8 +10,9 @@ import android.util.DisplayMetrics
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.AdapterView.OnItemSelectedListener
 import android.widget.ArrayAdapter
-import android.widget.Spinner
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -38,22 +39,6 @@ class SettingsFragmentLauncher : Fragment(), UIObject {
     override fun onStart(){
         super<Fragment>.onStart()
         super<UIObject>.onStart()
-
-        val staticSpinner = activity!!.findViewById(R.id.settings_launcher_format_spinner) as Spinner
-
-        // Create an ArrayAdapter using the string array and a default spinner
-        val staticAdapter = ArrayAdapter
-            .createFromResource(
-                activity!!, R.array.settings_launcher_time_formats,
-                android.R.layout.simple_spinner_item
-            )
-
-        // Specify the layout to use when the list of choices appears
-        staticAdapter
-            .setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-
-        // Apply the adapter to the spinner
-        staticSpinner.adapter = staticAdapter
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -189,5 +174,28 @@ class SettingsFragmentLauncher : Fragment(), UIObject {
         // visually load settings
         settings_launcher_switch_screen_timeout.isChecked =
             launcherPreferences.getBoolean(PREF_SCREEN_TIMEOUT_DISABLED, false)
+
+        // Load values into the date-format spinner
+        val staticAdapter = ArrayAdapter.createFromResource(
+                activity!!, R.array.settings_launcher_time_formats,
+                android.R.layout.simple_spinner_item )
+
+        staticAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        settings_launcher_format_spinner.adapter = staticAdapter
+
+        settings_launcher_format_spinner.setSelection(launcherPreferences.getInt(PREF_DATE_FORMAT, 0))
+
+
+        settings_launcher_format_spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
+                launcherPreferences.edit()
+                    .putInt(PREF_DATE_FORMAT, position)
+                    .apply()
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+
+            }
+        }
     }
 }

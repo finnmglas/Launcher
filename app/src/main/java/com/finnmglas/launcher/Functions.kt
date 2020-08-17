@@ -56,6 +56,7 @@ const val PREF_WALLPAPER = "background_uri"
 const val PREF_THEME = "theme"
 
 const val PREF_SCREEN_TIMEOUT_DISABLED = "disableTimeout"
+const val PREF_DATE_FORMAT = "dateFormat"
 const val PREF_SEARCH_AUTO_LAUNCH = "searchAutoLaunch"
 
 const val PREF_STARTED = "startedBefore"

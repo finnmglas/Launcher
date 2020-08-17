@@ -56,7 +56,6 @@
         <item>inverse</item>
         <item>time only</item>
         <item>german</item>
-        <item>german inv</item>
     </string-array>
 
     <string name="settings_footer_repo">https://github.com/finnmglas/Launcher#en</string>
