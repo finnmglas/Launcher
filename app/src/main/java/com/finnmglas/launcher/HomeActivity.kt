@@ -105,8 +105,13 @@ class HomeActivity: UIObject, AppCompatActivity(),
         if (home_background_image != null && getSavedTheme(this) == "custom")
             home_background_image.setImageBitmap(background)
 
-        val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
-        val timeFormat = SimpleDateFormat("HH:mm:ss", Locale.getDefault())
+        // Applying the date / time format (changeable in settings)
+        val dFormat = launcherPreferences.getInt(PREF_DATE_FORMAT, 0)
+        val upperFMT = resources.getStringArray(R.array.settings_time_formats_upper)
+        val lowerFMT = resources.getStringArray(R.array.settings_time_formats_lower)
+
+        val dateFormat = SimpleDateFormat(upperFMT[dFormat], Locale.getDefault())
+        val timeFormat = SimpleDateFormat(lowerFMT[dFormat], Locale.getDefault())
 
         clockTimer = fixedRateTimer("clockTimer", true, 0L, 100) {
             this@HomeActivity.runOnUiThread {

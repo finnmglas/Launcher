@@ -49,6 +49,28 @@
     <string name="settings_select_image">Change Image</string>
     <string name="settings_theme_examples">Examples</string>
     <string name="settings_launcher_disable_timeout">Keep screen on</string>
+    <string name="settings_launcher_time_format">Date format</string>
+
+    <string-array name="settings_launcher_time_formats">
+        <item>Default</item>
+        <item>Inverse</item>
+        <item>Time only</item>
+        <item>German</item>
+    </string-array>
+
+    <string-array name="settings_time_formats_upper">
+        <item>yyyy-MM-dd</item>
+        <item>HH:mm:ss</item>
+        <item>HH:mm:ss</item>
+        <item>HH:mm:ss</item>
+    </string-array>
+
+    <string-array name="settings_time_formats_lower">
+        <item>HH:mm:ss</item>
+        <item>yyyy-MM-dd</item>
+        <item> </item>
+        <item>dd.MM.yyyy</item>
+    </string-array>
 
     <string name="settings_footer_repo">https://github.com/finnmglas/Launcher#en</string>
     <string name="settings_footer_web">https://www.finnmglas.com</string>

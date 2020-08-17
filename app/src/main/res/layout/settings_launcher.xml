@@ -18,8 +18,8 @@
         android:id="@+id/settings_theme_scroller"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginBottom="32dp"
-        app:layout_constraintBottom_toTopOf="@id/settings_launcher_text_screen_timeout"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toTopOf="@id/settings_launcher_text_time_format"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -138,6 +138,26 @@
 
         </LinearLayout>
     </ScrollView>
+
+    <TextView
+        android:id="@+id/settings_launcher_text_time_format"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:text="@string/settings_launcher_time_format"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@id/settings_launcher_text_screen_timeout"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Spinner
+        android:id="@+id/settings_launcher_format_spinner"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:entries="@array/settings_launcher_time_formats"
+        android:spinnerMode="dropdown"
+        app:layout_constraintBottom_toBottomOf="@id/settings_launcher_text_time_format"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/settings_launcher_text_time_format" />
 
     <TextView
         android:id="@+id/settings_launcher_text_screen_timeout"
