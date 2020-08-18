@@ -48,6 +48,13 @@
     <string name="settings_select_theme">Select</string>
     <string name="settings_select_image">Change Image</string>
     <string name="settings_theme_examples">Examples</string>
+
+    <string-array name="settings_themes">
+        <item>Default</item>
+        <item>Dark</item>
+        <item>Custom</item>
+    </string-array>
+
     <string name="settings_launcher_disable_timeout">Keep screen on</string>
     <string name="settings_launcher_time_format">Date format</string>
 
