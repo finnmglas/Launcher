@@ -123,7 +123,6 @@ class SettingsFragmentLauncher : Fragment(), UIObject {
         setButtonColor(settings_theme_finn_button_select, vibrantColor)
         setButtonColor(settings_theme_dark_button_select, vibrantColor)
         setButtonColor(settings_theme_custom_button_select, vibrantColor)
-        setButtonColor(settings_theme_custom_button_examples, vibrantColor)
     }
 
     override fun setOnClicks() {
@@ -151,14 +150,6 @@ class SettingsFragmentLauncher : Fragment(), UIObject {
                 }
             }
             else letUserPickImage()
-        }
-        settings_theme_custom_button_examples.setOnClickListener {
-            intendedSettingsPause = true
-            // Show example usage
-            openNewTabWindow(
-                "https://github.com/finnmglas/Launcher/blob/master/docs/README.md",
-                context!!
-            )
         }
         settings_launcher_switch_screen_timeout.setOnClickListener { // Toggle screen timeout
             launcherPreferences.edit()
