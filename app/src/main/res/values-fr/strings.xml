@@ -1,80 +1,125 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Errors, Exceptions (Alerts, Toasts ...) -->
-    <string name="none_found">Rien trouvé</string>
+    <!--
+      -
+      - Home
+      -
+      -->
     <string name="alert_cant_open_title">Impossible d\'ouvrir l\'application</string>
-    <string name="alert_cant_open_message">Vous souhaitez modifier ses paramètres («l\'ajouter à l\'écran des applications»)?</string>
+    <string name="alert_cant_open_message">Vous souhaitez modifier ses paramètres?</string>
+
     <string name="toast_cant_open_message">Ouvrez les paramètres pour choisir une application pour cette action</string>
 
-    <string name="alert_cant_choose_launcher">Informations sur l\'application</string>
-    <string name="alert_cant_choose_launcher_message">Votre appareil ne prend pas en charge cette fonctionnalité. Gérez plutôt les détails de l\'application?</string>
-
-    <!-- Settings -->
+    <!--
+      -
+      - Settings
+      -
+      -->
     <string name="settings_title">Réglages</string>
 
-    <string name="settings_rate_google_play">Donner une rétroaction</string>
-    <string name="settings_show_tutorial">Regardez le tutoriel</string>
+    <string name="settings_tab_app">Apps</string>
+    <string name="settings_tab_launcher">Launcher</string>
+    <string name="settings_tab_meta">Meta</string>
 
-    <string name="settings_choose_up">Balayez haut</string>
-    <string name="settings_choose_down">Balayez bas</string>
-    <string name="settings_choose_left">Balayez gauche</string>
-    <string name="settings_choose_right">Balayez droit</string>
-    <string name="settings_choose_vol_up">Monter volume</string>
-    <string name="settings_choose_vol_down">Baisser volume</string>
-    <string name="settings_choose_double_click">Double clic</string>
-    <string name="settings_choose_long_click">Clic long</string>
-    <string name="settings_choose_btn">Choisir App</string>
+    <!--
+      -
+      - Settings : Apps
+      -
+      -->
+    <string name="settings_apps_up">Balayez haut</string>
+    <string name="settings_apps_down">Balayez bas</string>
+    <string name="settings_apps_left">Balayez gauche</string>
+    <string name="settings_apps_right">Balayez droit</string>
+    <string name="settings_apps_vol_up">Monter volume</string>
+    <string name="settings_apps_vol_down">Baisser volume</string>
+    <string name="settings_apps_double_click">Double clic</string>
+    <string name="settings_apps_long_click">Clic long</string>
 
-    <string name="app_menu_delete_text">Désinstaller</string>
-    <string name="app_menu_info_text">Informations</string>
+    <string name="settings_apps_choose">Choisir App</string>
 
-    <string name="settings_select_launcher">Choisir Launcher</string>
-    <string name="settings_reset">Réinitialiser</string>
-    <string name="settings_reset_message">Vous allez supprimer toutes vos préférences. Continuer?</string>
-    <string name="settings_apps">Toutes les applications</string>
-    <string name="settings_install">Installer applications</string>
-    <string name="settings_home">Retourner</string>
+    <string name="settings_apps_view_all">Toutes les applications</string>
 
-    <string name="settings_toast_store_not_found">Pas trouvé le PlayStore</string>
+    <string name="settings_apps_install">Installer applications</string>
+    <string name="settings_apps_toast_store_not_found">Pas trouvé le PlayStore</string>
 
-    <string name="settings_select_theme">Choisir</string>
-    <string name="settings_select_image">Changer Image</string>
-    <string name="settings_theme_examples">Examples</string>
-    <string name="settings_launcher_disable_timeout">Gardez l\'écran allumé</string>
+    <!--
+      -
+      - Settings : Launcher
+      -
+      -->
+    <string name="settings_launcher_section_appearance">Apparence</string>
+
     <string name="settings_launcher_time_format">Format de date</string>
-
-    <string-array name="settings_launcher_time_formats">
+    <string-array name="settings_launcher_time_format_spinner_items">
         <item>Défaut</item>
         <item>Inversé</item>
         <item>Temps</item>
         <item>Allemand</item>
     </string-array>
 
-    <string name="settings_footer_web">https://www.finnmglas.com/fr/</string>
-    <string name="settings_footer_repo">https://github.com/finnmglas/Launcher</string>
+    <string name="settings_launcher_theme">Theme</string>
+    <string-array name="settings_launcher_theme_spinner_items">
+        <item>Défaut</item>
+        <item>Noir</item>
+        <item>Image de fond</item>
+    </string-array>
+
+    <string name="settings_launcher_choose_wallpaper">Choisir un image</string>
+    <string name="settings_launcher_change_wallpaper">Changer l\' image de fond</string>
+
+    <string name="settings_launcher_section_display">Écran</string>
+
+    <string name="settings_launcher_disable_timeout">Gardez l\'écran allumé</string>
+
+    <!--
+      -
+      - Settings : Meta
+      -
+      -->
+    <string name="settings_meta_select_launcher">Choisir Launcher</string>
+    <string name="settings_meta_cant_select_launcher">Informations sur l\'application</string>
+    <string name="settings_meta_cant_select_launcher_msg">Votre appareil ne prend pas en charge cette fonctionnalité. Gérez plutôt les détails de l\'application?</string>
+
+    <string name="settings_meta_show_tutorial">Regardez le tutoriel</string>
+
+    <string name="settings_meta_reset">Réinitialiser</string>
+    <string name="settings_meta_reset_confirm">Vous allez supprimer toutes vos préférences. Continuer?</string>
+
+    <string name="settings_meta_link_github">https://github.com/finnmglas/Launcher#fr</string>
+    <string name="settings_meta_link_web">https://www.finnmglas.com/fr/</string>
 
     <string name="settings_meta_contact">Contacter le développeur</string>
     <string name="settings_meta_contact_url">https://www.finnmglas.com/fr/contact/</string>
-    <string name="settings_meta_donate">Faire un don</string>
 
-    <!-- List Activity -->
-    <string name="list_title_pick">Choisir App</string>
+    <string name="settings_meta_donate">Faire un don</string>
+    <string name="settings_meta_donate_url">https://sponsor.finnmglas.com</string>
+
+    <!--
+      -
+      - List (Launchers app drawer)
+      -
+      -->
     <string name="list_title_view">Applications</string>
+    <string name="list_title_pick">Choisir App</string>
 
     <string name="list_tab_app">Apps</string>
     <string name="list_tab_other">Autre</string>
 
-    <string name="list_back_settings">Retourner</string>
+    <string name="list_app_delete">Désinstaller</string>
+    <string name="list_app_info">Informations</string>
 
-    <string name="list_removed_toast">Application supprimée</string>
-    <string name="list_not_removed_toast">Impossible de supprimer l\'application</string>
+    <string name="list_removed">Application supprimée</string>
+    <string name="list_not_removed">Impossible de supprimer l\'application</string>
 
     <string name="list_apps_search_hint">rechercher des applications</string>
 
     <string name="list_other_settings">Launcher Réglages</string>
     <string name="list_other_list">Launcher Liste des apps</string>
 
-    <!-- Tutorial Activity -->
+    <!--
+      -
+      - Tutorial
+      -
+      -->
     <string name="tutorial_title">Le Tutoriel</string>
     <string name="tutorial_start_text">Prenez un moment et apprenez à utiliser ce lanceur!</string>
 

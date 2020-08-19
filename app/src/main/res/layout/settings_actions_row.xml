@@ -25,7 +25,7 @@
         android:id="@+id/settings_actions_row_button_choose"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/settings_choose_btn"
+        android:text="@string/settings_apps_choose"
         android:textAllCaps="false"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"

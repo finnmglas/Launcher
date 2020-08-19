@@ -86,8 +86,8 @@ class SettingsFragmentMeta : Fragment(), UIObject {
             // on older sdk: manage app details
             else {
                 AlertDialog.Builder(this.context!!, R.style.AlertDialogCustom)
-                    .setTitle(getString(R.string.alert_cant_choose_launcher))
-                    .setMessage(getString(R.string.alert_cant_choose_launcher_message))
+                    .setTitle(getString(R.string.settings_meta_cant_select_launcher))
+                    .setMessage(getString(R.string.settings_meta_cant_select_launcher_msg))
                     .setPositiveButton(android.R.string.yes,
                         DialogInterface.OnClickListener { _, _ ->
                             try {
@@ -114,8 +114,8 @@ class SettingsFragmentMeta : Fragment(), UIObject {
         // prompting for settings-reset confirmation
         settings_meta_button_reset_settings.setOnClickListener {
             AlertDialog.Builder(this.context!!, R.style.AlertDialogCustom)
-                .setTitle(getString(R.string.settings_reset))
-                .setMessage(getString(R.string.settings_reset_message))
+                .setTitle(getString(R.string.settings_meta_reset))
+                .setMessage(getString(R.string.settings_meta_reset_confirm))
                 .setPositiveButton(android.R.string.yes,
                     DialogInterface.OnClickListener { _, _ ->
                         resetSettings(this.context!!)
@@ -130,7 +130,7 @@ class SettingsFragmentMeta : Fragment(), UIObject {
         settings_meta_icon_github.setOnClickListener {
             intendedSettingsPause = true
             openNewTabWindow(
-                getString(R.string.settings_footer_repo),
+                getString(R.string.settings_meta_link_github),
                 this.context!!
             )
         }
@@ -150,7 +150,7 @@ class SettingsFragmentMeta : Fragment(), UIObject {
         settings_meta_icon_globe.setOnClickListener {
             intendedSettingsPause = true
             openNewTabWindow(
-                getString(R.string.settings_footer_web),
+                getString(R.string.settings_meta_link_web),
                 this.context!!
             )
         }

@@ -23,7 +23,7 @@
             android:id="@+id/settings_launcher_section_appearance_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Appearance"
+            android:text="@string/settings_launcher_section_appearance"
             android:textColor="#ccc"
             android:textSize="18sp"
             tools:layout_editor_absoluteX="32dp"
@@ -48,7 +48,7 @@
             app:layout_constraintStart_toStartOf="parent" />
 
         <Space
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1" />
 
@@ -56,7 +56,7 @@
             android:id="@+id/settings_launcher_format_spinner"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:entries="@array/settings_launcher_time_formats"
+            android:entries="@array/settings_launcher_time_format_spinner_items"
             android:spinnerMode="dropdown" />
     </LinearLayout>
 
@@ -71,13 +71,13 @@
             android:id="@+id/settings_launcher_theme_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Theme"
+            android:text="@string/settings_launcher_theme"
             android:textSize="16sp"
             app:layout_constraintBottom_toTopOf="@id/settings_launcher_text_screen_timeout"
             app:layout_constraintStart_toStartOf="parent" />
 
         <Space
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1" />
 
@@ -85,7 +85,7 @@
             android:id="@+id/settings_launcher_theme_spinner"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:entries="@array/settings_themes"
+            android:entries="@array/settings_launcher_theme_spinner_items"
             android:spinnerMode="dropdown" />
     </LinearLayout>
 
@@ -99,7 +99,7 @@
             android:id="@+id/settings_theme_custom_button_select"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Choose a wallpaper"
+            android:text="@string/settings_launcher_choose_wallpaper"
             android:textAllCaps="false" />
     </LinearLayout>
 
@@ -113,7 +113,7 @@
             android:id="@+id/settings_launcher_section_options_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Options"
+            android:text="@string/settings_launcher_section_display"
             android:textColor="#ccc"
             android:textSize="18sp"
             tools:layout_editor_absoluteX="32dp"
@@ -126,20 +126,20 @@
         android:layout_marginTop="16sp"
         android:layout_marginBottom="16sp"
         android:gravity="top"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:paddingLeft="8sp">
 
         <TextView
             android:id="@+id/settings_launcher_text_screen_timeout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingLeft="8sp"
             android:text="@string/settings_launcher_disable_timeout"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/settings_launcher_text_time_format" />
 
         <Space
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1" />
 

@@ -12,7 +12,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
-import android.widget.AdapterView.OnItemSelectedListener
 import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -153,13 +152,17 @@ class SettingsFragmentLauncher : Fragment(), UIObject {
     }
 
     override fun adjustLayout() {
+        if (getSavedTheme(activity!!) == "custom") settings_theme_custom_button_select.text = getString(
+            R.string.settings_launcher_change_wallpaper
+        )
+
         // visually load settings
         settings_launcher_switch_screen_timeout.isChecked =
             launcherPreferences.getBoolean(PREF_SCREEN_TIMEOUT_DISABLED, false)
 
         // Load values into the date-format spinner
         val staticAdapter = ArrayAdapter.createFromResource(
-                activity!!, R.array.settings_launcher_time_formats,
+                activity!!, R.array.settings_launcher_time_format_spinner_items,
                 android.R.layout.simple_spinner_item )
 
         staticAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
@@ -181,7 +184,7 @@ class SettingsFragmentLauncher : Fragment(), UIObject {
 
         // Load values into the theme spinner
         val staticThemeAdapter = ArrayAdapter.createFromResource(
-            activity!!, R.array.settings_themes,
+            activity!!, R.array.settings_launcher_theme_spinner_items,
             android.R.layout.simple_spinner_item )
 
         staticThemeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)

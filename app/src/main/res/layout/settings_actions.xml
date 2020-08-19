@@ -34,14 +34,14 @@
             android:id="@+id/settings_actions_button_view_apps"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/settings_apps"
+            android:text="@string/settings_apps_view_all"
             android:textAllCaps="false" />
 
         <Button
             android:id="@+id/settings_actions_button_install_apps"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/settings_install"
+            android:text="@string/settings_apps_install"
             android:textAllCaps="false" />
 
     </LinearLayout>

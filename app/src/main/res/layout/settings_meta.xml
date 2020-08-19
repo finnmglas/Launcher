@@ -18,14 +18,14 @@
         android:id="@+id/settings_meta_button_select_launcher"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/settings_select_launcher"
+        android:text="@string/settings_meta_select_launcher"
         android:textAllCaps="false" />
 
     <Button
         android:id="@+id/settings_meta_button_view_tutorial"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/settings_show_tutorial"
+        android:text="@string/settings_meta_show_tutorial"
         android:textAllCaps="false" />
 
     <Button
@@ -33,7 +33,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="32sp"
-        android:text="@string/settings_reset"
+        android:text="@string/settings_meta_reset"
         android:textAllCaps="false" />
 
     <LinearLayout

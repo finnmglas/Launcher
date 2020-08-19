@@ -9,7 +9,6 @@ import android.provider.MediaStore
 import android.view.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GestureDetectorCompat
-import com.finnmglas.launcher.list.apps.AppsRecyclerAdapter
 import com.finnmglas.launcher.tutorial.TutorialActivity
 import kotlinx.android.synthetic.main.home.*
 import java.text.SimpleDateFormat
@@ -107,8 +106,8 @@ class HomeActivity: UIObject, AppCompatActivity(),
 
         // Applying the date / time format (changeable in settings)
         val dFormat = launcherPreferences.getInt(PREF_DATE_FORMAT, 0)
-        val upperFMT = resources.getStringArray(R.array.settings_time_formats_upper)
-        val lowerFMT = resources.getStringArray(R.array.settings_time_formats_lower)
+        val upperFMT = resources.getStringArray(R.array.settings_launcher_time_formats_upper)
+        val lowerFMT = resources.getStringArray(R.array.settings_launcher_time_formats_lower)
 
         val dateFormat = SimpleDateFormat(upperFMT[dFormat], Locale.getDefault())
         val timeFormat = SimpleDateFormat(lowerFMT[dFormat], Locale.getDefault())
