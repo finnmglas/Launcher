@@ -1,182 +1,158 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/settings_launcher_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="?attr/colorPrimary"
-    android:gravity="center"
+    android:gravity="center|top"
     android:orientation="vertical"
     android:paddingLeft="32sp"
     android:paddingTop="16sp"
     android:paddingRight="32sp"
     tools:context=".settings.meta.SettingsFragmentMeta">
 
-    <ScrollView
-        android:id="@+id/settings_theme_scroller"
+    <LinearLayout
+        android:id="@+id/settings_launcher_section_appearance"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginBottom="16dp"
-        app:layout_constraintBottom_toTopOf="@id/settings_launcher_text_time_format"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/settings_launcher_section_appearance_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/settings_launcher_section_appearance"
+            android:textColor="#ccc"
+            android:textSize="18sp"
+            tools:layout_editor_absoluteX="32dp"
+            tools:layout_editor_absoluteY="16dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16sp"
+        android:layout_marginBottom="16sp"
+        android:orientation="horizontal"
+        android:paddingLeft="8sp">
+
+        <TextView
+            android:id="@+id/settings_launcher_text_time_format"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/settings_launcher_time_format"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@id/settings_launcher_text_screen_timeout"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <Spinner
+            android:id="@+id/settings_launcher_format_spinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:entries="@array/settings_launcher_time_format_spinner_items"
+            android:spinnerMode="dropdown" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16sp"
+        android:orientation="horizontal"
+        android:paddingLeft="8sp">
+
+        <TextView
+            android:id="@+id/settings_launcher_theme_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/settings_launcher_theme"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@id/settings_launcher_text_screen_timeout"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <Spinner
+            android:id="@+id/settings_launcher_theme_spinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:entries="@array/settings_launcher_theme_spinner_items"
+            android:spinnerMode="dropdown" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16sp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/settings_theme_custom_button_select"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:text="@string/settings_launcher_choose_wallpaper"
+            android:textAllCaps="false" />
+    </LinearLayout>
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/settings_theme_finn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10sp"
-                app:cardCornerRadius="8dp">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <ImageView
-                        android:id="@+id/settings_theme_finn_img"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:adjustViewBounds="true"
-                        android:scaleType="fitXY"
-                        app:srcCompat="@drawable/finnmglas_theme"
-                        tools:ignore="ContentDescription" />
-
-                    <Button
-                        android:id="@+id/settings_theme_finn_button_select"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/settings_select_theme"
-                        android:textAllCaps="false"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/settings_theme_dark"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10sp"
-                app:cardCornerRadius="8dp">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <ImageView
-                        android:id="@+id/settings_theme_dark_img"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:adjustViewBounds="true"
-                        android:scaleType="fitXY"
-                        app:srcCompat="@drawable/dark_theme"
-                        tools:ignore="ContentDescription" />
-
-                    <Button
-                        android:id="@+id/settings_theme_dark_button_select"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/settings_select_theme"
-                        android:textAllCaps="false"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/settings_theme_custom"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10sp"
-                app:cardCornerRadius="8dp">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <ImageView
-                        android:id="@+id/settings_theme_custom_img"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:adjustViewBounds="true"
-                        android:scaleType="fitXY"
-                        app:srcCompat="@drawable/custom_theme"
-                        tools:ignore="ContentDescription" />
-
-                    <Button
-                        android:id="@+id/settings_theme_custom_button_select"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/settings_select_theme"
-                        android:textAllCaps="false"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent" />
-
-                    <Button
-                        android:id="@+id/settings_theme_custom_button_examples"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/settings_theme_examples"
-                        android:textAllCaps="false"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@id/settings_theme_custom_button_select" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-            </androidx.cardview.widget.CardView>
-
-        </LinearLayout>
-    </ScrollView>
-
-    <TextView
-        android:id="@+id/settings_launcher_text_time_format"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/settings_launcher_section_options"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
-        android:text="@string/settings_launcher_time_format"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@id/settings_launcher_text_screen_timeout"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:orientation="horizontal">
 
-    <Spinner
-        android:id="@+id/settings_launcher_format_spinner"
-        android:layout_width="0dp"
+        <TextView
+            android:id="@+id/settings_launcher_section_options_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/settings_launcher_section_display"
+            android:textColor="#ccc"
+            android:textSize="18sp"
+            tools:layout_editor_absoluteX="32dp"
+            tools:layout_editor_absoluteY="16dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:entries="@array/settings_launcher_time_formats"
-        android:spinnerMode="dropdown"
-        app:layout_constraintBottom_toBottomOf="@id/settings_launcher_text_time_format"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/settings_launcher_text_time_format" />
+        android:layout_marginTop="16sp"
+        android:layout_marginBottom="16sp"
+        android:gravity="top"
+        android:orientation="horizontal"
+        android:paddingLeft="8sp">
 
-    <TextView
-        android:id="@+id/settings_launcher_text_screen_timeout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
-        android:text="@string/settings_launcher_disable_timeout"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        <TextView
+            android:id="@+id/settings_launcher_text_screen_timeout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/settings_launcher_disable_timeout"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/settings_launcher_text_time_format" />
 
-    <Switch
-        android:id="@+id/settings_launcher_switch_screen_timeout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:checked="false"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@id/settings_launcher_text_screen_timeout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/settings_launcher_text_screen_timeout" />
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <Switch
+            android:id="@+id/settings_launcher_switch_screen_timeout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@id/settings_launcher_text_screen_timeout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/settings_launcher_text_screen_timeout" />
+
+    </LinearLayout>
+
+</LinearLayout>

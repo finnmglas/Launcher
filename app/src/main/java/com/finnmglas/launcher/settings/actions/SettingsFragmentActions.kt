@@ -61,7 +61,7 @@ class SettingsFragmentActions : Fragment(), UIObject {
                 startActivity(rateIntent)
                 intendedSettingsPause = true
             } catch (e: ActivityNotFoundException) {
-                Toast.makeText(this.context, getString(R.string.settings_toast_store_not_found), Toast.LENGTH_SHORT)
+                Toast.makeText(this.context, getString(R.string.settings_apps_toast_store_not_found), Toast.LENGTH_SHORT)
                     .show()
             }
         }

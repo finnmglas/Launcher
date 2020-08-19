@@ -60,10 +60,10 @@ class ListActivity : AppCompatActivity(), UIObject {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == REQUEST_UNINSTALL) {
             if (resultCode == Activity.RESULT_OK) {
-                Toast.makeText(this, getString(R.string.list_removed_toast), Toast.LENGTH_LONG).show()
+                Toast.makeText(this, getString(R.string.list_removed), Toast.LENGTH_LONG).show()
                 finish()
             } else if (resultCode == Activity.RESULT_FIRST_USER) {
-                Toast.makeText(this, getString(R.string.list_not_removed_toast), Toast.LENGTH_LONG).show()
+                Toast.makeText(this, getString(R.string.list_not_removed), Toast.LENGTH_LONG).show()
                 finish()
             }
         }

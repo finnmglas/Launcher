@@ -135,28 +135,28 @@ class ActionsRecyclerAdapter(val activity: Activity):
 
     init {
         actionsList = ArrayList()
-        actionsList.add(ActionInfo(activity.getString(R.string.settings_choose_up),"upApp",
+        actionsList.add(ActionInfo(activity.getString(R.string.settings_apps_up),"upApp",
             upApp
         ))
-        actionsList.add(ActionInfo(activity.getString(R.string.settings_choose_down),"downApp",
+        actionsList.add(ActionInfo(activity.getString(R.string.settings_apps_down),"downApp",
             downApp
         ))
-        actionsList.add(ActionInfo(activity.getString(R.string.settings_choose_left), "leftApp",
+        actionsList.add(ActionInfo(activity.getString(R.string.settings_apps_left), "leftApp",
             leftApp
         ))
-        actionsList.add(ActionInfo(activity.getString(R.string.settings_choose_right), "rightApp",
+        actionsList.add(ActionInfo(activity.getString(R.string.settings_apps_right), "rightApp",
             rightApp
         ))
-        actionsList.add(ActionInfo(activity.getString(R.string.settings_choose_vol_up), "volumeUpApp",
+        actionsList.add(ActionInfo(activity.getString(R.string.settings_apps_vol_up), "volumeUpApp",
             volumeUpApp
         ))
-        actionsList.add(ActionInfo(activity.getString(R.string.settings_choose_vol_down), "volumeDownApp",
+        actionsList.add(ActionInfo(activity.getString(R.string.settings_apps_vol_down), "volumeDownApp",
             volumeDownApp
         ))
-        actionsList.add(ActionInfo(activity.getString(R.string.settings_choose_double_click), "doubleClickApp",
+        actionsList.add(ActionInfo(activity.getString(R.string.settings_apps_double_click), "doubleClickApp",
             doubleClickApp
         ))
-        actionsList.add(ActionInfo(activity.getString(R.string.settings_choose_long_click), "longClickApp",
+        actionsList.add(ActionInfo(activity.getString(R.string.settings_apps_long_click), "longClickApp",
             longClickApp
         ))
     }

@@ -1,103 +1,145 @@
 <resources>
-    <!-- General -->
+    <!--
+      -
+      - General
+      -
+      -->
     <string name="app_name" translatable="false">Launcher</string>
     <string name="preference_file_key" translatable="false">V3RYR4ND0MK3YCR4P</string>
 
-    <!-- Errors, Exceptions (Alerts, Toasts ...) -->
-    <string name="none_found">None found</string>
-
+    <!--
+      -
+      - Home
+      -
+      -->
     <string name="alert_cant_open_title">Can\'t open app</string>
-    <string name="alert_cant_open_message">Want to change its settings (\'add it to the apps screen\')?</string>
+    <string name="alert_cant_open_message">Want to change its settings?</string>
+
     <string name="toast_cant_open_message">Open settings to choose an app for this action</string>
 
-    <string name="alert_cant_choose_launcher">App Info</string>
-    <string name="alert_cant_choose_launcher_message">Your device does not support this feature. Manage application details instead?</string>
-
-    <!-- Settings -->
+    <!--
+      -
+      - Settings
+      -
+      -->
     <string name="settings_title">Settings</string>
 
-    <string name="settings_tab_app" translatable="false">Apps</string>
-    <string name="settings_tab_launcher" translatable="false">Launcher</string>
-    <string name="settings_tab_meta" translatable="false">Meta</string>
+    <string name="settings_tab_app">Apps</string>
+    <string name="settings_tab_launcher">Launcher</string>
+    <string name="settings_tab_meta">Meta</string>
 
-    <string name="settings_rate_google_play">Rate us on Google Play</string>
-    <string name="settings_show_tutorial">View Launcher Tutorial</string>
+    <!--
+      -
+      - Settings : Apps
+      -
+      -->
+    <string name="settings_apps_up">Swipe Up</string>
+    <string name="settings_apps_down">Swipe Down</string>
+    <string name="settings_apps_left">Swipe Left</string>
+    <string name="settings_apps_right">Swipe Right</string>
+    <string name="settings_apps_vol_up">Volume Up</string>
+    <string name="settings_apps_vol_down">Volume Down</string>
+    <string name="settings_apps_double_click">Double Click</string>
+    <string name="settings_apps_long_click">Long Click</string>
 
-    <string name="settings_choose_up">Swipe Up</string>
-    <string name="settings_choose_down">Swipe Down</string>
-    <string name="settings_choose_left">Swipe Left</string>
-    <string name="settings_choose_right">Swipe Right</string>
-    <string name="settings_choose_vol_up">Volume Up</string>
-    <string name="settings_choose_vol_down">Volume Down</string>
-    <string name="settings_choose_double_click">Double Click</string>
-    <string name="settings_choose_long_click">Long Click</string>
-    <string name="settings_choose_btn">Choose App</string>
+    <string name="settings_apps_choose">Choose App</string>
 
-    <string name="app_menu_delete_text">Uninstall</string>
-    <string name="app_menu_info_text">App Info</string>
+    <string name="settings_apps_view_all">View all apps</string>
 
-    <string name="settings_select_launcher">Select Launcher</string>
-    <string name="settings_reset">Reset Settings</string>
-    <string name="settings_reset_message">You are going to discard all your preferences. Continue?</string>
-    <string name="settings_apps">View all apps</string>
-    <string name="settings_install">Install apps</string>
-    <string name="settings_home">Back Home</string>
+    <string name="settings_apps_install">Install apps</string>
+    <string name="settings_apps_toast_store_not_found">PlayStore not found</string>
 
-    <string name="settings_toast_store_not_found">PlayStore not found</string>
+    <!--
+      -
+      - Settings : Launcher
+      -
+      -->
+    <string name="settings_launcher_section_appearance">Appearance</string>
 
-    <string name="settings_select_theme">Select</string>
-    <string name="settings_select_image">Change Image</string>
-    <string name="settings_theme_examples">Examples</string>
-    <string name="settings_launcher_disable_timeout">Keep screen on</string>
     <string name="settings_launcher_time_format">Date format</string>
-
-    <string-array name="settings_launcher_time_formats">
+    <string-array name="settings_launcher_time_format_spinner_items">
         <item>Default</item>
         <item>Inverse</item>
         <item>Time only</item>
         <item>German</item>
     </string-array>
-
-    <string-array name="settings_time_formats_upper">
+    <string-array name="settings_launcher_time_formats_upper">
         <item>yyyy-MM-dd</item>
         <item>HH:mm:ss</item>
         <item>HH:mm:ss</item>
         <item>HH:mm:ss</item>
     </string-array>
-
-    <string-array name="settings_time_formats_lower">
+    <string-array name="settings_launcher_time_formats_lower">
         <item>HH:mm:ss</item>
         <item>yyyy-MM-dd</item>
         <item> </item>
         <item>dd.MM.yyyy</item>
     </string-array>
 
-    <string name="settings_footer_repo">https://github.com/finnmglas/Launcher#en</string>
-    <string name="settings_footer_web">https://www.finnmglas.com</string>
+    <string name="settings_launcher_theme">Theme</string>
+    <string-array name="settings_launcher_theme_spinner_items">
+        <item>Default</item>
+        <item>Dark</item>
+        <item>Wallpaper</item>
+    </string-array>
+
+    <string name="settings_launcher_choose_wallpaper">Choose a wallpaper</string>
+    <string name="settings_launcher_change_wallpaper">Change wallpaper</string>
+
+    <string name="settings_launcher_section_display">Display</string>
+
+    <string name="settings_launcher_disable_timeout">Keep screen on</string>
+
+    <!--
+      -
+      - Settings : Meta
+      -
+      -->
+    <string name="settings_meta_select_launcher">Select Launcher</string>
+    <string name="settings_meta_cant_select_launcher">App Info</string>
+    <string name="settings_meta_cant_select_launcher_msg">Your device does not support this feature. Manage application details instead?</string>
+
+    <string name="settings_meta_show_tutorial">View Launcher Tutorial</string>
+
+    <string name="settings_meta_reset">Reset Settings</string>
+    <string name="settings_meta_reset_confirm">You are going to discard all your preferences. Continue?</string>
+
+    <string name="settings_meta_link_github">https://github.com/finnmglas/Launcher#en</string>
+    <string name="settings_meta_link_web">https://www.finnmglas.com</string>
 
     <string name="settings_meta_contact">Contact the developer</string>
     <string name="settings_meta_contact_url">https://www.finnmglas.com/contact/</string>
-    <string name="settings_meta_donate">Make a donation</string>
-    <string name="settings_meta_donate_url" translatable="false">https://sponsor.finnmglas.com</string>
 
-    <!-- List Activity -->
-    <string name="list_title_pick">Choose App</string>
+    <string name="settings_meta_donate">Make a donation</string>
+    <string name="settings_meta_donate_url">https://sponsor.finnmglas.com</string>
+
+    <!--
+      -
+      - List (Launchers app drawer)
+      -
+      -->
     <string name="list_title_view">All Apps</string>
+    <string name="list_title_pick">Choose App</string>
 
     <string name="list_tab_app">Apps</string>
     <string name="list_tab_other">Other</string>
 
-    <string name="list_back_settings">Back to Settings</string>
+    <string name="list_app_delete">Uninstall</string>
+    <string name="list_app_info">App Info</string>
 
-    <string name="list_removed_toast">Removed the selected application</string>
-    <string name="list_not_removed_toast">Unable to remove application</string>
+    <string name="list_removed">Removed the selected application</string>
+    <string name="list_not_removed">Unable to remove application</string>
 
     <string name="list_apps_search_hint">Search Applications</string>
 
     <string name="list_other_settings">Launcher Settings</string>
     <string name="list_other_list">Launcher AppsList</string>
 
-    <!-- Tutorial Activity -->
+    <!--
+      -
+      - Tutorial
+      -
+      -->
     <string name="tutorial_title">Tutorial</string>
     <string name="tutorial_start_text">Take a few seconds to learn how to use this Launcher!</string>
 

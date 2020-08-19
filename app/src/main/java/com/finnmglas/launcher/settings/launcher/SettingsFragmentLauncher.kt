@@ -1,6 +1,7 @@
 package com.finnmglas.launcher.settings.launcher
 
 import android.Manifest
+import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
@@ -11,7 +12,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
-import android.widget.AdapterView.OnItemSelectedListener
 import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -100,7 +100,6 @@ class SettingsFragmentLauncher : Fragment(), UIObject {
                         .putInt(PREF_VIBRANT, vibrantColor)
                         .apply()
 
-                    saveTheme("custom")
                     intendedSettingsPause = true
                     activity!!.recreate()
                 }
@@ -109,56 +108,17 @@ class SettingsFragmentLauncher : Fragment(), UIObject {
     }
 
     override fun applyTheme() {
-        // Hide 'select' button for the selected theme or allow customisation
-        when (getSavedTheme(context!!)) {
-            "dark" -> settings_theme_dark_button_select.visibility = View.INVISIBLE
-            "finn" -> settings_theme_finn_button_select.visibility = View.INVISIBLE
-            "custom" ->
-                settings_theme_custom_button_select.text = getString(R.string.settings_select_image)
-        }
 
         setSwitchColor(settings_launcher_switch_screen_timeout, vibrantColor)
 
         settings_launcher_container.setBackgroundColor(dominantColor)
-        setButtonColor(settings_theme_finn_button_select, vibrantColor)
-        setButtonColor(settings_theme_dark_button_select, vibrantColor)
         setButtonColor(settings_theme_custom_button_select, vibrantColor)
-        setButtonColor(settings_theme_custom_button_examples, vibrantColor)
     }
 
     override fun setOnClicks() {
-        // Theme changing buttons
-        settings_theme_dark_button_select.setOnClickListener {
-            resetToDarkTheme(activity!!)
-        }
-        settings_theme_finn_button_select.setOnClickListener {
-            resetToDefaultTheme(activity!!)
-        }
+
         settings_theme_custom_button_select.setOnClickListener {
-            intendedSettingsPause = true
-            // Request permission (on newer APIs)
-            if (Build.VERSION.SDK_INT >= 23) {
-                when {
-                    ContextCompat.checkSelfPermission(context!!,
-                        Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED
-                    -> letUserPickImage(true)
-                    shouldShowRequestPermissionRationale(Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                    -> {}
-                    else
-                    -> requestPermissions(arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
-                        REQUEST_PERMISSION_STORAGE
-                    )
-                }
-            }
-            else letUserPickImage()
-        }
-        settings_theme_custom_button_examples.setOnClickListener {
-            intendedSettingsPause = true
-            // Show example usage
-            openNewTabWindow(
-                "https://github.com/finnmglas/Launcher/blob/master/docs/README.md",
-                context!!
-            )
+            resetToCustomTheme(activity!!)
         }
         settings_launcher_switch_screen_timeout.setOnClickListener { // Toggle screen timeout
             launcherPreferences.edit()
@@ -170,14 +130,39 @@ class SettingsFragmentLauncher : Fragment(), UIObject {
         }
     }
 
+    fun resetToCustomTheme(context: Activity) {
+        intendedSettingsPause = true
+        saveTheme("custom") // TODO: Fix the bug this creates (displays custom theme without chosen img)
+
+        // Request permission (on newer APIs)
+        if (Build.VERSION.SDK_INT >= 23) {
+            when {
+                ContextCompat.checkSelfPermission(context,
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED
+                -> letUserPickImage(true)
+                shouldShowRequestPermissionRationale(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                -> {}
+                else
+                -> requestPermissions(arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
+                    REQUEST_PERMISSION_STORAGE
+                )
+            }
+        }
+        else letUserPickImage()
+    }
+
     override fun adjustLayout() {
+        if (getSavedTheme(activity!!) == "custom") settings_theme_custom_button_select.text = getString(
+            R.string.settings_launcher_change_wallpaper
+        )
+
         // visually load settings
         settings_launcher_switch_screen_timeout.isChecked =
             launcherPreferences.getBoolean(PREF_SCREEN_TIMEOUT_DISABLED, false)
 
         // Load values into the date-format spinner
         val staticAdapter = ArrayAdapter.createFromResource(
-                activity!!, R.array.settings_launcher_time_formats,
+                activity!!, R.array.settings_launcher_time_format_spinner_items,
                 android.R.layout.simple_spinner_item )
 
         staticAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
@@ -190,6 +175,37 @@ class SettingsFragmentLauncher : Fragment(), UIObject {
                 launcherPreferences.edit()
                     .putInt(PREF_DATE_FORMAT, position)
                     .apply()
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+
+            }
+        }
+
+        // Load values into the theme spinner
+        val staticThemeAdapter = ArrayAdapter.createFromResource(
+            activity!!, R.array.settings_launcher_theme_spinner_items,
+            android.R.layout.simple_spinner_item )
+
+        staticThemeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        settings_launcher_theme_spinner.adapter = staticThemeAdapter
+
+        var themeInt = when (getSavedTheme(activity!!)) {
+            "finn" -> 0
+            "dark" -> 1
+            "custom" -> 2
+            else -> 0
+        };
+
+        settings_launcher_theme_spinner.setSelection(themeInt)
+
+        settings_launcher_theme_spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
+                when (position) {
+                    0 -> if (getSavedTheme(activity!!) != "finn") resetToDefaultTheme(activity!!)
+                    1 -> if (getSavedTheme(activity!!) != "dark") resetToDarkTheme(activity!!)
+                    2 -> if (getSavedTheme(activity!!) != "custom") resetToCustomTheme(activity!!)
+                }
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
