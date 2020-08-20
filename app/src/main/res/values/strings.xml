@@ -89,6 +89,7 @@
     <string name="settings_launcher_section_display">Display</string>
 
     <string name="settings_launcher_disable_timeout">Keep screen on</string>
+    <string name="settings_launcher_full_screen">Use full screen</string>
 
     <!--
       -

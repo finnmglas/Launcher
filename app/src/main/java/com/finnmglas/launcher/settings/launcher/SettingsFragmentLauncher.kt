@@ -110,6 +110,7 @@ class SettingsFragmentLauncher : Fragment(), UIObject {
     override fun applyTheme() {
 
         setSwitchColor(settings_launcher_switch_screen_timeout, vibrantColor)
+        setSwitchColor(settings_launcher_switch_screen_full, vibrantColor)
 
         settings_launcher_container.setBackgroundColor(dominantColor)
         setButtonColor(settings_theme_custom_button_select, vibrantColor)
@@ -124,6 +125,14 @@ class SettingsFragmentLauncher : Fragment(), UIObject {
             launcherPreferences.edit()
                 .putBoolean(PREF_SCREEN_TIMEOUT_DISABLED,
                     !launcherPreferences.getBoolean(PREF_SCREEN_TIMEOUT_DISABLED, false))
+                .apply()
+
+            setWindowFlags(activity!!.window)
+        }
+        settings_launcher_switch_screen_full.setOnClickListener { // Toggle fullscreen
+            launcherPreferences.edit()
+                .putBoolean(PREF_SCREEN_FULLSCREEN,
+                    !launcherPreferences.getBoolean(PREF_SCREEN_FULLSCREEN, true))
                 .apply()
 
             setWindowFlags(activity!!.window)
@@ -156,9 +165,10 @@ class SettingsFragmentLauncher : Fragment(), UIObject {
             R.string.settings_launcher_change_wallpaper
         )
 
-        // visually load settings
         settings_launcher_switch_screen_timeout.isChecked =
             launcherPreferences.getBoolean(PREF_SCREEN_TIMEOUT_DISABLED, false)
+        settings_launcher_switch_screen_full.isChecked =
+            launcherPreferences.getBoolean(PREF_SCREEN_FULLSCREEN, false)
 
         // Load values into the date-format spinner
         val staticAdapter = ArrayAdapter.createFromResource(

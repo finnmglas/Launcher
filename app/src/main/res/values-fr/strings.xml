@@ -69,6 +69,7 @@
     <string name="settings_launcher_section_display">Écran</string>
 
     <string name="settings_launcher_disable_timeout">Gardez l\'écran allumé</string>
+    <string name="settings_launcher_full_screen">Utiliser le plein écran</string>
 
     <!--
       -

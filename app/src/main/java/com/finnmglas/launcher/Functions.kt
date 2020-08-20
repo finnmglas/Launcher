@@ -56,6 +56,7 @@ const val PREF_WALLPAPER = "background_uri"
 const val PREF_THEME = "theme"
 
 const val PREF_SCREEN_TIMEOUT_DISABLED = "disableTimeout"
+const val PREF_SCREEN_FULLSCREEN = "useFullScreen"
 const val PREF_DATE_FORMAT = "dateFormat"
 const val PREF_SEARCH_AUTO_LAUNCH = "searchAutoLaunch"
 
@@ -371,8 +372,14 @@ fun resetSettings(context: Context) {
 
 fun setWindowFlags(window: Window) {
     window.setFlags(0, 0) // clear flags
-    window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
 
+    // Display notification bar
+    if (launcherPreferences.getBoolean(PREF_SCREEN_FULLSCREEN, true))
+        window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+            WindowManager.LayoutParams.FLAG_FULLSCREEN)
+    else window.clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
+
+    // Screen Timeout
     if (launcherPreferences.getBoolean(PREF_SCREEN_TIMEOUT_DISABLED, false))
         window.setFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON,
             WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
