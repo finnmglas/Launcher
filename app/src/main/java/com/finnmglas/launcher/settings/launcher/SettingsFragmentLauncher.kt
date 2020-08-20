@@ -119,29 +119,29 @@ class SettingsFragmentLauncher : Fragment(), UIObject {
 
     override fun setOnClicks() {
 
-        settings_theme_custom_button_select.setOnClickListener {
-            resetToCustomTheme(activity!!)
-        }
-        settings_launcher_switch_screen_timeout.setOnClickListener { // Toggle screen timeout
+        settings_theme_custom_button_select.setOnClickListener { resetToCustomTheme(activity!!) }
+
+        settings_launcher_switch_screen_timeout.isChecked = launcherPreferences.getBoolean(PREF_SCREEN_TIMEOUT_DISABLED, false)
+        settings_launcher_switch_screen_timeout.setOnCheckedChangeListener { _, isChecked ->  // Toggle screen timeout
             launcherPreferences.edit()
-                .putBoolean(PREF_SCREEN_TIMEOUT_DISABLED,
-                    !launcherPreferences.getBoolean(PREF_SCREEN_TIMEOUT_DISABLED, false))
+                .putBoolean(PREF_SCREEN_TIMEOUT_DISABLED, isChecked)
                 .apply()
 
             setWindowFlags(activity!!.window)
         }
-        settings_launcher_switch_screen_full.setOnClickListener { // Toggle fullscreen
+        settings_launcher_switch_screen_full.isChecked = launcherPreferences.getBoolean(PREF_SCREEN_FULLSCREEN, true)
+        settings_launcher_switch_screen_full.setOnCheckedChangeListener { _, isChecked -> // Toggle fullscreen
             launcherPreferences.edit()
-                .putBoolean(PREF_SCREEN_FULLSCREEN,
-                    !launcherPreferences.getBoolean(PREF_SCREEN_FULLSCREEN, true))
+                .putBoolean(PREF_SCREEN_FULLSCREEN, isChecked)
                 .apply()
 
             setWindowFlags(activity!!.window)
         }
-        settings_launcher_switch_enable_double.setOnClickListener { // Toggle double actions
+        
+        settings_launcher_switch_enable_double.isChecked = launcherPreferences.getBoolean(PREF_DOUBLE_ACTIONS_ENABLED, false)
+        settings_launcher_switch_enable_double.setOnCheckedChangeListener { _, isChecked -> // Toggle double actions
             launcherPreferences.edit()
-                .putBoolean(PREF_DOUBLE_ACTIONS_ENABLED,
-                    !launcherPreferences.getBoolean(PREF_DOUBLE_ACTIONS_ENABLED, true))
+                .putBoolean(PREF_DOUBLE_ACTIONS_ENABLED, isChecked)
                 .apply()
 
             intendedSettingsPause = true
@@ -174,13 +174,6 @@ class SettingsFragmentLauncher : Fragment(), UIObject {
         if (getSavedTheme(activity!!) == "custom") settings_theme_custom_button_select.text = getString(
             R.string.settings_launcher_change_wallpaper
         )
-
-        settings_launcher_switch_screen_timeout.isChecked =
-            launcherPreferences.getBoolean(PREF_SCREEN_TIMEOUT_DISABLED, false)
-        settings_launcher_switch_screen_full.isChecked =
-            launcherPreferences.getBoolean(PREF_SCREEN_FULLSCREEN, true)
-        settings_launcher_switch_enable_double.isChecked =
-            launcherPreferences.getBoolean(PREF_DOUBLE_ACTIONS_ENABLED, false)
 
         // Load values into the date-format spinner
         val staticAdapter = ArrayAdapter.createFromResource(
