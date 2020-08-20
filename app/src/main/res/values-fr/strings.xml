@@ -26,9 +26,13 @@
       -
       -->
     <string name="settings_apps_up">Balayez haut</string>
+    <string name="settings_apps_double_up">Double haut</string>
     <string name="settings_apps_down">Balayez bas</string>
+    <string name="settings_apps_double_down">Double bas</string>
     <string name="settings_apps_left">Balayez gauche</string>
+    <string name="settings_apps_double_left">Double gauche</string>
     <string name="settings_apps_right">Balayez droit</string>
+    <string name="settings_apps_double_right">Double droit</string>
     <string name="settings_apps_vol_up">Monter volume</string>
     <string name="settings_apps_vol_down">Baisser volume</string>
     <string name="settings_apps_double_click">Double clic</string>

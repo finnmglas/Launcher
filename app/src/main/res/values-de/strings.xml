@@ -26,9 +26,13 @@
       -
       -->
     <string name="settings_apps_up">Hochwischen</string>
+    <string name="settings_apps_double_up">Doppelt hoch</string>
     <string name="settings_apps_down">Runterwischen</string>
+    <string name="settings_apps_double_down">Doppelt runter</string>
     <string name="settings_apps_left">Linkswischen</string>
+    <string name="settings_apps_double_left">Doppelt links</string>
     <string name="settings_apps_right">Rechtswischen</string>
+    <string name="settings_apps_double_right">Doppelt rechts</string>
     <string name="settings_apps_vol_up">Lautstärke +</string>
     <string name="settings_apps_vol_down">Lautstärke -</string>
     <string name="settings_apps_double_click">Doppelklick</string>

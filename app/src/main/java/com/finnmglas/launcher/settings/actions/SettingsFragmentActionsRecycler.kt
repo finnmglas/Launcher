@@ -134,18 +134,32 @@ class ActionsRecyclerAdapter(val activity: Activity):
     }
 
     init {
+        val doubleActions = launcherPreferences.getBoolean(PREF_DOUBLE_ACTIONS_ENABLED, false)
+
         actionsList = ArrayList()
         actionsList.add(ActionInfo(activity.getString(R.string.settings_apps_up),"upApp",
             upApp
         ))
+        if ( doubleActions) actionsList.add(ActionInfo(activity.getString(R.string.settings_apps_double_up), "doubleUpApp",
+            doubleUpApp
+        ))
         actionsList.add(ActionInfo(activity.getString(R.string.settings_apps_down),"downApp",
             downApp
+        ))
+        if ( doubleActions) actionsList.add(ActionInfo(activity.getString(R.string.settings_apps_double_down), "doubleDownApp",
+            doubleDownApp
         ))
         actionsList.add(ActionInfo(activity.getString(R.string.settings_apps_left), "leftApp",
             leftApp
         ))
+        if ( doubleActions) actionsList.add(ActionInfo(activity.getString(R.string.settings_apps_double_left), "doubleLeftApp",
+            doubleLeftApp
+        ))
         actionsList.add(ActionInfo(activity.getString(R.string.settings_apps_right), "rightApp",
             rightApp
+        ))
+        if ( doubleActions) actionsList.add(ActionInfo(activity.getString(R.string.settings_apps_double_right), "doubleRightApp",
+            doubleRightApp
         ))
         actionsList.add(ActionInfo(activity.getString(R.string.settings_apps_vol_up), "volumeUpApp",
             volumeUpApp

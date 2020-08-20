@@ -34,9 +34,13 @@
       -
       -->
     <string name="settings_apps_up">Swipe Up</string>
+    <string name="settings_apps_double_up">Double Up</string>
     <string name="settings_apps_down">Swipe Down</string>
+    <string name="settings_apps_double_down">Double Down</string>
     <string name="settings_apps_left">Swipe Left</string>
+    <string name="settings_apps_double_left">Double Left</string>
     <string name="settings_apps_right">Swipe Right</string>
+    <string name="settings_apps_double_right">Double Right</string>
     <string name="settings_apps_vol_up">Volume Up</string>
     <string name="settings_apps_vol_down">Volume Down</string>
     <string name="settings_apps_double_click">Double Click</string>

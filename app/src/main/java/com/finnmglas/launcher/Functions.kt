@@ -36,19 +36,30 @@ lateinit var launcherPreferences: SharedPreferences
 /* Preference Key Constants */
 
 const val ACTION_UP = "action_upApp"
+const val ACTION_DOUBLE_UP = "action_doubleUpApp"
 const val ACTION_DOWN = "action_downApp"
+const val ACTION_DOUBLE_DOWN = "action_doubleDownApp"
 const val ACTION_RIGHT = "action_rightApp"
+const val ACTION_DOUBLE_RIGHT = "action_doubleRightApp"
 const val ACTION_LEFT = "action_leftApp"
+const val ACTION_DOUBLE_LEFT = "action_doubleLeftApp"
+
 const val ACTION_VOL_UP = "action_volumeUpApp"
 const val ACTION_VOL_DOWN = "action_volumeDownApp"
 const val ACTION_DOUBLE_CLICK = "action_doubleClickApp"
 const val ACTION_LONG_CLICK = "action_longClickApp"
+
 const val ACTION_CALENDAR = "action_calendarApp"
 const val ACTION_CLOCK = "action_clockApp"
 
-val ACTIONS = listOf(ACTION_UP, ACTION_DOWN, ACTION_RIGHT, ACTION_LEFT,
-    ACTION_VOL_UP, ACTION_VOL_DOWN, ACTION_DOUBLE_CLICK, ACTION_LONG_CLICK,
-    ACTION_CALENDAR, ACTION_CLOCK)
+val ACTIONS = listOf(
+    ACTION_UP, ACTION_DOUBLE_UP,
+    ACTION_DOWN, ACTION_DOUBLE_DOWN,
+    ACTION_RIGHT, ACTION_LEFT,
+    ACTION_VOL_UP, ACTION_VOL_DOWN,
+    ACTION_DOUBLE_CLICK, ACTION_LONG_CLICK,
+    ACTION_CALENDAR, ACTION_CLOCK
+)
 
 const val PREF_DOMINANT = "custom_dominant"
 const val PREF_VIBRANT = "custom_vibrant"
@@ -58,6 +69,8 @@ const val PREF_THEME = "theme"
 const val PREF_SCREEN_TIMEOUT_DISABLED = "disableTimeout"
 const val PREF_SCREEN_FULLSCREEN = "useFullScreen"
 const val PREF_DATE_FORMAT = "dateFormat"
+
+const val PREF_DOUBLE_ACTIONS_ENABLED = "enableDoubleActions"
 const val PREF_SEARCH_AUTO_LAUNCH = "searchAutoLaunch"
 
 const val PREF_STARTED = "startedBefore"
@@ -72,9 +85,13 @@ val appsList: MutableList<AppInfo> = ArrayList()
 val displayMetrics = DisplayMetrics()
 
 var upApp = ""
+var doubleUpApp = ""
 var downApp = ""
+var doubleDownApp = ""
 var rightApp = ""
+var doubleRightApp = ""
 var leftApp = ""
+var doubleLeftApp = ""
 var volumeUpApp = ""
 var volumeDownApp = ""
 var doubleClickApp = ""
@@ -331,9 +348,13 @@ fun loadApps(packageManager: PackageManager) {
 
 fun loadSettings() {
     upApp = launcherPreferences.getString(ACTION_UP, "")!!
+    doubleUpApp = launcherPreferences.getString(ACTION_DOUBLE_UP, "")!!
     downApp = launcherPreferences.getString(ACTION_DOWN, "")!!
+    doubleDownApp = launcherPreferences.getString(ACTION_DOUBLE_DOWN, "")!!
     rightApp = launcherPreferences.getString(ACTION_RIGHT, "")!!
+    doubleRightApp = launcherPreferences.getString(ACTION_DOUBLE_RIGHT, "")!!
     leftApp = launcherPreferences.getString(ACTION_LEFT, "")!!
+    doubleLeftApp = launcherPreferences.getString(ACTION_DOUBLE_LEFT, "")!!
     volumeUpApp = launcherPreferences.getString(ACTION_VOL_UP, "")!!
     volumeDownApp = launcherPreferences.getString(ACTION_VOL_DOWN, "")!!
 
@@ -362,6 +383,9 @@ fun resetSettings(context: Context) {
         .putString(PREF_THEME, "finn")
         .putBoolean(PREF_SCREEN_TIMEOUT_DISABLED, false)
         .putBoolean(PREF_SEARCH_AUTO_LAUNCH, false)
+        .putInt(PREF_DATE_FORMAT, 0)
+        .putBoolean(PREF_SCREEN_FULLSCREEN, true)
+        .putBoolean(PREF_DOUBLE_ACTIONS_ENABLED, false)
 
     // load action defaults
     for (actionKey in ACTIONS)
@@ -390,15 +414,20 @@ fun setWindowFlags(window: Window) {
 fun pickDefaultApp(action: String, context: Context) : String {
     val arrayResource = when (action) {
         ACTION_UP -> R.array.default_up
+        ACTION_DOUBLE_UP -> R.array.default_double_up
         ACTION_DOWN -> R.array.default_down
+        ACTION_DOUBLE_DOWN -> R.array.default_double_down
         ACTION_RIGHT -> R.array.default_right
+        ACTION_DOUBLE_RIGHT -> R.array.default_double_right
         ACTION_LEFT -> R.array.default_left
+        ACTION_DOUBLE_LEFT -> R.array.default_double_left
         ACTION_VOL_UP -> R.array.default_volume_up
         ACTION_VOL_DOWN -> R.array.default_volume_down
         ACTION_DOUBLE_CLICK -> R.array.default_double_click
         ACTION_LONG_CLICK -> R.array.default_long_click
         ACTION_CLOCK -> R.array.default_clock
         ACTION_CALENDAR -> R.array.default_left
+
         else -> return "" // just prevent crashing on unknown input
     }
 

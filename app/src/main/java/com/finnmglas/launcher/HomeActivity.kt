@@ -145,26 +145,34 @@ class HomeActivity: UIObject, AppCompatActivity(),
 
     override fun onFling(e1: MotionEvent, e2: MotionEvent, dX: Float, dY: Float): Boolean {
 
-        Toast.makeText(this, bufferedPointerCount.toString(), Toast.LENGTH_SHORT)
-            .show()
-
         val width = displayMetrics.widthPixels
         val height = displayMetrics.heightPixels
 
         val diffX = e1.x - e2.x
         val diffY = e1.y - e2.y
 
-        val strictness = 4 // how distinguished the swipe has to be to be accepted
+        val doubleActions = launcherPreferences.getBoolean(PREF_DOUBLE_ACTIONS_ENABLED, false)
+
+        // how distinguished the swipe has to be to launch something
+        val strictness = (4 / bufferedPointerCount)
 
         // Only open if the swipe was not from the phones top edge
-        if (diffY < -height / 8 && abs(diffY) > strictness * abs(diffX) && e1.y > 100)
-            launch(downApp,this, R.anim.top_down)
-        else if (diffY > height / 8 && abs(diffY) > strictness * abs(diffX))
-            launch(upApp, this, R.anim.bottom_up)
-        else if (diffX > width / 4 && abs(diffX) > strictness * abs(diffY))
-            launch(leftApp,this, R.anim.right_left)
-        else if (diffX < -width / 4 && abs(diffX) > strictness * abs(diffY))
-            launch(rightApp, this, R.anim.left_right)
+        if (diffY < -height / 8 && abs(diffY) > strictness * abs(diffX) && e1.y > 100) {
+            if (bufferedPointerCount == 1) launch(downApp, this, R.anim.top_down)
+            else if (bufferedPointerCount == 2 && doubleActions) launch(doubleDownApp, this, R.anim.top_down)
+        }
+        else if (diffY > height / 8 && abs(diffY) > strictness * abs(diffX)) {
+            if (bufferedPointerCount == 1) launch(upApp, this, R.anim.bottom_up)
+            else if (bufferedPointerCount == 2 && doubleActions) launch(doubleUpApp, this, R.anim.bottom_up)
+        }
+        else if (diffX > width / 4 && abs(diffX) > strictness * abs(diffY)) {
+            if (bufferedPointerCount == 1) launch(leftApp,this, R.anim.right_left)
+            else if (bufferedPointerCount == 2 && doubleActions) launch(doubleLeftApp,this, R.anim.right_left)
+        }
+        else if (diffX < -width / 4 && abs(diffX) > strictness * abs(diffY)) {
+            if (bufferedPointerCount == 1) launch(rightApp, this, R.anim.left_right)
+            else if (bufferedPointerCount == 2 && doubleActions) launch(doubleRightApp, this, R.anim.left_right)
+        }
 
         return true
     }
@@ -213,7 +221,7 @@ class HomeActivity: UIObject, AppCompatActivity(),
         // Buffer / Debounce the pointer count
         if (event.pointerCount > bufferedPointerCount) {
             bufferedPointerCount = event.pointerCount
-            pointerBufferTimer = fixedRateTimer("pointerBufferTimer", true, 200, 1000) {
+            pointerBufferTimer = fixedRateTimer("pointerBufferTimer", true, 300, 1000) {
                 bufferedPointerCount = 1
                 this.cancel() // a non-recurring timer
             }

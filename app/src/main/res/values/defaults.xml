@@ -8,14 +8,25 @@
         <item>launcher:choose</item> <!-- The apps list -->
     </string-array>
 
+    <!-- Swipe double up - Translation app -->
+    <string-array name="default_double_up">
+        <item>com.google.android.apps.translate</item> <!-- Google Translate -->
+        <item>com.microsoft.translator</item> <!-- Microsoft Translate -->
+        <item>translate.speech.text.translation.voicetranslator</item> <!-- MindMover Translate -->
+    </string-array>
+
     <!-- Swipe down - Browser -->
     <string-array name="default_down">
-        <item>org.torproject.torbrowser</item> <!-- Tor Browser -->
         <item>org.mozilla.firefox</item> <!-- Firefox -->
         <item>com.brave.browser</item> <!-- Brave Browser -->
         <item>com.duckduckgo.mobile.android</item> <!-- DuckDuckGo Browser -->
         <item>com.sec.android.app.sbrowser</item> <!-- Samsung Internet -->
         <item>com.android.chrome</item> <!-- Chrome -->
+    </string-array>
+
+    <!-- Swipe double down - Secure Browser -->
+    <string-array name="default_double_down">
+        <item>org.torproject.torbrowser</item> <!-- Tor Browser -->
     </string-array>
 
     <!-- Swipe right - Mail -->
@@ -29,6 +40,14 @@
     <string-array name="default_left">
         <item>com.google.android.calendar</item> <!-- Google Calendar -->
         <item>com.samsung.android.calendar</item> <!-- Samsung Calendar -->
+    </string-array>
+
+    <!-- Swipe double left -->
+    <string-array name="default_double_left">
+    </string-array>
+
+    <!-- Swipe double right -->
+    <string-array name="default_double_right">
     </string-array>
 
     <!-- Volume up - Messaging -->
