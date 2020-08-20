@@ -111,6 +111,7 @@ class SettingsFragmentLauncher : Fragment(), UIObject {
 
         setSwitchColor(settings_launcher_switch_screen_timeout, vibrantColor)
         setSwitchColor(settings_launcher_switch_screen_full, vibrantColor)
+        setSwitchColor(settings_launcher_switch_enable_double, vibrantColor)
 
         settings_launcher_container.setBackgroundColor(dominantColor)
         setButtonColor(settings_theme_custom_button_select, vibrantColor)
@@ -136,6 +137,15 @@ class SettingsFragmentLauncher : Fragment(), UIObject {
                 .apply()
 
             setWindowFlags(activity!!.window)
+        }
+        settings_launcher_switch_enable_double.setOnClickListener { // Toggle double actions
+            launcherPreferences.edit()
+                .putBoolean(PREF_DOUBLE_ACTIONS_ENABLED,
+                    !launcherPreferences.getBoolean(PREF_DOUBLE_ACTIONS_ENABLED, true))
+                .apply()
+
+            intendedSettingsPause = true
+            activity!!.recreate()
         }
     }
 
@@ -168,7 +178,9 @@ class SettingsFragmentLauncher : Fragment(), UIObject {
         settings_launcher_switch_screen_timeout.isChecked =
             launcherPreferences.getBoolean(PREF_SCREEN_TIMEOUT_DISABLED, false)
         settings_launcher_switch_screen_full.isChecked =
-            launcherPreferences.getBoolean(PREF_SCREEN_FULLSCREEN, false)
+            launcherPreferences.getBoolean(PREF_SCREEN_FULLSCREEN, true)
+        settings_launcher_switch_enable_double.isChecked =
+            launcherPreferences.getBoolean(PREF_DOUBLE_ACTIONS_ENABLED, false)
 
         // Load values into the date-format spinner
         val staticAdapter = ArrayAdapter.createFromResource(

@@ -189,4 +189,56 @@
 
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/settings_launcher_section_functions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/settings_launcher_section_functions_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/settings_launcher_section_functions"
+            android:textColor="#ccc"
+            android:textSize="18sp"
+            tools:layout_editor_absoluteX="32dp"
+            tools:layout_editor_absoluteY="16dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16sp"
+        android:layout_marginBottom="16sp"
+        android:gravity="top"
+        android:orientation="horizontal"
+        android:paddingLeft="8sp">
+
+        <TextView
+            android:id="@+id/settings_launcher_text_enable_double"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/settings_launcher_enable_double"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/settings_launcher_text_time_format" />
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <Switch
+            android:id="@+id/settings_launcher_switch_enable_double"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@id/settings_launcher_text_screen_timeout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/settings_launcher_text_screen_timeout" />
+
+    </LinearLayout>
+
 </LinearLayout>

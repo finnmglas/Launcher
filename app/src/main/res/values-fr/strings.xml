@@ -75,6 +75,10 @@
     <string name="settings_launcher_disable_timeout">Gardez l\'écran allumé</string>
     <string name="settings_launcher_full_screen">Utiliser le plein écran</string>
 
+    <string name="settings_launcher_section_functions">Fonctions</string>
+
+    <string name="settings_launcher_enable_double">Double balayage actions</string>
+
     <!--
       -
       - Settings : Meta

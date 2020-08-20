@@ -75,6 +75,10 @@
     <string name="settings_launcher_disable_timeout">Bildschirm wach halten</string>
     <string name="settings_launcher_full_screen">Vollbild verwenden</string>
 
+    <string name="settings_launcher_section_functions">Funktionen</string>
+
+    <string name="settings_launcher_enable_double">Doppelte Wischaktionen</string>
+
     <!--
       -
       - Settings : Meta

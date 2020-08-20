@@ -95,6 +95,10 @@
     <string name="settings_launcher_disable_timeout">Keep screen on</string>
     <string name="settings_launcher_full_screen">Use full screen</string>
 
+    <string name="settings_launcher_section_functions">Functions</string>
+
+    <string name="settings_launcher_enable_double">Double swipe actions</string>
+
     <!--
       -
       - Settings : Meta
