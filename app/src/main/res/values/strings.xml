@@ -98,6 +98,7 @@
     <string name="settings_launcher_section_functions">Functions</string>
 
     <string name="settings_launcher_enable_double">Double swipe actions</string>
+    <string name="settings_launcher_auto_launch">Launch search results</string>
 
     <!--
       -

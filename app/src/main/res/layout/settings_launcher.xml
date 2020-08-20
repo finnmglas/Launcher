@@ -43,9 +43,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/settings_launcher_time_format"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toTopOf="@id/settings_launcher_text_screen_timeout"
-            app:layout_constraintStart_toStartOf="parent" />
+            android:textSize="16sp" />
 
         <Space
             android:layout_width="0dp"
@@ -72,9 +70,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/settings_launcher_theme"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toTopOf="@id/settings_launcher_text_screen_timeout"
-            app:layout_constraintStart_toStartOf="parent" />
+            android:textSize="16sp" />
 
         <Space
             android:layout_width="0dp"
@@ -134,9 +130,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/settings_launcher_disable_timeout"
-            android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/settings_launcher_text_time_format" />
+            android:textSize="16sp" />
 
         <Space
             android:layout_width="0dp"
@@ -148,10 +142,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:checked="false"
-            android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="@id/settings_launcher_text_screen_timeout"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/settings_launcher_text_screen_timeout" />
+            android:textSize="18sp" />
 
     </LinearLayout>
 
@@ -168,9 +159,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/settings_launcher_full_screen"
-            android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/settings_launcher_text_time_format" />
+            android:textSize="16sp" />
 
         <Space
             android:layout_width="0dp"
@@ -182,10 +171,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:checked="false"
-            android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="@id/settings_launcher_text_screen_timeout"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/settings_launcher_text_screen_timeout" />
+            android:textSize="18sp" />
 
     </LinearLayout>
 
@@ -216,13 +202,40 @@
         android:paddingLeft="8sp">
 
         <TextView
+            android:id="@+id/settings_launcher_text_auto_launch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/settings_launcher_auto_launch"
+            android:textSize="16sp" />
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <Switch
+            android:id="@+id/settings_launcher_switch_auto_launch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16sp"
+        android:gravity="top"
+        android:orientation="horizontal"
+        android:paddingLeft="8sp">
+
+        <TextView
             android:id="@+id/settings_launcher_text_enable_double"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/settings_launcher_enable_double"
-            android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/settings_launcher_text_time_format" />
+            android:textSize="16sp" />
 
         <Space
             android:layout_width="0dp"
@@ -234,10 +247,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:checked="false"
-            android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="@id/settings_launcher_text_screen_timeout"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/settings_launcher_text_screen_timeout" />
+            android:textSize="18sp" />
 
     </LinearLayout>
 

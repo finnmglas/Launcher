@@ -78,6 +78,7 @@
     <string name="settings_launcher_section_functions">Funktionen</string>
 
     <string name="settings_launcher_enable_double">Doppelte Wischaktionen</string>
+    <string name="settings_launcher_auto_launch">Suchergebisse launchen</string>
 
     <!--
       -

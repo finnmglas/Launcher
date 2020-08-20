@@ -111,6 +111,7 @@ class SettingsFragmentLauncher : Fragment(), UIObject {
 
         setSwitchColor(settings_launcher_switch_screen_timeout, vibrantColor)
         setSwitchColor(settings_launcher_switch_screen_full, vibrantColor)
+        setSwitchColor(settings_launcher_switch_auto_launch, vibrantColor)
         setSwitchColor(settings_launcher_switch_enable_double, vibrantColor)
 
         settings_launcher_container.setBackgroundColor(dominantColor)
@@ -137,7 +138,14 @@ class SettingsFragmentLauncher : Fragment(), UIObject {
 
             setWindowFlags(activity!!.window)
         }
-        
+
+        settings_launcher_switch_auto_launch.isChecked = launcherPreferences.getBoolean(PREF_SEARCH_AUTO_LAUNCH, false)
+        settings_launcher_switch_auto_launch.setOnCheckedChangeListener { _, isChecked -> // Toggle double actions
+            launcherPreferences.edit()
+                .putBoolean(PREF_SEARCH_AUTO_LAUNCH, isChecked)
+                .apply()
+        }
+
         settings_launcher_switch_enable_double.isChecked = launcherPreferences.getBoolean(PREF_DOUBLE_ACTIONS_ENABLED, false)
         settings_launcher_switch_enable_double.setOnCheckedChangeListener { _, isChecked -> // Toggle double actions
             launcherPreferences.edit()
