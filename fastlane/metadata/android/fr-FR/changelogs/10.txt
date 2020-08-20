@@ -1,0 +1,9 @@
+Nouvelles fonctionnalités avec Launcher v1.4.0:
+
+- Vous pouvez choisir entre plusieurs formats de date.
+- Vous pouvez décider si Launcher affichera ou masquera votre barre de notification.
+- Vous pouvez choisir si vous souhaitez démarrer automatiquement les résultats de la recherche.
+- Essayez la nouvelle fonction expérimentale: les gestes de glissement à deux doigts.
+- Les paramètres du lanceur semblent plus propres maintenant ^^
+
+J'espère que vous apprécierez l'application!

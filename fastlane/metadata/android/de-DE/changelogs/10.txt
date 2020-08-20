@@ -1,0 +1,9 @@
+Was ist neu bei Launcher v1.4.0?
+
+- Du kannst zwischen mehreren Datumsformaten wählen.
+- Du kannst entscheiden, ob Launcher deine Benachrichtigungsleiste ein- oder ausblendet.
+- Du kannst wählen, ob du Suchergebnisse automatisch starten möchtest.
+- Probiere die neue experimentelle Funktion aus: Zweifinger- Wischgesten.
+- Die Launcher-Einstellungen sehen jetzt einfach sauberer aus ^^
+
+Ich wünsche dir viel Spaß mit der App - und vergiss Sie nicht, uns Feedback zu hinterlassen!

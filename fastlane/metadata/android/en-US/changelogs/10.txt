@@ -1,0 +1,10 @@
+What's new in Launcher v1.4.0?
+
+- You can choose between multiple date formats.
+- You can decide if Launcher should show or hide your notification bar.
+- You  can choose to immediately launch a search result,
+    once there only is one related to your search.
+- Try the new experimental feature: two finger swipe gestures.
+- Launcher settings just look cleaner now ^^
+
+I hope you enjoy using the app - and don't forget to leave some feedback!
