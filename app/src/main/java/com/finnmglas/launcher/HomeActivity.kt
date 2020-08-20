@@ -7,6 +7,7 @@ import android.os.AsyncTask
 import android.os.Bundle
 import android.provider.MediaStore
 import android.view.*
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GestureDetectorCompat
 import com.finnmglas.launcher.tutorial.TutorialActivity
@@ -31,6 +32,9 @@ import com.finnmglas.launcher.BuildConfig.VERSION_NAME
  */
 class HomeActivity: UIObject, AppCompatActivity(),
     GestureDetector.OnGestureListener, GestureDetector.OnDoubleTapListener {
+
+    private var bufferedPointerCount = 1 // how many fingers on screen
+    private var pointerBufferTimer = Timer()
 
     private lateinit var mDetector: GestureDetectorCompat
 
@@ -141,6 +145,9 @@ class HomeActivity: UIObject, AppCompatActivity(),
 
     override fun onFling(e1: MotionEvent, e2: MotionEvent, dX: Float, dY: Float): Boolean {
 
+        Toast.makeText(this, bufferedPointerCount.toString(), Toast.LENGTH_SHORT)
+            .show()
+
         val width = displayMetrics.widthPixels
         val height = displayMetrics.heightPixels
 
@@ -202,6 +209,16 @@ class HomeActivity: UIObject, AppCompatActivity(),
     }
 
     override fun onTouchEvent(event: MotionEvent): Boolean {
+
+        // Buffer / Debounce the pointer count
+        if (event.pointerCount > bufferedPointerCount) {
+            bufferedPointerCount = event.pointerCount
+            pointerBufferTimer = fixedRateTimer("pointerBufferTimer", true, 200, 1000) {
+                bufferedPointerCount = 1
+                this.cancel() // a non-recurring timer
+            }
+        }
+
         return if (mDetector.onTouchEvent(event)) { false } else { super.onTouchEvent(event) }
     }
 
