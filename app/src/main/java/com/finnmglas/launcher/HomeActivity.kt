@@ -7,7 +7,6 @@ import android.os.AsyncTask
 import android.os.Bundle
 import android.provider.MediaStore
 import android.view.*
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GestureDetectorCompat
 import com.finnmglas.launcher.tutorial.TutorialActivity
@@ -119,12 +118,12 @@ class HomeActivity: UIObject, AppCompatActivity(),
         clockTimer = fixedRateTimer("clockTimer", true, 0L, 100) {
             this@HomeActivity.runOnUiThread {
                 val t = timeFormat.format(Date())
-                if (home_time_view.text != t)
-                    home_time_view.text = t
+                if (home_lower_view.text != t)
+                    home_lower_view.text = t
 
                 val d = dateFormat.format(Date())
-                if (home_date_view.text != d)
-                    home_date_view.text = d
+                if (home_upper_view.text != d)
+                    home_upper_view.text = d
             }
         }
     }
@@ -260,12 +259,18 @@ class HomeActivity: UIObject, AppCompatActivity(),
             launch("launcher:settings", this, R.anim.bottom_up)
         }
 
-        home_date_view.setOnClickListener() {
-            launch(calendarApp, this)
+        home_upper_view.setOnClickListener() {
+            when (launcherPreferences.getInt(PREF_DATE_FORMAT, 0)) {
+                0 -> launch(calendarApp, this)
+                else -> launch(clockApp,this)
+            }
         }
 
-        home_time_view.setOnClickListener() {
-            launch(clockApp,this)
+        home_lower_view.setOnClickListener() {
+            when (launcherPreferences.getInt(PREF_DATE_FORMAT, 0)) {
+                0 -> launch(clockApp, this)
+                else -> launch(calendarApp,this)
+            }
         }
     }
 

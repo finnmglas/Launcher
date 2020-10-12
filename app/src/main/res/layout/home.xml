@@ -21,7 +21,7 @@
         tools:ignore="ContentDescription" />
 
     <TextView
-        android:id="@+id/home_date_view"
+        android:id="@+id/home_upper_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="start|center_vertical"
@@ -33,7 +33,7 @@
         app:layout_constraintVertical_bias="0.45" />
 
     <TextView
-        android:id="@+id/home_time_view"
+        android:id="@+id/home_lower_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="start|center_vertical"
