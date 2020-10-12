@@ -13,6 +13,10 @@
   <string name="fas_trash" translatable="false">&#xf1f8;</string>
   <string name="fas_times" translatable="false">&#xf00d;</string> <!-- 'close' -->
   <string name="fas_three_dots" translatable="false">&#xf142;</string> <!-- 'ellipsis-v' -->
+  <string name="fas_volume_down" translatable="false">&#xf027;</string>
+  <string name="fas_volume_up" translatable="false">&#xf028;</string>
+  <string name="fas_plus" translatable="false">&#xf067;</string>
+  <string name="fas_minus" translatable="false">&#xf068;</string>
 
   <string name="fas_angle_double_left" translatable="false">&#xf100;</string>
   <string name="fas_angle_double_right" translatable="false">&#xf101;</string>

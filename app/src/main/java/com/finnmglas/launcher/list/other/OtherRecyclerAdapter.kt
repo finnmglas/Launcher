@@ -66,6 +66,14 @@ class OtherRecyclerAdapter(val activity: Activity):
             OtherInfo(activity.getString(R.string.list_other_list),
                 "launcher:choose",
                 activity.getString(R.string.fas_bars)))
+        othersList.add(
+            OtherInfo(activity.getString(R.string.list_other_volume_up),
+                "launcher:volumeUp",
+                activity.getString(R.string.fas_plus)))
+        othersList.add(
+            OtherInfo(activity.getString(R.string.list_other_volume_down),
+                "launcher:volumeDown",
+                activity.getString(R.string.fas_minus)))
     }
 
     /*  */
