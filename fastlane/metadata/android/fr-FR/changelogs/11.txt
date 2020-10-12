@@ -1,0 +1,6 @@
+Quoi de neuf dans Launcher v1.5.0?
+
+- Vous pouvez maintenant augmenter / diminuer le volume avec les actions du lanceur.
+- Vous pouvez contrôler votre lecteur de musique avec Launcher et basculer entre les chansons.
+
+Soyez plus efficace en utilisant Launcher!

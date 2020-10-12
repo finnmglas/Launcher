@@ -1,0 +1,7 @@
+Was ist neu bei Launcher v1.5.0?
+
+- Du kannst jetzt mit Launcher Actions die Lautstärke erhöhen / vermindern.
+- Du kannst deinen Musikplayer mit Launcher kontrollieren und zwischen Songs wechseln.
+- Ein paar Bugfixes - generell aber ein kleineres Launcher update.
+
+Weiterhin viel Erfolg mit Launcher!
