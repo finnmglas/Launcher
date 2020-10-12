@@ -2,6 +2,7 @@ package com.finnmglas.launcher.list.other
 
 import android.app.Activity
 import android.content.Intent
+import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -66,9 +67,33 @@ class OtherRecyclerAdapter(val activity: Activity):
             OtherInfo(activity.getString(R.string.list_other_list),
                 "launcher:choose",
                 activity.getString(R.string.fas_bars)))
+        othersList.add(
+            OtherInfo(activity.getString(R.string.list_other_volume_up),
+                "launcher:volumeUp",
+                activity.getString(R.string.fas_plus)))
+        othersList.add(
+            OtherInfo(activity.getString(R.string.list_other_volume_down),
+                "launcher:volumeDown",
+                activity.getString(R.string.fas_minus)))
+
+        if (Build.VERSION.SDK_INT >= 19) { // requires Android KitKat +
+            othersList.add(
+                OtherInfo(
+                    activity.getString(R.string.list_other_track_next),
+                    "launcher:nextTrack",
+                    activity.getString(R.string.fas_forward)
+                )
+            )
+            othersList.add(
+                OtherInfo(
+                    activity.getString(R.string.list_other_track_previous),
+                    "launcher:previousTrack",
+                    activity.getString(R.string.fas_back)
+                )
+            )
+        }
     }
 
-    /*  */
     private fun returnChoiceIntent(forAction: String, value: String) {
         val returnIntent = Intent()
         returnIntent.putExtra("value", value)

@@ -123,7 +123,11 @@
     <string name="list_apps_search_hint">rechercher des applications</string>
 
     <string name="list_other_settings">Launcher Réglages</string>
-    <string name="list_other_list">Launcher Liste des apps</string>
+    <string name="list_other_list">Applications</string>
+    <string name="list_other_volume_up">Musique: plus fort</string>
+    <string name="list_other_volume_down">Musique: plus calme</string>
+    <string name="list_other_track_next">Musique: suivant</string>
+    <string name="list_other_track_previous">Musique: dernier</string>
 
     <!--
       -

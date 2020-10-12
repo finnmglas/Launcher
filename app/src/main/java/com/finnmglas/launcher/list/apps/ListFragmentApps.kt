@@ -12,6 +12,7 @@ import com.finnmglas.launcher.dominantColor
 import com.finnmglas.launcher.list.forApp
 import com.finnmglas.launcher.list.intention
 import com.finnmglas.launcher.openSoftKeyboard
+import kotlinx.android.synthetic.main.list.*
 import kotlinx.android.synthetic.main.list_apps.*
 
 
@@ -68,6 +69,8 @@ class ListFragmentApps : Fragment(), UIObject {
             }
         })
 
-        openSoftKeyboard(context!!, list_apps_searchview)
+        when (intention) {
+            "view" -> openSoftKeyboard(context!!, list_apps_searchview)
+        }
     }
 }

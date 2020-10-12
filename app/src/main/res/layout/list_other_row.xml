@@ -9,11 +9,11 @@
 
     <com.finnmglas.launcher.libraries.FontAwesome
         android:id="@+id/list_other_row_icon"
-        android:layout_width="40sp"
-        android:layout_height="40sp"
+        android:layout_width="35sp"
+        android:layout_height="35sp"
         android:gravity="center"
         android:text=""
-        android:textSize="35sp"
+        android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
