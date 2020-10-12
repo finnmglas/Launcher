@@ -108,6 +108,10 @@ class ActionsRecyclerAdapter(val activity: Activity):
                     viewHolder.fontAwesome.text = activity.getString(R.string.fas_plus)
                 "volumeDown" ->
                     viewHolder.fontAwesome.text = activity.getString(R.string.fas_minus)
+                "nextTrack" ->
+                    viewHolder.fontAwesome.text = activity.getString(R.string.fas_forward)
+                "previousTrack" ->
+                    viewHolder.fontAwesome.text = activity.getString(R.string.fas_back)
             }
         } else {
             // Set image icon (by packageName)

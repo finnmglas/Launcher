@@ -12,8 +12,10 @@ import android.media.AudioManager
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.os.SystemClock
 import android.provider.Settings
 import android.util.DisplayMetrics
+import android.view.KeyEvent
 import android.view.View
 import android.view.Window
 import android.view.WindowManager
@@ -23,6 +25,7 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.Switch
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import com.finnmglas.launcher.list.ListActivity
 import com.finnmglas.launcher.list.apps.AppInfo
 import com.finnmglas.launcher.list.apps.AppsRecyclerAdapter
@@ -219,11 +222,45 @@ fun launch(
             "choose" -> openAppsList(activity)
             "volumeUp" -> audioVolumeUp(activity)
             "volumeDown" -> audioVolumeDown(activity)
+            "nextTrack" -> audioNextTrack(activity)
+            "previousTrack" -> audioPreviousTrack(activity)
             "tutorial" -> openTutorial(activity)
         }
     else launchApp(data, activity) // app
 
     activity.overridePendingTransition(animationIn, animationOut)
+}
+
+/* Media player actions */
+
+fun audioNextTrack(activity: Activity) {
+    if (Build.VERSION.SDK_INT >= 19) { // requires Android KitKat +
+        val mAudioManager = activity.getSystemService(Context.AUDIO_SERVICE) as AudioManager
+
+        val eventTime: Long = SystemClock.uptimeMillis()
+
+        val downEvent =
+            KeyEvent(eventTime, eventTime, KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_MEDIA_NEXT, 0)
+        mAudioManager.dispatchMediaKeyEvent(downEvent)
+
+        val upEvent = KeyEvent(eventTime, eventTime, KeyEvent.ACTION_UP, KeyEvent.KEYCODE_MEDIA_NEXT, 0)
+        mAudioManager.dispatchMediaKeyEvent(upEvent)
+    }
+}
+
+fun audioPreviousTrack(activity: Activity) {
+    if (Build.VERSION.SDK_INT >= 19) { // requires Android KitKat +
+        val mAudioManager = activity.getSystemService(Context.AUDIO_SERVICE) as AudioManager
+
+        val eventTime: Long = SystemClock.uptimeMillis()
+
+        val downEvent =
+            KeyEvent(eventTime, eventTime, KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_MEDIA_PREVIOUS, 0)
+        mAudioManager.dispatchMediaKeyEvent(downEvent)
+
+        val upEvent = KeyEvent(eventTime, eventTime, KeyEvent.ACTION_UP, KeyEvent.KEYCODE_MEDIA_PREVIOUS, 0)
+        mAudioManager.dispatchMediaKeyEvent(upEvent)
+    }
 }
 
 fun audioVolumeUp(activity: Activity) {
@@ -247,6 +284,8 @@ fun audioVolumeDown(activity: Activity) {
         AudioManager.FLAG_SHOW_UI
     )
 }
+
+/* --- */
 
 fun launchApp(packageName: String, context: Context) {
     val intent = getIntent(packageName, context)

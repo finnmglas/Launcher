@@ -74,9 +74,16 @@ class OtherRecyclerAdapter(val activity: Activity):
             OtherInfo(activity.getString(R.string.list_other_volume_down),
                 "launcher:volumeDown",
                 activity.getString(R.string.fas_minus)))
+        othersList.add(
+            OtherInfo(activity.getString(R.string.list_other_track_next),
+                "launcher:nextTrack",
+                activity.getString(R.string.fas_forward)))
+        othersList.add(
+            OtherInfo(activity.getString(R.string.list_other_track_previous),
+                "launcher:previousTrack",
+                activity.getString(R.string.fas_back)))
     }
 
-    /*  */
     private fun returnChoiceIntent(forAction: String, value: String) {
         val returnIntent = Intent()
         returnIntent.putExtra("value", value)
