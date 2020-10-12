@@ -122,8 +122,12 @@
 
     <string name="list_apps_search_hint">Anwendungen suchen</string>
 
-    <string name="list_other_settings">Launcher Einstellungen</string>
-    <string name="list_other_list">Launcher Apps Liste</string>
+    <string name="list_other_settings">App Einstellungen</string>
+    <string name="list_other_list">Alle Anwendungen</string>
+    <string name="list_other_volume_up">Musik: Lauter</string>
+    <string name="list_other_volume_down">Musik: Leiser</string>
+    <string name="list_other_track_next">Musik: Weiter</string>
+    <string name="list_other_track_previous">Musik: Zurück</string>
 
     <!--
       -

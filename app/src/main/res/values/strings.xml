@@ -143,11 +143,11 @@
     <string name="list_apps_search_hint">Search Applications</string>
 
     <string name="list_other_settings">Launcher Settings</string>
-    <string name="list_other_list">Launcher AppsList</string>
-    <string name="list_other_volume_up">Increase Volume</string>
-    <string name="list_other_volume_down">Decrease Volume</string>
-    <string name="list_other_track_next">Music: Next Track</string>
-    <string name="list_other_track_previous">Music: Previous Track</string>
+    <string name="list_other_list">All Applications</string>
+    <string name="list_other_volume_up">Music: Louder</string>
+    <string name="list_other_volume_down">Music: Quieter</string>
+    <string name="list_other_track_next">Music: Next</string>
+    <string name="list_other_track_previous">Music: Previous</string>
 
     <!--
       -
