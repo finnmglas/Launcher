@@ -1,6 +1,7 @@
 <!-- Shields form shields.io -->
 [![][shield-release]][latest-release]
 [![][shield-license]][license]
+[![][shield-discord]][discord]
 [![][shield-contribute]][issues]
 
 <!-- ENGLISH README -->
@@ -22,7 +23,7 @@ So make the best of your time on the phone by downloading this Launcher:
 [<img alt="Get on IzzyOnDroid" src="https://gitlab.com/IzzyOnDroid/repo/-/raw/master/assets/IzzyOnDroid.png" title="Download Launcher from Izzys F-droid repo" width="49%">][store-izzyondroid-fdroid]
 
 ## Contributing
-If _Launcher_ is useful to you, you are very welcome to help developing it!
+If _Launcher_ is useful to you, you are very welcome to help developing it! Join our [discord]!
 
 ### Testing
 The easiest way to help improving this app is downloading it and testing. We need lots of feedback from you: You can either [review Launcher][store-googleplay] on Google Play or [open an issue][newissue] on GitHub.
@@ -70,7 +71,7 @@ Mache das Beste aus deiner Zeit am Smartphone indem du diesen Launcher installie
 [<img alt="Get on IzzyOnDroid" src="https://gitlab.com/IzzyOnDroid/repo/-/raw/master/assets/IzzyOnDroid.png" title="Launcher von Izzys F-droid repository herunterladen" width="49%">][store-izzyondroid-fdroid]
 
 ## Mitwirkungen
-Wenn _Launcher_ für dich nützlich ist, darfst du gerne auch bei der Entwicklung mithelfen!
+Wenn _Launcher_ für dich nützlich ist, darfst du gerne auch bei der Entwicklung mithelfen! Schau einfach mal im [Launcher Discord][discord] vorbei (dort sprechen wir Englisch)!
 
 ### Testen
 Am Einfachsten kannst du mithelfen, indem die die App herunterlädst und sie testest. Wir brauchen viel Feedback von dir: Du kannst entweder [eine Revision][store-googleplay] im Play-Store hinterlassen oder [ein Issue auf GitHub eröffnen][newissue].
@@ -118,7 +119,7 @@ Alors profitez au mieux de votre temps au téléphone en téléchargeant ce lanc
 [<img alt="Get on IzzyOnDroid" src="https://gitlab.com/IzzyOnDroid/repo/-/raw/master/assets/IzzyOnDroid.png" title="Télécharger Launcher sur Izzys F-droid dépot" width="49%">][store-izzyondroid-fdroid]
 
 ## Contribuant
-Si _Launcher_ vous est utile, vous êtes les bienvenus pour contribuer à son développement!
+Si _Launcher_ vous est utile, vous êtes les bienvenus pour contribuer à son développement! Rejoignez le [Launcher Discord][discord] (on y parle anglais)!
 
 ### Tester
 Le moyen le plus simple d'aider à améliorer cette application est de la télécharger et de la tester. Nous avons besoin de beaucoup de commentaires de votre part: vous pouvez [réviser Launcher][store-googleplay] sur Google Play ou [ouvrir un issue][newissue] sur GitHub.
@@ -148,39 +149,46 @@ Comme l'application est 100% gratuite pour le public, les frais de distribution,
 
 ---
 
+<!-- Community -->
+  
+  [shield-discord]: https://img.shields.io/badge/discord-join%20chat-007ec6.svg?style=flat
+  [discord]: https://discord.com/invite/jV2AhF8
+
 <!-- Download links / stores -->
 
-[store-googleplay]: https://play.google.com/store/apps/details?id=com.finnmglas.launcher
-[store-googleplay-badgecampain]: https://play.google.com/store/apps/details?id=com.finnmglas.launcher&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1
-[store-izzyondroid-fdroid]: https://apt.izzysoft.de/fdroid/index/apk/com.finnmglas.launcher
+  [store-googleplay]: https://play.google.com/store/apps/details?id=com.finnmglas.launcher
+  [store-googleplay-badgecampain]: https://play.google.com/store/apps/details?id=com.finnmglas.launcher&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1
+  [store-izzyondroid-fdroid]: https://apt.izzysoft.de/fdroid/index/apk/com.finnmglas.launcher
 
 <!-- Author related and owned media -->
-[financial]: https://sponsor.finnmglas.com
+
+  [financial]: https://sponsor.finnmglas.com
 
 <!-- GitHub related -->
 
-[fork]: https://github.com/finnmglas/Launcher/fork
-[star]: https://github.com/finnmglas/Launcher/stargazers
+  [fork]: https://github.com/finnmglas/Launcher/fork
+  [star]: https://github.com/finnmglas/Launcher/stargazers
 
-[joingh]: https://github.com/join
+  [joingh]: https://github.com/join
 
-[newissue]: https://github.com/finnmglas/Launcher/issues/new/choose
-[issues]: https://github.com/finnmglas/Launcher/issues
-[contributors]: https://github.com/finnmglas/Launcher/graphs/contributors
+  [newissue]: https://github.com/finnmglas/Launcher/issues/new/choose
+  [issues]: https://github.com/finnmglas/Launcher/issues
+  [contributors]: https://github.com/finnmglas/Launcher/graphs/contributors
 
-[theme-examples]: https://github.com/finnmglas/Launcher/blob/master/docs/README.md
+  [theme-examples]: https://github.com/finnmglas/Launcher/blob/master/docs/README.md
 
-[latest-release]: https://github.com/finnmglas/Launcher/releases/latest
+  [latest-release]: https://github.com/finnmglas/Launcher/releases/latest
 
 <!-- Shields and Badges -->
-[shield-release]: https://img.shields.io/github/v/release/finnmglas/Launcher?style=flat
-[shield-contribute]: https://img.shields.io/badge/contributions-welcome-007ec6.svg?style=flat
-[shield-license]: https://img.shields.io/badge/license-MIT-007ec6?style=flat
 
-[shield-gh-watch]: https://img.shields.io/github/watchers/finnmglas/Launcher?label=Watch&style=social
-[shield-gh-star]: https://img.shields.io/github/stars/finnmglas/Launcher?label=Star&style=social
-[shield-gh-fork]: https://img.shields.io/github/forks/finnmglas/Launcher?label=Fork&style=social
+  [shield-release]: https://img.shields.io/github/v/release/finnmglas/Launcher?style=flat
+  [shield-contribute]: https://img.shields.io/badge/contributions-welcome-007ec6.svg?style=flat
+  [shield-license]: https://img.shields.io/badge/license-MIT-007ec6?style=flat
+
+  [shield-gh-watch]: https://img.shields.io/github/watchers/finnmglas/Launcher?label=Watch&style=social
+  [shield-gh-star]: https://img.shields.io/github/stars/finnmglas/Launcher?label=Star&style=social
+  [shield-gh-fork]: https://img.shields.io/github/forks/finnmglas/Launcher?label=Fork&style=social
 
 <!-- Helpful resources -->
 
-[license]: https://github.com/finnmglas/Launcher/blob/master/LICENSE
+  [license]: https://github.com/finnmglas/Launcher/blob/master/LICENSE
