@@ -20,7 +20,7 @@ This app **costs you nothing**, is **ad-free** and does not collect, receive or 
 So make the best of your time on the phone by downloading this Launcher:
 
 [<img alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" title="Download Launcher on Google Play" width="49%">][store-googleplay-badgecampain]
-[<img alt="Get on IzzyOnDroid" src="https://gitlab.com/IzzyOnDroid/repo/-/raw/master/assets/IzzyOnDroid.png" title="Download Launcher from Izzys F-droid repo" width="49%">][store-izzyondroid-fdroid]
+[<img alt="Get on F-Droid" src="https://www.f-droid.org/badge/get-it-on.png" title="Download Launcher from F-droid" width="49%">][store-fdroid]
 
 ## Contributing
 If _Launcher_ is useful to you, you are very welcome to help developing it! Join our [discord]!
@@ -68,7 +68,7 @@ Die App **kostet dich nichts**, ist **frei von Werbung** und sammelt keine pers�
 Mache das Beste aus deiner Zeit am Smartphone indem du diesen Launcher installierst:
 
 [<img alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" title="Launcher auf Google Play herunterladen" width="49%">][store-googleplay-badgecampain]
-[<img alt="Get on IzzyOnDroid" src="https://gitlab.com/IzzyOnDroid/repo/-/raw/master/assets/IzzyOnDroid.png" title="Launcher von Izzys F-droid repository herunterladen" width="49%">][store-izzyondroid-fdroid]
+[<img alt="Get on F-Droid" src="https://www.f-droid.org/badge/get-it-on.png" title="Launcher von F-droid herunterladen" width="49%">][store-fdroid-de]
 
 ## Mitwirkungen
 Wenn _Launcher_ für dich nützlich ist, darfst du gerne auch bei der Entwicklung mithelfen! Schau einfach mal im [Launcher Discord][discord] vorbei (dort sprechen wir Englisch)!
@@ -116,7 +116,7 @@ Cette application **ne vous coûte rien**, est **sans publicité** et ne collect
 Alors profitez au mieux de votre temps au téléphone en téléchargeant ce lanceur:
 
 [<img alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" title="Télécharger Launcher sur Google Play" width="49%">][store-googleplay-badgecampain]
-[<img alt="Get on IzzyOnDroid" src="https://gitlab.com/IzzyOnDroid/repo/-/raw/master/assets/IzzyOnDroid.png" title="Télécharger Launcher sur Izzys F-droid dépot" width="49%">][store-izzyondroid-fdroid]
+[<img alt="Get on F-Droid" src="https://www.f-droid.org/badge/get-it-on.png" title="Télécharger Launcher sur F-droid" width="49%">][store-fdroid-fr]
 
 ## Contribuant
 Si _Launcher_ vous est utile, vous êtes les bienvenus pour contribuer à son développement! Rejoignez le [Launcher Discord][discord] (on y parle anglais)!
@@ -158,7 +158,9 @@ Comme l'application est 100% gratuite pour le public, les frais de distribution,
 
   [store-googleplay]: https://play.google.com/store/apps/details?id=com.finnmglas.launcher
   [store-googleplay-badgecampain]: https://play.google.com/store/apps/details?id=com.finnmglas.launcher&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1
-  [store-izzyondroid-fdroid]: https://apt.izzysoft.de/fdroid/index/apk/com.finnmglas.launcher
+  [store-fdroid]: https://f-droid.org/packages/com.finnmglas.launcher/
+  [store-fdroid-de]: https://f-droid.org/de/packages/com.finnmglas.launcher/
+  [store-fdroid-fr]: https://f-droid.org/fr/packages/com.finnmglas.launcher/
 
 <!-- Author related and owned media -->
 
