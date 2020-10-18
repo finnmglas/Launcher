@@ -115,13 +115,11 @@
     <string name="settings_meta_reset_confirm">You are going to discard all your preferences. Continue?</string>
 
     <string name="settings_meta_link_github">https://github.com/finnmglas/Launcher#en</string>
-    <string name="settings_meta_link_web">https://www.finnmglas.com</string>
 
     <string name="settings_meta_contact">Contact the developer</string>
     <string name="settings_meta_contact_url">https://www.finnmglas.com/contact/</string>
 
-    <string name="settings_meta_donate">Make a donation</string>
-    <string name="settings_meta_donate_url">https://sponsor.finnmglas.com</string>
+    <string name="settings_meta_donate_url">https://www.finnmglas.com/sponsor</string>
 
     <!--
       -

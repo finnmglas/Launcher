@@ -65,11 +65,10 @@ class SettingsFragmentMeta : Fragment(), UIObject {
         setButtonColor(settings_meta_button_view_tutorial, vibrantColor)
         setButtonColor(settings_meta_button_reset_settings, vibrantColor)
         setButtonColor(settings_meta_button_contact, vibrantColor)
-        setButtonColor(settings_meta_button_donate, vibrantColor)
 
-        settings_meta_icon_google_play.setTextColor(vibrantColor)
         settings_meta_icon_github.setTextColor(vibrantColor)
-        settings_meta_icon_globe.setTextColor(vibrantColor)
+        settings_meta_icon_store.setTextColor(vibrantColor)
+        settings_meta_icon_donate.setTextColor(vibrantColor)
     }
 
     override fun setOnClicks() {
@@ -134,8 +133,8 @@ class SettingsFragmentMeta : Fragment(), UIObject {
                 this.context!!
             )
         }
-        // rate app
-        settings_meta_icon_google_play.setOnClickListener {
+        // rate app / open store
+        settings_meta_icon_store.setOnClickListener {
             try {
                 val rateIntent = rateIntentForUrl("market://details")
                 intendedSettingsPause = true
@@ -145,14 +144,6 @@ class SettingsFragmentMeta : Fragment(), UIObject {
                 intendedSettingsPause = true
                 startActivity(rateIntent)
             }
-        }
-
-        settings_meta_icon_globe.setOnClickListener {
-            intendedSettingsPause = true
-            openNewTabWindow(
-                getString(R.string.settings_meta_link_web),
-                this.context!!
-            )
         }
 
         // contact developer
@@ -165,7 +156,7 @@ class SettingsFragmentMeta : Fragment(), UIObject {
         }
 
         // donate
-        settings_meta_button_donate.setOnClickListener {
+        settings_meta_icon_donate.setOnClickListener {
             intendedSettingsPause = true
             openNewTabWindow(
                 getString(R.string.settings_meta_donate_url),
