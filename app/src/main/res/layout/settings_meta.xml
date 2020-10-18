@@ -56,10 +56,10 @@
             android:includeFontPadding="true"
             android:paddingLeft="16sp"
             android:paddingRight="16sp"
-            android:text="@string/fab_google_play"
+            android:text="@string/fas_store"
             android:textColor="?attr/colorAccent"
             android:textSize="40sp"
-            custom:type="brands" />
+            custom:type="solid" />
 
         <com.finnmglas.launcher.libraries.FontAwesome
             android:id="@+id/settings_meta_icon_github"
