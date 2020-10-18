@@ -94,10 +94,17 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/settings_meta_button_contact"
+        android:id="@+id/settings_meta_button_report_bug"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="32sp"
+        android:text="@string/settings_meta_report_bug"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/settings_meta_button_contact"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:text="@string/settings_meta_contact"
         android:textAllCaps="false" />
 

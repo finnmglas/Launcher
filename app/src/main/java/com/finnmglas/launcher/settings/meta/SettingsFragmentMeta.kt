@@ -64,6 +64,7 @@ class SettingsFragmentMeta : Fragment(), UIObject {
         setButtonColor(settings_meta_button_select_launcher, vibrantColor)
         setButtonColor(settings_meta_button_view_tutorial, vibrantColor)
         setButtonColor(settings_meta_button_reset_settings, vibrantColor)
+        setButtonColor(settings_meta_button_report_bug, vibrantColor)
         setButtonColor(settings_meta_button_contact, vibrantColor)
 
         settings_meta_icon_github.setTextColor(vibrantColor)
@@ -125,7 +126,7 @@ class SettingsFragmentMeta : Fragment(), UIObject {
                 .show()
         }
 
-        // Footer onClicks
+        // Icon onClicks
         settings_meta_icon_github.setOnClickListener {
             intendedSettingsPause = true
             openNewTabWindow(
@@ -144,6 +145,15 @@ class SettingsFragmentMeta : Fragment(), UIObject {
                 intendedSettingsPause = true
                 startActivity(rateIntent)
             }
+        }
+
+        // report a bug
+        settings_meta_button_report_bug.setOnClickListener {
+            intendedSettingsPause = true
+            openNewTabWindow(
+                getString(R.string.settings_meta_report_bug_link),
+                context!!
+            )
         }
 
         // contact developer

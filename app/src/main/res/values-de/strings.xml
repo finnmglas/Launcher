@@ -96,6 +96,8 @@
 
     <string name="settings_meta_link_github">https://github.com/finnmglas/Launcher#de</string>
 
+    <string name="settings_meta_report_bug">Einen Fehler melden</string>
+
     <string name="settings_meta_contact">Entwickler kontaktieren</string>
     <string name="settings_meta_contact_url">https://www.finnmglas.com/de/kontakt/</string>
 

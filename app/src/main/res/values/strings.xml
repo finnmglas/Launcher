@@ -116,6 +116,9 @@
 
     <string name="settings_meta_link_github">https://github.com/finnmglas/Launcher#en</string>
 
+    <string name="settings_meta_report_bug">Report a bug</string>
+    <string name="settings_meta_report_bug_link" translatable="false">https://github.com/finnmglas/Launcher/issues/new</string>
+
     <string name="settings_meta_contact">Contact the developer</string>
     <string name="settings_meta_contact_url">https://www.finnmglas.com/contact/</string>
 
