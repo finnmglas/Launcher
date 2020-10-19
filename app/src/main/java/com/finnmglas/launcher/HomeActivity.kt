@@ -153,7 +153,8 @@ class HomeActivity: UIObject, AppCompatActivity(),
         val doubleActions = launcherPreferences.getBoolean(PREF_DOUBLE_ACTIONS_ENABLED, false)
 
         // how distinguished the swipe has to be to launch something
-        val strictness = (4 / bufferedPointerCount)
+        // strictness = opposite of sensitivity. TODO - May have to be adjusted
+        val strictness = (4 / bufferedPointerCount) * ((100 - launcherPreferences.getInt(PREF_SLIDE_SENSITIVITY, 50)) / 50)
 
         // Only open if the swipe was not from the phones top edge
         if (diffY < -height / 8 && abs(diffY) > strictness * abs(diffX) && e1.y > 100) {

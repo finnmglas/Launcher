@@ -78,6 +78,8 @@ const val PREF_DATE_FORMAT = "dateFormat"
 const val PREF_DOUBLE_ACTIONS_ENABLED = "enableDoubleActions"
 const val PREF_SEARCH_AUTO_LAUNCH = "searchAutoLaunch"
 
+const val PREF_SLIDE_SENSITIVITY = "slideSensitivity"
+
 const val PREF_STARTED = "startedBefore"
 const val PREF_STARTED_TIME = "firstStartup"
 
@@ -462,6 +464,7 @@ fun resetSettings(context: Context) {
         .putInt(PREF_DATE_FORMAT, 0)
         .putBoolean(PREF_SCREEN_FULLSCREEN, true)
         .putBoolean(PREF_DOUBLE_ACTIONS_ENABLED, false)
+        .putInt(PREF_SLIDE_SENSITIVITY, 50)
 
     // load action defaults
     for (actionKey in ACTIONS)

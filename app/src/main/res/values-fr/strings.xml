@@ -80,6 +80,8 @@
     <string name="settings_launcher_enable_double">Double balayage actions</string>
     <string name="settings_launcher_auto_launch">Lancer apps par recherche</string>
 
+    <string name="settings_launcher_sensitivity">Sensibilité</string>
+
     <!--
       -
       - Settings : Meta
