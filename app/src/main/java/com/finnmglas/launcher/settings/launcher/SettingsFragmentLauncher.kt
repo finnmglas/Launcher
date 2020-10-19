@@ -4,6 +4,7 @@ import android.Manifest
 import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.PorterDuff
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
@@ -13,6 +14,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.SeekBar
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -116,6 +119,7 @@ class SettingsFragmentLauncher : Fragment(), UIObject {
 
         settings_launcher_container.setBackgroundColor(dominantColor)
         setButtonColor(settings_theme_custom_button_select, vibrantColor)
+        settings_seekbar_sensitivity.progressDrawable.setColorFilter(vibrantColor, PorterDuff.Mode.SRC_IN);
     }
 
     override fun setOnClicks() {
@@ -155,6 +159,20 @@ class SettingsFragmentLauncher : Fragment(), UIObject {
             intendedSettingsPause = true
             activity!!.recreate()
         }
+
+        settings_seekbar_sensitivity.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+            override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
+            }
+            override fun onStartTrackingTouch(p0: SeekBar?) {
+            }
+            override fun onStopTrackingTouch(p0: SeekBar?) {
+                Toast.makeText(
+                    context,
+                    "Smooth Seekbar current progress ${p0?.progress}",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        })
     }
 
     fun resetToCustomTheme(context: Activity) {
