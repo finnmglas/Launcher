@@ -160,19 +160,17 @@ class SettingsFragmentLauncher : Fragment(), UIObject {
             activity!!.recreate()
         }
 
-        settings_seekbar_sensitivity.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
-            override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
+        settings_seekbar_sensitivity.setOnSeekBarChangeListener(
+            object : SeekBar.OnSeekBarChangeListener {
+                override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {}
+                override fun onStartTrackingTouch(p0: SeekBar?) {}
+                override fun onStopTrackingTouch(p0: SeekBar?) {
+                    launcherPreferences.edit()
+                        .putInt(PREF_SLIDE_SENSITIVITY, p0!!.progress)
+                        .apply()
+                }
             }
-            override fun onStartTrackingTouch(p0: SeekBar?) {
-            }
-            override fun onStopTrackingTouch(p0: SeekBar?) {
-                Toast.makeText(
-                    context,
-                    "Smooth Seekbar current progress ${p0?.progress}",
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
-        })
+        )
     }
 
     fun resetToCustomTheme(context: Activity) {
@@ -231,7 +229,7 @@ class SettingsFragmentLauncher : Fragment(), UIObject {
         staticThemeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         settings_launcher_theme_spinner.adapter = staticThemeAdapter
 
-        var themeInt = when (getSavedTheme(activity!!)) {
+        val themeInt = when (getSavedTheme(activity!!)) {
             "finn" -> 0
             "dark" -> 1
             "custom" -> 2
@@ -253,5 +251,7 @@ class SettingsFragmentLauncher : Fragment(), UIObject {
 
             }
         }
+
+        settings_seekbar_sensitivity.progress = launcherPreferences.getInt(PREF_SLIDE_SENSITIVITY, 50)
     }
 }
