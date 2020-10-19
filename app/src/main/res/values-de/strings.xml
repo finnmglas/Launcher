@@ -98,6 +98,8 @@
 
     <string name="settings_meta_report_bug">Einen Fehler melden</string>
 
+    <string name="settings_meta_discord">Unserem Discord beitreten</string>
+
     <string name="settings_meta_contact">Entwickler kontaktieren</string>
     <string name="settings_meta_contact_url">https://www.finnmglas.com/de/kontakt/</string>
 

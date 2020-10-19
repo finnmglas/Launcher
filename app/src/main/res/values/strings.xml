@@ -124,6 +124,9 @@
 
     <string name="settings_meta_donate_url">https://www.finnmglas.com/sponsor</string>
 
+    <string name="settings_meta_discord">Join us on discord!</string>
+    <string name="settings_meta_discord_url" translatable="false">https://discord.com/invite/jV2AhF8</string>
+
     <!--
       -
       - List (Launchers app drawer)

@@ -98,6 +98,8 @@
 
     <string name="settings_meta_report_bug">Signaler une erreur</string>
 
+    <string name="settings_meta_discord">Rejoindre le serveur Discord</string>
+
     <string name="settings_meta_contact">Contacter le développeur</string>
     <string name="settings_meta_contact_url">https://www.finnmglas.com/fr/contact/</string>
 

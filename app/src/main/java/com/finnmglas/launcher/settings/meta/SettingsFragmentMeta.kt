@@ -66,6 +66,7 @@ class SettingsFragmentMeta : Fragment(), UIObject {
         setButtonColor(settings_meta_button_reset_settings, vibrantColor)
         setButtonColor(settings_meta_button_report_bug, vibrantColor)
         setButtonColor(settings_meta_button_contact, vibrantColor)
+        setButtonColor(settings_meta_button_discord, vibrantColor)
 
         settings_meta_icon_github.setTextColor(vibrantColor)
         settings_meta_icon_store.setTextColor(vibrantColor)
@@ -152,6 +153,15 @@ class SettingsFragmentMeta : Fragment(), UIObject {
             intendedSettingsPause = true
             openNewTabWindow(
                 getString(R.string.settings_meta_report_bug_link),
+                context!!
+            )
+        }
+
+        // invite link to the discord server
+        settings_meta_button_discord.setOnClickListener {
+            intendedSettingsPause = true
+            openNewTabWindow(
+                getString(R.string.settings_meta_discord_url),
                 context!!
             )
         }
