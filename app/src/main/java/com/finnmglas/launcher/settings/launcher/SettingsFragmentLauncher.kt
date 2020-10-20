@@ -45,11 +45,49 @@ class SettingsFragmentLauncher : Fragment(), UIObject {
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
 
         when (requestCode) {
             REQUEST_PERMISSION_STORAGE -> letUserPickImage()
-            REQUEST_PICK_IMAGE -> handlePickedImage(resultCode, data)
-            else -> super.onActivityResult(requestCode, resultCode, data)
+            REQUEST_PICK_IMAGE -> {
+
+                if (resultCode == AppCompatActivity.RESULT_OK && data != null) {
+
+                    val imageUri = data.data
+                    background = MediaStore.Images.Media.getBitmap(context!!.contentResolver, imageUri)
+
+                    Palette.Builder(background!!).generate {
+                        it?.let { palette ->
+                            dominantColor = palette.getDominantColor(ContextCompat.getColor(context!!, R.color.darkTheme_accent_color))
+                            vibrantColor = palette.getVibrantColor(ContextCompat.getColor(context!!, R.color.darkTheme_accent_color))
+
+                            // never let dominantColor equal vibrantColor
+                            if(dominantColor == vibrantColor) {
+                                vibrantColor =
+                                    manipulateColor(
+                                        vibrantColor,
+                                        1.2F
+                                    )
+                                dominantColor =
+                                    manipulateColor(
+                                        dominantColor,
+                                        0.8F
+                                    )
+                            }
+
+                            /* Save image Uri as string */
+                            launcherPreferences.edit()
+                                .putString(PREF_WALLPAPER, imageUri.toString())
+                                .putInt(PREF_DOMINANT, dominantColor)
+                                .putInt(PREF_VIBRANT, vibrantColor)
+                                .apply()
+
+                            intendedSettingsPause = true
+                            activity!!.recreate()
+                        }
+                    }
+                }
+            }
         }
     }
 
@@ -68,46 +106,6 @@ class SettingsFragmentLauncher : Fragment(), UIObject {
         
         intendedSettingsPause = true
         startActivityForResult(intent, REQUEST_PICK_IMAGE)
-    }
-
-    private fun handlePickedImage(resultCode: Int, data: Intent?) {
-        if (resultCode == AppCompatActivity.RESULT_OK) {
-            if (data == null) return
-
-            val imageUri = data.data
-            background = MediaStore.Images.Media.getBitmap(context!!.contentResolver, imageUri)
-
-            Palette.Builder(background!!).generate {
-                it?.let { palette ->
-                    dominantColor = palette.getDominantColor(ContextCompat.getColor(context!!, R.color.darkTheme_accent_color))
-                    vibrantColor = palette.getVibrantColor(ContextCompat.getColor(context!!, R.color.darkTheme_accent_color))
-
-                    // never let dominantColor equal vibrantColor
-                    if(dominantColor == vibrantColor) {
-                        vibrantColor =
-                            manipulateColor(
-                                vibrantColor,
-                                1.2F
-                            )
-                        dominantColor =
-                            manipulateColor(
-                                dominantColor,
-                                0.8F
-                            )
-                    }
-
-                    /* Save image Uri as string */
-                    launcherPreferences.edit()
-                        .putString(PREF_WALLPAPER, imageUri.toString())
-                        .putInt(PREF_DOMINANT, dominantColor)
-                        .putInt(PREF_VIBRANT, vibrantColor)
-                        .apply()
-
-                    intendedSettingsPause = true
-                    activity!!.recreate()
-                }
-            }
-        }
     }
 
     override fun applyTheme() {
