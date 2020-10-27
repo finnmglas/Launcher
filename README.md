@@ -8,7 +8,7 @@
 
 # <a name="en"></a> Launcher :rocket:
 
-**`English` | [`Deutsch`](#de) | [`Français`](#fr)**
+**`English` | [`Deutsch`](#de) | [`Français`](#fr) | [`Español`](#es)**
 
 ## Concept
 _Launcher_ is an android homescreen that lets you start other apps efficiently using swipe gestures and button presses. It is **minimal, efficient and free of distraction**.
@@ -56,7 +56,7 @@ As the app is 100% free to the public, fees for distribution et cetera are paid 
 
 # <a name="de"></a> Launcher :rocket:
 
-**[`English`](#en) | `Deutsch` | [`Français`](#fr)**
+**[`English`](#en) | `Deutsch` | [`Français`](#fr) | [`Español`](#es)**
 
 ## Konzept
 _Launcher_ ist ein Startbildschirm für Android, der dir hilft, andere Apps durch Wischbewegungen und die Tasten deines Smartphones schnell andere Apps starten lässt. Er ist **minimal, effizient und frei von Ablenkung**.
@@ -104,7 +104,7 @@ Da diese App 100% gratis für jeden ist, werden Kosten für die Verbreitung, Ent
 
 # <a name="fr"></a> Launcher :rocket:
 
-**[`English`](#en) | [`Deutsch`](#de) | `Français`**
+**[`English`](#en) | [`Deutsch`](#de) | `Français` | [`Español`](#es)**
 
 ## Concept
 _Launcher_ est un écran d'accueil Android qui vous permet de démarrer efficacement d'autres applications en utilisant des gestes de balayage et des pressions sur des boutons. Il est **minimal, efficace et sans distraction**.
@@ -146,6 +146,54 @@ Pour aider à développer Launcher, vous aurez besoin d'un compte GitHub ([crée
 ### Sponsoriser :heart:
 
 Comme l'application est 100% gratuite pour le public, les frais de distribution, etc. sont payés par le développeur lui-même. Si _Launcher_ est assez précieux pour vous, vous pouvez également [soutenir le projet financièrement][financier] - **vous, en tant que sponsor, rendez l'open-source possible en premier lieu!**
+
+---
+
+<!-- SPANISH README -->
+
+# <a name="es"></a> Launcher :rocket:
+
+**[`English`](#en) | [`Deutsch`](#de) | [`Français`](#fr) | `Español`**
+
+## Concepto
+_Launcher_ es una pantalla de inicio para android que permite iniciar otras aplicaciones de forma eficiente mediante gestos de deslizar y presionar en la pantalla. Es **minimalista, eficiente y libre de distracciones**.
+
+La pantalla de inicio solo muestra la fecha, hora y un fondo de pantalla (si se desea uno).
+
+Esta aplicación **no cuesta nada**, es **libre de anuncios** y no recopila, recibe o comparte información personal. Mejora tu eficiencia, sin importar quién seas!
+
+Así que haz el mejor uso posible de tu tiempo con tu smartphone descargando este Launcher:
+
+[<img alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" title="Download Launcher on Google Play" width="49%">][store-googleplay-badgecampain]
+[<img alt="Get on F-Droid" src="https://fdroid.gitlab.io/artwork/badge/get-it-on.png" title="Download Launcher from F-droid" width="49%">][store-fdroid]
+
+## Contribuciones
+Si _Launcher_ te resulta útil, tu ayuda en su desarrollo será muy bienvenida! Únete a nuestro [discord]!
+
+### Testing
+La forma más simple de mejorar la aplicación es descargándola y probándola. Necesitamos mucha ayuda de ti: Puedes [escribir una reseña][store-googleplay] en Google Play o [abrir un issue][newissue] en GitHub. 
+
+### GitHub
+
+Incluso si no puedes hacerte un tiempo para otras contribuciones (código, reseñas), por favor asegúrate de darle una estrella a _Launcher_, y así ayudar a que otros desarrolladores y usuarios encuentren la app más fácilmente ^^
+
+[![][shield-gh-star]][star]
+
+### Contribuciones de Código
+
+Para ayudar con el desarrollo de Launcher, necesitarás una cuenta de GitHub ([crea una][joingh]).
+
+1. Crea un fork de este repositorio.<br><br>[![][shield-gh-fork]][fork]
+
+2. Crea una nueva rama llamada `feature/[feature-name]` or `fix/[what-you-fix]`.
+
+3. Commitear tus cambios, soluciones o mejoras a la rama nueva.
+
+4. Abrir una nueva pull request a la rama `master` de este repositorio.
+
+### Patrocinar :heart:
+
+Como la aplicación es 100% gratuita, los costos de distribución et cetera son pagados por el desarrollador. Si _Launcher_ es lo suficientemente valioso para ti, puedes [apoyar el proyecto financieramente][financial] - **tú como patrocinador haces que el software de código abierto sea posible en primer lugar** 
 
 ---
 
