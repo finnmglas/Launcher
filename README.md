@@ -185,7 +185,7 @@ Para ayudar con el desarrollo de Launcher, necesitarás una cuenta de GitHub ([c
 
 1. Crea un fork de este repositorio.<br><br>[![][shield-gh-fork]][fork]
 
-2. Crea una nueva rama llamada `feature/[feature-name]` or `fix/[what-you-fix]`.
+2. Crea una nueva rama llamada `feature/[feature-name]` o `fix/[what-you-fix]`.
 
 3. Commitear tus cambios, soluciones o mejoras a la rama nueva.
 
