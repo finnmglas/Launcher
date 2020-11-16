@@ -193,7 +193,7 @@ Para ayudar con el desarrollo de Launcher, necesitarás una cuenta de GitHub ([c
 
 ### Patrocinar :heart:
 
-Como la aplicación es 100% gratuita, los costos de distribución et cetera son pagados por el desarrollador. Si _Launcher_ es lo suficientemente valioso para ti, puedes [apoyar el proyecto financieramente][financial] - **tú como patrocinador haces que el software de código abierto sea posible en primer lugar** 
+Como la aplicación es 100% gratuita, los costos de distribución et cetera son pagados por el desarrollador. Si _Launcher_ es lo suficientemente valioso para ti, puedes [apoyar el proyecto financieramente][financial] - **tú como patrocinador haces que el software de código abierto sea posible en primer lugar!** 
 
 ---
 

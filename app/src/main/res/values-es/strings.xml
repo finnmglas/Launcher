@@ -66,23 +66,23 @@
     <string-array name="settings_launcher_time_format_spinner_items">
         <item>Normal</item>
         <item>Inverso</item>
-        <item>Solo tiempo</item>
+        <item>Solo hora</item>
         <item>Alemán</item>
     </string-array>
     <string-array name="settings_launcher_time_formats_upper">
-        <item>aaaa-MM-dd</item>
+        <item>dd-MM-yyyy</item>
         <item>HH:mm:ss</item>
         <item>HH:mm:ss</item>
         <item>HH:mm:ss</item>
     </string-array>
     <string-array name="settings_launcher_time_formats_lower">
         <item>HH:mm:ss</item>
-        <item>aaaa-MM-dd</item>
+        <item>dd-MM-yyyy</item>
         <item> </item>
-        <item>dd.MM.aaaa</item>
+        <item>dd.MM.yyyy</item>
     </string-array>
 
-    <string name="settings_launcher_theme">Theme</string>
+    <string name="settings_launcher_theme">Tema</string>
     <string-array name="settings_launcher_theme_spinner_items">
         <item>Normal</item>
         <item>Oscuro</item>
@@ -94,13 +94,13 @@
 
     <string name="settings_launcher_section_display">Pantalla</string>
 
-    <string name="settings_launcher_disable_timeout">Mantener la pantalla encendida</string>
+    <string name="settings_launcher_disable_timeout">Mantener encendida</string>
     <string name="settings_launcher_full_screen">Pantalla completa</string>
 
     <string name="settings_launcher_section_functions">Funciones</string>
 
-    <string name="settings_launcher_enable_double">Acciones al deslizar doble</string>
-    <string name="settings_launcher_auto_launch">Abrir resultados de búsqueda</string>
+    <string name="settings_launcher_enable_double">Deslizar con dos dedos</string>
+    <string name="settings_launcher_auto_launch">Auto-lanzar búsquedas</string>
 
     <string name="settings_launcher_sensitivity">Sensibilidad</string>
 
@@ -121,7 +121,6 @@
     <string name="settings_meta_link_github">https://github.com/finnmglas/Launcher#en</string>
 
     <string name="settings_meta_report_bug">Reportar un error</string>
-    <string name="settings_meta_report_bug_link" translatable="false">https://github.com/finnmglas/Launcher/issues/new</string>
 
     <string name="settings_meta_contact">Contactar al desarrollador</string>
     <string name="settings_meta_contact_url">https://www.finnmglas.com/contact/</string>
@@ -129,7 +128,6 @@
     <string name="settings_meta_donate_url">https://www.finnmglas.com/sponsor</string>
 
     <string name="settings_meta_discord">Unete a nuestro discord!</string>
-    <string name="settings_meta_discord_url" translatable="false">https://discord.com/invite/jV2AhF8</string>
 
     <!--
       -
