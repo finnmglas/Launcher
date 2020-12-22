@@ -145,7 +145,7 @@ Pour aider à développer Launcher, vous aurez besoin d'un compte GitHub ([crée
 
 ### Sponsoriser :heart:
 
-Comme l'application est 100% gratuite pour le public, les frais de distribution, etc. sont payés par le développeur lui-même. Si _Launcher_ est assez précieux pour vous, vous pouvez également [soutenir le projet financièrement][financier] - **vous, en tant que sponsor, rendez l'open-source possible en premier lieu!**
+Comme l'application est 100% gratuite pour le public, les frais de distribution, etc. sont payés par le développeur lui-même. Si _Launcher_ est assez précieux pour vous, vous pouvez également [soutenir le projet financièrement][financial] - **vous, en tant que sponsor, rendez l'open-source possible en premier lieu!**
 
 ---
 
