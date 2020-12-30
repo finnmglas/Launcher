@@ -58,6 +58,7 @@
         <item>Invertiert</item>
         <item>Uhrzeit</item>
         <item>Deutsch</item>
+        <item>Nichts</item>
     </string-array>
 
     <string name="settings_launcher_theme">Theme</string>

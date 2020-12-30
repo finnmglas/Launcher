@@ -58,6 +58,7 @@
         <item>Inversé</item>
         <item>Temps</item>
         <item>Allemand</item>
+        <item>Rien</item>
     </string-array>
 
     <string name="settings_launcher_theme">Theme</string>

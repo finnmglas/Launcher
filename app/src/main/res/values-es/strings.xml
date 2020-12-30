@@ -68,18 +68,21 @@
         <item>Inverso</item>
         <item>Solo hora</item>
         <item>Alemán</item>
+        <item>Nada</item>
     </string-array>
     <string-array name="settings_launcher_time_formats_upper">
         <item>dd-MM-yyyy</item>
         <item>HH:mm:ss</item>
         <item>HH:mm:ss</item>
         <item>HH:mm:ss</item>
+        <item/>
     </string-array>
     <string-array name="settings_launcher_time_formats_lower">
         <item>HH:mm:ss</item>
         <item>dd-MM-yyyy</item>
         <item> </item>
         <item>dd.MM.yyyy</item>
+        <item />
     </string-array>
 
     <string name="settings_launcher_theme">Tema</string>
