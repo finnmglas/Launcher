@@ -6,12 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.finnmglas.launcher.R
-import com.finnmglas.launcher.UIObject
-import com.finnmglas.launcher.dominantColor
+import com.finnmglas.launcher.*
 import com.finnmglas.launcher.list.forApp
 import com.finnmglas.launcher.list.intention
-import com.finnmglas.launcher.openSoftKeyboard
 import kotlinx.android.synthetic.main.list.*
 import kotlinx.android.synthetic.main.list_apps.*
 
@@ -69,8 +66,8 @@ class ListFragmentApps : Fragment(), UIObject {
             }
         })
 
-        when (intention) {
-            "view" -> openSoftKeyboard(context!!, list_apps_searchview)
+        if (intention == "view" && launcherPreferences.getBoolean(PREF_SEARCH_AUTO_KEYBOARD, true)) {
+            openSoftKeyboard(context!!, list_apps_searchview)
         }
     }
 }

@@ -101,6 +101,7 @@
 
     <string name="settings_launcher_enable_double">Deslizar con dos dedos</string>
     <string name="settings_launcher_auto_launch">Auto-lanzar búsquedas</string>
+    <string name="settings_launcher_auto_keyboard">Abrir teclado en búsqueda</string>
 
     <string name="settings_launcher_sensitivity">Sensibilidad</string>
 

@@ -115,6 +115,7 @@ class SettingsFragmentLauncher : Fragment(), UIObject {
         setSwitchColor(settings_launcher_switch_screen_timeout, vibrantColor)
         setSwitchColor(settings_launcher_switch_screen_full, vibrantColor)
         setSwitchColor(settings_launcher_switch_auto_launch, vibrantColor)
+        setSwitchColor(settings_launcher_switch_auto_keyboard, vibrantColor)
         setSwitchColor(settings_launcher_switch_enable_double, vibrantColor)
 
         settings_launcher_container.setBackgroundColor(dominantColor)
@@ -147,6 +148,13 @@ class SettingsFragmentLauncher : Fragment(), UIObject {
         settings_launcher_switch_auto_launch.setOnCheckedChangeListener { _, isChecked -> // Toggle double actions
             launcherPreferences.edit()
                 .putBoolean(PREF_SEARCH_AUTO_LAUNCH, isChecked)
+                .apply()
+        }
+
+        settings_launcher_switch_auto_keyboard.isChecked = launcherPreferences.getBoolean(PREF_SEARCH_AUTO_KEYBOARD, true)
+        settings_launcher_switch_auto_keyboard.setOnCheckedChangeListener { _, isChecked -> // Toggle double actions
+            launcherPreferences.edit()
+                .putBoolean(PREF_SEARCH_AUTO_KEYBOARD, isChecked)
                 .apply()
         }
 
@@ -216,9 +224,7 @@ class SettingsFragmentLauncher : Fragment(), UIObject {
                     .apply()
             }
 
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-
-            }
+            override fun onNothingSelected(parent: AdapterView<*>?) { }
         }
 
         // Load values into the theme spinner
@@ -246,10 +252,7 @@ class SettingsFragmentLauncher : Fragment(), UIObject {
                     2 -> if (getSavedTheme(activity!!) != "custom") resetToCustomTheme(activity!!)
                 }
             }
-
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-
-            }
+            override fun onNothingSelected(parent: AdapterView<*>?) { }
         }
 
         settings_seekbar_sensitivity.progress = launcherPreferences.getInt(PREF_SLIDE_SENSITIVITY, 2) * 4 / 100

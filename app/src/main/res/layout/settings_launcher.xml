@@ -255,6 +255,35 @@
         android:paddingLeft="8sp">
 
         <TextView
+            android:id="@+id/settings_launcher_text_start_keyboard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/settings_launcher_auto_keyboard"
+            android:textSize="16sp" />
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <Switch
+            android:id="@+id/settings_launcher_switch_auto_keyboard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16sp"
+        android:gravity="top"
+        android:orientation="horizontal"
+        android:paddingLeft="8sp">
+
+        <TextView
             android:id="@+id/settings_launcher_text_enable_double"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

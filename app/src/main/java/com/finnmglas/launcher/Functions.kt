@@ -77,6 +77,7 @@ const val PREF_DATE_FORMAT = "dateFormat"
 
 const val PREF_DOUBLE_ACTIONS_ENABLED = "enableDoubleActions"
 const val PREF_SEARCH_AUTO_LAUNCH = "searchAutoLaunch"
+const val PREF_SEARCH_AUTO_KEYBOARD = "searchAutoKeyboard"
 
 const val PREF_SLIDE_SENSITIVITY = "slideSensitivity"
 

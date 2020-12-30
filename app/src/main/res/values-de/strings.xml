@@ -79,6 +79,7 @@
 
     <string name="settings_launcher_enable_double">Doppelte Wischaktionen</string>
     <string name="settings_launcher_auto_launch">Suchergebisse launchen</string>
+    <string name="settings_launcher_auto_keyboard">Tastatur in Suche öffnen</string>
 
     <string name="settings_launcher_sensitivity">Empfindlichkeit</string>
 
