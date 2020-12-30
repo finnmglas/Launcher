@@ -1,0 +1,9 @@
+Quelques nouvelles fonctionnalités étonnantes pour 2021:
+
+- Vous pouvez régler la sensibilité au balayage des lanceurs
+- Vous pouvez maintenant sélectionner votre calendrier et vos applications d'horloge préférés
+- Il y a quelques nouveaux paramètres mineurs à essayer!
+- Traductions en espagnol par Kj-is-escape
+- Et de nombreux petits bugs corrigés
+
+Bon début d'année!
