@@ -212,7 +212,8 @@
             android:id="@+id/settings_seekbar_sensitivity"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:progress="50" />
+            android:max="4"
+            android:progress="2" />
 
     </LinearLayout>
 

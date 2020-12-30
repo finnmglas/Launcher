@@ -166,7 +166,7 @@ class SettingsFragmentLauncher : Fragment(), UIObject {
                 override fun onStartTrackingTouch(p0: SeekBar?) {}
                 override fun onStopTrackingTouch(p0: SeekBar?) {
                     launcherPreferences.edit()
-                        .putInt(PREF_SLIDE_SENSITIVITY, p0!!.progress)
+                        .putInt(PREF_SLIDE_SENSITIVITY, p0!!.progress * 100 / 4) // scale to %
                         .apply()
                 }
             }
@@ -252,6 +252,6 @@ class SettingsFragmentLauncher : Fragment(), UIObject {
             }
         }
 
-        settings_seekbar_sensitivity.progress = launcherPreferences.getInt(PREF_SLIDE_SENSITIVITY, 50)
+        settings_seekbar_sensitivity.progress = launcherPreferences.getInt(PREF_SLIDE_SENSITIVITY, 2) * 4 / 100
     }
 }
