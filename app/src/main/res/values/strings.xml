@@ -182,7 +182,7 @@
     <string name="tutorial_setup_text_2">You can also change your selection later.</string>
 
     <string name="tutorial_finish_title">Let\'s go!</string>
-    <string name="tutorial_finish_text">You are ready to get started!\n\n I hope this provides great value to you!\n\n- Finn M Glas\n(the developer)</string>
-    <string name="tutorial_finish_button">Start Launcher</string>
+    <string name="tutorial_finish_text">You are ready to get started!\n\nI hope this is of great value to you!\n\n- Finn (who made Launcher)</string>
+    <string name="tutorial_finish_button">Start</string>
 
 </resources>

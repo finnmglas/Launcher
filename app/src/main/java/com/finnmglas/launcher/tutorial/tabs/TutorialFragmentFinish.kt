@@ -31,6 +31,7 @@ class TutorialFragmentFinish(): Fragment(), UIObject {
     override fun applyTheme() {
         tutorial_finish_container.setBackgroundColor(dominantColor)
         setButtonColor(tutorial_finish_button_start, vibrantColor)
+        tutorial_finish_button_start.blink()
     }
 
     override fun setOnClicks() {

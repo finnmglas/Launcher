@@ -158,7 +158,7 @@
     <string name="tutorial_setup_text_2">Du kannst deine Einstellungen auch später noch ändern.</string>
 
     <string name="tutorial_finish_title">Los gehts!</string>
-    <string name="tutorial_finish_text">Du bist bereit loszulegen!\n\nIch hoffe diese App ist sehr wertvoll für dich!\n\n- Finn M Glas\n(der Entwickler)</string>
-    <string name="tutorial_finish_button">Launcher starten</string>
+    <string name="tutorial_finish_text">Du bist bereit loszulegen!\n\nIch hoffe diese App ist sehr wertvoll für dich!\n\n- Finn (der Entwickler)</string>
+    <string name="tutorial_finish_button">Starten</string>
 
 </resources>

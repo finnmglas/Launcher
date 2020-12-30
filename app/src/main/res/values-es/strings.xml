@@ -183,6 +183,6 @@
 
     <string name="tutorial_finish_title">Vamos!</string>
     <string name="tutorial_finish_text">Estás listo para iniciar!\n\n Esperamos que esto te sea de gran ayuda!\n\n- Finn M Glas\n(el desarrollador)</string>
-    <string name="tutorial_finish_button">Iniciar Launcher</string>
+    <string name="tutorial_finish_button">Iniciar</string>
 
 </resources>

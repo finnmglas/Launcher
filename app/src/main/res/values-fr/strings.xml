@@ -159,6 +159,6 @@
 
     <string name="tutorial_finish_title">Allez!</string>
     <string name="tutorial_finish_text">Vous êtes prêt à commencer!\n\nJ\'espère que cette application vous sera très précieuse!\n\n- Finn M Glas\n(le développeur)</string>
-    <string name="tutorial_finish_button">Ouvrir Launcher</string>
+    <string name="tutorial_finish_button">Ouvrir</string>
 
 </resources>
