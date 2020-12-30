@@ -81,9 +81,15 @@
         <item>launcher:settings</item> <!-- Launcher Settings -->
     </string-array>
 
-    <!-- Clock -->
-    <string-array name="default_clock">
+    <!-- Time / Clock -->
+    <string-array name="default_time">
         <item>com.sec.android.app.clockpackage</item> <!-- Android Clock -->
+    </string-array>
+
+    <!-- Date / Calendar (same as left app currently) -->
+    <string-array name="default_date">
+        <item>com.google.android.calendar</item> <!-- Google Calendar -->
+        <item>com.samsung.android.calendar</item> <!-- Samsung Calendar -->
     </string-array>
 
 </resources>

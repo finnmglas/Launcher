@@ -25,7 +25,6 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.Switch
 import android.widget.Toast
-import androidx.annotation.RequiresApi
 import com.finnmglas.launcher.list.ListActivity
 import com.finnmglas.launcher.list.apps.AppInfo
 import com.finnmglas.launcher.list.apps.AppsRecyclerAdapter
@@ -54,8 +53,8 @@ const val ACTION_VOL_DOWN = "action_volumeDownApp"
 const val ACTION_DOUBLE_CLICK = "action_doubleClickApp"
 const val ACTION_LONG_CLICK = "action_longClickApp"
 
-const val ACTION_CALENDAR = "action_calendarApp"
-const val ACTION_CLOCK = "action_clockApp"
+const val ACTION_DATE = "action_dateApp"
+const val ACTION_TIME = "action_timeApp"
 
 val ACTIONS = listOf(
     ACTION_UP, ACTION_DOUBLE_UP,
@@ -63,7 +62,7 @@ val ACTIONS = listOf(
     ACTION_RIGHT, ACTION_LEFT,
     ACTION_VOL_UP, ACTION_VOL_DOWN,
     ACTION_DOUBLE_CLICK, ACTION_LONG_CLICK,
-    ACTION_CALENDAR, ACTION_CLOCK
+    ACTION_DATE, ACTION_TIME
 )
 
 const val PREF_DOMINANT = "custom_dominant"
@@ -105,8 +104,8 @@ var volumeDownApp = ""
 var doubleClickApp = ""
 var longClickApp = ""
 
-var calendarApp = ""
-var clockApp = ""
+var timeApp = ""
+var dateApp = ""
 
 var background : Bitmap? = null
 
@@ -440,8 +439,8 @@ fun loadSettings() {
     doubleClickApp = launcherPreferences.getString(ACTION_DOUBLE_CLICK, "")!!
     longClickApp = launcherPreferences.getString(ACTION_LONG_CLICK, "")!!
 
-    calendarApp = launcherPreferences.getString(ACTION_CALENDAR, "")!!
-    clockApp = launcherPreferences.getString(ACTION_CLOCK, "")!!
+    dateApp = launcherPreferences.getString(ACTION_DATE, "")!!
+    timeApp = launcherPreferences.getString(ACTION_TIME, "")!!
 
     dominantColor = launcherPreferences.getInt(PREF_DOMINANT, 0)
     vibrantColor = launcherPreferences.getInt(PREF_VIBRANT, 0)
@@ -509,8 +508,8 @@ fun pickDefaultApp(action: String, context: Context) : String {
         ACTION_VOL_DOWN -> R.array.default_volume_down
         ACTION_DOUBLE_CLICK -> R.array.default_double_click
         ACTION_LONG_CLICK -> R.array.default_long_click
-        ACTION_CLOCK -> R.array.default_clock
-        ACTION_CALENDAR -> R.array.default_left
+        ACTION_TIME -> R.array.default_time
+        ACTION_DATE -> R.array.default_date
 
         else -> return "" // just prevent crashing on unknown input
     }

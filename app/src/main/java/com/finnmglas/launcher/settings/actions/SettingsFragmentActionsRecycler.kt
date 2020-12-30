@@ -181,6 +181,12 @@ class ActionsRecyclerAdapter(val activity: Activity):
         actionsList.add(ActionInfo(activity.getString(R.string.settings_apps_long_click), "longClickApp",
             longClickApp
         ))
+        actionsList.add(ActionInfo(activity.getString(R.string.settings_apps_time), "timeApp",
+            timeApp
+        ))
+        actionsList.add(ActionInfo(activity.getString(R.string.settings_apps_date), "dateApp",
+            dateApp
+        ))
     }
 
     /*  */

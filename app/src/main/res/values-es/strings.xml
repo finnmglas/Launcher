@@ -47,6 +47,8 @@
     <string name="settings_apps_vol_down">Bajar Volumen</string>
     <string name="settings_apps_double_click">Doble Click</string>
     <string name="settings_apps_long_click">Click Largo</string>
+    <string name="settings_apps_date">Toca la fecha</string>
+    <string name="settings_apps_time">Toca el reloj</string>
 
     <string name="settings_apps_choose">Elegir Aplicación</string>
 

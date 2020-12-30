@@ -37,6 +37,8 @@
     <string name="settings_apps_vol_down">Lautstärke -</string>
     <string name="settings_apps_double_click">Doppelklick</string>
     <string name="settings_apps_long_click">Langer Klick</string>
+    <string name="settings_apps_date">Datum antippen</string>
+    <string name="settings_apps_time">Uhr antippen</string>
 
     <string name="settings_apps_choose">App wählen</string>
 

@@ -262,15 +262,15 @@ class HomeActivity: UIObject, AppCompatActivity(),
 
         home_upper_view.setOnClickListener() {
             when (launcherPreferences.getInt(PREF_DATE_FORMAT, 0)) {
-                0 -> launch(calendarApp, this)
-                else -> launch(clockApp,this)
+                0 -> launch(dateApp, this)
+                else -> launch(timeApp,this)
             }
         }
 
         home_lower_view.setOnClickListener() {
             when (launcherPreferences.getInt(PREF_DATE_FORMAT, 0)) {
-                0 -> launch(clockApp, this)
-                else -> launch(calendarApp,this)
+                0 -> launch(timeApp, this)
+                else -> launch(dateApp,this)
             }
         }
     }

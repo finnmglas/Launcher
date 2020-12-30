@@ -45,6 +45,8 @@
     <string name="settings_apps_vol_down">Volume Down</string>
     <string name="settings_apps_double_click">Double Click</string>
     <string name="settings_apps_long_click">Long Click</string>
+    <string name="settings_apps_date">Click on Date</string>
+    <string name="settings_apps_time">Click on Time</string>
 
     <string name="settings_apps_choose">Choose App</string>
 
