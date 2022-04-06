@@ -156,22 +156,26 @@ class HomeActivity: UIObject, AppCompatActivity(),
         // strictness = opposite of sensitivity. TODO - May have to be adjusted
         val strictness = (4 / bufferedPointerCount) * ((100 - launcherPreferences.getInt(PREF_SLIDE_SENSITIVITY, 50)) / 50)
 
-        // Only open if the swipe was not from the phones top edge
-        if (diffY < -height / 8 && abs(diffY) > strictness * abs(diffX) && e1.y > 100) {
-            if (bufferedPointerCount == 1) launch(downApp, this, R.anim.top_down)
-            else if (bufferedPointerCount == 2 && doubleActions) launch(doubleDownApp, this, R.anim.top_down)
-        }
-        else if (diffY > height / 8 && abs(diffY) > strictness * abs(diffX)) {
-            if (bufferedPointerCount == 1) launch(upApp, this, R.anim.bottom_up)
-            else if (bufferedPointerCount == 2 && doubleActions) launch(doubleUpApp, this, R.anim.bottom_up)
-        }
-        else if (diffX > width / 4 && abs(diffX) > strictness * abs(diffY)) {
-            if (bufferedPointerCount == 1) launch(leftApp,this, R.anim.right_left)
-            else if (bufferedPointerCount == 2 && doubleActions) launch(doubleLeftApp,this, R.anim.right_left)
-        }
-        else if (diffX < -width / 4 && abs(diffX) > strictness * abs(diffY)) {
-            if (bufferedPointerCount == 1) launch(rightApp, this, R.anim.left_right)
-            else if (bufferedPointerCount == 2 && doubleActions) launch(doubleRightApp, this, R.anim.left_right)
+
+        if(abs(diffX) > abs(diffY)) { // horizontal swipe
+            if (diffX > width / 4 && abs(diffX) > strictness * abs(diffY)) {
+                if (bufferedPointerCount == 1) launch(leftApp,this, R.anim.right_left)
+                else if (bufferedPointerCount == 2 && doubleActions) launch(doubleLeftApp,this, R.anim.right_left)
+            }
+            else if (diffX < -width / 4 && abs(diffX) > strictness * abs(diffY)) {
+                if (bufferedPointerCount == 1) launch(rightApp, this, R.anim.left_right)
+                else if (bufferedPointerCount == 2 && doubleActions) launch(doubleRightApp, this, R.anim.left_right)
+            }
+        } else { // vertical swipe
+            // Only open if the swipe was not from the phones top edge
+            if (diffY < -height / 8 && abs(diffY) > strictness * abs(diffX) && e1.y > 100) {
+                if (bufferedPointerCount == 1) launch(downApp, this, R.anim.top_down)
+                else if (bufferedPointerCount == 2 && doubleActions) launch(doubleDownApp, this, R.anim.top_down)
+            }
+            else if (diffY > height / 8 && abs(diffY) > strictness * abs(diffX)) {
+                if (bufferedPointerCount == 1) launch(upApp, this, R.anim.bottom_up)
+                else if (bufferedPointerCount == 2 && doubleActions) launch(doubleUpApp, this, R.anim.bottom_up)
+            }
         }
 
         return true
