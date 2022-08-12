@@ -56,6 +56,7 @@
 
     <string name="settings_apps_install">Instalar aplicaciones</string>
     <string name="settings_apps_toast_store_not_found">No se encontró la PlayStore</string>
+    <string name="settings_launcher_moving_clock">reloj deslizante</string>
 
     <!--
       -
