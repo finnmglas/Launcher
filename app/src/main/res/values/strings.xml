@@ -70,6 +70,7 @@
         <item>Time only</item>
         <item>German</item>
         <item>Nothing</item>
+        <item>French</item>
     </string-array>
     <string-array name="settings_launcher_time_formats_upper">
         <item>yyyy-MM-dd</item>
@@ -77,6 +78,7 @@
         <item>HH:mm:ss</item>
         <item>HH:mm:ss</item>
         <item/>
+        <item>HH:mm:ss</item>
     </string-array>
     <string-array name="settings_launcher_time_formats_lower">
         <item>HH:mm:ss</item>
@@ -84,6 +86,7 @@
         <item/>
         <item>dd.MM.yyyy</item>
         <item/>
+        <item>dd/MM/yyyy</item>
     </string-array>
 
     <string name="settings_launcher_theme">Theme</string>
