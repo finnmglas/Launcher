@@ -46,6 +46,7 @@
 
     <string name="settings_apps_install">Apps installieren</string>
     <string name="settings_apps_toast_store_not_found">PlayStore nicht gefunden</string>
+    <string name="settings_launcher_moving_clock">Gleitende Uhr</string>
 
     <!--
       -
