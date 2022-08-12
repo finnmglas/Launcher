@@ -73,6 +73,7 @@ const val PREF_THEME = "theme"
 const val PREF_SCREEN_TIMEOUT_DISABLED = "disableTimeout"
 const val PREF_SCREEN_FULLSCREEN = "useFullScreen"
 const val PREF_DATE_FORMAT = "dateFormat"
+const val PREF_MOVING_CLOCK = "movingClock"
 
 const val PREF_DOUBLE_ACTIONS_ENABLED = "enableDoubleActions"
 const val PREF_SEARCH_AUTO_LAUNCH = "searchAutoLaunch"
@@ -464,6 +465,7 @@ fun resetSettings(context: Context) {
         .putInt(PREF_DATE_FORMAT, 0)
         .putBoolean(PREF_SCREEN_FULLSCREEN, true)
         .putBoolean(PREF_DOUBLE_ACTIONS_ENABLED, false)
+        .putBoolean(PREF_MOVING_CLOCK, false)
         .putInt(PREF_SLIDE_SENSITIVITY, 50)
 
     // load action defaults
