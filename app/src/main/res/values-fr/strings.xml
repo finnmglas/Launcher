@@ -62,6 +62,7 @@
         <item>Temps</item>
         <item>Allemand</item>
         <item>Rien</item>
+        <item>Français</item>
     </string-array>
 
     <string name="settings_launcher_theme">Theme</string>
