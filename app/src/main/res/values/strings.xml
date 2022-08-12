@@ -54,6 +54,7 @@
 
     <string name="settings_apps_install">Install apps</string>
     <string name="settings_apps_toast_store_not_found">PlayStore not found</string>
+    <string name="settings_launcher_moving_clock">Drifting date and time</string>
 
     <!--
       -
