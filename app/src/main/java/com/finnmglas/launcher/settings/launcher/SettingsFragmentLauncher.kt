@@ -127,6 +127,15 @@ class SettingsFragmentLauncher : Fragment(), UIObject {
 
         settings_theme_custom_button_select.setOnClickListener { resetToCustomTheme(activity!!) }
 
+        settings_launcher_switch_moving_clock.isChecked = launcherPreferences.getBoolean(PREF_MOVING_CLOCK, false)
+        settings_launcher_switch_moving_clock.setOnCheckedChangeListener{ _, isChecked ->  // Toggle moving clock
+            launcherPreferences.edit()
+                .putBoolean(PREF_MOVING_CLOCK, isChecked)
+                .apply()
+
+            setWindowFlags(activity!!.window)
+        }
+
         settings_launcher_switch_screen_timeout.isChecked = launcherPreferences.getBoolean(PREF_SCREEN_TIMEOUT_DISABLED, false)
         settings_launcher_switch_screen_timeout.setOnCheckedChangeListener { _, isChecked ->  // Toggle screen timeout
             launcherPreferences.edit()
