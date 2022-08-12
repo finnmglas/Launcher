@@ -72,6 +72,7 @@
         <item>Solo hora</item>
         <item>Alemán</item>
         <item>Nada</item>
+        <item>Francés</item>
     </string-array>
     <string-array name="settings_launcher_time_formats_upper">
         <item>dd-MM-yyyy</item>
