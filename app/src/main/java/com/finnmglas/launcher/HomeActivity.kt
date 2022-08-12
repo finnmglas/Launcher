@@ -8,14 +8,15 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.view.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.GestureDetectorCompat
+import com.finnmglas.launcher.BuildConfig.VERSION_NAME
 import com.finnmglas.launcher.tutorial.TutorialActivity
 import kotlinx.android.synthetic.main.home.*
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.concurrent.fixedRateTimer
 import kotlin.math.abs
-import com.finnmglas.launcher.BuildConfig.VERSION_NAME
 
 /**
  * [HomeActivity] is the actual application Launcher,
@@ -120,10 +121,31 @@ class HomeActivity: UIObject, AppCompatActivity(),
                 val t = timeFormat.format(Date())
                 if (home_lower_view.text != t)
                     home_lower_view.text = t
+                    if (launcherPreferences.getBoolean(PREF_MOVING_CLOCK, false)) {
+                        val totalMinutes = SimpleDateFormat("HH").format(Date()).toInt() * 60 + SimpleDateFormat("mm").format(Date()).toInt()
+
+                        val paramsUp = home_lower_view.layoutParams as ConstraintLayout.LayoutParams
+                        paramsUp.verticalBias = (totalMinutes.toFloat()*0.75/(60*24)+0.1).toFloat()
+                        home_lower_view.requestLayout()
+
+                        val paramsDown = home_upper_view.layoutParams as ConstraintLayout.LayoutParams
+                        paramsDown.verticalBias = (totalMinutes.toFloat()*0.75/(60*24)+0.05).toFloat()
+                        home_upper_view.requestLayout()
+                    }
+                    else {
+                        val paramsUp = home_lower_view.layoutParams as ConstraintLayout.LayoutParams
+                        paramsUp.verticalBias = (0.5).toFloat()
+                        home_lower_view.requestLayout()
+                        val paramsDown = home_upper_view.layoutParams as ConstraintLayout.LayoutParams
+                        paramsDown.verticalBias = (0.45).toFloat()
+                        home_upper_view.requestLayout()
+                    }
 
                 val d = dateFormat.format(Date())
                 if (home_upper_view.text != d)
                     home_upper_view.text = d
+
+
             }
         }
     }
@@ -141,6 +163,7 @@ class HomeActivity: UIObject, AppCompatActivity(),
             launch(volumeDownApp, this,0, 0)
         return true
     }
+
 
     override fun onFling(e1: MotionEvent, e2: MotionEvent, dX: Float, dY: Float): Boolean {
 

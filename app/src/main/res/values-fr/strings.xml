@@ -5,7 +5,7 @@
       -
       -->
     <string name="alert_cant_open_title">Impossible d\'ouvrir l\'application</string>
-    <string name="alert_cant_open_message">Vous souhaitez modifier ses paramètres?</string>
+    <string name="alert_cant_open_message">Vous souhaitez modifier ses paramètres ?</string>
 
     <string name="toast_cant_open_message">Ouvrez les paramètres pour choisir une application pour cette action</string>
 
@@ -25,27 +25,28 @@
       - Settings : Apps
       -
       -->
-    <string name="settings_apps_up">Balayez haut</string>
+    <string name="settings_apps_up">Balayez vers le haut</string>
     <string name="settings_apps_double_up">Double haut</string>
-    <string name="settings_apps_down">Balayez bas</string>
+    <string name="settings_apps_down">Balayez vers le bas</string>
     <string name="settings_apps_double_down">Double bas</string>
-    <string name="settings_apps_left">Balayez gauche</string>
+    <string name="settings_apps_left">Balayez vers la gauche</string>
     <string name="settings_apps_double_left">Double gauche</string>
-    <string name="settings_apps_right">Balayez droit</string>
+    <string name="settings_apps_right">Balayez vers la droite</string>
     <string name="settings_apps_double_right">Double droit</string>
-    <string name="settings_apps_vol_up">Monter volume</string>
-    <string name="settings_apps_vol_down">Baisser volume</string>
+    <string name="settings_apps_vol_up">Monter le volume</string>
+    <string name="settings_apps_vol_down">Baisser le volume</string>
     <string name="settings_apps_double_click">Double clic</string>
     <string name="settings_apps_long_click">Clic long</string>
-    <string name="settings_apps_date">Touchez date</string>
-    <string name="settings_apps_time">Touchez horloge</string>
+    <string name="settings_apps_date">Click sur la date</string>
+    <string name="settings_apps_time">Click sur l\'horloge</string>
 
     <string name="settings_apps_choose">Choisir App</string>
 
     <string name="settings_apps_view_all">Toutes les applications</string>
 
-    <string name="settings_apps_install">Installer applications</string>
-    <string name="settings_apps_toast_store_not_found">Pas trouvé le PlayStore</string>
+    <string name="settings_apps_install">Installer une application</string>
+    <string name="settings_apps_toast_store_not_found">Le PlayStore n\'a pas été trouvé</string>
+    <string name="settings_launcher_moving_clock">Horloge glissante</string>
 
     <!--
       -
@@ -61,6 +62,7 @@
         <item>Temps</item>
         <item>Allemand</item>
         <item>Rien</item>
+        <item>Français</item>
     </string-array>
 
     <string name="settings_launcher_theme">Theme</string>
@@ -70,19 +72,19 @@
         <item>Image de fond</item>
     </string-array>
 
-    <string name="settings_launcher_choose_wallpaper">Choisir un image</string>
+    <string name="settings_launcher_choose_wallpaper">Choisir une image</string>
     <string name="settings_launcher_change_wallpaper">Changer l\' image de fond</string>
 
     <string name="settings_launcher_section_display">Écran</string>
 
-    <string name="settings_launcher_disable_timeout">Gardez l\'écran allumé</string>
-    <string name="settings_launcher_full_screen">Utiliser le plein écran</string>
+    <string name="settings_launcher_disable_timeout">Garder l\'écran allumé</string>
+    <string name="settings_launcher_full_screen">Utiliser tout l\'écran</string>
 
     <string name="settings_launcher_section_functions">Fonctions</string>
 
-    <string name="settings_launcher_enable_double">Double balayage actions</string>
-    <string name="settings_launcher_auto_launch">Lancer apps par recherche</string>
-    <string name="settings_launcher_auto_keyboard">Ouvrir clavier en recherche</string>
+    <string name="settings_launcher_enable_double">Actions pour un double balayage</string>
+    <string name="settings_launcher_auto_launch">Lancer apps lors de la recherche</string>
+    <string name="settings_launcher_auto_keyboard">Afficher le clavier lors lors d\'une recherche</string>
 
     <string name="settings_launcher_sensitivity">Sensibilité</string>
 
@@ -133,9 +135,9 @@
     <string name="list_other_settings">Launcher Réglages</string>
     <string name="list_other_list">Applications</string>
     <string name="list_other_volume_up">Musique: plus fort</string>
-    <string name="list_other_volume_down">Musique: plus calme</string>
+    <string name="list_other_volume_down">Musique: moins fort</string>
     <string name="list_other_track_next">Musique: suivant</string>
-    <string name="list_other_track_previous">Musique: dernier</string>
+    <string name="list_other_track_previous">Musique: précédent</string>
 
     <!--
       -

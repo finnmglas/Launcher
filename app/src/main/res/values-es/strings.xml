@@ -56,6 +56,7 @@
 
     <string name="settings_apps_install">Instalar aplicaciones</string>
     <string name="settings_apps_toast_store_not_found">No se encontró la PlayStore</string>
+    <string name="settings_launcher_moving_clock">reloj deslizante</string>
 
     <!--
       -
@@ -71,6 +72,7 @@
         <item>Solo hora</item>
         <item>Alemán</item>
         <item>Nada</item>
+        <item>Francés</item>
     </string-array>
     <string-array name="settings_launcher_time_formats_upper">
         <item>dd-MM-yyyy</item>
